@@ -1,0 +1,85 @@
+site_name: Documentation page for bachelor project
+site_description: Documentation for Bachelorgruppe-0
+site_author: Bachelorgruppe-0
+copyright: Copyright 2024 Bachelorgruppe-0 - Creative Commons Attribution Non Commercial
+
+#site_url: https://localhost:8000/
+
+theme:
+  name: material
+  palette:
+    primary: blue grey
+    accent: orange
+  font:
+    text: Roboto
+    code: Ubuntu Mono
+  #logo: images/routine_FILL1_wght700_GRAD200_opsz48.svg
+  #favicon: images/routine_FILL1_wght700_GRAD200_opsz48.svg
+  nav_style: dark
+  features:
+    - navigation.sections
+    - content.code.annotate
+    - content.action.edit
+    - navigation.tabs
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+  palette: 
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/lightbulb 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+nav:
+  - Home: index.md
+  - Original Website: 
+      - Design: original_website_design.md
+      - Frameworks: original_website_frameworks.md
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - git-committers:
+      repository: JennyHov/Bachelor_prosjekt
+      branch: main 
+
+markdown_extensions:
+  - extra
+  - smarty
+  - admonition
+  - pymdownx.keys
+  - codehilite:
+      guess_lang: true
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+repo_url: https://github.com/JennyHov/Bachelor_prosjekt.git
+repo_name: Bachelor_prosjekt.git
+edit_uri: edit/main/docs/
