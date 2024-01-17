@@ -1,4 +1,4 @@
-site_name: Documentation page for bachelor project
+site_name: Documentation - Bachelor Project 2024
 site_description: Documentation for Bachelorgruppe-0
 site_author: Bachelorgruppe-0
 copyright: Copyright 2024 Bachelorgruppe-0 - Creative Commons Attribution Non Commercial
@@ -8,30 +8,9 @@ copyright: Copyright 2024 Bachelorgruppe-0 - Creative Commons Attribution Non Co
 theme:
   name: material
   palette:
-    primary: blue grey
-    accent: orange
-  font:
-    text: Roboto
-    code: Ubuntu Mono
-  #logo: images/routine_FILL1_wght700_GRAD200_opsz48.svg
-  #favicon: images/routine_FILL1_wght700_GRAD200_opsz48.svg
-  nav_style: dark
-  features:
-    - navigation.sections
-    - content.code.annotate
-    - content.action.edit
-    - navigation.tabs
-    - navigation.path
-    - navigation.indexes
-    - navigation.top
-    - navigation.tracking
-    - toc.follow
-    - search.suggest
-  icon:
-    repo: fontawesome/brands/github
-    edit: material/pencil
-    view: material/eye
-  palette: 
+    - primary: black
+    - accent: pink
+
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -44,6 +23,24 @@ theme:
       toggle:
         icon: material/lightbulb-outline
         name: Switch to light mode
+  font:
+    text: Roboto
+    code: Ubuntu Mono
+  #logo: images/routine_FILL1_wght700_GRAD200_opsz48.svg
+  #favicon: images/routine_FILL1_wght700_GRAD200_opsz48.svg
+  nav_style: dark
+  features:
+    - navigation.sections
+    - content.code.annotate
+    - navigation.tabs
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+  icon:
+    repo: fontawesome/brands/github
 nav:
   - Home: index.md
   - Original Website: 
