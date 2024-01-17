@@ -8,21 +8,24 @@ copyright: Copyright 2024 Bachelorgruppe-0 - Creative Commons Attribution Non Co
 theme:
   name: material
   palette:
-    - primary: black
-    - accent: pink
-
-    # Palette toggle for light mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: red
+      accent: amber
       toggle:
-        icon: material/lightbulb 
+        icon: material/eye-outline
         name: Switch to dark mode
-    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: black
+      accent: blue
       toggle:
-        icon: material/lightbulb-outline
-        name: Switch to light mode
+        icon: material/eye
+        name: Switch to system preference
   font:
     text: Roboto
     code: Ubuntu Mono
