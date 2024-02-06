@@ -49,6 +49,8 @@ nav:
   - Original Website: 
       - Design: original_website_design.md
       - Frameworks: original_website_frameworks.md
+  - Front-End: 
+      - front-end: front_end.md
 
 plugins:
   - search
