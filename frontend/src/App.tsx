@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import CollaborationSection from './components/CollaborationSection/CollaborationSection'
 import ContactSection from './components/ContactSection/ContactSection'
