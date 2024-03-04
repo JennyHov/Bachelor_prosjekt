@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 const ContactSection = () => {
   return (
     <div className="container contact-section">
