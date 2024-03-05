@@ -5,10 +5,35 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEFIO event</title>
+    <style>
+      /* Initial state is hidden */
+      #details-1 {
+        display: none;
+      }
+      /* Toggle class for showing the details */
+      .show {
+        display: block;
+      }
+    </style>
   </head>
+
   <body class="bg-slate-50 dark:bg-slate-700 p-4 md:p-6 lg:p-8 min.h-screen grid gap-4 md:gap-6 lg:gap-8 text-slate-600 dark:text-slate-100 grid-rows-auto1">
     <header class="text-center grid p-4 place-items-center content-center">
       <h1 class="text-3xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br pb-4 md:pb-6 from-blue-500 to-violet-700 dark:from-blue-400">SEFiO events</h1>
+      
+     <!-- kopiert fra https://tailwindcomponents.com/component/gridlist-toggle. knapper for grid view--> 
+     <!------------------------------------------------------------ grid view buttons------------------------------------------------------------------------>
+      <div class="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
+        <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="grid">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fill-current w-4 h-4 mr-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Grid</span>
+        </button>
+        <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2" id="list">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fill-current w-4 h-4 mr-2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span>List</span>
+        </button>
+      </div>
+    
     </header>
     <main class="max-w-6xl w-full mx-auto">
       <section class="grid gap-4 md:gap-6 lg:gap-8 items-start grid-cols-cards" id="events-container">
@@ -24,7 +49,7 @@
                 <a href="#">Really cool event</a>
               </h2>
               <div class="grid gap-1">
-                <button class="text-slate-400 flex gap-1-items-center cursor-pointer" aria-expanded="false" aria-controls="details-1" id="btn-1">
+                <button class="details-button text-slate-400 flex gap-1-items-center cursor-pointer" aria-expanded="false" aria-controls="details-1" id="btn-1">
                   <p class="pointer-events-none">See details</p>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none transition-transform">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
@@ -35,7 +60,6 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="bg-[#F48A34] rounded-md px-4 py-2 text-indigo-50 shadow-2xl shadow-indigo-200 dark:shadow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-indigo-500 focus:outline-none focus:ring-offset-2">View Event</a>
           </div>
         </article>
         <article class="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dark:shadow-slate-800 rounded-lg">
@@ -61,7 +85,6 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="bg-[#F48A34] rounded-md px-4 py-2 text-indigo-50 shadow-2xl shadow-indigo-200 dark:shadow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-indigo-500 focus:outline-none focus:ring-offset-2">View Event</a>
           </div>
         </article>
           <article class="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dark:shadow-slate-800 rounded-lg">
@@ -76,7 +99,7 @@
                 <a href="#">Really cool event</a>
               </h2>
               <div class="grid gap-1">
-                <button class="text-slate-400 flex gap-1-items-center cursor-pointer" aria-expanded="false" aria-controls="details-1" id="btn-1">
+                <button class="details-button text-slate-400 flex gap-1-items-center cursor-pointer" aria-expanded="false" aria-controls="details-1" id="btn-1">
                   <p class="pointer-events-none">See details</p>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none transition-transform">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
@@ -87,7 +110,6 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="bg-[#F48A34] rounded-md px-4 py-2 text-indigo-50 shadow-2xl shadow-indigo-200 dark:shadow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-indigo-500 focus:outline-none focus:ring-offset-2">View Event</a>
           </div>
         </article>
         <article class="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dark:shadow-slate-800 rounded-lg">
@@ -102,7 +124,7 @@
                 <a href="#">Really cool event</a>
               </h2>
               <div class="grid gap-1">
-                <button class="text-slate-400 flex gap-1-items-center cursor-pointer" aria-expanded="false" aria-controls="details-1" id="btn-1">
+                <button class="details-button text-slate-400 flex gap-1-items-center cursor-pointer" aria-expanded="false" aria-controls="details-1" id="btn-1">
                   <p class="pointer-events-none">See details</p>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none transition-transform">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
@@ -113,11 +135,36 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="bg-[#F48A34] rounded-md px-4 py-2 text-indigo-50 shadow-2xl shadow-indigo-200 dark:shadow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-indigo-500 focus:outline-none focus:ring-offset-2">View Event</a>
           </div>
         </article>
       </section>
     </main>
     <script type="module" src="/main.js"></script>
+    <script>
+      // Select all the buttons with the class that should toggle details
+      const buttons = document.querySelectorAll('.details-button');
+      
+      // Add click event listener to each button
+      buttons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Get the corresponding details element via the aria-controls attribute
+          const detailsId = this.getAttribute('aria-controls');
+          const details = document.getElementById(detailsId);
+          
+          // Toggle the 'show' class which controls the display
+          details.classList.toggle('show');
+          
+          // Update aria-expanded attribute based on visibility
+          const isExpanded = details.classList.contains('show');
+          this.setAttribute('aria-expanded', isExpanded);
+          
+          // Optional: Rotate arrow icon
+          const arrowIcon = this.querySelector('svg');
+          if (arrowIcon) {
+            arrowIcon.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        });
+      });
+    </script>
   </body>
 </html>
