@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="p-3 shadow bg-[#F48A34] text-indigo-50 uppercase grid place-items-center rounded-t-lg">
           <div class="text-xl font-bold">${startDate}</div>
         </div>
-        <div class="p-4 md:p-6 lg:p-8 grid gap-4 md:gap-6">
+        <div class="p-4 md:p-6 lg:p-8 grid gap-4 md:gap-3">
         <div class="text-sm text-gray-500">${eventTime}</div>
-  <h2 class="font-bold text-xl">${event.summary}</h2>
+        <h2 class="font-bold text-xl">${event.summary}</h2>
                 <p class="text-slate-400">${event.description || 'No details available'}</p>
               </div>
             </div>
