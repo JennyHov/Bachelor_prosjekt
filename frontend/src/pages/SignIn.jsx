@@ -1,7 +1,9 @@
+
 import { initialSignIn, endSignIn, failSignIn } from '../Redux/userStates/usersSlicer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Oauth from '../components/Oauth.jsx';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -53,6 +55,7 @@ export default function SignIn() {
         <button disabled={loading}>
           {loading ? 'Loading...' : 'Sign In'}
         </button>
+        <Oauth />
       </form>
       <div>
         <p>Don&#39;t have an account?</p>
