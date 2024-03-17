@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../Redux/userStates/usersSlicer';
 import { useSelector } from 'react-redux'
 import React from 'react'
 import { useEffect, useState, useRef } from 'react';
@@ -11,8 +13,10 @@ export default function Profile() {
   const referanceFile = useRef(null);
   const [pictureError, setPictureError] = useState(false);
   const [formData, setFormData] = useState({});
+  const dispatching = useDispatch();
+  const [successfulUpdate, setSuccessfulUpdate] = useState(false);
   
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   useEffect(() => {
     if (picture) {
       handlePictureUploading(picture);
@@ -39,10 +43,38 @@ export default function Profile() {
       }
     );
   };
+
+  const handleUserProfileUpdated = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      dispatching(initialUpdatedUser());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if(data.success == false ){
+        dispatching(failUpdatedUser(data));
+        return;
+      }
+      dispatching(endUpdatedUser(data));
+      setSuccessfulUpdate(true);
+      } catch (error){
+        dispatching(failUpdatedUser(error));
+      }
+    };
+  
   return (
     <div>
     <h1>Profile</h1>
-    <form>
+    <form onSubmit={handleSubmit}>
       <input type="file" ref={referanceFile} hidden accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
       <img
         src={formData.profileImage || currentUser.profileImage}
@@ -64,6 +96,7 @@ export default function Profile() {
         id="username"
         placeholder="username"
         className=""
+        onChange={handleUserProfileUpdated}
       />
       <input
         defaultValue={currentUser.email}
@@ -71,19 +104,27 @@ export default function Profile() {
         id="email"
         placeholder="Email"
         className=""
+        onChange={handleUserProfileUpdated}
       />
       <input
         type="password"
         id="password"
         placeholder="password"
         className=""
+        onChange={handleUserProfileUpdated}
       />
-      <button>update</button>
+      <button>
+      {loading ? "Loading in progress..." : "Update"}
+      </button>
     </form>
     <div>
       <span>Delete Account</span>
       <span>Sign out</span>
     </div>
+    <p>{error && "Something went wrong!"}</p>
+      <p>
+        {successfulUpdate && "User has been updated!"}
+      </p>
   </div>
 );
 }
