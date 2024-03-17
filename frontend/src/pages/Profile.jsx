@@ -51,7 +51,7 @@ export default function Profile() {
         onClick={() => referanceFile.current.click()}
       />
       <p>
-        {pictureError ? (<span>Error when uploading picture (file must be a pictuere and size must be less or equal to 2 MB)</span>
+        {pictureError ? (<span>Error when uploading picture (file size must be less than 3 MB)</span>
         ) : picturePercentage > 0 && picturePercentage < 100 ? ( <span>{`Uploading in progress: ${picturePercentage}%`}</span>
         ) : picturePercentage === 100 ? (<span>Picture uploaded successfully!</span>
         ) : ( 
