@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../Redux/userStates/usersSlicer';
+import { initialDeleteUser, endDeleteUser, failDeleteUser, initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../Redux/userStates/usersSlicer';
 import { useSelector } from 'react-redux'
 import React from 'react'
 import { useEffect, useState, useRef } from 'react';
@@ -71,6 +71,24 @@ export default function Profile() {
       }
     };
   
+
+    const handleAccountDeletion = async () => {
+      try{
+        dispatching(initialDeleteUser());
+        const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+          method: 'DELETE',
+        });
+        const data = await res.json();
+        if(data.success === false){
+          dispatching(failDeleteUser(data));
+          return;
+        }
+        dispatching(endDeleteUser(data));
+
+      }catch(error){
+        dispatching(failDeleteUser(error));
+      }
+    };
   return (
     <div>
     <h1>Profile</h1>
@@ -118,7 +136,7 @@ export default function Profile() {
       </button>
     </form>
     <div>
-      <span>Delete Account</span>
+      <span onClick={handleAccountDeletion}>Delete Account</span>
       <span>Sign out</span>
     </div>
     <p>{error && "Something went wrong!"}</p>
