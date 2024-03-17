@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { initialDeleteUser, endDeleteUser, failDeleteUser, initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../Redux/userStates/usersSlicer';
+import { signOut, initialDeleteUser, endDeleteUser, failDeleteUser, initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../Redux/userStates/usersSlicer';
 import { useSelector } from 'react-redux'
 import React from 'react'
 import { useEffect, useState, useRef } from 'react';
@@ -71,6 +71,15 @@ export default function Profile() {
       }
     };
   
+  const handleSigningOut = async () => {
+      try {
+        await fetch ("/api/auth/signout");
+        dispatching(signOut());
+
+      }catch(error){
+        console.log(error);
+      }
+    };
 
     const handleAccountDeletion = async () => {
       try{
@@ -89,6 +98,7 @@ export default function Profile() {
         dispatching(failDeleteUser(error));
       }
     };
+
   return (
     <div>
     <h1>Profile</h1>
@@ -137,7 +147,7 @@ export default function Profile() {
     </form>
     <div>
       <span onClick={handleAccountDeletion}>Delete Account</span>
-      <span>Sign out</span>
+      <span onClick={handleSigningOut}>Sign out</span>
     </div>
     <p>{error && "Something went wrong!"}</p>
       <p>
