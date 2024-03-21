@@ -45,26 +45,27 @@ document.addEventListener('DOMContentLoaded', function() {
           const startDate = formatDate(event.start.dateTime || event.start.date);
           const eventTime = formatEventTime(event.start.dateTime, event.end.dateTime);
           let locationHTML = event.location ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}" target="_blank" class="text-sm text-[#5192d3] md:underline">${event.location}</a>` : 'No address available.';
-          const description = event.description || 'No details available.';
-        
+          const description = event.description
+          // Add a check for event.description and wrap both the description and the See details button within the same conditional block
+          let detailsHTML = event.description ? `
+          <div class="text-sm event-description text-slate-700 hidden" id="details-${index}">${event.description}</div>
+          <button class="toggle-details text-sm text-slate-500 hover:text-slate-700 focus:outline-none" aria-expanded="false" data-details-id="details-${index}">
+            See details
+          </button>
+` : '<p class="text-sm text-slate-500">No details available.</p>';
           const eventArticle = document.createElement('article');
           eventArticle.className = 'event-card bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden';
           eventArticle.innerHTML = `
-            <div class="date bg-orange-400 text-indigo-50 uppercase p-3">
-              <div class="text-xl font-bold">${startDate}</div>
-            </div>
-            <div class="details p-4">
-              <h2 class="text-lg font-bold">${event.summary}</h2>
-              <p class="text-sm text-slate-500">${eventTime}</p>
-              <p class="text-sm text-slate-500">${locationHTML}</p> <br>
-              ${event.description ? `
-              <div class="text-sm event-description text-slate-700" >${description}</div>
-              <button class="toggle-details text-sm text-slate-500 hover:text-slate-700 focus:outline-none" aria-expanded="false">
-                See details
-              </button>
-              ` : ''}
-            </div>
-          `;
+          <div class="date bg-orange-400 text-indigo-50 uppercase p-3">
+            <div class="text-xl font-bold">${startDate}</div>
+          </div>
+          <div class="details p-4">
+            <h2 class="text-lg font-bold">${event.summary}</h2>
+            <p class="text-sm text-slate-500">${eventTime}</p>
+            <p class="text-sm text-slate-500 mb-1">${locationHTML}</p>
+            ${detailsHTML}
+          </div>
+        `;
           eventsContainer.appendChild(eventArticle);
         });
       updateLayout();
