@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <p class="text-sm text-slate-500">${locationHTML}</p> <br>
               ${event.description ? `
               <div class="text-sm event-description text-slate-700" >${description}</div>
-              <button class="toggle-details text-blue-600 hover:text-blue-800 focus:outline-none" aria-expanded="false">
+              <button class="toggle-details text-sm text-slate-500 hover:text-slate-700 focus:outline-none" aria-expanded="false">
                 See details
               </button>
               ` : ''}

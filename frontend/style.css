@@ -32,7 +32,6 @@
 
 /* Style for the "See details" button */
 .event-card .toggle-details {
-  color: #2563EB; /* Blue color */
   cursor: pointer; /* Pointer cursor on hover */
   text-decoration: underline; /* Underline text */
   margin-top: 0.5rem; /* Space above the button */
