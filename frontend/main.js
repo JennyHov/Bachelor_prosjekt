@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         events.forEach((event, index) => {
           const startDate = formatDate(event.start.dateTime || event.start.date);
           const eventTime = formatEventTime(event.start.dateTime, event.end.dateTime);
-          let locationHTML = event.location ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}" target="_blank" class="text-sm text-slate-500">${event.location}</a>` : 'No address available.';
+          let locationHTML = event.location ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}" target="_blank" class="text-sm text-[#5192d3] md:underline">${event.location}</a>` : 'No address available.';
           const description = event.description || 'No details available.';
         
           const eventArticle = document.createElement('article');
