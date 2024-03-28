@@ -38,7 +38,7 @@ export default function CollaborationProfile({ hasProfile }) {
             </div>
           </div>
           <div className="col-lg-4 image-container">
-            <img className="img-fluid" src="https://via.placeholder.com/429x411" alt="Profile Image" />
+            {/* <img className="img-fluid" src="https://via.placeholder.com/429x411" alt="Profile Image" /> */}
           </div>
         </div>
       </div>

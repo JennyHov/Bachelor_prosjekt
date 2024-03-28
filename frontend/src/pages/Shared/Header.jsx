@@ -1,4 +1,4 @@
-import NavigationBar from "../../LandingPage/NavigationBar/NavigationBar"
+import NavigationBar from "../Shared/NavigationBar"
 
 const Header = () => {
   return (

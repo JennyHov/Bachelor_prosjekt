@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EventsSection = () => {
   return (
@@ -5,6 +6,7 @@ const EventsSection = () => {
     <div className="row justify-content-center align-items-center">
         <div className="col-md-6">
             <div className="events-deadlines">
+                {/*
                 <div className="events-deadline">
                     <div className="events-date">25.Jan</div>
                     <div className="events-line"></div>
@@ -30,6 +32,7 @@ const EventsSection = () => {
                     <div className="events-line"></div>
                     <div className="events-title">Next deadline for application</div>
                 </div>
+                */}
             </div>
         </div>
         <div className="col-md-6 events-info">

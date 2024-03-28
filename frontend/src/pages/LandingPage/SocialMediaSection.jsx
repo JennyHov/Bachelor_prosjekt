@@ -1,6 +1,6 @@
-import instagramImage from '../../assets/images/home/instagram.png';
-import facebookImage from '../../assets/images/home/facebook.png';
-
+import instagramImage from '../../../../assets/images/home/instagram.png';
+import facebookImage from '../../../../assets/images/home/facebook.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SocialMediaSection = () => {
   return (
@@ -14,7 +14,7 @@ const SocialMediaSection = () => {
         <div className="col-md-6">
             <div className="social-icons">
                 <div className="social-icon">
-                    <img src="https://via.placeholder.com/71x71" alt="Social Media Icon" />
+                    {/* <img src="https://via.placeholder.com/71x71" alt="Social Media Icon" /> */}
                 </div>
                 <div className="social-icon">
                     <img src={instagramImage} alt="Social Media Icon" />

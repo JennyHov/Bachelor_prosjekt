@@ -7,7 +7,7 @@ export default function ProfileInformation() {
         <div className="col-lg-8 profile-information-container">
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-4">
-              <img className="img-fluid" src="https://via.placeholder.com/449x449" alt="Profile" />
+              {/* <img className="img-fluid" src="https://via.placeholder.com/449x449" alt="Profile" /> */}
             </div>
             <div className="col-lg-8">
               <div className="title-container">

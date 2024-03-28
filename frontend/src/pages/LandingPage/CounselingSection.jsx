@@ -1,4 +1,5 @@
-import counselingImage from '../../assets/images/home/counselling.png'; // Juster denne stien etter din filstruktur
+import counselingImage from '../../../../assets/images/home/counselling.png'; // Juster denne stien etter din filstruktur
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CounselingSection = () => {
   return (

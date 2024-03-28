@@ -1,4 +1,4 @@
-import logoImage from '../../../assets/images/footer/sefio_svart.png'; // Oppdater stien til din faktiske logo
+import logoImage from '../../../../assets/images/footer/sefio_svart.png'; // Oppdater stien til din faktiske logo
 import React from 'react';
 
 const Footer = () => {
@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="row">
           {/* Venstre seksjon med logo og kontaktinformasjon */}
           <div className="col-md-4">
-            <img src={logoImage} alt="SEFiO" className="footer-logo mb-2" />
+            <img src={logoImage} alt="SEFiO" className="footer-logo mb-2" height="60"/>
             <p>kontakt@sefio.no</p>
             <p>+4799363714</p>
             <p>Orgnr: 930 908 177</p>

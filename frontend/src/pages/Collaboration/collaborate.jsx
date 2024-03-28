@@ -1,6 +1,9 @@
 import React from 'react';
+import CollaborateWithProfile from './collaborate_with_profile';
 
-export default function collaborate() {
+export default function Collaborate() {
+  const hasProfile = false; // Endre dette med riktig logikk senere
+
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center gap-3">
@@ -15,7 +18,10 @@ export default function collaborate() {
               </p>
             </div>
             <div className="col-lg-12">
-              <form>
+              {hasProfile ? (
+                <CollaborateWithProfile />
+              ) : (
+                <form>
                 <div className="mb-3">
                   <label htmlFor="fullName" className="form-label text-black font-normal font-inter text-sm leading-7">Full Name</label>
                   <input type="text" className="form-control" id="fullName" placeholder="Enter your full name" />
@@ -54,6 +60,7 @@ export default function collaborate() {
                 </div>
                 <button type="submit" className="btn btn-orange btn-submit-profile mt-3">Submit Profile</button>
               </form>
+              )}
             </div>
           </div>
         </div>

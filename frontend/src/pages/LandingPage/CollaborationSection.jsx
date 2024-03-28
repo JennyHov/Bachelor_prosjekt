@@ -1,4 +1,5 @@
-import linkedinImage from '../../assets/images/home/linkedin.png';
+//import linkedinImage from '../../../assets/images/home/linkedin.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const CollaborationSection = () => {
@@ -19,7 +20,7 @@ const CollaborationSection = () => {
             </div>
         </div>
         <div className="col-md-6">
-            <img className="collaboration-image" src={linkedinImage} alt="Collaboration Image" />
+            {/* <img className="collaboration-image" src={linkedinImage} alt="Collaboration Image" /> */}
         </div>
     </div>
   </div>

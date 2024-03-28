@@ -1,5 +1,6 @@
-import rocketImage from '../../assets/images/home/rocket.png';
-
+import rocketImage from '../../../../assets/images/home/rocket.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 const LandingSection = () => {
   return (
@@ -13,7 +14,7 @@ const LandingSection = () => {
                 <h1 className="landing-title">25.000NOK for your idea?</h1>
                 <p className="landing-description">SEFiO supports your student startup with funding up to 25,000NOK!</p>
                 <div className="landing-button">
-                    <button className="btn btn-primary">Submit application</button>
+                    <Link to="/submit-application" className="btn btn-primary">Submit application</Link>
                 </div>
                 <div className="landing-links">
                     <p className="landing-link-description">Unsure about what it takes?</p>
