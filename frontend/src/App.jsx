@@ -16,6 +16,7 @@ import Criteria from './pages/CriteriaPage/criteria';
 import UserProfileInformation from './pages/Profile/userprofile_information';
 import Collaborate from './pages/Collaboration/collaborate';
 import Home from './pages/LandingPage/home';
+import Counseling from './pages/CounselingApplication/counseling';
 
 
 
@@ -25,6 +26,7 @@ export default function App() {
       <Header />
 
         <Routes>
+          <Route path="/counseling" element={<Counseling/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/collaborate" element={<Collaborate/>} />
           <Route path="/userprofile" element={<UserProfileInformation/>} />
