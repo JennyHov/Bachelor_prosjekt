@@ -7,7 +7,7 @@ export default function Collaborate() {
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center gap-3">
-        <div className="col-lg-8 border-bottom border-zinc-400 p-4">
+        <div className="col-lg-6 border-bottom border-zinc-400 p-4">
           <div className="row justify-content-center align-items-start gap-3">
             <div className="col-lg-12">
               <h1 className="text-center text-black font-bold font-inter text-4xl leading-14">Become more visible!</h1>

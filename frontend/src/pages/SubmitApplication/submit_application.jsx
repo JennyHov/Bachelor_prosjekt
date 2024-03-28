@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function SubmitApplication() {
   return (
@@ -54,7 +56,7 @@ export default function SubmitApplication() {
             </div>
           </div>
           <div className="button-container">
-            <button type="submit" className="btn btn-primary btn-submit-application">Submit application</button>
+            <Link to="/thankyou" className="btn btn-primary">Submit application</Link>
           </div>
         </div>
       </div>

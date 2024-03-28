@@ -26,7 +26,9 @@ const home = () => {
                         </div>
                         <div className="landing-links">
                             <p className="landing-link-description">Unsure about what it takes?</p>
-                            <p className="landing-link"><a href="#" className="text-decoration-none text-uppercase text-primary">Read our criteria</a></p>
+                            <p className="landing-link">
+                                <Link to="/criteria" className="text-decoration-none text-primary">Read our criteria</Link>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +41,7 @@ const home = () => {
                         <h1 className="counseling-title">We offer free counseling</h1>
                         <p className="counseling-description">Our free counseling offers personalized advice from our team, helping you navigate, refine and elevate your ideas.</p>
                         <div className="counseling-button">
-                            <button className="btn btn-primary">Apply for counseling</button>
+                            <Link to="/counseling" className="btn btn-primary">Apply for counseling</Link>
                         </div>
                     </div>
                 </div>
@@ -108,7 +110,7 @@ const home = () => {
                                 <p>Explore a pool of students, groups, professors, and find your like-minded individuals ready to collaborate.</p>
                             </div>
                             <div className="collaboration-button">
-                                <button className="btn btn-primary">Collaborate</button>
+                                <Link to="/collaborate" className="btn btn-primary">Start collaborating</Link>
                             </div>
                         </div>
                     </div>

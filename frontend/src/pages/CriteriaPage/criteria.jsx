@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Criteria() {
@@ -20,7 +21,7 @@ export default function Criteria() {
                     </div>
                     <div className="criteria-content">
                         <p className="criteria-description">SEFiO offers free counseling to all applicants, at any stage in the process. We recommend requesting this as soon as possible.</p>
-                        <a href="#" className="btn btn-primary">Apply for counseling</a>
+                        <Link to="/counseling" className="btn btn-primary">Apply for counseling</Link>
                     </div>
                 </div>
                 <div className="application-template-section">

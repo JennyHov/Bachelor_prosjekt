@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ProfileInformation({ hasProfile }) {
   if (!hasProfile) {
@@ -59,7 +60,7 @@ export default function ProfileInformation({ hasProfile }) {
                   <p className="collaboration-profile-description">Do you want to create a profile so others can find and connect with you?</p>
                 </div>
                 <div className="button-container">
-                  <button type="button" className="btn btn-orange btn-create-profile">Create Profile</button>
+                  <Link to="/collaborate" className="btn btn-primary">Create a profile</Link>
                 </div>
               </div>
             </div>

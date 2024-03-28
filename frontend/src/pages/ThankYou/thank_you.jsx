@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ThankYou() {
   return (
@@ -12,7 +13,7 @@ export default function ThankYou() {
                     <p className="thank-you-message">Your application has now been submitted! You will receive updates on the email you entered.</p>
                 </div>
                 <div className="button-container">
-                    <button className="btn btn-primary btn-go-home">Go Home</button>
+                    <Link to="/home" className="btn btn-primary">Go home</Link>
                 </div>
             </div>
         </div>
