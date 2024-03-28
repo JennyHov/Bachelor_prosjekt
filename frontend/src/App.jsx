@@ -18,6 +18,8 @@ import Collaborate from './pages/Collaboration/collaborate';
 import Home from './pages/LandingPage/home';
 import Counseling from './pages/CounselingApplication/counseling';
 import Thankyou from './pages/ThankYou/thank_you';
+import AboutUs from './pages/AboutUs/about_us';
+import ContactUs from './pages/ContactUs/contact_us';
 
 
 
@@ -27,6 +29,8 @@ export default function App() {
       <Header />
 
         <Routes>
+          <Route path="/contact-us" element={<ContactUs/>} />
+          <Route path="/about-us" element={<AboutUs/>} />
           <Route path="/thankyou" element={<Thankyou/>} />
           <Route path="/counseling" element={<Counseling/>} />
           <Route path="/home" element={<Home/>} />
