@@ -1,4 +1,5 @@
-import logoImage from '../../assets/images/header/sefio.png'; // Oppdater stien til din faktiske logo
+import logoImage from '../../../assets/images/footer/sefio_svart.png'; // Oppdater stien til din faktiske logo
+import React from 'react';
 
 const Footer = () => {
   return (
