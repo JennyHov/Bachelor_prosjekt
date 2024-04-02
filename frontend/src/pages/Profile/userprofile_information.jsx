@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import personalprofileImage from '../../../../assets/images/profile/personal_profile.png';
+import collaborationprofileImage from '../../../../assets/images/profile/collaboration_profile.png';
+
 export default function ProfileInformation({ hasProfile }) {
   if (!hasProfile) {
     return (
@@ -8,8 +11,8 @@ export default function ProfileInformation({ hasProfile }) {
         <div className="row justify-content-center align-items-center">
           <div className="col-lg-8 profile-information-container">
             <div className="row justify-content-center align-items-center">
-              <div className="col-lg-4">
-                {/* <img className="img-fluid" src="https://via.placeholder.com/449x449" alt="Profile" /> */}
+              <div className="col-md-6 justify-content-start align-items-center d-flex">
+                <img src={personalprofileImage} alt="Personal Profile Image" className="img-fluid" />
               </div>
               <div className="col-lg-8">
                 <div className="title-container">
@@ -74,8 +77,8 @@ export default function ProfileInformation({ hasProfile }) {
         <div className="row justify-content-center align-items-center">
           <div className="col-lg-8 profile-information-container">
             <div className="row justify-content-center align-items-center">
-              <div className="col-lg-4">
-                {/* <img className="img-fluid" src="https://via.placeholder.com/449x449" alt="Profile" /> */}
+              <div className="col-md-6 justify-content-start align-items-center d-flex">
+                <img src={collaborationprofileImage} alt="Collaboration Profile Image" className="img-fluid" />
               </div>
               <div className="col-lg-8">
                 <div className="title-container">

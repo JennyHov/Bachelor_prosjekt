@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import NavigationBar from '../Shared/NavigationBar';
 
 import React from 'react';
 import rocketImage from '../../../../assets/images/home/rocket.png';
@@ -8,14 +7,16 @@ import counselingImage from '../../../../assets/images/home/counselling.png';
 import instagramImage from '../../../../assets/images/home/instagram.png';
 import facebookImage from '../../../../assets/images/home/facebook.png';
 import whoAreWeImage from '../../../../assets/images/home/who_are_we.png';
+import collaboratingImage from '../../../../assets/images/home/collaborating.png';
+import linkedinImage from '../../../../assets/images/home/linkedin.png';
 
 const home = () => {
     return (
         <div className="content-fluid">
         <div className="container-fluid landing-section">
             <div className="row justify-content-center align-items-center">
-                <div className="col-md-6 landing-image">
-                    <img src={rocketImage} alt="Landing Image" className="img-fluid" />
+                <div className="col-md-6 justify-content-start align-items-center d-flex">
+                    <img src={rocketImage} alt="Rocket Image" className="img-fluid" />
                 </div>
                 <div className="col-md-6 landing-content">
                     <div className="landing-content-inner">
@@ -27,7 +28,7 @@ const home = () => {
                         <div className="landing-links">
                             <p className="landing-link-description">Unsure about what it takes?</p>
                             <p className="landing-link">
-                                <Link to="/criteria" className="text-decoration-none text-primary">Read our criteria</Link>
+                            <Link to="/criteria" className="text-decoration-none text-primary">Read our criteria</Link>
                             </p>
                         </div>
                     </div>
@@ -115,8 +116,8 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6">
-                    {/* <img className="collaboration-image" src={linkedinImage} alt="Collaboration Image" /> */}
+                <div className="col-md-6 justify-content-end align-items-center d-flex">
+                    <img src={collaboratingImage} alt="Collaborating Image" className="img-fluid" />
                 </div>
             </div>
         </div>
@@ -200,22 +201,22 @@ const home = () => {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div className="social-icons">
-                        <div className="social-icon">
-                            {/* <img src="https://via.placeholder.com/71x71" alt="Social Media Icon" /> */}
+                    <div className="row social-icons">
+                        <div className="col-sm social-icon">
+                            <img src={linkedinImage} alt="Social Media Icon" height={30}/>
                         </div>
-                        <div className="social-icon">
-                            <img src={instagramImage} alt="Social Media Icon" />
+                        <div className="col-sm social-icon">
+                            <img src={instagramImage} alt="Social Media Icon" height={30}/>
                         </div>
-                        <div className="social-icon">
-                            <img src={facebookImage} alt="Social Media Icon" />
+                        <div className="col-sm social-icon">
+                            <img src={facebookImage} alt="Social Media Icon" height={30}/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>    
 
-        <div className="container">
+        <div className="container youtube-section">
             <div className="row image-row">
                 <div className="col-md-6">
                     {/* <img src="https://via.placeholder.com/501x280" alt="Placeholder Image" className="image" /> */}
@@ -231,7 +232,7 @@ const home = () => {
             </div>
         </div>
         </div>
-    )
+    );
 }
 
 export default home
