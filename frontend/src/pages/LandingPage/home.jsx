@@ -9,14 +9,15 @@ import facebookImage from '../../../../assets/images/home/facebook.png';
 import whoAreWeImage from '../../../../assets/images/home/who_are_we.png';
 import collaboratingImage from '../../../../assets/images/home/collaborating.png';
 import linkedinImage from '../../../../assets/images/home/linkedin.png';
+import sponsorImage from '../../../../assets/images/home/sponsor.png';
 
 const home = () => {
     return (
         <div className="content-fluid">
         <div className="container-fluid landing-section">
             <div className="row justify-content-center align-items-center">
-                <div className="col-md-6 justify-content-start align-items-center d-flex">
-                    <img src={rocketImage} alt="Rocket Image" className="img-fluid" />
+                <div className="col-md-6 justify-content-center align-items-center d-flex">
+                    <img src={rocketImage} alt="Rocket Image" height={300} />
                 </div>
                 <div className="col-md-6 landing-content">
                     <div className="landing-content-inner">
@@ -46,8 +47,8 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6 justify-content-end align-items-center d-flex">
-                    <img src={counselingImage} alt="Counseling Image" className="img-fluid" />
+                <div className="col-md-6 justify-content-center align-items-center d-flex">
+                    <img src={counselingImage} alt="Counseling Image" height={300} />
                 </div>
             </div>
         </div>
@@ -116,16 +117,16 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6 justify-content-end align-items-center d-flex">
-                    <img src={collaboratingImage} alt="Collaborating Image" className="img-fluid" />
+                <div className="col-md-6 justify-content-center align-items-center d-flex">
+                    <img src={collaboratingImage} alt="Collaborating Image" height={300} />
                 </div>
             </div>
         </div>
 
         <div id="about-us-section" className="container-fluid who-are-we-section">
             <div className="row justify-content-center align-items-center">
-                <div className="col-md-6">
-                    <img className="who-are-we-image" src={whoAreWeImage} alt="Placeholder Image" />
+                <div className="col-md-6 justify-content-center align-items-center d-flex">
+                    <img className="who-are-we-image" src={whoAreWeImage} alt="Placeholder Image" height={300} />
                 </div>
                 <div className="col-md-6">
                     <div className="who-are-we-info">
@@ -193,24 +194,40 @@ const home = () => {
             </div>
         </div>
 
-        <div className="container social-section">
+        <div className="container-fluid sponsor-section">
             <div className="row justify-content-center align-items-center">
-                <div className="col-md-6">
-                    <div className="mission-statement">
-                        <p>With a mission to empower 70,000 students across five member institutions, we're expanding our network to ensure more points of contact. Stay connected with us on social media for the latest updates and opportunities to kickstart your entrepreneurial dreams!</p>
+                <div className="col-md-6 sponsor-content">
+                    <div className="sponsor-content-inner">
+                        <h1 className="sponsor-title">Our Sponsor - ANEO</h1>
+                        <p className="sponsor-description">
+                            Ideas that are guided through SEFiO have the opportunity to apply for up to NOK 25,000 to be able to verify the technology or the market. The Aneo grant is arranged approximately once a month and requires the start-up to be guided by us, submit a short application and present the idea to our panel.
+                        </p>
+                    </div>
+                </div>
+                <div className="col-md-6 justify-content-center align-items-center d-flex">
+                    <img src={sponsorImage} alt="Counseling Image" height={300}/>
+                </div>
+            </div>
+        </div>
+
+        <div className="container-fluid social-section">
+            <div className="row justify-content-center align-items-center">
+                <div className="col-md-6 justify-content-center align-items-center d-flex">
+                    <div className="row social-icons">
+                        <div className="col col-lg-3 social-icon">
+                            <img src={linkedinImage} alt="Social Media Icon" height={30}/>
+                        </div>
+                        <div className="col col-lg-3 social-icon">
+                            <img src={instagramImage} alt="Social Media Icon" height={30}/>
+                        </div>
+                        <div className="col col-lg-3 social-icon">
+                            <img src={facebookImage} alt="Social Media Icon" height={30}/>
+                        </div>
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div className="row social-icons">
-                        <div className="col-sm social-icon">
-                            <img src={linkedinImage} alt="Social Media Icon" height={30}/>
-                        </div>
-                        <div className="col-sm social-icon">
-                            <img src={instagramImage} alt="Social Media Icon" height={30}/>
-                        </div>
-                        <div className="col-sm social-icon">
-                            <img src={facebookImage} alt="Social Media Icon" height={30}/>
-                        </div>
+                    <div className="mission-statement">
+                        <p>With a mission to empower 70,000 students across five member institutions, we're expanding our network to ensure more points of contact. Stay connected with us on social media for the latest updates and opportunities to kickstart your entrepreneurial dreams!</p>
                     </div>
                 </div>
             </div>
