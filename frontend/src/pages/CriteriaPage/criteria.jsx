@@ -35,9 +35,11 @@ export default function Criteria() {
                     </div>
                     <div className="criteria-content">
                         <p className="criteria-description">Below you will find our application forms used to evaluate your project/business. Feel free to download and start your application. Remember that our great advisory team is ready to help elevate your application. Projects utilizing counseling before submitting usually reach higher in the evaluation.</p>
-                        <div className="language-links">
-                            <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1bwx2Jk3mT1_1m4EuPOQZmkWAVHkqoI0cw3u2iY9IWo4/edit")} className='text-decoration-none'>English</a>                            
-                            <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1XH7RPoE6wd3AJ8ydJxMuYLVUPb9uIGNuAizkaYoSAJ0/edit")} className='text-decoration-none'>Norwegian</a> 
+                        <div className="d-flex justify-content-start align-items-center gap-3">
+                            <div className="d-flex gap-3">
+                                <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1bwx2Jk3mT1_1m4EuPOQZmkWAVHkqoI0cw3u2iY9IWo4/edit")} className='text-decoration-none'>English</a>                            
+                                <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1XH7RPoE6wd3AJ8ydJxMuYLVUPb9uIGNuAizkaYoSAJ0/edit")} className='text-decoration-none'>Norwegian</a> 
+                            </div>
                         </div>
                     </div>
                 </div>

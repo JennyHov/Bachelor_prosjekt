@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import henrikImage from '../../../../assets/images/home/henrik.png';
+import hannaImage from '../../../../assets/images/home/hanna.png';
+import magnusImage from '../../../../assets/images/home/magnus.png';
+import johanImage from '../../../../assets/images/home/johan.png';
+import elisabethImage from '../../../../assets/images/home/elisabeth.png';
+import arnarImage from '../../../../assets/images/home/arnar.png';
 
 export default function AboutUs () {
     return (
@@ -21,7 +27,7 @@ export default function AboutUs () {
             </div>
             <div className="row justify-content-center align-items-center">
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={magnusImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Magnus Svendsen</span>
                         <span className="contact-role">CEO</span>
@@ -29,7 +35,7 @@ export default function AboutUs () {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={hannaImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Hanna Worum</span>
                         <span className="contact-role">Chief of Board</span>
@@ -37,7 +43,7 @@ export default function AboutUs () {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={henrikImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Henrik Mørk</span>
                         <span className="contact-role">CFO</span>
@@ -47,7 +53,7 @@ export default function AboutUs () {
             </div>
             <div className="row justify-content-center align-items-center">
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={johanImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Johan Sandbu</span>
                         <span className="contact-role">Board Representative - Høyskolen Kristiania</span>
@@ -55,7 +61,7 @@ export default function AboutUs () {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={elisabethImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Elisabeth Alvern</span>
                         <span className="contact-role">Board Representative - NMBU</span>
@@ -63,7 +69,7 @@ export default function AboutUs () {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={arnarImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Arnar Reiten</span>
                         <span className="contact-role">Board Representative - UIO</span>

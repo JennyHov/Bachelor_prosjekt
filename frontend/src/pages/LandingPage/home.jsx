@@ -10,6 +10,12 @@ import whoAreWeImage from '../../../../assets/images/home/who_are_we.png';
 import collaboratingImage from '../../../../assets/images/home/collaborating.png';
 import linkedinImage from '../../../../assets/images/home/linkedin.png';
 import sponsorImage from '../../../../assets/images/home/sponsor.png';
+import henrikImage from '../../../../assets/images/home/henrik.png';
+import hannaImage from '../../../../assets/images/home/hanna.png';
+import magnusImage from '../../../../assets/images/home/magnus.png';
+import johanImage from '../../../../assets/images/home/johan.png';
+import elisabethImage from '../../../../assets/images/home/elisabeth.png';
+import arnarImage from '../../../../assets/images/home/arnar.png';
 
 const home = () => {
     return (
@@ -142,7 +148,7 @@ const home = () => {
         <div className="container contact-section">
             <div className="row justify-content-center align-items-center">
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={magnusImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Magnus Svendsen</span>
                         <span className="contact-role">CEO</span>
@@ -150,7 +156,7 @@ const home = () => {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={hannaImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Hanna Worum</span>
                         <span className="contact-role">Chief of Board</span>
@@ -158,7 +164,7 @@ const home = () => {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={henrikImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Henrik Mørk</span>
                         <span className="contact-role">CFO</span>
@@ -168,7 +174,7 @@ const home = () => {
             </div>
             <div className="row justify-content-center align-items-center">
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={johanImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Johan Sandbu</span>
                         <span className="contact-role">Board Representative - Høyskolen Kristiania</span>
@@ -176,7 +182,7 @@ const home = () => {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={elisabethImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Elisabeth Alvern</span>
                         <span className="contact-role">Board Representative - NMBU</span>
@@ -184,7 +190,7 @@ const home = () => {
                     </div>
                 </div>
                 <div className="col-md-4 contact-item">
-                    {/* <img className="contact-image" src="https://via.placeholder.com/245x245" alt="Contact Image" /> */}
+                    <img className="contact-image" src={arnarImage} alt="Contact Image" />
                     <div className="contact-details">
                         <span className="contact-name">Arnar Reiten</span>
                         <span className="contact-role">Board Representative - UIO</span>
