@@ -1,5 +1,6 @@
 import logoImage from '../../../../assets/images/footer/sefio_svart.png'; // Oppdater stien til din faktiske logo
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -21,29 +22,8 @@ const Footer = () => {
               <div className="col-md-4">
                 <h5>Company</h5>
                 <ul className="list-unstyled">
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/services">Services</a></li>
-                  <li><a href="/careers">Careers</a></li>
-                </ul>
-              </div>
-
-              {/* column 2 */}
-              <div className="col-md-4">
-                <h5>Contact</h5>
-                <ul className="list-unstyled">
-                  <li><a href="/who-are-we">Who are we?</a></li>
-                  <li><a href="/faqs">FAQs</a></li>
-                  <li><a href="/terms">Terms & Conditions</a></li>
-                </ul>
-              </div>
-
-              {/* column 3 */}
-              <div className="col-md-4">
-                <h5>Discover</h5>
-                <ul className="list-unstyled">
-                  <li><a href="/events">Events</a></li>
-                  <li><a href="/sponsors">Sponsors</a></li>
-                  <li><a href="/partner-program">Partner Program</a></li>
+                  <Link to="/about-us" className="nav-item nav-link">About Us</Link>
+                  <Link to="/events" className="nav-item nav-link">Events</Link>
                 </ul>
               </div>
             </div>
