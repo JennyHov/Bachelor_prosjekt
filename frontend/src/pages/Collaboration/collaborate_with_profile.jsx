@@ -40,19 +40,6 @@ export default function collaborate_with_profile() {
                 {/* Other search filters */}
             </div>
         </div>
-        <div className="profiles self-stretch justify-center items-center gap-100">
-            <div className="profile-card w-275 h-380 p-15 rounded-7 flex flex-col justify-start items-center gap-15">
-                {/* <img className="profile-image self-stretch h-245 rounded-1" src="https://via.placeholder.com/245x245" alt="Profile" /> */}
-                <div className="profile-details self-stretch px-15 justify-center items-center">
-                    <div className="profile-info-details grow shrink basis-0">
-                        <span className="profile-name text-black text-lg font-semibold font-inter leading-tight">Magnus Svendsen</span><br />
-                        <span className="profile-role text-black text-lg font-normal font-inter leading-tight">CEO</span><br />
-                        <span className="profile-email text-black text-lg font-normal font-inter underline leading-tight">kontakt@sefio.no</span>
-                    </div>
-                </div>
-            </div>
-            {/* Other profile cards */}
-        </div>
     </div>
     );
 }

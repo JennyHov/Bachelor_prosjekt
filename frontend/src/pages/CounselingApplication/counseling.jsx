@@ -14,7 +14,7 @@ export default function SubmitApplication() {
             <p className="submit-application-message">
                 Our counseling application is designed to offer a convenient and effective plattform for connecting you with counselors who can provide guidance, support, and resources.
             </p>
-            <p className="message-container">
+            <p className="submit-application-message">
                 The inquiry will be handled by a SEFiO representative from your educational institution.
             </p>
           </div>
