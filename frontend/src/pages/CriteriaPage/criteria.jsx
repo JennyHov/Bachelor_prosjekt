@@ -9,7 +9,7 @@ export default function Criteria() {
       };
     
   return (
-    <div className="container-fluid">
+    <div className="container">
         <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 signup-container">
                 <div className="title-container">
