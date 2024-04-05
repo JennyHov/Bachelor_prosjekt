@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.inter-font {
+    font-family: 'Inter', sans-serif;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav.ms-auto .nav-item {
+      max-width: fit-content;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+@media (min-width: 992px) {
+    .login-button {
+        margin-right: 1.5rem;
+    }
+    .nav-link {
+        margin-right: 1.25rem;
+    }
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color:black; 
+}
+
+.navbar {
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.application-button {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #F48A34 !important; 
+    color: white !important;
+    border-color: #F48A34 !important;
+    border-radius: 50cm !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important; 
+}
+
+.login-button {
+    font-family: 'Inter', sans-serif !important;
+    color: #F48A34 !important;
+    font-weight:400;
+}

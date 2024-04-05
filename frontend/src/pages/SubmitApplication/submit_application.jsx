@@ -30,7 +30,7 @@ export default function SubmitApplication() {
                     <div className="d-flex justify-content-center align-items-center gap-3">
                       <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center gap-3">
                         <div className="d-flex justify-content-center align-items-center gap-3">
-                          <div className="flex-grow-1 text-black fs-5 lh-lg">SEFiO offers free counseling to all applicants, at any stage in the process. We recommend requesting this as soon as possible.</div>
+                          <div className="message">SEFiO offers free counseling to all applicants, at any stage in the process. We recommend requesting this as soon as possible.</div>
                         </div>
                         <div className="d-flex flex-column justify-content-center align-items-start gap-3">
                           <Link to="/counseling" className="text-decoration-none text-primary">Apply for counseling</Link>
@@ -42,7 +42,7 @@ export default function SubmitApplication() {
                   <div className="d-flex justify-content-center align-items-center gap-3">
                     <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center gap-3">
                       <div className="d-flex justify-content-center align-items-center gap-3">
-                        <div className="flex-grow-1 text-black fs-5 lh-lg">Below you will find our application forms used to evaluate your project/business. Feel free to download and start your application. Remember that our great advisory team is ready to help elevate your application. Projects utilizing counseling before submitting usually reach higher in the evaluation.</div>
+                        <div className="message">Below you will find our application forms used to evaluate your project/business. Feel free to download and start your application. Remember that our great advisory team is ready to help elevate your application. Projects utilizing counseling before submitting usually reach higher in the evaluation.</div>
                       </div>
                       <div className="d-flex justify-content-start align-items-center gap-3">
                         <div className="d-flex gap-3">
@@ -54,11 +54,11 @@ export default function SubmitApplication() {
                     </div>
                   </div>
                   <div className="d-flex justify-content-center align-items-center gap-3">
-                    <div className="flex-grow-1 text-black fs-5 lh-lg">After each deadline, all applications are processed within two (2) weeks. During those two weeks, the counseling team will contact you. One (1) week later the projects/businesses that are to present before the jury are chosen and invited to the final. You will then have one (1) week to prepare for the jury.</div>
+                    <div className="message">After each deadline, all applications are processed within two (2) weeks. During those two weeks, the counseling team will contact you. One (1) week later the projects/businesses that are to present before the jury are chosen and invited to the final. You will then have one (1) week to prepare for the jury.</div>
                     </div>
                   <div className="h-70 d-flex flex-column justify-content-center align-items-center gap-3">
                     <div className="d-flex justify-content-center align-items-center">
-                      <div className="flex-grow-1 text-black fs-5 lh-lg">If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</div>
+                      <div className="message">If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</div>
                     </div>
                   </div>
                 </div>
