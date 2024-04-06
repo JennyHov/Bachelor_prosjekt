@@ -2,8 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import '../../css/submit_application.css';
 import '../../css/home.css';
-
-
+import Responsive from '../Responsive.jsx';
 
 import React from 'react';
 import rocketImage from '../../../../assets/images/home/rocket.png';
@@ -249,6 +248,8 @@ const home = () => {
 
             <div className='stroke'></div>
 
+            <Responsive />
+
             <div className="container-fluid section social-section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -295,5 +296,6 @@ const home = () => {
         </div>
     );
 }
+
 
 export default home
