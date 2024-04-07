@@ -1,4 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+
+.media-scroller {
+    --_spacer: var(--size-5);
+    display: grid;
+    gap: var(--_spacer);
+    grid-auto-flow: column;
+    grid-auto-columns: 20%;
+    padding: 0 var(--_spacer) var(--_spacer);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+}
+
+.media-element {
+    display: grid;
+    grid-template-rows: min-content;
+    gap: var(--_spacer);
+    padding: var(--_spacer);
+    background: var(--surface-2);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-2);
+}
+
+.snaps-inline {
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: var(--_spacer, 1rem);
+}
+
+.snaps-inline > * {
+    scroll-snap-align: start;
+}
 
 .inter-font {
     font-family: 'Inter', sans-serif;
@@ -45,10 +78,43 @@
     max-width: 65%;
 }
 
+.contact-item {
+    max-height: 100%;
+    border-radius: 25px;
+    background-color: #FFF;
+    border-color: transparent;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.image-content, .card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content{
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+}
+
 .contact-image {
-    max-width: 90%;
-    border-radius: 10;
-    border-radius: 2px;
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFF;
+    padding: 3px;
+}
+
+.contact-image .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: transparent;
 }
 
 .contact-details {

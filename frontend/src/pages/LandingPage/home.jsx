@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import '../../css/submit_application.css';
 import '../../css/home.css';
-import Responsive from '../Responsive.jsx';
+import CenterMode from '../Responsive.jsx';
 
 import React from 'react';
 import rocketImage from '../../../../assets/images/home/rocket.png';
@@ -160,67 +160,77 @@ const home = () => {
             </div>
 
             <div className="container-fluid section contact-section">
-                <div className='row justify-content-center contact-profile my-5'>
-                    <div className="col-sm-4 contact-item mx-5 ">
-                        <div>
-                            <img className="contact-image" src={magnusImage} alt="Contact Image" />
+                <div className='row contact-profile media-scroller snaps-inline'>
+                    <div className="contact-item media-element">
+                        <div className="image-content">
+                            <div className="card-image">
+                            <img className="card-img" src={magnusImage} alt="Card Image" />
+                            </div>
                         </div>
-                        <div className="contact-details">
-                            <p className="contact-name">Magnus Svendsen</p>
-                            <p className="contact-role">CEO</p>
-                            <p className="contact-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
-                        </div>
-                    </div>
-                    <div className="col-sm-4 contact-item mx-5">
-                        <div>
-                            <img className="contact-image" src={hannaImage} alt="Contact Image" />
-                        </div>
-                        <div className="contact-details">
-                            <p className="contact-name">Hanna Worum</p>
-                            <p className="contact-role">Chief of Board</p>
-                            <p className="contact-email"><a href="mailto:Hanna.worum@sefio.no">Hanna.worum@sefio.no</a></p>
+                        <div className="card-content">
+                            <p className="card-name">Magnus Svendsen</p>
+                            <p className="card-category">CEO - Handles all requests</p>
+                            <p className="card-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="col-sm-4 contact-item mx-5">
-                        <div>
-                            <img className="contact-image" src={henrikImage} alt="Contact Image" />
+                    <div className="contact-item media-element">
+                        <div className="image-content">
+                            <div className="card-image">
+                            <img className="card-img" src={hannaImage} alt="Card Image" />
+                            </div>
                         </div>
-                        <div className="contact-details">
-                            <p className="contact-name">Henrik Mørk</p>
-                            <p className="contact-role">CFO</p>
-                            <p className="contact-email"><a href="mailto:henrik.mork@sefio.no">henrik.mork@sefio.no</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div className='row justify-content-center contact-profile my-5'>
-                    <div className="col-sm-4 contact-item mx-5">
-                        <div>
-                            <img className="contact-image" src={johanImage} alt="Contact Image" />
-                        </div>
-                        <div className="contact-details">
-                            <p className="contact-name">Johan Sandbu</p>
-                            <p className="contact-role">Board Representative - Høyskolen Kristiania</p>
-                            <p className="contact-email"><a href="mailto:Johan.sandbu@sefio.no">Johan.sandbu@sefio.no</a></p>
+                        <div className="card-content">
+                            <p className="card-name">Hanna Worum</p>
+                            <p className="card-category">Chief of Board and Representative - Oslomet</p>
+                            <p className="card-email"><a href="mailto:hanna.worum@sefio.no">hanna.worum@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="col-sm-4 contact-item mx-5">
-                        <div>
-                            <img className="contact-image" src={elisabethImage} alt="Contact Image" />
+                    <div className="contact-item media-element">
+                        <div className="image-content">
+                            <div className="card-image">
+                            <img className="card-img" src={henrikImage} alt="Card Image" />
+                            </div>
                         </div>
-                        <div className="contact-details">
-                            <p className="contact-name">Elisabeth Alvern</p>
-                            <p className="contact-role">Board Representative - NMBU</p>
-                            <p className="contact-email"><a href="mailto:Hanna.worum@sefio.no">Hanna.worum@sefio.no</a></p>
+                        <div className="card-content">
+                            <p className="card-name">Henrik Mørk</p>
+                            <p className="card-category">CFO and Board Representative - BI</p>
+                            <p className="card-email"><a href="mailto:henrik.mork@sefio.no">henrik.mork@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="col-sm-4 contact-item mx-5">
-                        <div>
-                            <img className="contact-image" src={arnarImage} alt="Contact Image" />
+                    <div className="contact-item media-element">
+                        <div className="image-content">
+                            <div className="card-image">
+                            <img className="card-img" src={johanImage} alt="Card Image" />
+                            </div>
                         </div>
-                        <div className="contact-details">
-                            <p className="contact-name">Arnar Reiten</p>
-                            <p className="contact-role">Board Representative - UIO</p>
-                            <p className="contact-email"><a href="mailto:Arnar.reiten@sefio.no">Arnar.reiten@sefio.no</a></p>
+                        <div className="card-content">
+                            <p className="card-name">Johan Sandbu</p>
+                            <p className="card-category">Board Representative - Høyskolen Kristiania</p>
+                            <p className="card-email"><a href="mailto:johan.sandbu@sefio.no">johan.sandbu@sefio.no</a></p>
+                        </div>
+                    </div>
+                    <div className="contact-item media-element">
+                        <div className="image-content">
+                            <div className="card-image">
+                            <img className="card-img" src={elisabethImage} alt="Card Image" />
+                            </div>
+                        </div>
+                        <div className="card-content">
+                            <p className="card-name">Elisabeth Alvern</p>
+                            <p className="card-category">Board Representative - NMBU</p>
+                            <p className="card-email"><a href="mailto:elisabeth.alvern@sefio.no">elisabeth.alvern@sefio.no</a></p>
+                        </div>
+                    </div>
+                    <div className="contact-item media-element">
+                        <div className="image-content">
+                            <div className="card-image">
+                            <img className="card-img" src={arnarImage} alt="Card Image" />
+                            </div>
+                        </div>
+                        <div className="card-content">
+                            <p className="card-name">Arnar Reiten</p>
+                            <p className="card-category">Board Representative - UiO</p>
+                            <p className="card-email"><a href="mailto:arnar.reiten@sefio.no">arnar.reiten@sefio.no</a></p>
                         </div>
                     </div>
                 </div>
@@ -248,7 +258,9 @@ const home = () => {
 
             <div className='stroke'></div>
 
-            <Responsive />
+            <CenterMode />
+
+            <div className='stroke'></div>
 
             <div className="container-fluid section social-section">
                 <div className="row justify-content-center align-items-center">

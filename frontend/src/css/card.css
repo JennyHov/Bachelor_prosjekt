@@ -3,29 +3,28 @@
     color: black !important;
 }
 
-.slide-container{
-    width: 80vw;
-    padding: 40px 0;
-    height: auto;
+.slick-slide {
+    transform: scale(0.8);
+    transition: all 0.4s ease-in-out;
 }
 
-.slide-content{
-    margin: 0 40px;
-    border-radius: 25px;
+.slick-slide div{
+    transition: all 0.4s ease-in-out;
+}
+
+.slick-current {
+    transform: scale(1.1);
 }
 
 .card{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    max-height: 100%;
     border-radius: 25px;
     background-color: #FFF;
     border-color: transparent;
-    transition: 0.3s ease;
-}
-
-.card:hover {
-    -webkit-transform: scale(1.1);
-    -ms-tranform: scale(1.1);
-    transform:scale(1.1);
-    transition: 0.2s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    font-family: 'Inter', sans-serif;
 }
 
 .image-content, .card-content{
@@ -39,31 +38,6 @@
     position: relative;
     row-gap: 5px;
     padding: 25px 0;
-}
-
-.overlay{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #F48A34;
-    border-radius: 25px 25px 0 25px;
-}
-
-.overlay::before, .overlay::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: -40px;
-    height: 40px;
-    width: 40px;
-    background-color: #F48A34;
-}
-
-.overlay::after {
-    border-radius: 0 25px 0 0;
-    background-color: #FFF;
 }
 
 .card-image {
@@ -80,17 +54,28 @@
     width: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #F48A34;
+    border: transparent;
 }
 
 .card-name {
     font-size: 18px;
     font-weight: 500;
-    color: #333;
+    color: black;
+}
+
+.card-category {
+    font-size: 14px;
+    font-weight: 500;
+    color: #707070;
 }
 
 .card-description {
     font-size: 14px;
     color: #707070;
     text-align: center;
+}
+
+.card-email {
+    font-size: 14px;
+    font-weight: 500;
 }
