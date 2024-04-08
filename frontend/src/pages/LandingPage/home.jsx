@@ -161,10 +161,10 @@ const home = () => {
 
             <div className="container-fluid section contact-section">
                 <div className='row contact-profile media-scroller snaps-inline'>
-                    <div className="contact-item media-element">
+                    <div className="contact-item media-element me-5">
                         <div className="image-content">
                             <div className="card-image">
-                            <img className="card-img" src={magnusImage} alt="Card Image" />
+                                <img className="card-img" src={magnusImage} alt="Card Image" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -173,10 +173,10 @@ const home = () => {
                             <p className="card-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="contact-item media-element">
+                    <div className="contact-item media-element me-5">
                         <div className="image-content">
                             <div className="card-image">
-                            <img className="card-img" src={hannaImage} alt="Card Image" />
+                                <img className="card-img" src={hannaImage} alt="Card Image" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -185,10 +185,10 @@ const home = () => {
                             <p className="card-email"><a href="mailto:hanna.worum@sefio.no">hanna.worum@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="contact-item media-element">
+                    <div className="contact-item media-element me-5">
                         <div className="image-content">
                             <div className="card-image">
-                            <img className="card-img" src={henrikImage} alt="Card Image" />
+                                <img className="card-img" src={henrikImage} alt="Card Image" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -197,10 +197,10 @@ const home = () => {
                             <p className="card-email"><a href="mailto:henrik.mork@sefio.no">henrik.mork@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="contact-item media-element">
+                    <div className="contact-item media-element me-5">
                         <div className="image-content">
                             <div className="card-image">
-                            <img className="card-img" src={johanImage} alt="Card Image" />
+                                <img className="card-img" src={johanImage} alt="Card Image" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -209,10 +209,10 @@ const home = () => {
                             <p className="card-email"><a href="mailto:johan.sandbu@sefio.no">johan.sandbu@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="contact-item media-element">
+                    <div className="contact-item media-element me-5">
                         <div className="image-content">
                             <div className="card-image">
-                            <img className="card-img" src={elisabethImage} alt="Card Image" />
+                                <img className="card-img" src={elisabethImage} alt="Card Image" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -221,10 +221,10 @@ const home = () => {
                             <p className="card-email"><a href="mailto:elisabeth.alvern@sefio.no">elisabeth.alvern@sefio.no</a></p>
                         </div>
                     </div>
-                    <div className="contact-item media-element">
+                    <div className="contact-item media-element me-5">
                         <div className="image-content">
                             <div className="card-image">
-                            <img className="card-img" src={arnarImage} alt="Card Image" />
+                                <img className="card-img" src={arnarImage} alt="Card Image" />
                             </div>
                         </div>
                         <div className="card-content">
