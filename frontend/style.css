@@ -1,58 +1,141 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.flex-wrap {
+  /* This will wrap the sidebar below the content on smaller screens */
+  flex-wrap: wrap;
+}
 
-/* Base styles for the event card */
+.md\:flex-nowrap {
+  /* This will prevent wrapping on medium and larger screens */
+  flex-wrap: nowrap;
+}
+
+#events-container {
+  /* Adjust this value as needed to give more space to the event cards */
+  width: 100%;
+  max-width: 400px; /* or 66.66667% if you prefer a percentage */
+  padding-right: 2rem; /* Optional: if you want some space between cards and text */
+}
+
+.text-description {
+  width: 100%;
+  max-width: 200px; /* or 33.33333% if you prefer a percentage */
+  /* Adjust the padding to match your design preferences */
+  padding: 1rem;
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+@media (max-width: 768px) {
+  #events-container,
+  .text-description {
+      /* Stack the layout on smaller screens */
+      width: 100%;
+      max-width: none;
+      padding-right: 0;
+  }
+}
+
+
 .event-card {
   display: flex;
-  flex-direction: column; /* Stack date and details vertically */
+  flex-direction: row; /* Side by side for date and details */
+  align-items: center; /* Center items vertically */
   border-radius: 0.5rem; /* Rounded corners */
   overflow: hidden; /* Ensures the content does not spill out */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
               0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  margin-bottom: 2rem; /* Maintain spacing between cards */
+  background-color: #FFFFFF; /* Background color for the event card */
 }
 
-/* Style for the date section */
+
+
 .event-card .date {
+  align-self: stretch; /* This will make the .date stretch to the full height of the .event-card */
   background-color: #F48A34; /* Orange background */
   color: #FFFFFF; /* White text */
   text-align: center; /* Center the text */
-  padding: 1rem; /* Padding inside the date box */
-  flex-shrink: 0; /* Prevent shrinking */
+  padding: 2rem; /* Padding inside the date box */
   font-size: 1.25rem; /* Larger font size */
   font-weight: bold; /* Bold font */
 }
 
-/* Style for the details section */
 .event-card .details {
-  background-color: #FFFFFF; /* White background */
   padding: 1rem; /* Padding inside the details box */
-  flex-grow: 1; /* Take up the remaining space */
+  flex-grow: 1; /* Take up remaining space */
 }
 
-/* Style for the "See details" button */
-.event-card .toggle-details {
-  cursor: pointer; /* Pointer cursor on hover */
-  text-decoration: underline; /* Underline text */
-  margin-top: 0.5rem; /* Space above the button */
-  align-self: flex-start; /* Align button to the start of the flex container */
+/* Add additional styles for responsiveness */
+@media (max-width: 768px) {
+  .event-card {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    width: auto; /* Adjust width for smaller screens */
+  }
 }
-.list .event-card {
-    flex-direction: row; /* Keep the row direction even in list view */
-    width: 100%; /* Full width for list view */
-    margin-bottom: 2rem; /* Maintain spacing between cards */
+
+body, h2, p {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;  /* This property sets the gap between flex items */
+}
+
+#events-container {
+  /* Adjust the width as necessary */
+  flex-basis: 65%;
+  flex: 3; /* Adjust the flex ratio to give more space to the events if needed */
+}
+
+.events-details {
+  flex: 1;
+  padding: 150px; /* Adjust padding as needed */
+  flex-basis: 30%; /* Adjust the width as necessary */
+  padding-left: 50px; /* Gives some space between the events and the text */
+  padding-right: 300px; /* Gives some space between the events and the text */
+  margin-left: 0;  /* Or set to a smaller value */
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 70px;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #ffa500; /* Similar to the orange color for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+      flex-direction: column;
   }
 
-/* Hidden content style */
-.hidden {
-  display: none; /* Hide content */
-}
+  #events-container, .events-details {
+      flex-basis: auto;
+      width: 100%;
+  }
 
-
-.btn{
-  margin-bottom: 10px;
-  padding: 2px;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-              0 4px 6px -4px rgba(0, 0, 0, 0.1); 
+  .events-details {
+      padding-left: 0;
+      margin-top: 20px;
+  }
 }
