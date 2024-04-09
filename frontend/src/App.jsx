@@ -1,3 +1,4 @@
+
 import PrivateRoute from './components/PrivateRoute';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 /*
@@ -21,9 +22,12 @@ import Thankyou from './pages/ThankYou/thank_you';
 import AboutUs from './pages/AboutUs/about_us';
 import ContactUs from './pages/ContactUs/contact_us';
 
+import React, { useState } from 'react';
+import reactLogo from '../../frontend/src/assets/react.svg';
+import '../src/app.css';
 
+function App() {
 
-export default function App() {
   return (
     <BrowserRouter>
       <Header />
@@ -44,3 +48,5 @@ export default function App() {
     </BrowserRouter>
   )
 }
+
+export default App
