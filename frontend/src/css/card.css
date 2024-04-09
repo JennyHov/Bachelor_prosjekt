@@ -1,0 +1,81 @@
+
+.slick-prev:before, .slick-next:before {
+    color: black !important;
+}
+
+.slick-slide {
+    transform: scale(0.8);
+    transition: all 0.4s ease-in-out;
+}
+
+.slick-slide div{
+    transition: all 0.4s ease-in-out;
+}
+
+.slick-current {
+    transform: scale(1.1);
+}
+
+.card{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    max-height: 100%;
+    border-radius: 25px;
+    background-color: #FFF;
+    border-color: transparent;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.image-content, .card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content{
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+}
+
+.card-image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFF;
+    padding: 3px;
+}
+
+.card-image .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: transparent;
+}
+
+.card-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+
+.card-category {
+    font-size: 14px;
+    font-weight: 500;
+    color: #707070;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+}
+
+.card-email {
+    font-size: 14px;
+    font-weight: 500;
+}
