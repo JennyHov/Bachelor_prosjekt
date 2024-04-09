@@ -1,0 +1,11 @@
+#more {
+    display: none;
+}
+
+.col-sm-4 {
+    max-width: 264px;
+}
+
+.contact-item {
+    word-wrap: break-word;
+}

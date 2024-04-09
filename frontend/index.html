@@ -1,6 +1,7 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sefio</title>
@@ -23,20 +24,20 @@
 
   </head>
 
-  <body class="bg-slate-50 dark:bg-slate-800 p-4 md:p-6 lg:p-8 min.h-screen text-slate-700 grid-rows-auto1">
+  <body class="bg-slate-50 dark:bg-slate-800 md:p-6 lg:p-8 min.h-screen text-slate-700 grid-rows-auto1">
+    <!--
     <header class="text-center grid p-4 place-items-center content-center">
       <h1 class="text-3xl sm:text-6xl font-bold bg-clip-text ">Join Our Events</h1>
       <p class="dark:text-white pb-4 md:pb-6">Events related to entrepreneurship and finance</p>
       <p class="dark:text-white mb-1"> Would you like to suggest any events?</p>
       <button class="bg-orange-400 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full mb-8">
         Suggest
-      </button>   
-
-
-      kopiert fra https://tailwindcomponents.com/component/gridlist-toggle. knapper for grid view
-      grid view buttons
-      
-      <div class="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
+      </button>
+    --> 
+     <!-- kopiert fra https://tailwindcomponents.com/component/gridlist-toggle. knapper for grid view--> 
+     <!------------------------------------------------------------ grid view buttons------------------------------------------------------------------------>
+     <!-- 
+     <div class="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
         <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="grid">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fill-current w-4 h-4 mr-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
           <span>Grid</span>
@@ -52,7 +53,20 @@
       </section>
     </main>
     <script type="module" src="/main.js"></script>
+    <main class="content-wrapper">
+        <section id="events-container">
+            <!-- Events will be injected here by your JavaScript -->
+        </section>
+        <aside class="events-details">
+            <h2 class="event-title">Events</h2>
+            <p>Explore Oslo's vibrant entrepreneurship scene! Our curated calendar helps you discover new perspectives, forge connections, and stay ahead. Join us in shaping the future of business, one event at a time!</p>
+            <p>Have an event to add? <a href="#" class="share-link">Share</a> the details, and we'll gladly include it!</p>
+            <p><a href="#" class="all-events-link">Check out all upcoming events</a></p>
+        </aside>
+    </main>
+    -->
+    <div id="root"></div>
+    <script type="module" src="./src/main.jsx"></script>
   </body>
 
 </html>
----------------------------------------------------->
