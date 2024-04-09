@@ -1,7 +1,7 @@
 
 import PrivateRoute from './components/PrivateRoute';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-/*
+
 import Home from './pages/Home';
 import About from './pages/About';
 import SignIn from './pages/SignIn';
@@ -9,7 +9,11 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Users from './pages/Users';
-*/
+
+
+
+
+{/* 
 
 import Footer from './pages/Shared/Footer';
 import Header from './pages/Shared/Header';
@@ -44,24 +48,47 @@ function App() {
           <Route path="/userprofile" element={<UserProfileInformation/>} />
           <Route path="/criteria" element={<Criteria/>} /> 
           <Route path="/submit-application" element={<SubmitApplication />} /> 
-            
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          
 
-          <Route element={<PrivateRoute />} >
-            <Route path="/user-profile" element={<Profile />} />
-          </Route>
-          <Route element={<PrivateRoute requireAdmin={true} />}>
-            <Route path="/users" element={<Users />} />
-          </Route>  
-          </Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
 
+            <Route element={<PrivateRoute />} >
+              <Route path="/user-profile" element={<Profile />} />
+            </Route>
+            <Route element={<PrivateRoute requireAdmin={true} />}>
+              <Route path="/users" element={<Users />} />
+            </Route>  
+        </Routes>
         <Footer />
 
     </BrowserRouter>
   )
 }
 
-export default App
+
+*/}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+    <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+
+        <Route element={<PrivateRoute />} >
+          <Route path="/user-profile" element={<Profile />} />
+        </Route>
+        <Route element={<PrivateRoute requireAdmin={true} />}>
+          <Route path="/users" element={<Users />} />
+        </Route>
+        
+      </Routes>
+    </BrowserRouter>
+  )
+}
