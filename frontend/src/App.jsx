@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Header from './components/Header';
+import Users from './pages/Users';
 */
 
 import Footer from './pages/Shared/Footer';
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    
       <Header />
 
         <Routes>
@@ -42,9 +44,22 @@ function App() {
           <Route path="/userprofile" element={<UserProfileInformation/>} />
           <Route path="/criteria" element={<Criteria/>} /> 
           <Route path="/submit-application" element={<SubmitApplication />} /> 
-        </Routes>
+            
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+
+          <Route element={<PrivateRoute />} >
+            <Route path="/user-profile" element={<Profile />} />
+          </Route>
+          <Route element={<PrivateRoute requireAdmin={true} />}>
+            <Route path="/users" element={<Users />} />
+          </Route>  
+          </Routes>
 
         <Footer />
+
     </BrowserRouter>
   )
 }
