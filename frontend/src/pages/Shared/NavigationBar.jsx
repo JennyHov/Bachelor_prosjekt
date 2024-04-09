@@ -37,7 +37,7 @@ const NavigationBar = () => {
             <Link to="/contact-us" className="nav-item nav-link">Contact Us</Link>
           </div>
           <div className="navbar-nav ms-auto d-flex align-items-center px-5">
-            <button className="nav-item btn login-button" type="button">Log In</button>
+            <Link to="/sign-in" className="nav-item btn login-button" type="button">Log In</Link>
             <Link to="/submit-application" className="nav-item btn application-button">Submit application</Link>
           </div>
         </div>
