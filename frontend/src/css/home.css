@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://use.typekit.net/rgx6brd.css");
 @import "https://unpkg.com/open-props";
 @import "https://unpkg.com/open-props/normalize.min.css";
+
+body {
+    background-color: var(--background-color);
+}
 
 .media-scroller {
     --_spacer: var(--size-5);

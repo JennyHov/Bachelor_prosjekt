@@ -2,6 +2,8 @@ import React from 'react';
 import CollaborateWithProfile from './collaborate_with_profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import '../../css/collaborate.css';
+
 import stockImage from '../../../../assets/images/profilePics/stock_photo.jpg';
 
 export default function Collaborate() {
@@ -11,7 +13,6 @@ export default function Collaborate() {
     <div className="container">
       <div className="row justify-content-center align-items-center gap-3">
         <div className="col-lg-6 collaboration-container">
-          <div className="row justify-content-center align-items-start gap-3">
             <div className="title-container">
               <h1 className="collaboration-title">Become more visible!</h1>
             </div>
@@ -72,120 +73,125 @@ export default function Collaborate() {
                 </div>
               )}
             </div>
-          </div>
         </div>
-        <div className="container-fluid section">
-          {/* Profile Cards */}
-          <div className='row collaborate-profile'>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Lars Johansen</p>
-                  <p className="coprofile-category">Technology</p>
-                  <p className="coprofile-description">Created a revolutionary AI-powered virtual assistant that streamlines administrative tasks for small businesses</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">lars.johansen@example.com</a></p>
+      </div>
+        {/* Profile Cards */}
+        <div className="row profile-row">
+          <div className="col-md-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Ingrid Olsen</p>
-                  <p className="coprofile-category">Environment</p>
-                  <p className="coprofile-description">Proposed a community-driven reforestation initiative using drone technology to plant trees in deforested areas</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">ingrid.olsen@example.com</a></p>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Lars Johansen</p> 
+                <hr className="name-divider" />
+                <p className="coprofile-category">Technology</p>
+                <p className="coprofile-description">Created a revolutionary AI-powered virtual assistant that streamlines administrative tasks for small businesses</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">lars.johansen@example.com</a></p>
+            </div>
+          </div>
+          <div className="col-md-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Henrik Andreasen</p>
-                  <p className="coprofile-category">People</p>
-                  <p className="coprofile-description">Introduced a gamified learning platform that engages students in interactive lessons tailored to their individual learning styles</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">henrik.andreasen@example.com</a></p>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Ingrid Olsen</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">Environment</p>
+                <p className="coprofile-description">Proposed a community-driven reforestation initiative using drone technology to plant trees in deforested areas</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">ingrid.olsen@example.com</a></p>
+            </div>
+          </div>
+          <div className="col-md-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Astrid Larsen</p>
-                  <p className="coprofile-category">Technology</p>
-                  <p className="coprofile-description">Proposed a blockchain-based platform that securely connects freelance professionals with clients worldwide</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">astrid.larsen@example.com</a></p>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Henrik Andreasen</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">People</p>
+                <p className="coprofile-description">Introduced a gamified learning platform that engages students in interactive lessons tailored to their individual learning styles</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">henrik.andreasen@example.com</a></p>
+            </div>
+          </div>
+          <div className="col-md-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-          </div>  
-          <div className='row contact-profile'>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Einar Pedersen</p>
-                  <p className="coprofile-category">Technology</p>
-                  <p className="coprofile-description">Pitched a renewable energy solution harnessing kinetic energy from urban environments</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">einar.pedersen@example.com</a></p>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Astrid Larsen</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">Technology</p>
+                <p className="coprofile-description">Proposed a blockchain-based platform that securely connects freelance professionals with clients worldwide</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">astrid.larsen@example.com</a></p>
+            </div>
+          </div>
+        </div>  
+        <div className='row profile-row'>
+          <div className="col-sm-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Hanne Sørensen</p>
-                  <p className="coprofile-category">Environment</p>
-                  <p className="coprofile-description">Pitched a solar-powered desalination system designed to provide clean drinking water to remote coastal communities</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">hanne.sorensen@example.com</a></p>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Einar Pedersen</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">Technology</p>
+                <p className="coprofile-description">Pitched a renewable energy solution harnessing kinetic energy from urban environments</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">einar.pedersen@example.com</a></p>
+            </div>
+          </div>
+          <div className="col-sm-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
-              </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Kristoffer Solberg</p>
-                  <p className="coprofile-category">People</p>
-                  <p className="coprofile-description">Launched a mental health app offering personalized therapy sessions and peer support networks</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">kristoffer.solberg@example.com</a></p>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Hanne Sørensen</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">Environment</p>
+                <p className="coprofile-description">Pitched a solar-powered desalination system designed to provide clean drinking water to remote coastal communities</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">hanne.sorensen@example.com</a></p>
+            </div>
+          </div>
+          <div className="col-sm-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
             </div>
-            <div className="col-sm-3 mx-3 coprofile">
-              <div className="image-content">
-                <div className="coprofile-image">
-                  <img className="coprofile-img" src={stockImage} alt="Card Image" />
-                </div>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Kristoffer Solberg</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">People</p>
+                <p className="coprofile-description">Launched a mental health app offering personalized therapy sessions and peer support networks</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">kristoffer.solberg@example.com</a></p>
+            </div>
+          </div>
+          <div className="col-sm-3 coprofile">
+            <div className="coprof-image-content">
+              <div className="coprofile-image">
+                <img className="coprofile-img" src={stockImage} alt="Card Image" />
               </div>
-              <div className="coprofile-content">
-                  <p className="coprofile-name">Mari Haugen</p>
-                  <p className="coprofile-category">Environment</p>
-                  <p className="coprofile-description">Developed a smart waste management solution using IoT sensors and AI algorithms to optimize recycling processes</p>
-                  <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">mari.haugen@example.com</a></p>
-              </div>
+            </div>
+            <div className="coprofile-content">
+                <p className="coprofile-name">Mari Haugen</p>
+                <hr className="name-divider" />
+                <p className="coprofile-category">Environment</p>
+                <p className="coprofile-description">Developed a smart waste management solution using IoT sensors and AI algorithms to optimize recycling processes</p>
+                <p className="coprofile-email"><a href="mailto:kontakt@sefio.no">mari.haugen@example.com</a></p>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
