@@ -19,6 +19,7 @@ import Counseling from './pages/CounselingApplication/counseling';
 import Thankyou from './pages/ThankYou/thank_you';
 import AboutUs from './pages/AboutUs/about_us';
 import ContactUs from './pages/ContactUs/contact_us';
+import Events from './pages/Events/events';
 
 import React, { useState } from 'react';
 import '../src/app.css';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/userprofile" element={<UserProfileInformation/>} />
           <Route path="/criteria" element={<Criteria/>} /> 
           <Route path="/submit-application" element={<SubmitApplication />} /> 
+          <Route path="/events" element={<Events />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />

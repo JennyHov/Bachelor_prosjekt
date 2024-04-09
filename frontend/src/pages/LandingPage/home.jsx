@@ -1,10 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+
 import '../../css/submit_application.css';
 import '../../css/home.css';
-import CenterMode from '../Responsive.jsx';
+import '../../css/home_event.css';
 
-import React from 'react';
+import CenterMode from '../Responsive.jsx';
+import EventCard from '../Events/event_card.jsx';
+
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import rocketImage from '../../../../assets/images/home/rocket.png';
 import counselingImage from '../../../../assets/images/home/counselling.png';
 import instagramImage from '../../../../assets/images/home/instagram.png';
@@ -20,7 +25,33 @@ import johanImage from '../../../../assets/images/home/johan.png';
 import elisabethImage from '../../../../assets/images/home/elisabeth.png';
 import arnarImage from '../../../../assets/images/home/arnar.png';
 
+
+function eventHasPassed(endDate) {
+    const now = new Date();
+    const end = new Date(endDate);
+    return now > end;
+}
+
 const home = () => {
+
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // Replace with your actual API Key
+        const CALENDAR_ID = 'f390ea5d2b14d4be9eb4dd744e6a1b5e84ca241a7238be3d9b910023b940d70e@group.calendar.google.com'; // Replace with your actual Calendar ID
+        const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`;
+
+        fetch(calendarUrl)
+            .then(response => response.json())
+            .then(data => {
+                const filteredEvents = data.items.filter(event => !eventHasPassed(event.end.dateTime || event.end.date))
+                    .sort((a, b) => new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date))
+                    .slice(0, 5); // Limiting the array to the first 5 events
+                setEvents(filteredEvents);
+            })
+            .catch(error => console.error('Error fetching events:', error));
+    }, []);
+
     return (
         <div className="content-fluid p-5">
             <div className="container-fluid section landing-section">
@@ -71,52 +102,36 @@ const home = () => {
             <div className="container-fluid section events-section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center align-items-center">
-                        <div className="events-deadlines">
-                            {/*
-                            <div className="events-deadline">
-                                <div className="events-date">25.Jan</div>
-                                <div className="events-line"></div>
-                                <div className="events-title">Next deadline for application</div>
-                            </div>
-                            <div className="events-deadline">
-                                <div className="events-date">02.Feb</div>
-                                <div className="events-line"></div>
-                                <div className="events-title">Event At OsloMet</div>
-                            </div>
-                            <div className="events-deadline">
-                                <div className="events-date">14.Feb</div>
-                                <div className="events-line"></div>
-                                <div className="events-title">Social hour at Justisen</div>
-                            </div>
-                            <div className="events-deadline">
-                                <div className="events-date">05.Mar</div>
-                                <div className="events-line"></div>
-                                <div className="events-title">Next deadline for application</div>
-                            </div>
-                            <div className="events-deadline">
-                                <div className="events-date">05.Mar</div>
-                                <div className="events-line"></div>
-                                <div className="events-title">Next deadline for application</div>
-                            </div>
-                            */}
+                        <div className="home-events-deadlines content-wrapper">
+                            <section className='home-events-container'>
+                                {events.map((event, index) => (
+                                    <EventCard key={index} event={event} />
+                                ))}
+                            </section>
                         </div>
                     </div>
-                    <div className="col-md-6 events-info d-flex justify-content-center">
-                        <div className="content events-info-inner">
-                            <h1 className="title events-title">Events</h1>
-                                <div className="description events-description">
-                                <p>
-                                    Explore Oslo's vibrant entrepreneurship scene! Our curated calendar helps you discover new perspectives, forge connections, and stay ahead. Join us in shaping the future of business, one event at a time! Have an event to add? 
-                                    <Link to="/contact-us" className="text-secondary"> Share</Link> the details, and we'll gladly include it!
+                    <div className="col-md-6 home-events-info d-flex justify-content-center">
+                        <div className="content home-events-info-inner">
+                            <h1 className="title home-event-title">Events</h1>
+                            <div className="home-event-description">
+                                <p className="description home-event-paragraph">
+                                    Explore Oslo's vibrant entrepreneurship scene! Our curated calendar helps you discover new perspectives, forge connections, and stay ahead. Join us in shaping the future of business, one event at a time! Have an event to add?{' '}
+                                    <Link to="/contact-us" className="text-secondary">
+                                        Share
+                                    </Link>{' '}
+                                    the details, and we'll gladly include it!
                                 </p>
-                                <p>
-                                    <Link to="/events" className="text-primary">Check out all upcoming events</Link>
+                                <p className="home-event-paragraph">
+                                    <Link to="/events" className="description text-primary">
+                                        Check out all upcoming events
+                                    </Link>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div className='stroke'></div>
 

@@ -8,7 +8,7 @@ export default function SubmitApplication() {
       <div className="row justify-content-center align-items-center">
         <form action="https://api.web3forms.com/submit" method="POST" className="col-lg-6 submit-application-container">
           <div className="title-container">
-            <h1 className="submit-application-title">Contact us</h1>
+            <h1 className="page-title submit-application-title">Contact us</h1>
           </div>
           <div className="message-container">
             <p className="submit-application-message">

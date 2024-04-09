@@ -15,7 +15,7 @@ export default function AboutUs () {
             <div className='row justify-content-center align-items-center gap-3'>
                 <div className='col-lg-6 about-us-container'>
                     <div className="title-container">
-                        <h1 className="about-us-title">About Us</h1>
+                        <h1 className="page-title about-us-title">About Us</h1>
                     </div>
                     <div className="message-container">
                         <p className="about-us-message">

@@ -13,7 +13,7 @@ export default function Criteria() {
         <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 signup-container">
                 <div className="title-container">
-                    <h1 className="signup-title">Read Our Criteria</h1>
+                    <h1 className="page-title signup-title">Read Our Criteria</h1>
                 </div>
                 <div className="form-container">
                     <div className="input-group">

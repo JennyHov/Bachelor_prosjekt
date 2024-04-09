@@ -8,7 +8,7 @@ export default function SubmitApplication() {
       <div className="row justify-content-center align-items-center">
         <div className="col-lg-6 submit-application-container">
           <div className="title-container">
-            <h1 className="submit-application-title">Apply for Counseling</h1>
+            <h1 className="page-title submit-application-title">Apply for Counseling</h1>
           </div>
           <div className="message-container">
             <p className="submit-application-message">
