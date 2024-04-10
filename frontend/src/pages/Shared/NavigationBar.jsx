@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import logoImage from '../../../../assets/images/header/sefio.png';
 import { Link } from 'react-router-dom';
 import '../../css/navbar.css';
+import '../../css/loginPopup.css';
+import LoginPopup from '../LoginPopup.jsx';
 
 const NavigationBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const togglePopup = () => {
+    setPopupOpen(!isPopupOpen);
   };
 
   return (
@@ -37,7 +44,8 @@ const NavigationBar = () => {
             <Link to="/contact-us" className="nav-item nav-link">Contact Us</Link>
           </div>
           <div className="navbar-nav ms-auto d-flex align-items-center px-5">
-            <Link to="/sign-in" className="nav-item btn login-button" type="button">Log In</Link>
+            <button className="nav-item btn login-button" type="button" onClick={togglePopup}>Log In</button>
+              <LoginPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
             <Link to="/submit-application" className="nav-item btn application-button">Submit application</Link>
           </div>
         </div>

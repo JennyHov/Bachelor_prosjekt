@@ -22,7 +22,6 @@ import ContactUs from './pages/ContactUs/contact_us';
 import Events from './pages/Events/events';
 
 import React, { useState } from 'react';
-import '../src/app.css';
 
 function App() {
 

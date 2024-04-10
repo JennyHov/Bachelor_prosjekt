@@ -1,0 +1,219 @@
+.login-popup {
+    position: fixed;
+    top: 0;
+    right: -30%; 
+    width: 25%; 
+    height: 100%;
+    background-color: white;
+    transition: right 0.3s ease-out;
+    z-index: 9999;
+}  
+  
+.login-content {
+    padding: 20px;
+}
+  
+.login-popup.open {
+    right: 0; 
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 200;
+}
+
+.login-popup.open + .overlay {
+    display: block;
+}
+
+.button-container {
+    width: 80%; 
+    margin: 0 auto;
+}
+
+.google-login-btn {
+    width: 100%;
+    background-color: #f2f2f0; /* Google's brand blue */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7%; /* Creates space between the icon and the text */
+    outline: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+.google-login-btn:hover,
+.google-login-btn:focus {
+    background-color: hsl(0, 0%, 96%); /* A slightly darker blue on hover/focus */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.google-logo {
+    width: 27px; /* Adjust based on your preference */
+    height: 27px; /* Maintain aspect ratio */
+}
+
+.sign-in-container {
+    margin-bottom: 4%;
+}
+
+.sign-in-btn {
+    width: 100%;
+    background-color: var(--button-success); /* Google's brand blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sign-in-btn:hover,
+.sign-in-btn:focus {
+    background-color: hsl(209, 90%, 61%); /* A slightly darker blue on hover/focus */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}  
+
+/* Styles for form container */
+.form-container {
+    max-width: 80%; /* Adjust as needed */
+    margin: 0 auto;
+    margin-top: 7%;
+    margin-bottom: 5%;
+  }
+  
+  /* Styles for form input boxes */
+.form-box {
+    margin-bottom: 5%;
+}
+  
+.form-input {
+    width: 100%;
+    max-height: 56px;
+    padding: 15px;
+    background-color: #f2f2f0; /* Slightly transparent white background */
+    border: none;
+    border-radius: 25px;
+    flex: 1 1 0;
+    color: #383838;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    word-wrap: break-word;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+  
+.form-input::placeholder {
+    color: #aaa; /* Placeholder color */
+}
+  
+.no-account-container {
+    margin-bottom: 9%;
+}
+
+.no-account {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    flex: 1 1 0;
+    color: black;
+    font-size: 0.85vw; 
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 2; 
+    letter-spacing: 0.01em; 
+}
+
+.forgot-password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    flex: 1 1 0;
+    color: black;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 2; 
+    letter-spacing: 0.01em; 
+}
+
+.forgot-password-container {
+    margin-top: -3%;
+}
+
+.divider {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%; /* Adjust margin as needed */
+    margin-bottom: 10% /* Adjust margin as needed */
+  }
+  
+  .divider-line {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    height: 1px; /* Adjust thickness as needed */
+    background-color: #ccc; /* Adjust color as needed */
+  }
+  
+  .divider-text {
+    margin: 0 10px; /* Adjust margin as needed */
+    color: #ccc; /* Adjust color as needed */
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+
+.sign-in-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 40px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 70px;
+    letter-spacing: 0.80px;
+    word-wrap: break-word
+}  
+
+.login-container {
+    margin: 0 auto;
+    margin-top: 15%;
+}
+
+.close-icon {
+    width: 27px; /* Adjust based on your preference */
+    height: 27px; /* Maintain aspect ratio */
+}
