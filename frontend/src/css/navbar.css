@@ -56,14 +56,18 @@
     font-size: 18px;
     border: none;
     outline: none;
-    background-color: red;
+    background-color: #F48A34;
     color: white;
     cursor: pointer;
-    padding: 15px;
+    padding: 8px;
     border-radius: 4px;
   }
   
   #myBtn:hover {
     background-color: #555;
+  }
+
+  .bx-chevron-up{
+    font-size: 35px;
   }
   
