@@ -47,7 +47,8 @@
     font-weight:400;
 }
 
-#myBtn {
+
+#upBtn {
     display: none;
     position: fixed;
     bottom: 20px;
@@ -63,7 +64,7 @@
     border-radius: 4px;
   }
   
-  #myBtn:hover {
+  #upBtn:hover {
     background-color: #555;
   }
 
