@@ -32,9 +32,7 @@ export default function Collaborate() {
                     <input type="file" accept='images/jpeg, image/png, image/jpg' id='input-file'/>
                   
                   </div>
-                  
-                  
-                  
+                                    
                   <div className="form-group">
                     <label htmlFor="fullName" className="form-label text-black font-normal font-inter text-sm leading-7">Full Name</label>
                     <input type="text" className="form-control" id="fullName" placeholder="Enter your full name" />
