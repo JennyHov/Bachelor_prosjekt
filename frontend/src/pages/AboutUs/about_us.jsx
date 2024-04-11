@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
+import '../../css/pages.css';
 
 import henrikImage from '../../../../assets/images/home/henrik.png';
 import hannaImage from '../../../../assets/images/home/hanna.png';
@@ -11,7 +12,7 @@ import arnarImage from '../../../../assets/images/home/arnar.png';
 
 export default function AboutUs () {
     return (
-        <div className='container'>
+        <div className='container page-container'>
             <div className='row justify-content-center align-items-center gap-3'>
                 <div className='col-lg-6 about-us-container'>
                     <div className="title-container">
