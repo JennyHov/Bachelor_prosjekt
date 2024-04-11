@@ -68,7 +68,7 @@ const home = () => {
                             </div>
                             <div className="landing-links py-3">
                                 <p className="landing-link-description">Unsure about what it takes?
-                                <span className="landing-link"><br></br>
+                                <span className="landing-link">
                                     <Link to="/criteria" className="text-primary">Read our criteria</Link>
                                 </span>
                                 </p>
