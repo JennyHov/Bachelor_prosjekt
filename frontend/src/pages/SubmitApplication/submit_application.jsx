@@ -86,11 +86,13 @@ export default function SubmitApplication() {
               <input type="checkbox" className="form-check-input" id="criteriaCheck3" />
               <label className="form-check-label" htmlFor="criteriaCheck3">I have received counseling from SEFiO or an institution</label>
             </div>
+            {/* 
             <div className="form-group">
               <label htmlFor="upload" className="form-label">Upload application here</label>
               <input type="file" className="form-control-file" id="upload" />
               <small className="form-text text-muted">Click or drag a file to this area to upload</small>
             </div>
+            */}
           </div>
           <div className="button-container">
             <Link to="/thankyou" className="btn btn-primary">Submit application</Link>

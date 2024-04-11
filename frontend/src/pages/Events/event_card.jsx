@@ -7,7 +7,7 @@ const EventCard = ({ event }) => {
     const eventTime = formatEventTime(event.start.dateTime, event.end.dateTime);
 
     return (
-        <article className="home-event-card bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden">
+        <div className="home-event-card bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden">
             <div className="home-date bg-orange-400 text-indigo-50 uppercase p-3">
                 <div className="text-xl font-bold">{startDate}</div>
             </div>
@@ -15,7 +15,7 @@ const EventCard = ({ event }) => {
                 <h2 className="text-lg font-bold">{event.summary}</h2>
                 <p className="text-sm text-slate-500">{eventTime}</p>
             </div>
-        </article>
+        </div>
     );
 };
 

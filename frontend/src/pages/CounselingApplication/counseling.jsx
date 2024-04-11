@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../css/pages.css';
 
 export default function SubmitApplication() {
   return (
-    <div className="container">
+    <div className="container page-container">
       <div className="row justify-content-center align-items-center">
         <div className="col-lg-6 submit-application-container">
           <div className="title-container">
             <h1 className="page-title submit-application-title">Apply for Counseling</h1>
           </div>
           <div className="message-container">
-            <p className="submit-application-message">
+            <p className="page-message submit-application-message">
                 Our counseling application is designed to offer a convenient and effective plattform for connecting you with counselors who can provide guidance, support, and resources.
             </p>
-            <p className="submit-application-message">
+            <p className="page-message submit-application-message">
                 The inquiry will be handled by a SEFiO representative from your educational institution.
             </p>
           </div>
@@ -49,11 +50,13 @@ export default function SubmitApplication() {
               <input type="checkbox" className="form-check-input" id="criteriaCheck2" />
               <label className="form-check-label" htmlFor="criteriaCheck2">I want guidance regarding my project</label>
             </div>
+            {/*
             <div className="form-group">
               <label htmlFor="upload" className="form-label">Upload application here</label>
               <input type="file" className="form-control-file" id="upload" />
               <small className="form-text text-muted">Click or drag a file to this area to upload</small>
             </div>
+            */}
           </div>
           <div className="button-container">
             <Link to="/thankyou" className="btn btn-primary">Submit application</Link>

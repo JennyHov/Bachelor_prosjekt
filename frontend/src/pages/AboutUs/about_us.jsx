@@ -19,7 +19,7 @@ export default function AboutUs () {
                         <h1 className="page-title about-us-title">About Us</h1>
                     </div>
                     <div className="message-container">
-                        <p className="about-us-message">
+                        <p className="page-message about-us-message">
                             SEFiO is on a mission for 70,000 students spread across five member institutions – that means more points of contact! No matter who you reach out to, we can guarantee one thing – we are here for YOU.
                         </p>
                     </div>

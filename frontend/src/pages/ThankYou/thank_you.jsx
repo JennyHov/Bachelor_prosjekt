@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default function ThankYou() {
   return (
-    <div className="container">
+    <div className="container page-container">
         <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 thank-you-container">
-                <div className="title-container">
+                <div className="page-title title-container">
                     <h1 className="thank-you-title">Thank you!</h1>
                 </div>
                 <div className="message-container">

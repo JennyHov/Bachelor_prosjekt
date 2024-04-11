@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function SubmitApplication() {
   return (
-    <div className="container">
+    <div className="container page-container">
       <div className="row justify-content-center align-items-center">
         <form action="https://api.web3forms.com/submit" method="POST" className="col-lg-6 submit-application-container">
           <div className="title-container">
@@ -30,11 +30,11 @@ export default function SubmitApplication() {
           
             <label htmlFor="comments" className="form-label">Comments</label>
             <textarea className="form-control" name="comments" rows="3" placeholder="Write your text here"></textarea>
-          
+          {/*
             <label htmlFor="upload" className="form-label">Upload application here</label>
             <input type="file" className="form-control-file" name="upload" />
             <small className="form-text text-muted">Click or drag a file to this area to upload</small>
-            <hr />
+          */}
             <button type='submit' className='btn btn-primary'>Submit</button>
         
         </form>

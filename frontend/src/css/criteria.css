@@ -1,0 +1,21 @@
+.criteria-subtitle {
+    color: black;
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0.48px;
+    word-wrap: break-word;
+}
+
+.criteria {
+    display: flex;
+    align-items: flex-start;
+}
+
+.criteria .criteria-subtitle {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

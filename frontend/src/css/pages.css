@@ -6,6 +6,7 @@
     line-height: 70px;
     letter-spacing: 1.28px;
     word-wrap: break-word;
+    text-align: center;
 }
 
 .title-container {
@@ -22,4 +23,16 @@
     height: 100%;
     padding-top: 100px; 
     padding-bottom: 100px;
+}
+
+.page-message {
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 19px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0.38px;
+    word-wrap: break-word
 }

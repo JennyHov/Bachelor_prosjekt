@@ -44,20 +44,17 @@ const Events = () => {
     }, []);
 
     return (
-        <div className='container'>
+        <div className='container page-container'>
             <div className='row justify-content-center align-items-center gap-3'>
                 <div className='col-lg-6 events-container'>
                     <div className='title-container'>
                         <h1 className='page-title events-title'>Join our events</h1>
                     </div>
                     <div className='message-container'>
-                        <p className='events-message'>
+                        <p className='page-message events-message'>
                             Events related to entrepreneurship and finance. Would you like to suggest any events?
                         </p>
                     </div>
-                    <button className='event-button btn button'>
-                        Suggest
-                    </button>
                 </div>
                 <div className='max-w-4xl w-full mx-auto'>
                     <section className='grid gap-4 md:gap6 lg:gap-16 items-start grid-cols-cards'>
