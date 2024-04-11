@@ -110,12 +110,13 @@
   
 .login-input {
     width: 100%;
-    max-height: 56px;
-    padding: 15px;
-    background-color: #f2f2f0; /* Slightly transparent white background */
-    border: none;
+    min-height: 44px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border:none;
     border-radius: 5px;
-    flex: 1 1 0;
     color: #383838;
     font-size: 14px;
     font-family: Inter;
@@ -123,7 +124,7 @@
     line-height: 24px;
     letter-spacing: 0.15px;
     word-wrap: break-word;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
   
 .login-input::placeholder {

@@ -28,7 +28,7 @@ export default function SubmitApplication() {
             <h1 className="page-title submit-application-title">Submit Application</h1>
           </div>
           <div className="read-more-container">
-            <div className="read-criteria submit-application-message">
+            <div className="page-message submit-application-message">
               Read our criteria before applying<span id='dots'></span>
                 <button onClick={myFunction} id='myBtn' className='arrow-button'>Read More
                 </button>
@@ -94,8 +94,10 @@ export default function SubmitApplication() {
             </div>
             */}
           </div>
-          <div className="button-container">
-            <Link to="/thankyou" className="btn btn-primary">Submit application</Link>
+          <div className="d-flex justify-content-center">
+            <div className="form-button">
+              <Link to="/thankyou" className="btn teritary-button">Submit Application</Link>
+            </div>
           </div>
         </div>
       </div>

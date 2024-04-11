@@ -15,10 +15,9 @@
     width: 100%;
     max-height: 56px;
     padding: 15px;
-    background-color: #f2f2f0; /* Slightly transparent white background */
-    border: none;
+ /* Slightly transparent white background */
+    border:none;
     border-radius: 5px;
-    flex: 1 1 0;
     color: #383838;
     font-size: 14px;
     font-family: Inter;
@@ -26,9 +25,55 @@
     line-height: 24px;
     letter-spacing: 0.15px;
     word-wrap: break-word;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
   
 .form-input::placeholder {
     color: #aaa; /* Placeholder color */
+}
+
+.form-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    word-wrap: break-word;
+    font-size: 15px;
+}
+
+.form-check-label {
+    color: black;
+    font-size: 15px;
+    font-family: Inter;
+    font-weight: 400;
+    letter-spacing: 0.32px;
+}
+
+.form-check {
+    margin-bottom: 2.5%;
+}
+
+.teritary-button {
+    width: 100%;
+    background-color: var(--button-success); /* Google's brand blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.teritary-button:hover,
+.teritary-button:focus {
+    background-color: hsl(209, 90%, 61%); /* A slightly darker blue on hover/focus */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
 }

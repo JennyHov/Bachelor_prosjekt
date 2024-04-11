@@ -135,6 +135,7 @@ body {
 .text-secondary {
     color: #F48A34 !important;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .service-button {

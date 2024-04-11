@@ -30,7 +30,9 @@ export default function Criteria() {
                                 </div>
                                 <div className="col-md-8 criteria-content">
                                     <p className="criteria-description">SEFiO offers free counseling to all applicants, at any stage in the process. We recommend requesting this as soon as possible.</p>
-                                    <Link to="/counseling" className="btn btn-primary">Apply for counseling</Link>
+                                    <div className="d-flex flex-column justify-content-center align-items-start gap-3">
+                                        <Link to="/counseling" className="text-primary">Apply for counseling</Link>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row justify-content-center criteria">

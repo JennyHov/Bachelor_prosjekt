@@ -10,14 +10,14 @@ export default function Collaborate() {
   const hasProfile = false; // Endre dette med riktig logikk senere
 
   return (
-    <div className="container">
+    <div className="container page-container">
       <div className="row justify-content-center align-items-center gap-3">
         <div className="col-lg-6 collaboration-container">
             <div className="title-container">
               <h1 className="page-title collaboration-title">Become more visible!</h1>
             </div>
             <div className="message-container">
-              <p className="collaboration-message">
+              <p className="page-message">
                 We at SEFiO want to help students find a team or startups finding new members for their team
               </p>
             </div>

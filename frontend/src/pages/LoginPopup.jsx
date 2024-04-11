@@ -70,18 +70,18 @@ const LoginPopup = ({ isOpen, onClose }) => {
                     <h1 className='sign-in-title'>Welcome back!</h1>
                     <form onSubmit={handleSubmit}>
                         <div className='login-form-container'>
-                            <div className='login-box'>
+                            <div className='form-group login-box'>
                                 <input 
-                                    className='login-input'
+                                    className='form-control login-input'
                                     type='email'
                                     placeholder='Email'
                                     id='email'
                                     onChange={handleChange}
                                 /> 
                             </div>
-                            <div className='login-box'>
+                            <div className='form-group login-box'>
                                 <input 
-                                    className='login-input'
+                                    className='form-control login-input'
                                     type='password'
                                     placeholder='Password'
                                     id='password'
