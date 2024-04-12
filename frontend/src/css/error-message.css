@@ -1,0 +1,48 @@
+.error-container {
+    max-width: 80%; /* Adjust as needed */
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.error-message {
+    width: 100%;
+    background-color: #f2f2f0; 
+    color: #E03757;
+    border: none;
+    padding: 4% 7%;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: 7%;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.warning-image {
+    width: 27px; /* Adjust based on your preference */
+    height: 27px; /* Maintain aspect ratio */
+}
+
+.input-error-message {
+    width: 100%;
+    color: #E03757;
+    border: none;
+    padding: 3% 1%;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: 3%;
+    outline: none;
+}
+
+.input-warning-image {
+    width: 18px;
+    height: 18px;
+}

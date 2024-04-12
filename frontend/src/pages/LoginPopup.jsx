@@ -1,35 +1,40 @@
 import { initialSignIn, endSignIn, failSignIn } from '../Redux/userStates/usersSlicer';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Oauth from '../components/Oauth.jsx';
 
+import '../css/loginPopup.css';
+import '../css/error-message.css';
+
 import CloseImage from '../../../assets/images/login/close.png';
 import GoogleImage from '../../../assets/images/login/google.png';
+import warningImage from '../../../assets/images/error/warning.png';
+
 
 const LoginPopup = ({ isOpen, onClose }) => {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ email: '', password: ''});
+    const [formError, setFormError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const { loading, error } = useSelector((state) => state.user);
     const dispatching = useDispatch();
     const navigate = useNavigate();
     const popupRef = useRef(null);
 
     useEffect(() => {
-        // Function to handle clicks outside of the popup
         const handleClickOutside = (event) => {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
                 onClose();
             }
         };
 
-        // Add event listener when the popup is open
         if (isOpen) {
             document.addEventListener('mousedown', handleClickOutside);
         } else {
             document.removeEventListener('mousedown', handleClickOutside);
         }
 
-        // Cleanup function
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -37,31 +42,46 @@ const LoginPopup = ({ isOpen, onClose }) => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
+        setFormError('');
+        setEmailError('');
+        setPasswordError('');
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            dispatching(initialSignIn());
-            const res = await fetch('/api/auth/signin', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-        const data = await res.json();
-        if (data.success === false) {
-            dispatching(failSignIn(data));
-            return;
-        }
-        dispatching(endSignIn(data));
-        navigate('/');
-        onclose();
-        } catch (error) {
-        dispatching(failSignIn(error));
+        setEmailError('');
+        setPasswordError('');
+
+        if (!formData.email && !formData.password) {
+            setFormError('Please input both an email and a password.');
+        } else if (!formData.email) {
+            setEmailError('Please input an email address');
+        } else if (!formData.password) {
+            setPasswordError('Please input your password');
+        } else {
+            try {
+                dispatching(initialSignIn());
+                const res = await fetch('/api/auth/signin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                const data = await res.json();
+                if (!data.success) {
+                    dispatching(failSignIn(data));
+                    return;
+                }
+                dispatching(endSignIn(data));
+                navigate('/');
+                onClose();
+            } catch (error) {
+                dispatching(failSignIn(error));
+            }
         }
     };
+
     return (
         <div className={`login-popup ${isOpen ? 'open' : ''}`} ref={popupRef}>
             <div className='login-content'>
@@ -69,6 +89,9 @@ const LoginPopup = ({ isOpen, onClose }) => {
                 <div className='login-container'>
                     <h1 className='sign-in-title'>Welcome back!</h1>
                     <form onSubmit={handleSubmit}>
+                        <div className='error-container'>
+                            {formError && <p className='error-message'><img src={warningImage} alt="Warning icon" className='warning-image' />{formError}</p>}
+                        </div>
                         <div className='login-form-container'>
                             <div className='form-group login-box'>
                                 <input 
@@ -76,8 +99,10 @@ const LoginPopup = ({ isOpen, onClose }) => {
                                     type='email'
                                     placeholder='Email'
                                     id='email'
+                                    value={formData.email}
                                     onChange={handleChange}
                                 /> 
+                                {emailError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
                             </div>
                             <div className='form-group login-box'>
                                 <input 
@@ -85,8 +110,10 @@ const LoginPopup = ({ isOpen, onClose }) => {
                                     type='password'
                                     placeholder='Password'
                                     id='password'
+                                    value={formData.password}
                                     onChange={handleChange}
                                 />
+                                {passwordError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{passwordError}</p>}
                             </div>
                             <div className='forgot-password-container'>
                                 <p className='forgot-password text-secondary'>Forgot password?</p>
@@ -116,7 +143,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
                             </div>
                         </div>      
                     </form>
-                    <p>{error ? error.message || 'Something went wrong!' : ''}</p>
                 </div>
             </div>
             <div className='overlay'></div>
