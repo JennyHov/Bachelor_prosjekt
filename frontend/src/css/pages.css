@@ -36,3 +36,25 @@
     letter-spacing: 0.38px;
     word-wrap: break-word
 }
+
+.secondary-button {
+    width: 100%;
+    background-color: var(--primary-color); /* Google's brand blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.secondary-button:hover,
+.secondary-button:focus {
+
+}

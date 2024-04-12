@@ -10,11 +10,14 @@ export default function ThankYou() {
                     <h1 className="thank-you-title">Thank you!</h1>
                 </div>
                 <div className="message-container">
-                    <p className="thank-you-message">Your application has now been submitted! You will receive updates on the email you entered.</p>
+                    <p className="page-message thank-you-message">Your application has now been submitted! You will receive updates on the email you entered.</p>
                 </div>
-                <div className="button-container">
-                    <Link to="/home" className="btn btn-primary">Go home</Link>
+                <div className='d-flex justify-content-center'>
+                    <div className="form-button">
+                        <Link to="/home" className="btn secondary-button">Go home</Link>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>
