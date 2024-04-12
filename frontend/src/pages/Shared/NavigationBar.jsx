@@ -30,7 +30,7 @@ const NavigationBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-styling">
       <div className="container-fluid">
-        <Link to="/home" className="navbar-brand ps-5 pe-2">
+        <Link to="/" className="navbar-brand ps-5 pe-2">
           <img src={logoImage} alt="SEFiO" height="40" />
         </Link>
         <button
@@ -45,6 +45,7 @@ const NavigationBar = () => {
         </button>
         <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarNavAltMarkup">
           <div className="navbar-nav align-items-center">
+          {currentUser && <Link to="/user-profile" className="nav-item nav-link">Profile</Link>}
             <Link to="/userprofile" className="nav-item nav-link">Profile</Link>
             <Link to="/counseling" className="nav-item nav-link">Counseling</Link>
             <Link to="/events" className="nav-item nav-link">Events</Link>

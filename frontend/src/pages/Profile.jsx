@@ -100,59 +100,71 @@ export default function Profile() {
     };
 
   return (
-    <div>
-    <h1>Profile</h1>
-    <form onSubmit={handleSubmit}>
-      <input type="file" ref={referanceFile} hidden accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
-      <img
-        src={formData.profileImage || currentUser.profileImage}
-        alt="profile"
-        className=""
-        onClick={() => referanceFile.current.click()}
-      />
-      <p>
-        {pictureError ? (<span>Error when uploading picture (file size must be less than 3 MB)</span>
-        ) : picturePercentage > 0 && picturePercentage < 100 ? ( <span>{`Uploading in progress: ${picturePercentage}%`}</span>
-        ) : picturePercentage === 100 ? (<span>Picture uploaded successfully!</span>
-        ) : ( 
-          "" 
-        )}
-      </p>
-      <input
-        defaultValue={currentUser.username}
-        type="text"
-        id="username"
-        placeholder="username"
-        className=""
-        onChange={handleUserProfileUpdated}
-      />
-      <input
-        defaultValue={currentUser.email}
-        type="email"
-        id="email"
-        placeholder="Email"
-        className=""
-        onChange={handleUserProfileUpdated}
-      />
-      <input
-        type="password"
-        id="password"
-        placeholder="password"
-        className=""
-        onChange={handleUserProfileUpdated}
-      />
-      <button>
-      {loading ? "Loading in progress..." : "Update"}
-      </button>
-    </form>
-    <div>
-      <span onClick={handleAccountDeletion}>Delete Account</span>
-      <span onClick={handleSigningOut}>Sign out</span>
+    <div className="container">
+      <div className="row justify-content-center align-items-center profile-information-container">
+        <div className="col-lg-8 profile-information-container">
+          <h1 className="profile-information-title">Profile</h1>
+          <form onSubmit={handleSubmit}>
+          <input type="file" ref={referanceFile} hidden accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
+          <img
+            src={formData.profileImage || currentUser.profileImage}
+            alt="profile"
+            className="img-fluid"
+            onClick={() => referanceFile.current.click()}
+          />
+          <p>
+            {pictureError ? (<span>Error when uploading picture (file size must be less than 3 MB)</span>
+            ) : picturePercentage > 0 && picturePercentage < 100 ? ( <span>{`Uploading in progress: ${picturePercentage}%`}</span>
+            ) : picturePercentage === 100 ? (<span>Picture uploaded successfully!</span>
+            ) : ( 
+              "" 
+            )}
+          </p>
+          <div className='form-group'>
+          <input
+            defaultValue={currentUser.username}
+            type="text"
+            id="username"
+            placeholder="username"
+            className=""
+            onChange={handleUserProfileUpdated}
+          />
+          </div>
+          <div className='form-group'>
+          <input
+            defaultValue={currentUser.email}
+            type="email"
+            id="email"
+            placeholder="Email"
+            className=""
+            onChange={handleUserProfileUpdated}
+          />
+          </div>
+
+          <div className='form-group'>
+          <input
+            type="password"
+            id="password"
+            placeholder="password"
+            className=""
+            onChange={handleUserProfileUpdated}
+          />
+          </div>
+
+          <button>
+          {loading ? "Loading in progress..." : "Update"}
+          </button>
+        </form>
+        <div>
+          <span onClick={handleAccountDeletion}>Delete Account</span>
+          <span onClick={handleSigningOut}>Sign out</span>
+        </div>
+        <p>{error && "Something went wrong!"}</p>
+          <p>
+            {successfulUpdate && "User has been updated!"}
+          </p>
+        </div>
     </div>
-    <p>{error && "Something went wrong!"}</p>
-      <p>
-        {successfulUpdate && "User has been updated!"}
-      </p>
   </div>
 );
 }
