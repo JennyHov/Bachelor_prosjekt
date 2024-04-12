@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
 import '../../css/pages.css';
+import '../../css/home.css';
 
 import henrikImage from '../../../../assets/images/home/henrik.png';
 import hannaImage from '../../../../assets/images/home/hanna.png';
@@ -28,16 +29,18 @@ export default function AboutUs () {
             <div className='row justify-content-center contact-profile my-5'>
                 <div className="col-sm-4 contact-item mx-5">
                     <div className="image-content">
-                            <div className="card-image">
+                        <div className="card-image">
                             <img className="card-img" src={magnusImage} alt="Card Image" />
-                            </div>
-                        </div>
-                        <div className="card-content">
-                            <p className="card-name">Magnus Svendsen</p>
-                            <p className="card-category">CEO - Handles all requests</p>
-                            <p className="card-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
                         </div>
                     </div>
+                    <div className="card-content">
+                        <p className="card-name">Magnus Svendsen</p>
+                        <p className="card-role">CEO</p>
+                        <hr className="representative-divider" />
+                        <p className="card-institution">Handles all requests</p>
+                        <p className="card-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
+                    </div>
+                </div>
                 <div className="col-sm-4 contact-item mx-5">
                     <div className="image-content">
                         <div className="card-image">
@@ -46,7 +49,9 @@ export default function AboutUs () {
                     </div>
                     <div className="card-content">
                         <p className="card-name">Hanna Worum</p>
-                        <p className="card-category">Chief of Board and Representative - Oslomet</p>
+                        <p className="card-role">Chief of Board and Representative</p>
+                        <hr className="representative-divider" />
+                        <p className="card-institution">Oslomet</p>
                         <p className="card-email"><a href="mailto:hanna.worum@sefio.no">hanna.worum@sefio.no</a></p>
                     </div>
                 </div>
@@ -58,7 +63,9 @@ export default function AboutUs () {
                     </div>
                     <div className="card-content">
                         <p className="card-name">Henrik Mørk</p>
-                        <p className="card-category">CFO and Board Representative - BI</p>
+                        <p className="card-role">CFO and Board Representative</p>
+                        <hr className="representative-divider" />
+                        <p className="card-institution">BI</p>
                         <p className="card-email"><a href="mailto:henrik.mork@sefio.no">henrik.mork@sefio.no</a></p>
                     </div>
                 </div>
@@ -72,7 +79,9 @@ export default function AboutUs () {
                     </div>
                     <div className="card-content">
                         <p className="card-name">Johan Sandbu</p>
-                        <p className="card-category">Board Representative - Høyskolen Kristiania</p>
+                        <p className="card-role">Board Representative</p>
+                        <hr className="representative-divider" />
+                        <p className='card-institution'>Høyskolen Kristiania</p>
                         <p className="card-email"><a href="mailto:johan.sandbu@sefio.no">johan.sandbu@sefio.no</a></p>
                     </div>
                 </div>
@@ -84,7 +93,9 @@ export default function AboutUs () {
                     </div>
                     <div className="card-content">
                         <p className="card-name">Elisabeth Alvern</p>
-                        <p className="card-category">Board Representative - NMBU</p>
+                        <p className="card-role">Board Representative</p>
+                        <hr className="representative-divider" />
+                        <p className="card-institution">NMBU</p>
                         <p className="card-email"><a href="mailto:elisabeth.alvern@sefio.no">elisabeth.alvern@sefio.no</a></p>
                     </div>
                 </div>
@@ -96,7 +107,9 @@ export default function AboutUs () {
                     </div>
                     <div className="card-content">
                         <p className="card-name">Arnar Reiten</p>
-                        <p className="card-category">Board Representative - UiO</p>
+                        <p className="card-role">Board Representative</p>
+                        <hr className="representative-divider" />
+                        <p className="card-institution">UiO</p>
                         <p className="card-email"><a href="mailto:arnar.reiten@sefio.no">arnar.reiten@sefio.no</a></p>
                     </div>
                 </div>

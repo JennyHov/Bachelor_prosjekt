@@ -53,7 +53,6 @@ function App() {
           </Route> 
 
         </Routes>
-        <Home />
         <Footer />
 
     </BrowserRouter>
