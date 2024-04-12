@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import logoImage from '../../../../assets/images/header/sefio.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../css/navbar.css';
 import '../../css/loginPopup.css';
 import LoginPopup from '../LoginPopup.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from '../../Redux/userStates/usersSlicer.js';
 
 const NavigationBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const currentUser = useSelector(state => state.user.currentUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -17,10 +22,15 @@ const NavigationBar = () => {
     setPopupOpen(!isPopupOpen);
   };
 
+  const handleSignOut = () => {
+    dispatch(signOut());
+    navigate('/');  // Adjust as necessary based on your routing setup
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-styling">
       <div className="container-fluid">
-        <Link to="/home" className="navbar-brand ps-5 pe-2">
+        <Link to="/" className="navbar-brand ps-5 pe-2">
           <img src={logoImage} alt="SEFiO" height="40" />
         </Link>
         <button
@@ -35,6 +45,7 @@ const NavigationBar = () => {
         </button>
         <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarNavAltMarkup">
           <div className="navbar-nav align-items-center">
+          {currentUser && <Link to="/user-profile" className="nav-item nav-link">Profile</Link>}
             <Link to="/userprofile" className="nav-item nav-link">Profile</Link>
             <Link to="/counseling" className="nav-item nav-link">Counseling</Link>
             <Link to="/events" className="nav-item nav-link">Events</Link>
@@ -43,11 +54,19 @@ const NavigationBar = () => {
             <Link to="/criteria" className="nav-item nav-link">Criteria</Link>
             <Link to="/contact-us" className="nav-item nav-link">Contact Us</Link>
           </div>
+
           <div className="navbar-nav ms-auto d-flex align-items-center px-5">
-            <button className="nav-item btn login-button" type="button" onClick={togglePopup}>Log In</button>
-              <LoginPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
+            {currentUser ? (
+              <button className="nav-item btn login-button" onClick={handleSignOut}>Log Out</button>
+            ) : (
+              <>
+                <button className="nav-item btn login-button" onClick={togglePopup}>Log In</button>
+                <LoginPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
+              </>
+            )}
             <Link to="/submit-application" className="nav-item btn application-button">Submit application</Link>
           </div>
+
         </div>
       </div>
     </nav>

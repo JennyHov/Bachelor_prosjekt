@@ -29,14 +29,12 @@ function App() {
     <BrowserRouter>
     
       <Header />
-
         <Routes>
-
+          <Route path="/" element={<Home/>} />
           <Route path="/contact-us" element={<ContactUs/>} />
           <Route path="/about-us" element={<AboutUs/>} />
           <Route path="/thankyou" element={<Thankyou/>} />
           <Route path="/counseling" element={<Counseling/>} />
-          <Route path="/home" element={<Home/>} />
           <Route path="/collaborate" element={<Collaborate/>} />
           <Route path="/userprofile" element={<UserProfileInformation/>} />
           <Route path="/criteria" element={<Criteria/>} /> 
@@ -55,7 +53,7 @@ function App() {
           </Route> 
 
         </Routes>
-
+        <Home />
         <Footer />
 
     </BrowserRouter>
