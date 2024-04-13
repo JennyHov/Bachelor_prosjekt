@@ -29,10 +29,10 @@ export default function Collaborate() {
                   <div id='profile-pic'>
                     <img src={stockImage} />
                     <label for="input-file">update image</label>
-                    <input type="file" accept='images/jpeg, image/png, image/jpg' id='input-file'/>
+                    <input type="file" accept='images/jpeg, image/png, image/jpg' id='input-file'/>  
                   
                   </div>
-                                    
+                                                      
                   <div className="form-group">
                     <label htmlFor="fullName" className="form-label text-black font-normal font-inter text-sm leading-7">Full Name</label>
                     <input type="text" className="form-control" id="fullName" placeholder="Enter your full name" />
@@ -82,6 +82,30 @@ export default function Collaborate() {
             </div>
         </div>
       </div>
+
+      {/* Card filtering*/}
+      <div className='form-group filter'>
+
+        <input type="text" placeholder='Search by keyword' />
+        <select name="Role" className='select'>
+          <option value="Role">Role</option>
+          <option value="IT">IT</option>
+          <option value="Engineer">Engineer</option>
+        </select>
+        
+        <select name="Category" className='select'>
+        <option value="category">Category</option>
+          <option value="test1">test1</option>
+          <option value="test2">test2</option>
+        </select>
+        <select name="Institution" className='select'>
+        <option value="institution">Institution</option>
+          <option value="Oslomet">Oslomet</option>
+          <option value="UiO">UiO</option>
+          <option value="BI">BI</option>
+        </select>
+      </div>
+
         {/* Profile Cards */}
         <div className="row profile-row">
           <div className="col-md-3 coprofile">
