@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
 import '../../css/form.css';
 
+import '../../js/server.js';
+
 function SubmitApplicationForm() {
 
   const [formData, setFormData] = useState({
@@ -54,34 +56,94 @@ function SubmitApplicationForm() {
         <div className="form-container">
             <div className="form-group form-box">
               <label htmlFor="fullName" className="form-label">Full Name</label>
-              <input type="text" className="form-control form-input" id="fullName" placeholder='What is your name?'/>
+              <input 
+                type="text" 
+                className="form-control form-input" 
+                id="fullName" 
+                placeholder='What is your name?'
+                name='fullName'
+                value={formData.fullName}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group form-box">
               <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" className="form-control form-input" id="email" placeholder='What is your email?'/>
+              <input 
+                type="email" 
+                className="form-control form-input" 
+                id="email" 
+                placeholder='What is your email?'
+                name='email'
+                value={formData.email}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group form-box">
               <label htmlFor="institution" className="form-label">Institution</label>
-              <input type="text" className="form-control form-input" id="institution" placeholder="What institution do you attend?" />
+              <input 
+                type="text" 
+                className="form-control form-input" 
+                id="institution" 
+                placeholder="What institution do you attend?" 
+                name='institution'
+                value={formData.institution}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group form-box">
               <label htmlFor="projectName" className="form-label">Name Of Project</label>
-              <input type="text" className="form-control form-input" id="projectName" placeholder="What is the name of the project?" />
+              <input 
+                type="text" 
+                className="form-control form-input" 
+                id="projectName" 
+                placeholder="What is the name of the project?"
+                name='projectName'
+                value={formData.projectName}
+                onChange={handleChange} 
+              />
             </div>
             <div className="form-group form-box">
               <label htmlFor="comments" className="form-label">Do you have any comments?</label>
-              <textarea className="form-control form-input" id="comments" rows="3" placeholder="Write your comment here"></textarea>
+              <textarea 
+                className="form-control form-input" 
+                id="comments" rows="3" 
+                placeholder="Write your comment here"
+                name='comments'
+                value={formData.comments}
+                onChange={handleChange}
+              ></textarea>
             </div>
             <div className="form-check">
-              <input type="checkbox" className="form-check-input" id="criteriaCheck1" />
+              <input 
+                type="checkbox" 
+                className="form-check-input" 
+                id="criteriaCheck1" 
+                name='criteriaCheck1'
+                value={formData.criteriaCheck1}
+                onChange={handleChange}
+              />
               <label className="form-check-label" htmlFor="criteriaCheck1">I have read the criteria for application through SEFiO</label>
             </div>
             <div className="form-check">
-              <input type="checkbox" className="form-check-input" id="criteriaCheck2" />
+              <input 
+                type="checkbox" 
+                className="form-check-input" 
+                id="criteriaCheck2" 
+                name='criteriaCheck2'
+                value={formData.criteriaCheck2}
+                onChange={handleChange}
+              />
               <label className="form-check-label" htmlFor="criteriaCheck2">I have answered questions about sustainability, innovation and previous funding</label>
             </div>
             <div className="form-check">
-              <input type="checkbox" className="form-check-input" id="criteriaCheck3" />
+              <input 
+                type="checkbox" 
+                className="form-check-input" 
+                id="criteriaCheck3" 
+                name='criteriaCheck3'
+                value={formData.criteriaCheck3}
+                onChange={handleChange}
+              />
               <label className="form-check-label" htmlFor="criteriaCheck3">I have received counseling from SEFiO or an institution</label>
             </div>
             {/* 
