@@ -5,8 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
 import '../../css/form.css';
 
-import '../../js/server.js';
-
 function SubmitApplicationForm() {
 
   const [formData, setFormData] = useState({

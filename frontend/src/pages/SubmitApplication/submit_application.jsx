@@ -7,8 +7,6 @@ import { myFunction } from '../../read_more.js';
 import '../../css/submit_application.css';
 import '../../css/form.css';
 
-import '../../js/server.js';
-
 export default function SubmitApplication() {
 
   useEffect(() => {
