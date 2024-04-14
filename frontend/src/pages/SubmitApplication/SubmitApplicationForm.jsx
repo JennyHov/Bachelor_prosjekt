@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialSubmitForm, endSubmitForm, failSubmitForm, } from '../../Redux/formStates/formSlicer.js';
+import { Link, useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
 import '../../css/form.css';
 
-function SubmitApplicationForm() {
-
+const SubmitApplicationForm = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -15,21 +16,26 @@ function SubmitApplicationForm() {
     comments: '',
     criteriaCheck1: false,
     criteriaCheck2: false,
-    criteriaCheck3: false
+    criteriaCheck3: false,
   });
+
+  const { loading, error } = useSelector((state) => state.form);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: type === 'checkbox' ? checked : value
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/submit-application', {
+      dispatch(initialSubmitForm());
+      const response = await fetch('/api/form/submit-application', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,13 +43,16 @@ function SubmitApplicationForm() {
         body: JSON.stringify(formData)
       });
       if (response.ok) {
+        dispatch(endSubmitForm());
         console.log('Application submitted successfully');
-        // Redirect or show success message
+        navigate('/thankyou');
       } else {
+        dispatch(failSubmitForm('Failed to submit application: ' + response.statusText));
         console.error('Failed to submit application:', response.statusText);
         // Handle error
       }
     } catch (error) {
+      dispatch(failSubmitForm('Error submitting application: ' + error.message));
       console.error('Error submitting application:', error);
       // Handle error
     }
@@ -55,91 +64,83 @@ function SubmitApplicationForm() {
             <div className="form-group form-box">
               <label htmlFor="fullName" className="form-label">Full Name</label>
               <input 
-                type="text" 
-                className="form-control form-input" 
-                id="fullName" 
-                placeholder='What is your name?'
-                name='fullName'
+                className="form-control form-input"
+                type="text"
+                name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
+                placeholder="Full Name"
               />
             </div>
             <div className="form-group form-box">
               <label htmlFor="email" className="form-label">Email</label>
               <input 
-                type="email" 
-                className="form-control form-input" 
-                id="email" 
-                placeholder='What is your email?'
-                name='email'
+                className="form-control form-input"
+                type="email"
+                name="email"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="Email"
               />
             </div>
             <div className="form-group form-box">
               <label htmlFor="institution" className="form-label">Institution</label>
               <input 
-                type="text" 
-                className="form-control form-input" 
-                id="institution" 
-                placeholder="What institution do you attend?" 
-                name='institution'
+                className="form-control form-input"
+                type="text"
+                name="institution"
                 value={formData.institution}
                 onChange={handleChange}
+                placeholder="Institution"
               />
             </div>
             <div className="form-group form-box">
               <label htmlFor="projectName" className="form-label">Name Of Project</label>
               <input 
-                type="text" 
-                className="form-control form-input" 
-                id="projectName" 
-                placeholder="What is the name of the project?"
-                name='projectName'
+                className="form-control form-input"
+                type="text"
+                name="projectName"
                 value={formData.projectName}
-                onChange={handleChange} 
+                onChange={handleChange}
+                placeholder="Project Name"
               />
             </div>
             <div className="form-group form-box">
               <label htmlFor="comments" className="form-label">Do you have any comments?</label>
               <textarea 
-                className="form-control form-input" 
-                id="comments" rows="3" 
-                placeholder="Write your comment here"
-                name='comments'
+                className="form-control form-input"
+                name="comments"
                 value={formData.comments}
                 onChange={handleChange}
+                placeholder="Comments"
               ></textarea>
             </div>
             <div className="form-check">
               <input 
-                type="checkbox" 
-                className="form-check-input" 
-                id="criteriaCheck1" 
-                name='criteriaCheck1'
-                value={formData.criteriaCheck1}
+                className="form-check-input"
+                type="checkbox"
+                name="criteriaCheck1"
+                checked={formData.criteriaCheck1}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="criteriaCheck1">I have read the criteria for application through SEFiO</label>
             </div>
             <div className="form-check">
               <input 
-                type="checkbox" 
-                className="form-check-input" 
-                id="criteriaCheck2" 
-                name='criteriaCheck2'
-                value={formData.criteriaCheck2}
+                className="form-check-input"
+                type="checkbox"
+                name="criteriaCheck2"
+                checked={formData.criteriaCheck2}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="criteriaCheck2">I have answered questions about sustainability, innovation and previous funding</label>
             </div>
             <div className="form-check">
               <input 
-                type="checkbox" 
-                className="form-check-input" 
-                id="criteriaCheck3" 
-                name='criteriaCheck3'
-                value={formData.criteriaCheck3}
+                className="form-check-input"
+                type="checkbox"
+                name="criteriaCheck3"
+                checked={formData.criteriaCheck3}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="criteriaCheck3">I have received counseling from SEFiO or an institution</label>
@@ -153,13 +154,15 @@ function SubmitApplicationForm() {
             */}
         </div>
         <div className="d-flex justify-content-center">
-            <div className="form-button">
-              <Link to="/thankyou" className="btn teritary-button" type='submit'>Submit Application</Link>
-            </div>
+          <div className="form-button">
+            <button className="btn teritary-button" disabled={loading}>
+              {loading ? 'Loading...' : 'Submit Application'}
+            </button>
+          </div>
         </div>
+        {error && <p>{error}</p>}
       </form>
   );
 }
-
 
 export default SubmitApplicationForm;

@@ -3,7 +3,8 @@ import express from 'express';
 import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
-import authRoutes from './routes/auth.route.js'
+import authRoutes from './routes/auth.route.js';
+import formRoutes from './routes/form.route.js';
 
 dotenv.config();
 
@@ -24,7 +25,8 @@ app.listen(3000, () => {
 });
 
 app.use('/api/user', userRoutes);
-app.use("/api/auth", authRoutes)
+app.use("/api/auth", authRoutes);
+app.use('/api/form', formRoutes);
 
 
 app.use((err, req, res, next) => {
