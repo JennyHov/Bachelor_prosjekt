@@ -1,20 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import SubmitApplicationForm from './SubmitApplicationForm.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { myFunction } from '../../read_more.js';
+import { myFunction } from '../../js/read_more.js';
+
 import '../../css/submit_application.css';
 import '../../css/form.css';
 
+import DownArrowImage from '../../../../assets/images/application/arrow-down-sign-to-navigate.png';
+import UpArrowImage from '../../../../assets/images/application/arrow-up-sign-to-navigate.png';
+
 export default function SubmitApplication() {
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
 
   useEffect(() => {
-    myFunction();
+    // Check localStorage to see if the more span was open before
+    const isMoreOpenStored = localStorage.getItem('isMoreOpen');
+    setIsMoreOpen(isMoreOpenStored === 'true');
   }, []); 
 
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noreferrer");
+  };
+
+  const toggleMore = () => {
+    setIsMoreOpen(!isMoreOpen);
+    // Store the state in localStorage
+    localStorage.setItem('isMoreOpen', !isMoreOpen);
   };
 
   return (
@@ -26,10 +39,11 @@ export default function SubmitApplication() {
           </div>
           <div className="read-more-container">
             <div className="page-message submit-application-message">
-              Read our criteria before applying<span id='dots'></span>
-                <button onClick={myFunction} id='myBtn' className='arrow-button'>Read More
-                </button>
-              <span id='more'>
+              Read our criteria before applying<span id='moreText'></span>
+              <button onClick={toggleMore} id='myBtn' className='arrow-button'>
+                <img src={isMoreOpen ? UpArrowImage : DownArrowImage} alt={isMoreOpen ? "Read Less" : "Read More"} />
+              </button>
+              <span id='more' style={{ display: isMoreOpen ? 'block' : 'none' }}>
                 <div className="read-more-message additional-content">
                   <div className="message">
                     SEFiO offers free counseling to all applicants, at any stage in the process. We recommend requesting this as soon as possible.
