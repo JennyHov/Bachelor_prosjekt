@@ -4,7 +4,9 @@ import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
-import formRoutes from './routes/form.route.js';
+import applicationFormRoutes from './routes/applicationForm.route.js';
+import contactFormRoutes from './routes/contactForm.route.js';
+import counselingFormRoutes from './routes/counselingForm.route.js';
 
 dotenv.config();
 
@@ -26,7 +28,9 @@ app.listen(3000, () => {
 
 app.use('/api/user', userRoutes);
 app.use("/api/auth", authRoutes);
-app.use('/api/form', formRoutes);
+app.use('/api/application-form', applicationFormRoutes);
+app.use('/api/contact-form', contactFormRoutes);
+app.use('/api/counseling-form', counselingFormRoutes);
 
 
 app.use((err, req, res, next) => {

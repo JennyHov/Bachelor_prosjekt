@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialSubmitForm, endSubmitForm, failSubmitForm, } from '../../Redux/formStates/formSlicer.js';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
@@ -35,7 +35,7 @@ const SubmitApplicationForm = () => {
     e.preventDefault();
     try {
       dispatch(initialSubmitForm());
-      const response = await fetch('/api/form/submit-application', {
+      const response = await fetch('/api/application-form/submit-application', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

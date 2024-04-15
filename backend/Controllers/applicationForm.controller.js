@@ -1,4 +1,4 @@
-import Application from '../models/form.model.js';
+import Application from '../models/applicationForm.model.js';
 
 export const submitApplication = async (req, res) => {
     try {
