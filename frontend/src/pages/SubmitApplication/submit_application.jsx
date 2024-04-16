@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import SubmitApplicationForm from './SubmitApplicationForm.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { myFunction } from '../../js/read_more.js';
 
 import '../../css/submit_application.css';
 import '../../css/form.css';

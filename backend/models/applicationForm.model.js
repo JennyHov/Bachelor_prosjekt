@@ -29,6 +29,12 @@ const applicationSchema = mongoose.Schema({
     },
     criteriaCheck3: {
         type: Boolean
+    },
+    file: {
+        fileId: mongoose.Types.ObjectId,
+        filename: String,
+        contentType: String,
+        size: Number
     }
 }, {timestamps: true}
 );

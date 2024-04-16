@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  loading: false,
-  error: false,
-  success: false,
-};
 
 const formSlice = createSlice({
   name: 'form',
-  initialState,
+  initialState: {
+    loading: false,
+    error: null,
+    success: false,
+  },
   reducers: {
     initialSubmitForm: (state) => {
       state.loading = true;

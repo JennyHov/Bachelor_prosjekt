@@ -134,13 +134,6 @@ const SubmitCounselingForm = () => {
                 />
                 <label className="form-check-label" htmlFor="criteriaCheck2">I want guidance regarding my project</label>
               </div>
-              {/* 
-              <div className="form-group">
-                <label htmlFor="upload" className="form-label">Upload application here</label>
-                <input type="file" className="form-control-file" id="upload" />
-                <small className="form-text text-muted">Click or drag a file to this area to upload</small>
-              </div>
-              */}
           </div>
           <div className="d-flex justify-content-center">
             <div className="form-button">

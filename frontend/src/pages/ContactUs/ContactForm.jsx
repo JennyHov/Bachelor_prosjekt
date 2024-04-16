@@ -115,13 +115,6 @@ const ContactForm = () => {
                         onChange={handleChange}
                     ></textarea>
                 </div>
-                {/*
-                <div className='form-group form-box'>
-                    <label htmlFor="upload" className="form-label">Upload application here</label>
-                    <input type="file" className="form-control-file" name="upload" />
-                    <small className="form-text text-muted">Click or drag a file to this area to upload</small>          
-                </div>
-                */}
             </div>
             <div className="d-flex justify-content-center">
                 <div className="form-button">
