@@ -26,6 +26,12 @@ const counselingSchema = mongoose.Schema ({
     },
     criteriaCheck2: {
         type: Boolean
+    },
+    file: {
+        fileId: mongoose.Types.ObjectId,
+        filename: String,
+        contentType: String,
+        size: Number
     }
 }, {timestamps: true}
 );

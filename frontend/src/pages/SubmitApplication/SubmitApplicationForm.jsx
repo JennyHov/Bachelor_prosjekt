@@ -24,6 +24,7 @@ const SubmitApplicationForm = () => {
   const [institutionError, setInstitutionError] = useState('');
   const [projectNameError, setProjectNameError] = useState('');
   const [commentsError, setCommentsError] = useState('');
+  const [fileError, setFileError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
@@ -78,6 +79,14 @@ const SubmitApplicationForm = () => {
     return true;
   };
 
+  const validateFile = () => {
+    if (!formData.file) {
+      setFileError('Please upload a file (PDF, docx, doc or pages).');
+      return false;
+    }
+    return true;
+  };
+
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
     setFormData((prevData) => ({
@@ -111,6 +120,7 @@ const SubmitApplicationForm = () => {
       ...prevData,
       file: file,
     }));
+    setFileError('');
   };
 
   const handleSubmit = async (e) => {
@@ -121,8 +131,9 @@ const SubmitApplicationForm = () => {
     const isValidInstitution = validateInstitution();
     const isValidProjectName = validateProjectName();
     const isValidComments = validateComments();
+    const isValidFile = validateFile();
 
-    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || !isValidComments) {
+    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || !isValidComments || !isValidFile ) {
       setErrorMessage('Please fill out all fields.');
     } else {
       try {
@@ -159,7 +170,9 @@ const SubmitApplicationForm = () => {
       
         const formDataToSend2 = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
-          formDataToSend2.append(key, value);
+          if (key != 'file') {
+            formDataToSend2.append(key, value);
+          }
         });
         if (formData.file) {
           formDataToSend2.append('file', formData.file);
@@ -295,6 +308,7 @@ const SubmitApplicationForm = () => {
                 name='file' 
                 onChange={handleFileChange}
               />
+              {fileError && <p className='input-error-message'>{fileError}</p>}
             </div>
         </div>
         <div className="d-flex justify-content-center">

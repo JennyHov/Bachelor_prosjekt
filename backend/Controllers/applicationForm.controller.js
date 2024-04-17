@@ -2,9 +2,6 @@ import Application from '../models/applicationForm.model.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 dotenv.config();
 
@@ -42,23 +39,11 @@ export const submitApplication = async (req, res) => {
             }
         });
 
-        const __dirname = dirname(fileURLToPath(import.meta.url));
-        // Create the uploads directory if it doesn't exist
-        const uploadsDir = path.join(__dirname, '/uploads/');
-        fs.mkdirSync(uploadsDir, { recursive: true });
-
-        const destination = path.join(uploadsDir, req.file.originalname);
-        const fileStream = fs.createWriteStream(destination);
-
         // Create separate Promises for each stream
         await Promise.all([
             new Promise((resolve, reject) => {
                 const readStream = fs.createReadStream(req.file.path);
                 readStream.pipe(uploadStream).on('finish', resolve).on('error', reject);
-            }),
-            new Promise((resolve, reject) => {
-                const readStreamForFile = fs.createReadStream(req.file.path);
-                readStreamForFile.pipe(fileStream).on('finish', resolve).on('error', reject);
             }),
         ]);
 
@@ -75,7 +60,7 @@ export const submitApplication = async (req, res) => {
                 fileId,
                 filename: req.file.originalname,
                 contentType: req.file.mimetype,
-                size: req.file.size
+                size: req.file.size / 1024
             }
         });
 
