@@ -14,6 +14,7 @@ import contactFormRoutes from './routes/contactForm.route.js';
 import counselingFormRoutes from './routes/counselingForm.route.js';
 import applicationEmailRoutes from './routes/applicationEmail.route.js';
 import counselingEmailRoutes from './routes/counselingEmail.route.js';
+import contactEmailRoutes from './routes/contactEmail.route.js';
 
 dotenv.config();
 
@@ -54,6 +55,7 @@ app.use('/api/contact-form', contactFormRoutes);
 app.use('/api/counseling-form', counselingFormRoutes);
 app.use('/api/application-email', applicationEmailRoutes);
 app.use('/api/counseling-form-email', counselingEmailRoutes);
+app.use('/api/contact-form-email', contactEmailRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

@@ -14,6 +14,12 @@ const ContactForm = () => {
         inquiry: ''
     });
 
+    const [fullNameError, setFullNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [subjectError, setSubjectError] = useState('');
+    const [inquiryError, setInquiryError] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
     const { loading, error } = useSelector((state) => state.form);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -26,43 +32,109 @@ const ContactForm = () => {
         };
       }, [dispatch]); // dispatch is a dependency    
 
+    const validateFullName = () => {
+        if (!formData.fullName.trim()) {
+            setFullNameError('Full Name is required');
+            return false;
+        }
+        return true;
+    };
+    
+    const validateEmail = () => {
+        if (!formData.email.trim()) {
+            setEmailError('Email is required');
+            return false;
+        }
+        return true;
+    };
+
+    const validateSubject = () => {
+        if (!formData.subject.trim()) {
+            setSubjectError('Subject is required');
+            return false;
+        }
+        return true;
+    };
+
+    const validateInquiry = () => {
+        if (!formData.inquiry.trim()) {
+            setInquiryError('Inquiry is required');
+            return false;
+        }
+        return true;
+    };
+
     const handleChange = (e) => {
-        // Destructure the name and value from the event target
         const { name, value } = e.target;
-        
-        // Update the formData state using the spread operator to maintain previous state
         setFormData({
             ...formData,
             [name]: value // Update the specific field based on its name
         });
+
+        setErrorMessage('');
+
+        if (name === 'fullName') {
+            setFullNameError('');
+        }
+        if (name === 'email') {
+            setEmailError('');
+        }
+        if (name === 'subject') {
+            setSubjectError('');
+        }
+        if (name === 'inquiry') {
+            setInquiryError('');
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-          dispatch(initialSubmitForm());
-          const response = await fetch('/api/contact-form/submit-contact-form', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          });
-          if (response.ok) {
-            dispatch(endSubmitForm());
-            console.log('Contact form submitted successfully');
-            navigate('/thankyou');
-          } else {
-            dispatch(failSubmitForm('Failed to submit contact form: ' + response.statusText));
-            console.error('Failed to submit application:', response.statusText);
-            // Handle error
-          }
-        } catch (error) {
-          dispatch(failSubmitForm('Error submitting contact form: ' + error.message));
-          console.error('Error submitting contact form:', error);
-          // Handle error
+    
+        const isValidFullName = validateFullName();
+        const isValidEmail = validateEmail();
+        const isValidSubject = validateSubject();
+        const isValidInquiry = validateInquiry();
+    
+        if (!isValidFullName || !isValidEmail || !isValidSubject || !isValidInquiry) {
+            setErrorMessage('Please fill out all fields');
+        } else {
+            try {
+                dispatch(initialSubmitForm());
+    
+                let response = await fetch('/api/contact-form/submit-contact-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData),
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to submit contact form');
+                }
+    
+                response = await fetch('/api/contact-form-email/submit-contact-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData),
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to send contact form email');
+                }
+    
+                dispatch(endSubmitForm());
+                console.log('Contact form submitted successfully');
+                navigate('/thankyou');
+            } catch (error) {
+                dispatch(failSubmitForm());
+                console.error('Error submitting contact form:', error);
+                setErrorMessage('Error submitting contact form:' + error.message);
+            } 
         }
-      };
+    };
 
       return (
         <form onSubmit={handleSubmit} action="https://api.web3forms.com/submit" method="POST">
@@ -87,7 +159,8 @@ const ContactForm = () => {
                         placeholder="Type in your email" 
                         value={formData.email}
                         onChange={handleChange}
-                    />                   
+                    />
+                    {emailError && <p className='input-error-message'>{emailError}</p>}                   
                 </div>
                 <div className='form-group form-box'>
                     <label htmlFor="fullName" className="form-label">Name</label>
@@ -95,10 +168,11 @@ const ContactForm = () => {
                         className="form-control form-input" 
                         type='text'
                         name="fullName" 
-                        placeholder="Type in your first and last name" 
+                        placeholder="First and last name" 
                         value={formData.fullName}
                         onChange={handleChange}
                     />
+                    {fullNameError && <p className='input-error-message'>{fullNameError}</p>}
                 </div>
                 <div className='form-group form-box'>
                     <label htmlFor="subject" className="form-label">Subject</label>
@@ -110,18 +184,20 @@ const ContactForm = () => {
                         value={formData.subject}
                         onChange={handleChange}
                     />
+                    {subjectError && <p className='input-error-message'>{subjectError}</p>}
                 </div>
                 <div className='form-group form-box'>
-                    <label htmlFor="inquiry" className="form-label">Comments</label>
+                    <label htmlFor="inquiry" className="form-label">Inquiry</label>
                     <textarea 
                         className="form-control form-input" 
                         type='text'
                         name="inquiry" 
                         rows="3" 
-                        placeholder="Write your text here"
+                        placeholder="Tell us something"
                         value={formData.inquiry}
                         onChange={handleChange}
                     ></textarea>
+                    {inquiryError && <p className='input-error-message'>{inquiryError}</p>}
                 </div>
             </div>
             <div className="d-flex justify-content-center">
@@ -131,7 +207,11 @@ const ContactForm = () => {
                     </button>
                 </div>
             </div>
-            {error && <p>{error}</p>}
+            {errorMessage && 
+                <div className="error-message">
+                    {errorMessage}
+                </div>
+            }
         </form>
     );
 }
