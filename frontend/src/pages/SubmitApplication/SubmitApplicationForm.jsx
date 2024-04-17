@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialSubmitForm, endSubmitForm, failSubmitForm, } from '../../Redux/formStates/formSlicer.js';
+import { initialSubmitForm, endSubmitForm, failSubmitForm, resetForm } from '../../Redux/formStates/formSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,6 +28,15 @@ const SubmitApplicationForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // This function is called when the component unmounts
+    return () => {
+      // Dispatch an action to reset the form state
+      dispatch(resetForm());
+    };
+  }, [dispatch]); // dispatch is a dependency
+
 
   const validateFullName = () => {
     if (!formData.fullName.trim()) {
@@ -107,11 +116,6 @@ const SubmitApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.fullName.trim() && !formData.email.trim() && !formData.institution.trim() && !formData.projectName.trim() && !formData.comments.trim()) {
-      setErrorMessage('Please fill out all fields.');
-      return;
-    }
-
     const isValidFullName = validateFullName();
     const isValidEmail = validateEmail();
     const isValidInstitution = validateInstitution();
@@ -119,71 +123,71 @@ const SubmitApplicationForm = () => {
     const isValidComments = validateComments();
 
     if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || !isValidComments) {
-      return;
-    }
-
-    try {
-      dispatch(initialSubmitForm());
-      
-      const formDataToSend1 = new FormData();
-      
-      // Append form data fields
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key !== 'file') {
-          formDataToSend1.append(key, value);
+      setErrorMessage('Please fill out all fields.');
+    } else {
+      try {
+        dispatch(initialSubmitForm());
+        
+        const formDataToSend1 = new FormData();
+        
+        // Append form data fields
+        Object.entries(formData).forEach(([key, value]) => {
+          if (key !== 'file') {
+            formDataToSend1.append(key, value);
+          }
+        });
+        
+        // Append file data if it exists
+        if (formData.file) {
+          console.log('Appending file to formDataToSend1:', formData.file);
+          formDataToSend1.append('file', formData.file);
+          for (var pair of formDataToSend1.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+          }
         }
-      });
       
-      // Append file data if it exists
-      if (formData.file) {
-        console.log('Appending file to formDataToSend1:', formData.file);
-        formDataToSend1.append('file', formData.file);
-        for (var pair of formDataToSend1.entries()) {
-          console.log(pair[0]+ ', ' + pair[1]); 
+        // Send form data to your backend endpoint
+        let formResponse = await fetch('/api/application-form/submit-application', {
+          method: 'POST',
+          body: formDataToSend1, // Send the FormData object directly
+        });
+        
+        // Check if form submission was successful
+        if (!formResponse.ok) {
+          throw new Error('Failed to submit application');
         }
-      }
-    
-      // Send form data to your backend endpoint
-      let formResponse = await fetch('/api/application-form/submit-application', {
-        method: 'POST',
-        body: formDataToSend1, // Send the FormData object directly
-      });
       
-      // Check if form submission was successful
-      if (!formResponse.ok) {
-        throw new Error('Failed to submit application');
-      }
-    
-      const formDataToSend2 = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataToSend2.append(key, value);
-      });
-      if (formData.file) {
-        formDataToSend2.append('file', formData.file);
-      }
+        const formDataToSend2 = new FormData();
+        Object.entries(formData).forEach(([key, value]) => {
+          formDataToSend2.append(key, value);
+        });
+        if (formData.file) {
+          formDataToSend2.append('file', formData.file);
+        }
+        
+        // If form submission was successful, send the email
+        const emailResponse = await fetch('/api/application-email/submit-application-email', {
+          method: 'POST',
+          headers: {
+            // Add any necessary headers here
+          },
+          body: formDataToSend2, // Send the same FormData object
+        });
       
-      // If form submission was successful, send the email
-      const emailResponse = await fetch('/api/application-email/submit-application-email', {
-        method: 'POST',
-        headers: {
-          // Add any necessary headers here
-        },
-        body: formDataToSend2, // Send the same FormData object
-      });
-    
-      // Check if email sending was successful
-      if (!emailResponse.ok) {
-        throw new Error('Failed to send email');
+        // Check if email sending was successful
+        if (!emailResponse.ok) {
+          throw new Error('Failed to send email');
+        }
+      
+        dispatch(endSubmitForm());
+        console.log('Application and email submitted successfully');
+        navigate('/thankyou');
+      } catch (error) {
+        dispatch(failSubmitForm());
+        setErrorMessage('Error submitting application: ' + error.message);
+        console.error('Error submitting application:', error);
       }
-    
-      dispatch(endSubmitForm());
-      console.log('Application and email submitted successfully');
-      navigate('/thankyou');
-    } catch (error) {
-      dispatch(failSubmitForm());
-      setErrorMessage('Error submitting application: ' + error.message);
-      console.error('Error submitting application:', error);
-    }
+    };
   };   
 
   const { loading, error } = useSelector((state) => state.form);

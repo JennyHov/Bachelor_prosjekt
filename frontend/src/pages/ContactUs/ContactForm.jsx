@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialSubmitForm, endSubmitForm, failSubmitForm, } from '../../Redux/formStates/formSlicer.js';
+import { initialSubmitForm, endSubmitForm, failSubmitForm, resetForm } from '../../Redux/formStates/formSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +17,14 @@ const ContactForm = () => {
     const { loading, error } = useSelector((state) => state.form);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // This function is called when the component unmounts
+        return () => {
+          // Dispatch an action to reset the form state
+          dispatch(resetForm());
+        };
+      }, [dispatch]); // dispatch is a dependency    
 
     const handleChange = (e) => {
         // Destructure the name and value from the event target
