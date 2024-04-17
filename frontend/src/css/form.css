@@ -72,7 +72,7 @@
 
 .teritary-button:hover,
 .teritary-button:focus {
-    background-color: hsl(209, 90%, 61%); /* A slightly darker blue on hover/focus */
+    background-color: var(--button-success-active); /* A slightly darker blue on hover/focus */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     color: white;
 }

@@ -23,25 +23,41 @@
     align-items: center; /* Center items vertically */
     border-radius: 0.5rem; /* Rounded corners */
     overflow: hidden; /* Ensures the content does not spill out */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     margin-bottom: 2rem; /* Maintain spacing between cards */
     background-color: #FFFFFF; /* Background color for the event card */
+    height: 80px;
+    font-family: 'Inter', sans-serif;
 }
 
-.home-event-card .home-date {
+.home-date {
     align-self: stretch; /* This will make the .home-date stretch to the full height of the .home-event-card */
-    background-color: #F48A34; /* Orange background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color); /* Orange background */
     color: #FFFFFF; /* White text */
-    text-align: center; /* Center the text */
-    padding: 2rem; /* Padding inside the date box */
-    font-size: 1.25rem; /* Larger font size */
-    font-weight: bold; /* Bold font */
+    font-size: 1rem; /* Larger font size */
+    font-weight: 700; /* Bold font */
+    width: 90px;
 }
 
-.home-event-card .home-details {
+.home-details {
     padding: 1rem; /* Padding inside the details box */
     flex-grow: 1; /* Take up remaining space */
+}
+
+.home-details .home-event-title {
+    color: var(--font-dark);
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.home-details .home-event-time {
+    color: var(--font-light);
+    font-weight: 400;
+    font-size: 0.7rem;
 }
 
 /* Add additional styles for responsiveness */

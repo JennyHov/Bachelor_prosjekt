@@ -5,30 +5,24 @@ import "slick-carousel/slick/slick-theme.css";
 
 import '../css/card.css';
 
-import magnusImage from '../../../assets/images/home/magnus.png';
 import stockImage from '../../../assets/images/profilePics/stock_photo.jpg';
 
 function CenterMode() {
     const settings = {
       slidesToShow: 3,
-      slidesToScroll: 1,
       speed: 400,
       infinite: true,
-      //autoplay: true,
-      autoplaySpeed: 5000,
       centerMode: true,
-      centerPadding: "20%"
+      centerPadding: "15%"
     };
     return (
-      <div className="container-fluid slider-container section">
+      <div className="container-fluid slider-container section profile-row">
         <div className="slider-container">
-          <div className="">
-            <div className="content winners-content-inner">
+            <div className="content">
               <h1 className="title previous-winners-title">Previous Winners</h1>
             </div>
-          </div>  
           <Slider {...settings}>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 card mx-3">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -41,7 +35,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">lars.johansen@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -54,7 +48,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">ingrid.olsen@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -67,7 +61,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">henrik.andreasen@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -80,7 +74,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">astrid.larsen@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -93,7 +87,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">einar.pedersen@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -106,7 +100,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">hanne.sorensen@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
@@ -119,7 +113,7 @@ function CenterMode() {
                   <p className="card-email"><a href="mailto:kontakt@sefio.no">kristoffer.solberg@example.com</a></p>
               </div>
             </div>
-            <div className="col-sm-4 mx-4 card">
+            <div className="col-sm-4 mx-3 card">
               <div className="image-content">
                 <div className="card-image">
                   <img className="card-img" src={stockImage} alt="Card Image" />
