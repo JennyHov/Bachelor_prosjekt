@@ -46,3 +46,36 @@
     width: 18px;
     height: 18px;
 }
+
+.form-error-message {
+    width: 100%;
+    background-color: #f2f2f0; 
+    color: #E03757;
+    border: none;
+    padding: 2% 3%;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: 3%;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 5%;
+}
+
+.form-input-error-message {
+    width: 100%;
+    color: #E03757;
+    border: none;
+    padding: 3% 1%;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: 3%;
+    outline: none;
+}

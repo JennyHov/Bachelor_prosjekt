@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialSubmitForm, endSubmitForm, failSubmitForm, resetForm } from '../../Redux/formStates/formSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
+import warningImage from '../../../../assets/images/error/warning.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/form.css';
 
@@ -160,7 +161,7 @@ const ContactForm = () => {
                         value={formData.email}
                         onChange={handleChange}
                     />
-                    {emailError && <p className='input-error-message'>{emailError}</p>}                   
+                    {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}                   
                 </div>
                 <div className='form-group form-box'>
                     <label htmlFor="fullName" className="form-label">Name</label>
@@ -172,7 +173,7 @@ const ContactForm = () => {
                         value={formData.fullName}
                         onChange={handleChange}
                     />
-                    {fullNameError && <p className='input-error-message'>{fullNameError}</p>}
+                    {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
                 </div>
                 <div className='form-group form-box'>
                     <label htmlFor="subject" className="form-label">Subject</label>
@@ -184,7 +185,7 @@ const ContactForm = () => {
                         value={formData.subject}
                         onChange={handleChange}
                     />
-                    {subjectError && <p className='input-error-message'>{subjectError}</p>}
+                    {subjectError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{subjectError}</p>}
                 </div>
                 <div className='form-group form-box'>
                     <label htmlFor="inquiry" className="form-label">Inquiry</label>
@@ -197,8 +198,15 @@ const ContactForm = () => {
                         value={formData.inquiry}
                         onChange={handleChange}
                     ></textarea>
-                    {inquiryError && <p className='input-error-message'>{inquiryError}</p>}
+                    {inquiryError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{inquiryError}</p>}
                 </div>
+            </div>
+            <div>
+                {errorMessage && 
+                    <div className="form-error-message"><img src={warningImage} alt="Warning icon" className='warning-image' />
+                        {errorMessage}
+                    </div>
+                }
             </div>
             <div className="d-flex justify-content-center">
                 <div className="form-button">
@@ -207,11 +215,6 @@ const ContactForm = () => {
                     </button>
                 </div>
             </div>
-            {errorMessage && 
-                <div className="error-message">
-                    {errorMessage}
-                </div>
-            }
         </form>
     );
 }

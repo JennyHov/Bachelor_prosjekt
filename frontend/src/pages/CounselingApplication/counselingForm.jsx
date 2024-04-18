@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialSubmitForm, endSubmitForm, failSubmitForm, resetForm } from '../../Redux/formStates/formSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
+import warningImage from '../../../../assets/images/error/warning.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/pages.css';
 import '../../css/form.css';
@@ -219,7 +220,7 @@ const SubmitCounselingForm = () => {
                 onChange={handleChange}
                 placeholder="What is your name?"
               />
-              {fullNameError && <p className='input-error-message'>{fullNameError}</p>}
+              {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
             </div>
             <div className="form-group form-box">
               <label htmlFor="email" className="form-label">Email</label>
@@ -231,7 +232,7 @@ const SubmitCounselingForm = () => {
                 onChange={handleChange}
                 placeholder="What is your email?"
               />
-              {emailError && <p className='input-error-message'>{emailError}</p>}
+              {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
             </div>
             <div className="form-group form-box">
               <label htmlFor="institution" className="form-label">Institution</label>
@@ -243,7 +244,7 @@ const SubmitCounselingForm = () => {
                 onChange={handleChange}
                 placeholder="What institution do you attend?"
               />
-              {institutionError && <p className='input-error-message'>{institutionError}</p>}
+              {institutionError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{institutionError}</p>}
             </div>
             <div className="form-group form-box">
               <label htmlFor="projectName" className="form-label">Name Of Project</label>
@@ -255,7 +256,7 @@ const SubmitCounselingForm = () => {
                 onChange={handleChange}
                 placeholder="Name of the project?"
               />
-              {projectNameError && <p className='input-error-message'>{projectNameError}</p>}
+              {projectNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{projectNameError}</p>}
             </div>
             <div className="form-group form-box">
               <label htmlFor="comments" className="form-label">Do you have any comments?</label>
@@ -266,7 +267,7 @@ const SubmitCounselingForm = () => {
                 onChange={handleChange}
                 placeholder="Comments"
               ></textarea>
-              {commentsError && <p className='input-error-message'>{commentsError}</p>}
+              {commentsError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{commentsError}</p>}
             </div>
             <div className="form-check">
               <input 
@@ -294,8 +295,15 @@ const SubmitCounselingForm = () => {
                 name='file' 
                 onChange={handleFileChange}
               />
-              {fileError && <p className='input-error-message'>{fileError}</p>}
+              {fileError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fileError}</p>}
             </div>
+        </div>
+        <div>
+          {errorMessage && 
+            <div className="form-error-message"><img src={warningImage} alt="Warning icon" className='warning-image' />
+              {errorMessage}
+            </div>
+          }
         </div>
         <div className="d-flex justify-content-center">
           <div className="form-button">
@@ -304,11 +312,6 @@ const SubmitCounselingForm = () => {
             </button>
           </div>
         </div>
-        {errorMessage && 
-          <div className="error-message">
-            {errorMessage}
-          </div>
-        }
       </form>
   );
 }
