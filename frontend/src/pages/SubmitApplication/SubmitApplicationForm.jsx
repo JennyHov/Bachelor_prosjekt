@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { initialSubmitForm, endSubmitForm, failSubmitForm, resetForm } from '../../Redux/formStates/formSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,6 +30,10 @@ const SubmitApplicationForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noreferrer");
+  };
 
   useEffect(() => {
     // This function is called when the component unmounts
@@ -310,12 +315,21 @@ const SubmitApplicationForm = () => {
               />
               {fileError && <p className='input-error-message'>{fileError}</p>}
             </div>
+            <div className='description'>
+              <p className="description">You can find our application forms here:</p>
+              <div className="d-flex justify-content-start align-items-center gap-3">
+                  <div className="d-flex gap-3">
+                      <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1bwx2Jk3mT1_1m4EuPOQZmkWAVHkqoI0cw3u2iY9IWo4/edit")} className='text-primary'>English</a>                            
+                      <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1XH7RPoE6wd3AJ8ydJxMuYLVUPb9uIGNuAizkaYoSAJ0/edit")} className='text-primary'>Norwegian</a> 
+                  </div>
+              </div>
+            </div>
         </div>
         <div className="d-flex justify-content-center">
-        <div className="form-button">
-            <button className="btn teritary-button" disabled={loading}>
-              {loading ? 'Loading...' : 'Submit Application'}
-            </button>
+          <div className="form-button">
+              <button className="btn teritary-button" disabled={loading}>
+                {loading ? 'Loading...' : 'Submit Application'}
+              </button>
           </div>
         </div>
         {errorMessage && 

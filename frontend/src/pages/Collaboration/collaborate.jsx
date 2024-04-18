@@ -25,14 +25,7 @@ export default function Collaborate() {
               {hasProfile ? (
                 <CollaborateWithProfile />
               ) : (
-                <div className='form-container'>
-                  <div id='profile-pic'>
-                    <img src={stockImage} />
-                    <label for="input-file">update image</label>
-                    <input type="file" accept='images/jpeg, image/png, image/jpg' id='input-file'/>  
-                  
-                  </div>
-                                                      
+                <div className='form-container'>                             
                   <div className="form-group">
                     <label htmlFor="fullName" className="form-label text-black font-normal font-inter text-sm leading-7">Full Name</label>
                     <input type="text" className="form-control" id="fullName" placeholder="Enter your full name" />

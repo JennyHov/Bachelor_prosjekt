@@ -99,7 +99,7 @@ const LoginForm = ({ onClose, onSubmit }) => {
                             {passwordError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{passwordError}</p>}
                         </div>
                         <div className='forgot-password-container'>
-                            <p className='forgot-password text-secondary'>Forgot password?</p>
+                            <p className='forgot-password text-primary'>Forgot password?</p>
                         </div>
                     </div>
                     <div className='button-container'>

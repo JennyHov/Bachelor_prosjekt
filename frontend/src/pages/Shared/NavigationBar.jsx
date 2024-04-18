@@ -47,7 +47,6 @@ const NavigationBar = () => {
         </button>
         <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarNavAltMarkup">
           <div className="navbar-nav align-items-center">
-            <NavLink to="/userprofile" className="nav-item nav-link underline" id='profileLink' activeClassName="active">Profile</NavLink>
             <NavLink to="/counseling" className="nav-item nav-link underline" id='counselingLink' activeClassName="active">Counseling</NavLink>
             <NavLink to="/events" className="nav-item nav-link underline" id='eventsLink' activeClassName="active">Events</NavLink>
             <NavLink to="/collaborate" className="nav-item nav-link underline" id='collaborateLink' activeClassName="active">Collaborate</NavLink>

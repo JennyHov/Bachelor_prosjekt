@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../css/event.css';
 
@@ -48,16 +49,18 @@ const Events = () => {
             <div className='row justify-content-center align-items-center gap-3'>
                 <div className='col-lg-6 events-container'>
                     <div className='title-container'>
-                        <h1 className='page-title events-title'>Join our events</h1>
+                        <h1 className='page-title'>Join our events</h1>
                     </div>
                     <div className='message-container'>
                         <p className='page-message events-message'>
-                            Events related to entrepreneurship and finance. Would you like to suggest any events?
+                            Events related to entrepreneurship and finance. Would you like to <Link to="/contact-us" className="text-primary">
+                                    suggest
+                                </Link>{' '} any events?
                         </p>
                     </div>
                 </div>
                 <div className='max-w-4xl w-full mx-auto'>
-                    <section className='grid gap-4 md:gap6 lg:gap-16 items-start grid-cols-cards'>
+                    <section className='grid items-start grid-cols-cards'>
                         {events.map((event, index) => (
                             <EventCard key={index} event={event} />
                         ))}
@@ -86,19 +89,19 @@ const EventCard = ({ event }) => {
     };
 
     return (
-        <article className='event-card bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden'>
-            <div className='date bg-orange-400 text-indigo-50 uppercase p-3'>
-                <div className='text-xl font-bold'>{startDate}</div>
+        <article className='event-card'>
+            <div className='event-date-container p-3'>
+                <div className='event-date'>{startDate}</div>
             </div>
             <div className='event-details p-4'>
-                <h2 className='text-lg font-bold'>{event.summary}</h2>
-                <p className='text-sm text-slate-500'>{eventTime}</p>
-                <p className='text-sm text-slate-500 mb-1'>{locationHTML}</p>
-                <div className={`event-description text-slate-400 ${showDetails ? '' : 'event-hidden'}`}>
+                <h2 className='event-title'>{event.summary}</h2>
+                <p className='event-time'>{eventTime}</p>
+                <p className='event-location'>{locationHTML}</p>
+                <div className={`event-description ${showDetails ? '' : 'event-hidden'}`}>
                     {event.description || ''}
                 </div>
                 {hasDescription && (
-                    <button className='event-toggle-details text-gray-600 hover:text-gray-800 focus:outline-none' aria-expanded={showDetails} onClick={toggleDetails}>
+                    <button className='toggle-details' aria-expanded={showDetails} onClick={toggleDetails}>
                         {showDetails ? 'Hide details' : 'See details'}
                     </button>
                 )}

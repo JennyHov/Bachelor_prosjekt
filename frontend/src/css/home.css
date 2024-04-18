@@ -191,14 +191,14 @@ body {
 }
 
 .text-primary {
-    font-style: italic;
-    color: #F48A34 !important;
-}
-
-.text-secondary {
     color: #F48A34 !important;
     text-decoration: none;
     cursor: pointer;
+    transition: font-style 0.1s ease-in-out;
+}
+
+.text-primary:hover {
+    font-style: italic; /* Replace 'Courier New' with the actual cursive font you want to use */
 }
 
 .service-button {

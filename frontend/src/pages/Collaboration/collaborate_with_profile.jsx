@@ -10,6 +10,11 @@ export default function collaborate_with_profile() {
             <div className="profile-description self-stretch h-53 flex flex-col justify-center items-center gap-2.5">
                 <div className="description-text self-stretch pl-0.5 py-9 text-center text-black text-base font-normal font-inter leading-35">Go ahead and look through the different profiles and look for potential team members!</div>
             </div>
+            <div id='profile-pic'>
+                <img src={stockImage} />
+                <label for="input-file">update image</label>
+                <input type="file" accept='images/jpeg, image/png, image/jpg' id='input-file'/>  
+            </div>
             <div className="profile-details self-stretch py-2.5 flex justify-center items-center gap-2.5">
                 <div className="profile-info-column self-stretch p-2.5 flex flex-col justify-start items-center gap-2.5">
                     <div className="info-row self-stretch h-76 flex flex-col justify-start items-start">

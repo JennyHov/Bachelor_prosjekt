@@ -69,7 +69,7 @@ const home = () => {
                             <div className="py-3">
                                 <p className="description">Unsure about what it takes?
                                 <span className="landing-link">
-                                    <Link to="/criteria" className="text-primary">Read our criteria</Link>
+                                    <Link to="/criteria" className="text-primary"> Read our criteria</Link>
                                 </span>
                                 </p>
                             </div>
@@ -115,7 +115,7 @@ const home = () => {
                             <h1 className="title home-event-title">Events</h1>
                             <p className="description">
                                 Explore Oslo's vibrant entrepreneurship scene! Our curated calendar helps you discover new perspectives, forge connections, and stay ahead. Join us in shaping the future of business, one event at a time! Have an event to add?{' '}
-                                <Link to="/contact-us" className="text-secondary">
+                                <Link to="/contact-us" className="text-primary">
                                     Share
                                 </Link>{' '}
                                 the details, and we'll gladly include it!
