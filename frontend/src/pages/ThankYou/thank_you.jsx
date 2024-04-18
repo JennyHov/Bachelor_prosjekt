@@ -14,7 +14,7 @@ export default function ThankYou() {
                 </div>
                 <div className='d-flex justify-content-center'>
                     <div className="form-button">
-                        <Link to="/home" className="btn secondary-button">Go home</Link>
+                        <Link to="/" className="btn btn-primary secondary-button">Go home</Link>
                     </div>
                 </div>
                 

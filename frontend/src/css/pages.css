@@ -60,3 +60,7 @@
     background-color: #F56933; /* A slightly darker blue on hover/focus */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.thank-you-message {
+    margin-bottom: 5%;
+}
