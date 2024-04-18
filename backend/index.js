@@ -15,6 +15,8 @@ import counselingFormRoutes from './routes/counselingForm.route.js';
 import applicationEmailRoutes from './routes/applicationEmail.route.js';
 import counselingEmailRoutes from './routes/counselingEmail.route.js';
 import contactEmailRoutes from './routes/contactEmail.route.js';
+import profileRoutes from './routes/profile.route.js';
+
 
 dotenv.config();
 
@@ -50,6 +52,8 @@ app.listen(3000, () => {
 
 app.use('/api/user', userRoutes);
 app.use("/api/auth", authRoutes);
+app.use('/api', profileRoutes);
+
 app.use('/api/application-form', applicationFormRoutes);
 app.use('/api/contact-form', contactFormRoutes);
 app.use('/api/counseling-form', counselingFormRoutes);
