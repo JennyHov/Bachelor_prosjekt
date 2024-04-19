@@ -8,6 +8,7 @@ import AllProfiles from '../../components/AllProfiles';
 export default function Collaborate() {
   return (
     <div>
+      <div style={{ height: '70px' }} />
       <CreateProfile />
       <AllProfiles />
     </div>

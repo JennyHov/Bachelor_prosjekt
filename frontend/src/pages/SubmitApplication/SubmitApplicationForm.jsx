@@ -5,6 +5,7 @@ import { initialSubmitForm, endSubmitForm, failSubmitForm, resetForm } from '../
 import { useNavigate } from 'react-router-dom';
 
 import warningImage from '../../../../assets/images/error/warning.png';
+import uploadImage from '../../../../assets/images/application/upload.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/submit_application.css';
 import '../../css/form.css';
@@ -25,9 +26,10 @@ const SubmitApplicationForm = () => {
   const [emailError, setEmailError] = useState('');
   const [institutionError, setInstitutionError] = useState('');
   const [projectNameError, setProjectNameError] = useState('');
-  const [commentsError, setCommentsError] = useState('');
+  const [checkboxError, setCheckboxError] = useState('');
   const [fileError, setFileError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [fileName, setFileName] = useState('Upload Application');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -76,12 +78,13 @@ const SubmitApplicationForm = () => {
     }
     return true;
   };
-  
-  const validateComments = () => {
-    if (!formData.comments.trim()) {
-      setCommentsError('An inquiry is required');
+
+  const validateCheckbox = () => {
+    if (!formData.criteriaCheck1 && !formData.criteriaCheck2 && !formData.criteriaCheck3) {
+      setCheckboxError('Please check at least one checkbox');
       return false;
     }
+    setCheckboxError('');
     return true;
   };
 
@@ -114,8 +117,8 @@ const SubmitApplicationForm = () => {
     if (name === 'projectName') {
       setProjectNameError('');
     }
-    if (name === 'comments') {
-      setCommentsError('');
+    if (name === 'criteriaCheck1' || name === 'criteriaCheck2' || name === 'criteriaCheck3') {
+      setCheckboxError('');
     }
   };
 
@@ -126,7 +129,21 @@ const SubmitApplicationForm = () => {
       ...prevData,
       file: file,
     }));
+    setFileName(file.name);
     setFileError('');
+    e.target.value = null;
+  };
+
+  const handleRemoveFile = (e) => {
+    e.preventDefault();
+    setFormData((prevData) => ({
+      ...prevData,
+      file: null,
+    }));
+    setFileName('Upload Application Draft');
+  
+    // Clear the file input's value
+    document.getElementById('file').value = null;
   };
 
   const handleSubmit = async (e) => {
@@ -136,10 +153,10 @@ const SubmitApplicationForm = () => {
     const isValidEmail = validateEmail();
     const isValidInstitution = validateInstitution();
     const isValidProjectName = validateProjectName();
-    const isValidComments = validateComments();
+    const isValidCheckbox = validateCheckbox();
     const isValidFile = validateFile();
 
-    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || !isValidComments || !isValidFile ) {
+    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || isValidCheckbox || !isValidFile ) {
       setErrorMessage('Please fill out all fields.');
     } else {
       try {
@@ -220,7 +237,7 @@ const SubmitApplicationForm = () => {
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-container">
             <div className="form-group form-box">
-              <label htmlFor="fullName" className="form-label">Full Name</label>
+              <label htmlFor="fullName" className="form-label">Full Name<span className='star'>*</span></label>
               <input 
                 className="form-control form-input"
                 type="text"
@@ -232,7 +249,7 @@ const SubmitApplicationForm = () => {
               {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
             </div>
             <div className="form-group form-box">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">Email<span className='star'>*</span></label>
               <input 
                 className="form-control form-input"
                 type="email"
@@ -244,7 +261,7 @@ const SubmitApplicationForm = () => {
               {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
             </div>
             <div className="form-group form-box">
-              <label htmlFor="institution" className="form-label">Institution</label>
+              <label htmlFor="institution" className="form-label">Institution<span className='star'>*</span></label>
               <input 
                 className="form-control form-input"
                 type="text"
@@ -256,7 +273,7 @@ const SubmitApplicationForm = () => {
               {institutionError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{institutionError}</p>}
             </div>
             <div className="form-group form-box">
-              <label htmlFor="projectName" className="form-label">Name Of Project</label>
+              <label htmlFor="projectName" className="form-label">Project Name<span className='star'>*</span></label>
               <input 
                 className="form-control form-input"
                 type="text"
@@ -268,7 +285,7 @@ const SubmitApplicationForm = () => {
               {projectNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{projectNameError}</p>}
             </div>
             <div className="form-group form-box">
-              <label htmlFor="comments" className="form-label">Do you have any comments?</label>
+              <label htmlFor="comments" className="form-label">Any comments?</label>
               <textarea 
                 className="form-control form-input"
                 name="comments"
@@ -276,7 +293,6 @@ const SubmitApplicationForm = () => {
                 onChange={handleChange}
                 placeholder="Comments"
               ></textarea>
-              {commentsError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{commentsError}</p>}
             </div>
             <div className="form-check">
               <input 
@@ -307,13 +323,20 @@ const SubmitApplicationForm = () => {
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="criteriaCheck3">I have received counseling from SEFiO or an institution</label>
+              {checkboxError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{checkboxError}</p>}
             </div>
             <div>
               <input 
+                className='file-upload'
+                id='file'
                 type='file'
                 name='file' 
                 onChange={handleFileChange}
               />
+                <button className="btn file-upload-button" onClick={() => document.getElementById('file').click()}><img src={uploadImage} alt="Upload icon" className='input-upload-image' />
+                  {fileName}
+                </button>
+                {formData.file && <button className="btn" onClick={handleRemoveFile}>Remove</button>}
               {fileError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fileError}</p>}
             </div>
             <div className='description'>

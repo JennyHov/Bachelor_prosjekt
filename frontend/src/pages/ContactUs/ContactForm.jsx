@@ -141,18 +141,7 @@ const ContactForm = () => {
         <form onSubmit={handleSubmit} action="https://api.web3forms.com/submit" method="POST">
             <div className='form-container'>
                 <div className='form-group form-box'>
-                    <input type="hidden" name="access_key" value="1a1c7959-8cd2-407b-82de-04a56a29837c"/>
-                    <label htmlFor='sefioEmail' className='form-label'>Our Email</label>
-                    <input
-                        type='email'
-                        className='form-control text-muted form-input'
-                        name='sefioEmail'
-                        value='kontakt@sefio.no'
-                        readOnly
-                    />
-                </div>
-                <div className='form-group form-box'>
-                    <label htmlFor="email" className="form-label">Your Email</label>
+                    <label htmlFor="email" className="form-label">Your Email<span className='star'>*</span></label>
                     <input 
                         type="email" 
                         className="form-control form-input" 
@@ -164,7 +153,7 @@ const ContactForm = () => {
                     {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}                   
                 </div>
                 <div className='form-group form-box'>
-                    <label htmlFor="fullName" className="form-label">Name</label>
+                    <label htmlFor="fullName" className="form-label">Name<span className='star'>*</span></label>
                     <input 
                         className="form-control form-input" 
                         type='text'
@@ -176,7 +165,7 @@ const ContactForm = () => {
                     {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
                 </div>
                 <div className='form-group form-box'>
-                    <label htmlFor="subject" className="form-label">Subject</label>
+                    <label htmlFor="subject" className="form-label">Subject<span className='star'>*</span></label>
                     <input 
                         type="text" 
                         className="form-control form-input" 
@@ -188,7 +177,7 @@ const ContactForm = () => {
                     {subjectError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{subjectError}</p>}
                 </div>
                 <div className='form-group form-box'>
-                    <label htmlFor="inquiry" className="form-label">Inquiry</label>
+                    <label htmlFor="inquiry" className="form-label">Inquiry<span className='star'>*</span></label>
                     <textarea 
                         className="form-control form-input" 
                         type='text'
