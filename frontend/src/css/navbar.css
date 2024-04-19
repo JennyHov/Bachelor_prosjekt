@@ -80,15 +80,14 @@
     font-size: 18px;
     border: none;
     outline: none;
-    background-color: #F48A34;
-    color: white;
+    color: black;
     cursor: pointer;
     padding: 8px;
     border-radius: 4px;
   }
   
   #upBtn:hover {
-    background-color: #555;
+    background-color: #f2f2f0;
   }
 
   .bx-chevron-up{
