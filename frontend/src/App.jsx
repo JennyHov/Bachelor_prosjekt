@@ -20,7 +20,8 @@ import Thankyou from './pages/ThankYou/thank_you';
 import AboutUs from './pages/AboutUs/about_us';
 import ContactUs from './pages/ContactUs/contact_us';
 import Events from './pages/Events/events';
-
+import CreateProfile from './components/CreateProfile';
+import AllProfiles from './components/AllProfiles';
 import React, { useState } from 'react';
 
 function App() {
@@ -41,9 +42,13 @@ function App() {
           <Route path="/submit-application" element={<SubmitApplication />} /> 
           <Route path="/events" element={<Events />} />
 
+          <Route path="/create-profile" element={<CreateProfile />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/profiles" element={<AllProfiles />} />
+
 
           <Route element={<PrivateRoute />} >
             <Route path="/user-profile" element={<Profile />} />
