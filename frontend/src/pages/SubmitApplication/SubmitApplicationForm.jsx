@@ -156,7 +156,7 @@ const SubmitApplicationForm = () => {
     const isValidCheckbox = validateCheckbox();
     const isValidFile = validateFile();
 
-    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || isValidCheckbox || !isValidFile ) {
+    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || !isValidCheckbox || !isValidFile ) {
       setErrorMessage('Please fill out all fields.');
     } else {
       try {

@@ -152,7 +152,7 @@ const SubmitCounselingForm = () => {
     const isValidCheckbox = validateCheckbox();
     const isValidFile = validateFile();
 
-    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || isValidCheckbox || !isValidFile ) {
+    if (!isValidFullName || !isValidEmail || !isValidInstitution || !isValidProjectName || !isValidCheckbox || !isValidFile ) {
       setErrorMessage('Please fill out all required fields');
     } else {
       try {
