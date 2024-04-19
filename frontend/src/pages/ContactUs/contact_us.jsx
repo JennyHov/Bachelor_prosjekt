@@ -7,6 +7,7 @@ import '../../css/form.css';
 export default function SubmitApplication() {
   return (
     <div className="container page-container">
+      <div style={{ height: '70px' }} />
       <div className="row justify-content-center align-items-center">
         <div className="col-lg-6 submit-application-container">
           <div className="title-container">

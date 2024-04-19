@@ -54,6 +54,7 @@ const home = () => {
 
     return (
         <div className="content-fluid p-5">
+            <div style={{ height: '70px' }} />
             <div className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 justify-content-center d-flex align-items-center">
@@ -64,7 +65,7 @@ const home = () => {
                             <h1 className="title">25.000NOK for your idea?</h1>
                             <p className="description">SEFiO supports your student startup with funding up to 25,000NOK!</p>
                             <div className="mt-2">
-                                <Link to="/submit-application" className="btn btn-primary secondary-button">Submit application</Link>
+                                <Link to="/submit-application" className="btn btn-primary secondary-button">Apply For Funding</Link>
                             </div>
                             <div className="py-3">
                                 <p className="description">Unsure about what it takes?
