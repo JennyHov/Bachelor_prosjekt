@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export default function ThankYou() {
   return (
     <div className="container page-container">
+        <div style={{ height: '70px' }} />
         <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 thank-you-container">
                 <div className="page-title title-container">

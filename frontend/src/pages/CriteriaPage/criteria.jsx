@@ -11,6 +11,7 @@ export default function Criteria() {
     
   return (
     <div className="container page-container">
+        <div style={{ height: '70px' }} />
         <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 signup-container">
                 <div className="title-container">
@@ -72,7 +73,10 @@ export default function Criteria() {
                         </div>    
                     </div>
                 </div>
-            </div>        
+            </div>   
+            <div className="d-flex justify-content-center">
+                <Link to="/submit-application" className="btn btn-primary secondary-button">Apply For Funding</Link>
+            </div>      
         </div>
     </div>
   );

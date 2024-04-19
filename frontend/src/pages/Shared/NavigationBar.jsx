@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logoImage from '../../../../assets/images/header/sefio.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +16,27 @@ const NavigationBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [lastScrollPos, setLastScrollPos] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [isSticky, setSticky] = useState(false);
+  const [navbarTop, setNavbarTop] = useState(0);
+  const [navbarPos, setNavbarPos] = useState("absolute");
+  const supportPageOffset = window.pageYOffset !== undefined;
+  const [visible, setVisible] = useState(true);
+  const [shouldShow, setShouldShow] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const isScrollingUp = lastScrollPos > currentScrollPos || currentScrollPos === 0;
+      setShouldShow(isScrollingUp);
+      setLastScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollPos]);
+
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -29,8 +50,15 @@ const NavigationBar = () => {
     navigate('/');  // Adjust as necessary based on your routing setup
   };
 
+  const navStyle = {
+    position: 'fixed',
+    top: shouldShow ? '0' : '-70px',  // Replace 80 with your navbar's height
+    transition: 'top 0.3s',
+    // other styles...
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-styling">
+    <nav className="navbar navbar-expand-lg navbar-styling" style={navStyle}>
       <div className="container-fluid">
         <Link to="/" className="navbar-brand ps-5 pe-2">
           <img src={logoImage} alt="SEFiO" className='sefio-logo-navbar'/>
@@ -67,7 +95,7 @@ const NavigationBar = () => {
                 <LoginPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
               </>
             )}
-            <Link to="/submit-application" className="btn btn-primary secondary-button">Submit application</Link>
+            <Link to="/submit-application" className="btn btn-primary secondary-button">Apply for Funding</Link>
           </div>
 
         </div>

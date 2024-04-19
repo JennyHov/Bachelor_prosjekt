@@ -36,7 +36,12 @@
 }
 
 .navbar {
-    border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  transition: top 0.3s;
+  height: 70px;
+  background-color: var(--background-color);
+  z-index: 9000;
+  width: 100%;
 }
 
 .application-button {
