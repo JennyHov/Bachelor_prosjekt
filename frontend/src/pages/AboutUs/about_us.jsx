@@ -14,7 +14,6 @@ import arnarImage from '../../../../assets/images/home/arnar.png';
 export default function AboutUs () {
     return (
         <div className='container page-container'>
-            <div style={{ height: '70px' }} />
             <div className='row justify-content-center align-items-center gap-3'>
                 <div className='col-lg-6 about-us-container'>
                     <div className="title-container">
