@@ -1,5 +1,7 @@
 .footer {
     border-top: 1px solid #EEEEEE;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
 }
 
 .footer-logo {
@@ -23,4 +25,18 @@
 
 .representative-logo {
     height: 3rem;
+}
+
+.footer-bar{
+    padding: 4% 5% 3% 5%;
+}
+
+.footer-info {
+    font-weight: 500;
+    color: var(--font-dark);
+}
+
+.footer-links {
+    font-weight: 400;
+    color: var(--font-light);
 }

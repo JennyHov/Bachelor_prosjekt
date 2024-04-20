@@ -46,23 +46,44 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row justify-content-center align-items-center">
-          {/* Venstre seksjon med logo og kontaktinformasjon */}
-          <div className="col-md-6">
-            <img src={logoImage} alt="SEFiO" className="footer-logo mb-2"/>
-            <p>kontakt@sefio.no</p>
-            <p>+4799363714</p>
-            <p>Orgnr: 930 908 177</p>
+        <div className="row d-flex justify-content-center align-items-center footer-bar">
+          <div className='row justify-content-center align-items-center footer-links mb-5'>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/counseling" className="nav-item nav-link ">Counseling</Link>
+            </div>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/events" className="nav-item nav-link">Events</Link>
+            </div>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/collaborate" className="nav-item nav-link">Collaborate</Link>
+            </div>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/about-us" className="nav-item nav-link">About Us</Link>
+            </div>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/criteria" className="nav-item nav-link">Criteria</Link>
+            </div>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/contact-us" className="nav-item nav-link">Contact Us</Link>
+            </div>
+            <div className='col-sm d-flex justify-content-center align-items-center'>
+              <Link to="/submit-application" className="nav-item nav-link">Submit Application</Link>
+            </div>
           </div>
 
-          {/* Høyre seksjon med linker */}
-          <div className="col-md-6">
-            <h5>Company</h5>
-            <ul className="list-unstyled">
-              <Link to="/about-us" className="nav-item nav-link">About Us</Link>
-              <Link to="/events" className="nav-item nav-link">Events</Link>
-            </ul>
+          <div className="row justify-content-center align-items-center footer-info mb-1">
+            <div className='col-sm-4 d-flex justify-content-end align-items-center'>
+              <p>kontakt@sefio.no</p>
+            </div>
+            <div className='col-sm-4 d-flex justify-content-center align-items-center'>
+              <p>+4799363714</p>
+            </div>
+            <div className='col-sm-4 d-flex justify-content-start align-items-center'>
+              <p>Orgnr: 930 908 177</p>
+            </div>
           </div>
+
+          
         </div>
       </div>
     </footer>
