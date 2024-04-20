@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="row d-flex justify-content-center align-items-center footer-bar">
-          <div className='row justify-content-center align-items-center footer-links mb-5'>
+          {/*<div className='row justify-content-center align-items-center footer-links mb-5'>
             <div className='col-sm d-flex justify-content-center align-items-center'>
               <Link to="/counseling" className="nav-item nav-link ">Counseling</Link>
             </div>
@@ -69,7 +69,7 @@ const Footer = () => {
             <div className='col-sm d-flex justify-content-center align-items-center'>
               <Link to="/submit-application" className="nav-item nav-link">Submit Application</Link>
             </div>
-          </div>
+          </div>*/}
 
           <div className="row justify-content-center align-items-center footer-info mb-1">
             <div className='col-sm-4 d-flex justify-content-end align-items-center'>
