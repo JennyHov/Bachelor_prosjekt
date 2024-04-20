@@ -164,7 +164,7 @@ const home = () => {
                         <div className="content">
                             <h1 className="title">Who are we?</h1>
                                 <p className='description'>
-                                    The student’s Entrepreneurship Fund in Oslo (SEFiO) is by and for students in Oslo. Together with Oslo’s five major educational institutions, the municipality, partners and sponsor Aneo - SEFiO provides activities and learnings for any student interested in starting their innovation journey.
+                                    The student’s Entrepreneurship Fund in Oslo (SEFiO) is by and for students in Oslo. Together with Oslo’s five major educational institutions, the municipality, partners and sponsor ANEO - SEFiO provides activities and learnings for any student interested in starting their innovation journey.
                                 </p>
                         </div>
                     </div>

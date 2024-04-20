@@ -19,6 +19,26 @@ body {
     overscroll-behavior-inline: contain;
     scrollbar-width: thin;
     padding-top: 5%;
+    scrollbar-color: transparent transparent;
+}
+
+.media-scroller:hover {
+    scrollbar-color: auto; /* For Firefox */
+}
+
+.media-scroller::-webkit-scrollbar {
+    /* For Chrome, Safari, and Opera */
+    width: 0.5em; /* Adjust as needed */
+}
+
+.media-scroller::-webkit-scrollbar-thumb {
+    /* For Chrome, Safari, and Opera */
+    background-color: transparent;
+}
+
+.media-scroller:hover::-webkit-scrollbar-thumb {
+    /* For Chrome, Safari, and Opera */
+    background-color: var(--font-dim); /* Adjust color as needed */
 }
 
 .media-element {

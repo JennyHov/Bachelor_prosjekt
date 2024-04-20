@@ -1,9 +1,6 @@
 @import '../css/colors.css';
 @import url("https://use.typekit.net/rgx6brd.css");
 
-.slick-prev:before, .slick-next:before {
-    color: black !important;
-}
 
 .slick-slide {
     transform: scale(0.8);
@@ -15,10 +12,24 @@
 }
 
 .slick-current {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
+.slick-prev:before, .slick-next:before {
+    color: var(--font-dim) !important;
+    font-size: 30px; /* Adjust size as needed */
+}
 
+.slick-prev, .slick-next {
+    height: 30px; /* Adjust size as needed */
+    width: 30px; /* Adjust size as needed */
+}
+
+.slick-list {
+    max-width: 95%; /* Adjust to create the desired gap */
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .card{
     margin-top: 20%;

@@ -9,11 +9,29 @@ import stockImage from '../../../assets/images/profilePics/stock_photo.jpg';
 
 function CenterMode() {
     const settings = {
-      slidesToShow: 3,
-      speed: 400,
-      infinite: true,
       centerMode: true,
-      centerPadding: "15%"
+  centerPadding: '60px',
+  slidesToShow: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
     };
     return (
       <div className="container-fluid slider-container section profile-row">
