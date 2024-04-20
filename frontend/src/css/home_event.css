@@ -28,6 +28,11 @@
     background-color: #FFFFFF; /* Background color for the event card */
     height: 80px;
     font-family: 'Inter', sans-serif;
+    transition: transform 0.3s ease-in-out
+}
+
+.home-event-card:hover  {
+    transform: scale(1.05);
 }
 
 .home-date {
@@ -40,6 +45,7 @@
     font-size: 1rem; /* Larger font size */
     font-weight: 700; /* Bold font */
     width: 90px;
+    
 }
 
 .home-details {

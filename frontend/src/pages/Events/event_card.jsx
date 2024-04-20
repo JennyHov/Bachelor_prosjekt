@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../css/home_event.css';
 
@@ -7,15 +8,17 @@ const EventCard = ({ event }) => {
     const eventTime = formatEventTime(event.start.dateTime, event.end.dateTime);
 
     return (
-        <div className="home-event-card">
-            <div className="home-date p-3">
-                <div className="home-event-date">{startDate}</div>
-            </div>
-            <div className="home-details p-4">
-                <h2 className="home-event-title">{event.summary}</h2>
-                <p className="home-event-time">{eventTime}</p>
-            </div>
-        </div>
+        <Link to={`/events/${event.id}`}>
+            <div className="home-event-card">
+                <div className="home-date p-3">
+                    <div className="home-event-date">{startDate}</div>
+                </div>
+                <div className="home-details p-4">
+                    <h2 className="home-event-title">{event.summary}</h2>
+                    <p className="home-event-time">{eventTime}</p>
+                </div>
+            </div> 
+        </Link>
     );
 };
 

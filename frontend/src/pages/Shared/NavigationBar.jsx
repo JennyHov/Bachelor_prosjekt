@@ -75,12 +75,12 @@ const NavigationBar = () => {
         </button>
         <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarNavAltMarkup">
           <div className="navbar-nav align-items-center">
-            <NavLink to="/counseling" className="nav-item nav-link underline" id='counselingLink' activeClassName="active">Counseling</NavLink>
-            <NavLink to="/events" className="nav-item nav-link underline" id='eventsLink' activeClassName="active">Events</NavLink>
-            <NavLink to="/collaborate" className="nav-item nav-link underline" id='collaborateLink' activeClassName="active">Collaborate</NavLink>
-            <NavLink to="/about-us" className="nav-item nav-link underline" id='aboutLink' activeClassName="active">About Us</NavLink>
-            <NavLink to="/criteria" className="nav-item nav-link underline" id='criteriaLink' activeClassName="active">Criteria</NavLink>
-            <NavLink to="/contact-us" className="nav-item nav-link underline" id='contactLink' activeClassName="active">Contact Us</NavLink>
+            <NavLink to="/counseling" className="nav-item nav-link underline" id='counselingLink' activeclassName="active">Counseling</NavLink>
+            <NavLink to="/events" className="nav-item nav-link underline" id='eventsLink' activeclassName="active">Events</NavLink>
+            <NavLink to="/collaborate" className="nav-item nav-link underline" id='collaborateLink' activeclassName="active">Collaborate</NavLink>
+            <NavLink to="/about-us" className="nav-item nav-link underline" id='aboutLink' activeclassName="active">About Us</NavLink>
+            <NavLink to="/criteria" className="nav-item nav-link underline" id='criteriaLink' activeclassName="active">Criteria</NavLink>
+            <NavLink to="/contact-us" className="nav-item nav-link underline" id='contactLink' activeclassName="active">Contact Us</NavLink>
           </div>
 
           <div className="navbar-nav ms-auto d-flex align-items-center px-5">

@@ -49,6 +49,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/profiles" element={<AllProfiles />} />
 
+          <Route path="/events/:eventId" element={<Events />} />
 
           <Route element={<PrivateRoute />} >
             <Route path="/user-profile" element={<Profile />} />
