@@ -76,9 +76,9 @@ body {
     padding-bottom: 5%;
 }
 
-.stroke {
-    border-bottom: 1px solid #EEEEEE;
-}
+/*.stroke {
+    border-bottom: 2px solid #EEEEEE;
+}*/
 
 .content {
     max-width: 70%;
@@ -245,7 +245,16 @@ body {
 }  
 
 .social-icon {
-    height: 7vh;
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
+    height: 6vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: transform 0.3s ease-in-out
+}
+
+.social-icon:last-child {
+    margin-right: 0;
+  }
+
+.social-icon:hover {
+    transform: scale(1.05);
 }

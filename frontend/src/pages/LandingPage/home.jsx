@@ -14,6 +14,7 @@ import rocketImage from '../../../../assets/images/home/rocket.png';
 import counselingImage from '../../../../assets/images/home/counselling.png';
 import instagramImage from '../../../../assets/images/home/instagram.png';
 import facebookImage from '../../../../assets/images/home/facebook.png';
+import youtubeImage from '../../../../assets/images/home/youtube.png';
 import whoAreWeImage from '../../../../assets/images/home/who_are_we.png';
 import collaboratingImage from '../../../../assets/images/home/collaborating.png';
 import linkedinImage from '../../../../assets/images/home/linkedin.png';
@@ -289,13 +290,24 @@ const home = () => {
                     <div className="col-md-6 d-flex justify-content-center align-items-center">
                         <div className="row social-icons">
                             <div className="col col-lg-2 social-icon">
-                                <img src={linkedinImage} alt="Social Media Icon" className="social-icon"/>
+                                <a href='https://www.linkedin.com/company/studentenes-entrepren%C3%B8rskapsfond-i-oslo/' target='_blank' rel='noopener noreferrer'>
+                                    <img src={linkedinImage} alt="Social Media Icon" className="social-icon"/>
+                                </a>
                             </div>
                             <div className="col col-lg-2 social-icon">
-                                <img src={instagramImage} alt="Social Media Icon" className="social-icon"/>
+                                <a href='https://www.instagram.com/sefio.no/' target='_blank' rel='noopener noreferrer'>
+                                    <img src={instagramImage} alt="Social Media Icon" className="social-icon"/>
+                                </a>
                             </div>
                             <div className="col col-lg-2 social-icon">
-                                <img src={facebookImage} alt="Social Media Icon" className="social-icon"/>
+                                <a href='https://www.facebook.com/profile.php?id=100095361750473' target='_blank' rel='noopener noreferrer'>
+                                    <img src={facebookImage} alt="Social Media Icon" className="social-icon"/>
+                                </a>
+                            </div>
+                            <div className="col col-lg-2 social-icon">
+                                <a href='https://www.youtube.com/channel/UCydcGoyzNwbNudj9lQjK4vQ/about' target='_blank' rel='noopener noreferrer'>
+                                    <img src={youtubeImage} alt="Social Media Icon" className="social-icon"/>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -311,20 +323,32 @@ const home = () => {
 
             <div className='stroke'></div>  
 
-
-            {/*<div className="container-fluid section">
-                <div className="row image-row">
-                    <div className="col-md-6">
+            <div className="container-fluid section">
+                <div className="row justify-content-center align-items-center">
+                    <div className="col-md-6 d-flex justify-content-center align-items-center">
+                        <iframe 
+                            width="90%" 
+                            height="283" 
+                            src="https://www.youtube.com/embed/13w77dTMCds" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div className="col-md-6">
+                        <iframe 
+                            width="90%" 
+                            height="283" 
+                            src="https://www.youtube.com/embed/73vhFLlUSVU" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
-                <div className="row divider-row">
-                    <div className="col-md-12">
-                        <div className="divider"></div>
-                    </div>
-                </div>
-            </div>*/}
+            </div>
 
             <div className='stroke'></div>
 
