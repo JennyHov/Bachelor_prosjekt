@@ -122,10 +122,10 @@ export default function Profile() {
           </p>
           <div className='form-group'>
           <input
-            defaultValue={currentUser.username}
+            defaultValue={currentUser.fullName}
             type="text"
-            id="username"
-            placeholder="username"
+            id="fullName"
+            placeholder="fullName"
             className=""
             onChange={handleUserProfileUpdated}
           />

@@ -41,8 +41,8 @@ export default function SignUp() {
       <form onSubmit={handleSubmit}>
         <input
           type='text'
-          placeholder='Username'
-          id='username'
+          placeholder='Full Name'
+          id='fullName'
           onChange={handleChange}
         />
         <input

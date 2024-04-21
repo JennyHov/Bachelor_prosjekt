@@ -4,9 +4,9 @@ import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { fullName, email, password } = req.body;
     const hashedPassword = bcryptjs.hashSync(password, 10);
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ fullName, email, password: hashedPassword });
     try{
         await newUser.save()
         res.status(201).json({ message: 'User created successfully' });
@@ -21,7 +21,7 @@ export const signin = async (req, res, next) => {
         const validUser = await User.findOne({ email  });
         if(!validUser) return next(errorHandler(400, "User not found"));
         const validPassword = bcryptjs.compareSync(password, validUser.password);
-        if(!validPassword) return next(errorHandler(400, "Wrong username or password!"));
+        if(!validPassword) return next(errorHandler(400, "Wrong email or password!"));
         const token = jwt.sign({ id: validUser._id, role: validUser.role }, process.env.JWT_SECRET);
         const { password: hashedPassword, ...rest } = validUser._doc;
         const expiredDate = new Date(Date.now() + 3600000) // 2 hours = 2*60*60*1000= 7200000
@@ -54,7 +54,7 @@ export const google = async (req, res, next) => {
         const generatedPassword = random1 + random2;
         const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
         const newUser = new User({
-          username:
+          fullName:
             req.body.name.split(" ").join("").toLowerCase() +
             Math.random().toString(36).slice(-10),
           email: req.body.email,

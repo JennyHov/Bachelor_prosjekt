@@ -13,7 +13,7 @@ const SubmitCounselingForm = () => {
   const { currentUser, loading: userLoading, error: userError } = useSelector((state) => state.user);
 
     const [formData, setFormData] = useState({
-        fullName: currentUser ? currentUser.username : '',
+        fullName: currentUser ? currentUser.fullName : '',
         email: currentUser ? currentUser.email : '',
         institution: '',
         projectName: '',

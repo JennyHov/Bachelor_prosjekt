@@ -69,9 +69,9 @@ const home = () => {
                                 <Link to="/submit-application" className="btn btn-primary secondary-button">Apply for Funding</Link>
                             </div>
                             <div className="py-3">
-                                <p className="description">Unsure about what it takes?
+                                <p className="description">Want to know more?
                                 <span className="landing-link">
-                                    <Link to="/criteria" className="text-primary"> Read our criteria</Link>
+                                    <Link to="/criteria" className="text-primary"> Understand our process</Link>
                                 </span>
                                 </p>
                             </div>
