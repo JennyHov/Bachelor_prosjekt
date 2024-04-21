@@ -1,0 +1,26 @@
+.profile-title {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 70px;
+    letter-spacing: 0.8px;
+    word-wrap: break-word;
+}
+
+.divide-profile {
+    width: auto;
+    min-height: 100%; /* Adjust height as needed */
+    margin: 0 5% 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Set flex direction to column */
+}
+
+.divide-profile-line {
+    display: block;
+    width: 1px; /* Adjust thickness as needed */
+    height: 100%; /* Full height of the container */
+    background-color: #ccc; /* Adjust color as needed */
+}

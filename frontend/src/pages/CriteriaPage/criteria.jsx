@@ -18,7 +18,7 @@ export default function Criteria() {
                     <h1 className="page-title signup-title">Our Process</h1>
                 </div>
                 <div className="read-more-container">
-                    <p className="read-criteria">Before you apply for funding, it's important to understand our process and the support we offer. We're here to help you at every step!</p>
+                    <p className="read-criteria">Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
                 </div>
             </div> 
         </div>
@@ -63,14 +63,7 @@ export default function Criteria() {
                 </div>
             </div>
         </div>    
-         
-        <div className='row justify-content-center align-items-center'>
-            <div className='col-lg-6'>
-                <div className="read-more-container">
-                    <p className="read-criteria">By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
-                </div> 
-            </div>
-        </div>    
+           
         <div className="d-flex justify-content-center">
             <Link to="/submit-application" className="btn btn-primary secondary-button">Apply For Funding</Link>
         </div>      

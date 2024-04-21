@@ -1,11 +1,10 @@
-import cookieParser from 'cookie-parser';
+
 import express from 'express';
 import mongoose from 'mongoose';
 import logger from 'morgan';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import { GridFSBucket } from 'mongodb';
-import upload from './utils/upload.js';
+import cookieParser from 'cookie-parser';
 
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
@@ -17,6 +16,8 @@ import counselingEmailRoutes from './routes/counselingEmail.route.js';
 import contactEmailRoutes from './routes/contactEmail.route.js';
 import profileRoutes from './routes/profile.route.js';
 
+import { changePassword } from './Controllers/user.controller.js';
+
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ mongoose.connect(process.env.MONGO).then(() => {
 }).catch((err) => {
     console.log(err);
 });
+
+const app = express();
 
 let bucket;
 (() => {
@@ -38,18 +41,14 @@ let bucket;
   });
 })();
 
-const app = express();
-
+//Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger("dev"));
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
-
+//Routes
 app.use('/api/user', userRoutes);
 app.use("/api/auth", authRoutes);
 app.use('/api', profileRoutes);
@@ -61,6 +60,7 @@ app.use('/api/application-email', applicationEmailRoutes);
 app.use('/api/counseling-form-email', counselingEmailRoutes);
 app.use('/api/contact-form-email', contactEmailRoutes);
 
+//Error handling Middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
@@ -69,4 +69,8 @@ app.use((err, req, res, next) => {
     message,
     statusCode,
   });
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
 });

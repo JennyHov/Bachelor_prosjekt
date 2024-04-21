@@ -1,140 +1,126 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../../Redux/userStates/usersSlicer.js';
+import { fetchCurrentUser } from '../../Redux/userStates/usersSlicer.js';
+import { changePassword } from '../../Redux/userStates/userActions.js';
 
+import '../../css/profile.css';
 import personalprofileImage from '../../../../assets/images/profile/personal_profile.png';
+import rocketImage from '../../../../assets/images/home/rocket.png';
 import collaborationprofileImage from '../../../../assets/images/profile/collaboration_profile.png';
 
-export default function ProfileInformation({ hasProfile }) {
-  if (!hasProfile) {
+const ProfileInformation = () => {
+  const { currentUser, loading, error } = useSelector(state => state.user); 
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (!currentUser) {
+      // Assuming you have access to the userId from somewhere (e.g., auth token)
+      dispatch(fetchCurrentUser(userId));
+    }
+  }, [dispatch, currentUser]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+  
+    // Prompt the user to enter their current password
+    const currentPassword = prompt("Please enter your current password:");
+    if (!currentPassword) {
+      // User canceled entering the current password
+      return;
+    }
+  
+    // Validate if the new passwords match
+    if (newPassword !== confirmNewPassword) {
+      alert("New passwords do not match!");
+      return;
+    }
+  
+    try {
+      // Dispatch the changePassword action with userId
+      dispatch(changePassword(currentUser._id, currentPassword, newPassword));
+      alert("Password changed successfully!");
+    } catch (error) {
+      // Handle any errors
+      console.error("Error changing password:", error);
+      alert("Failed to change password. Please try again.");
+    }
+  };
+
     return (
-      <div className="container">
+      <div className="container page-container">
         <div style={{ height: '70px' }} />
-        <div className="row justify-content-center align-items-center">
-          <div className="col-lg-8 profile-information-container">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-md-6 justify-content-start align-items-center d-flex">
-                <img src={personalprofileImage} alt="Personal Profile Image" className="img-fluid" />
+          <div className="row justify-content-center gap-3">
+            <div className='col-lg-4'>
+              <div className='title-container'>
+                <h1 className="profile-title">My Profile</h1>
               </div>
-              <div className="col-lg-8">
-                <div className="title-container">
-                  <h1 className="profile-information-title">Personal information</h1>
-                </div>
+              <form>
                 <div className="form-container">
-                  <div className="form-group">
-                    <label htmlFor="fullName" className="form-label">Full Name</label>
-                    <input type="text" className="form-control" id="fullName" value="Jenny Hovland" readOnly />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" value="jenny.hovland@gmail.com" readOnly />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="birthDate" className="form-label">Birth Date</label>
-                    <input type="text" className="form-control" id="birthDate" value="26-10-1999" readOnly />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="oldPassword" className="form-label">Old Password</label>
-                    <input type="password" className="form-control" id="oldPassword" />
-                  </div>
-                  <div className="form-group">
+                <div className="form-group form-box">
+                  <label htmlFor="fullName" className="form-label">Full Name</label>
+                  <input type="text" className="form-control form-input" id="fullName" value={currentUser.fullName} readOnly />
+                </div>
+                <div className="form-group form-box">
+                  <label htmlFor="email" className="form-label">Email</label>
+                  <input type="email" className="form-control form-input" id="email" value={currentUser.email} readOnly />
+                </div>
+                </div>
+              </form>
+              <form onSubmit={handlePasswordChange} className='form-container'>
+                  <div className="form-group form-box">
                     <label htmlFor="newPassword" className="form-label">New Password</label>
-                    <input type="password" className="form-control" id="newPassword" />
+                    <input 
+                      className="form-control form-input" 
+                      id="newPassword"
+                      type={showNewPassword ? "text" : "password"}
+                      value={newPassword}
+                      onChange={e => setNewPassword(e.target.value)}/>
+                    <button type="button" onClick={() => setShowNewPassword(!showNewPassword)}>
+                      {showNewPassword ? "Hide" : "Show"}
+                    </button>
                   </div>
-                  <div className="form-group">
+                  <div className="form-group form-box">
                     <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
-                    <input type="password" className="form-control" id="confirmNewPassword" />
+                    <input 
+                      className="form-control form-input" 
+                      id="confirmNewPassword"
+                      type={showConfirmNewPassword ? "text" : "password"}
+                      value={confirmNewPassword}
+                      onChange={e => setConfirmNewPassword(e.target.value)}/>
+                    <button type="button" onClick={() => setShowConfirmNewPassword(!showConfirmNewPassword)}>
+                      {showConfirmNewPassword ? "Hide" : "Show"}
+                    </button>
                   </div>
-                </div>
-                <div className="button-container">
-                  <button type="submit" className="btn btn-primary btn-change">Change</button>
-                  <button type="button" className="btn btn-danger btn-cancel">Cancel</button>
-                </div>
+                <button type="submit">Change Password</button>
+              </form>
+            </div>
+            <div className='divide-profile'>
+                <span className='divide-profile-line'></span>
+            </div>
+            <div className="col-lg-4">
+              <div className="title-container">
+                <h1 className="profile-title">Collaboration Profile</h1>
+              </div>
+              <div className="description-container">
+                <p className="description">Do you want to create a profile so others can find and connect with you?</p>
+              </div>
+              <div className="button-container">
+                <Link to="/collaborate" className="btn btn-primary secondary-button">Create a profile</Link>
               </div>
             </div>
           </div>
         </div>
-        <div className="row justify-content-center align-items-center">
-          <div className="col-lg-8 collaboration-profile-container">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-lg-12">
-                <div className="title-container">
-                  <h1 className="collaboration-profile-title">You do not have a collaboration profile</h1>
-                </div>
-                <div className="description-container">
-                  <p className="collaboration-profile-description">Do you want to create a profile so others can find and connect with you?</p>
-                </div>
-                <div className="button-container">
-                  <Link to="/collaborate" className="btn btn-primary">Create a profile</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container">
-        <div className="row justify-content-center align-items-center">
-          <div className="col-lg-8 profile-information-container">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-md-6 justify-content-start align-items-center d-flex">
-                <img src={collaborationprofileImage} alt="Collaboration Profile Image" className="img-fluid" />
-              </div>
-              <div className="col-lg-8">
-                <div className="title-container">
-                  <h1 className="profile-information-title">Personal information</h1>
-                </div>
-                <div className="form-container">
-                  <div className="form-group">
-                    <label htmlFor="fullName" className="form-label">Full Name</label>
-                    <input type="text" className="form-control" id="fullName" value="Jenny Hovland" readOnly />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" value="jenny.hovland@gmail.com" readOnly />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="birthDate" className="form-label">Birth Date</label>
-                    <input type="text" className="form-control" id="birthDate" value="26-10-1999" readOnly />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="oldPassword" className="form-label">Old Password</label>
-                    <input type="password" className="form-control" id="oldPassword" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="newPassword" className="form-label">New Password</label>
-                    <input type="password" className="form-control" id="newPassword" />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
-                    <input type="password" className="form-control" id="confirmNewPassword" />
-                  </div>
-                </div>
-                <div className="button-container">
-                  <button type="submit" className="btn btn-primary btn-change">Change</button>
-                  <button type="button" className="btn btn-danger btn-cancel">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row justify-content-center align-items-center">
-          <div className="col-lg-8 collaboration-profile-container">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-lg-12">
-                <div className="title-container">
-                  <h1 className="collaboration-profile-title">Profile</h1>
-                </div>
-                {/* Render profile information */}
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 image-container">
-            {/* <img className="img-fluid" src="https://via.placeholder.com/429x411" alt="Profile Image" /> */}
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+      );
+    }
+
+export default ProfileInformation;
+

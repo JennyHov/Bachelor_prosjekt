@@ -143,18 +143,6 @@ const ContactForm = () => {
         <form onSubmit={handleSubmit} action="https://api.web3forms.com/submit" method="POST">
             <div className='form-container'>
                 <div className='form-group form-box'>
-                    <label htmlFor="email" className="form-label">Your Email<span className='star'>*</span></label>
-                    <input 
-                        type="email" 
-                        className="form-control form-input" 
-                        name="email" 
-                        placeholder="Type in your email" 
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                    {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}                   
-                </div>
-                <div className='form-group form-box'>
                     <label htmlFor="fullName" className="form-label">Name<span className='star'>*</span></label>
                     <input 
                         className="form-control form-input" 
@@ -165,6 +153,18 @@ const ContactForm = () => {
                         onChange={handleChange}
                     />
                     {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
+                </div>
+                <div className='form-group form-box'>
+                    <label htmlFor="email" className="form-label">Your Email<span className='star'>*</span></label>
+                    <input 
+                        type="email" 
+                        className="form-control form-input" 
+                        name="email" 
+                        placeholder="Type in your email" 
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
+                    {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}                   
                 </div>
                 <div className='form-group form-box'>
                     <label htmlFor="subject" className="form-label">Subject<span className='star'>*</span></label>
