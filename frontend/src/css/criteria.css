@@ -23,7 +23,7 @@
 
   .timeline p {
     width: 100%;
-    color: black;
+    color: var(--font-dark);
     font-size: 0.8vw; 
     font-family: 'Inter', sans-serif;
     font-weight: 400;

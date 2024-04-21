@@ -1,0 +1,22 @@
+
+  .countdown-container {
+    font-family: 'Inter', sans-serif;
+    margin-top: 70px;
+    margin-bottom: -5%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+    background: #f2f2f0;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  }
+
+  .countdown-content {
+    font-weight: 500;
+    font-size: 1vw;
+    color: var(--font-light);
+  }
+  
+
+
+
+
