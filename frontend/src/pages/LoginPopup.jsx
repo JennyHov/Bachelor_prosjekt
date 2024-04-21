@@ -42,7 +42,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
-        setFormError('');
         setEmailError('');
         setPasswordError('');
     };
@@ -52,34 +51,47 @@ const LoginPopup = ({ isOpen, onClose }) => {
         setEmailError('');
         setPasswordError('');
 
-        if (!formData.email && !formData.password) {
-            setFormError('Please input both an email and a password.');
-        } else if (!formData.email) {
-            setEmailError('Please input an email address');
-        } else if (!formData.password) {
-            setPasswordError('Please input your password');
-        } else {
-            try {
-                dispatching(initialSignIn());
-                const res = await fetch('/api/auth/signin', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
-                const data = await res.json();
-                if (!data.success) {
-                    dispatching(failSignIn(data));
-                    return;
-                }
-                dispatching(endSignIn(data));
-                navigate('/');
-                onClose();
-            } catch (error) {
-                dispatching(failSignIn(error));
-            }
+        let emailIsValid = true;
+        let passwordIsValid = true;
+
+        if (!formData.email) {
+            setEmailError('Please input your email address');
+            emailIsValid = false;
         }
+    
+        if (!formData.password) {
+            setPasswordError('Please input your password');
+            passwordIsValid = false;
+        }
+    
+        // If either email or password is not valid, stop here and do not submit form
+        if (!emailIsValid || !passwordIsValid) {
+            return;
+        }
+
+        try {
+            dispatching(initialSignIn());
+            const res = await fetch('/api/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+            console.log('Response data: ', data); 
+            if (!data._id) {
+                dispatching(failSignIn(data));
+                return;
+            }
+            dispatching(endSignIn(data));
+            navigate('/');
+            onClose();
+        } catch (error) {
+            console.error('Error occurred: ', error);
+            dispatching(failSignIn(error));
+        }
+        
     };
 
     return (
