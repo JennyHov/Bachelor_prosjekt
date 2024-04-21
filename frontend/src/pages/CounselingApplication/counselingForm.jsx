@@ -10,9 +10,11 @@ import '../../css/pages.css';
 import '../../css/form.css';
 
 const SubmitCounselingForm = () => {
+  const { currentUser, loading: userLoading, error: userError } = useSelector((state) => state.user);
+
     const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
+        fullName: currentUser ? currentUser.username : '',
+        email: currentUser ? currentUser.email : '',
         institution: '',
         projectName: '',
         comments: '',
@@ -29,7 +31,6 @@ const SubmitCounselingForm = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [fileName, setFileName] = useState('Upload Application Draft');
 
-    const { loading, error } = useSelector((state) => state.form);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -221,6 +222,8 @@ const SubmitCounselingForm = () => {
       }
     };
   };   
+
+  const { loading, error } = useSelector((state) => state.form);
 
   useEffect(() => {
     console.log('Loading state:', loading);

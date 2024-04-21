@@ -8,9 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/form.css';
 
 const ContactForm = () => {
+    const { currentUser, loading: userLoading, error: userError } = useSelector((state) => state.user);
+
     const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
+        fullName: currentUser ? currentUser.username : '',
+        email: currentUser ? currentUser.email : '',
         subject: '',
         inquiry: ''
     });

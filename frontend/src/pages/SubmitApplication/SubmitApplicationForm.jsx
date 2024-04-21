@@ -11,9 +11,11 @@ import '../../css/submit_application.css';
 import '../../css/form.css';
 
 const SubmitApplicationForm = () => {
+  const { currentUser, loading: userLoading, error: userError } = useSelector((state) => state.user);
+
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
+    fullName: currentUser ? currentUser.username : '',
+    email: currentUser ? currentUser.email : '',
     institution: '',
     projectName: '',
     comments: '',
@@ -30,6 +32,7 @@ const SubmitApplicationForm = () => {
   const [fileError, setFileError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [fileName, setFileName] = useState('Upload Application');
+  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
