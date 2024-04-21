@@ -5,22 +5,25 @@ import Profile from '../models/profile.model.js';
 
 export const createOrUpdateProfile = async (req, res) => {
     const { fullName, email, institution, description, category, role } = req.body;
-    const userId = req.user.id;
+    const userId = req.user.id;  // Fra verifisert token
 
     try {
         const existingProfile = await Profile.findOne({ user: userId });
-        if (existingProfile) {
-            console.log("Updating existing profile for user ID:", userId);
-            const updatedProfile = await Profile.findByIdAndUpdate(existingProfile._id, { fullName, email, institution, description, category, role }, { new: true });
-            console.log("Profile updated successfully:", updatedProfile);
-            res.status(200).json(updatedProfile);
-        } else {
+        if (!existingProfile) {
             console.log("No existing profile found. Creating new one.");
             const profile = new Profile({ fullName, email, institution, description, category, role, user: userId });
             await profile.save();
-            console.log("Profile created successfully:", profile);
-            res.status(201).json(profile);
+            return res.status(201).json(profile);
         }
+
+        if (existingProfile.user.toString() !== userId) {
+            return res.status(403).json({ message: "Not authorized to update this profile" });
+        }
+
+        console.log("Updating existing profile for user ID:", userId);
+        const updatedProfile = await Profile.findByIdAndUpdate(existingProfile._id, { fullName, email, institution, description, category, role }, { new: true });
+        console.log("Profile updated successfully:", updatedProfile);
+        res.status(200).json(updatedProfile);
     } catch (error) {
         console.error("Error at profile creation/update:", error);
         res.status(500).json({ message: error.message });
@@ -41,7 +44,6 @@ export const getProfiles = async (req, res) => {
     }
 };
 
-// controllers/profile.controller.js
 
 // controllers/profile.controller.js
 
