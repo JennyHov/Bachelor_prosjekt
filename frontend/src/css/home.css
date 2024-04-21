@@ -125,6 +125,7 @@ body {
     padding-bottom: 1%;
     width: 275px;
     padding: 2% 1% 2% 1%;
+    transition: transform 0.3s ease-in-out
 }
 
 .image-content, .card-content{
@@ -185,7 +186,14 @@ body {
     font-size: 14px;
     margin-top: auto;
     font-weight: 400;
+    color: var(--button-success);
     font-family: 'source-sans-pro', sans-serif;
+    transition: transform 0.2s ease-in-out
+}
+
+.card-email:hover {
+    transform: scale(1.05);
+    color: var(--button-success-active);
 }
 
 .contact-image {

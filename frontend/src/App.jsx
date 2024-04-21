@@ -24,11 +24,13 @@ import CreateProfile from './components/CreateProfile';
 import AllProfiles from './components/AllProfiles';
 import React, { useState } from 'react';
 
+import ScrollToTop from './Hooks/ScrollToTop';
+
 function App() {
 
   return (
     <BrowserRouter>
-    
+    <ScrollToTop />
       <Header />
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -66,29 +68,3 @@ function App() {
 }
 
 export default App;
-
-{/* 
-
-export default function App() {
-  return (
-    <BrowserRouter>
-    <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-
-        <Route element={<PrivateRoute />} >
-          <Route path="/user-profile" element={<Profile />} />
-        </Route>
-        <Route element={<PrivateRoute requireAdmin={true} />}>
-          <Route path="/users" element={<Users />} />
-        </Route>
-        
-      </Routes>
-    </BrowserRouter>
-  )
-}
-
-*/}

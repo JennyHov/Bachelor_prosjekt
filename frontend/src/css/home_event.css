@@ -35,10 +35,6 @@
     transform: scale(1.05);
 }
 
-.home-event-card:hover .home-date {
-    background-color:#F56933;
-}
-
 .home-date {
     align-self: stretch; /* This will make the .home-date stretch to the full height of the .home-event-card */
     display: flex;
