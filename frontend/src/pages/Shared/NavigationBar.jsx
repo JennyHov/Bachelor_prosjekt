@@ -46,10 +46,23 @@ const NavigationBar = () => {
     setPopupOpen(!isPopupOpen);
   };
 
-  const handleSignOut = () => {
-    dispatch(signOut());
-    navigate('/');  // Adjust as necessary based on your routing setup
-  };
+  const handleSignOut = async () => {
+    try {
+        // Making a GET request to the logout endpoint
+        const response = await fetch('/api/auth/signOut', {
+            method: 'GET', // this is a get method according to backend
+            credentials: 'include' // taking with us the cookie, so it is gone
+        });
+        if (response.ok) {
+            dispatch(signOut());
+            navigate('/'); // redirect to homepage
+        } else {
+            throw new Error('Logout failed');
+        }
+    } catch (error) {
+        console.error('Logout error:', error);
+    }
+};
 
   const navStyle = {
     position: 'fixed',

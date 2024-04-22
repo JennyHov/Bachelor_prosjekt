@@ -1,6 +1,5 @@
-
-import PrivateRoute from './components/PrivateRoute';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 import { ProfileProvider } from './contexts/ProfileContext'; 
 
 import About from './pages/About';
@@ -34,7 +33,7 @@ function App() {
     <BrowserRouter>
     
     <ScrollToTop />
-    <ProfileProvider>
+      <ProfileProvider>
       <Header />
        <Routes>
         <Route path="/" element={<Home/>} />
@@ -57,12 +56,12 @@ function App() {
 
         <Route path="/events/:eventId" element={<Events />} />
 
-        <Route element={<PrivateRoute />} >
-          <Route path="/user-profile" element={<Profile />} />
-        </Route>
-        <Route element={<PrivateRoute requireAdmin={true} />}>
-          <Route path="/users" element={<Users />} />
-        </Route> 
+        <Route path="/create-profile" element={<PrivateRoute><CreateProfile /></PrivateRoute>} />
+        <Route path="/profiles" element={<PrivateRoute><AllProfiles /></PrivateRoute>} />
+        <Route path="/collaborate" element={<PrivateRoute><Collaborate /></PrivateRoute>} />
+        <Route path="/userprofile" element={<PrivateRoute><UserProfileInformation /></PrivateRoute>} />
+        <Route path="/user-profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+        <Route path="/users" element={<PrivateRoute requireAdmin={true}><Users /></PrivateRoute>} />
         </Routes>
         <Footer />
       </ProfileProvider>
