@@ -2,7 +2,6 @@
 
 import Profile from '../models/profile.model.js';
 
-
 export const createOrUpdateProfile = async (req, res) => {
     const { fullName, email, institution, description, category, role } = req.body;
     const userId = req.user.id;  // Fra verifisert token
@@ -32,7 +31,7 @@ export const createOrUpdateProfile = async (req, res) => {
 
 
 
-/// In your profile.controller.js
+// controllers/profile.controller.js
 
 export const getProfiles = async (req, res) => {
     try {
