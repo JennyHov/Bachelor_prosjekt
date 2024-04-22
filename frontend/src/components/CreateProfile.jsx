@@ -89,7 +89,6 @@ export default function CreateProfile() {
                             <label htmlFor="description" className="form-label">Description</label>
                             <textarea className="form-control" name="description" value={profileData.description} onChange={handleChange} rows="3" placeholder="Write a description about what you're looking for or tell about yourself and ideas!" required></textarea>                        
                         </div>
-                        // In your CreateProfile.jsx component
                         <div className="form-group">
                             <label htmlFor="category" className="form-label">Category</label>
                             <select 

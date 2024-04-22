@@ -14,7 +14,7 @@ const AllProfiles = () => {
                     <div key={profile._id} className="col-md-3 coprofile">
                         <div className="coprof-image-content">
                             <div className="coprofile-image">
-                                <img className="coprofile-img" src={profile.imageUrl || 'defaultImagePath.jpg'} alt="Profile" />
+                            <img className="coprofile-img" src={profile.profileImage || 'https://example.com/path/to/default-profile-image.jpg'} alt="Profile" />
                             </div>
                         </div>
                         <div className="coprofile-content">

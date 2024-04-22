@@ -32,12 +32,15 @@ export const createOrUpdateProfile = async (req, res) => {
 
 
 
-// controllers/profile.controller.js
+/// In your profile.controller.js
 
 export const getProfiles = async (req, res) => {
     try {
-        const profiles = await Profile.find();
-        res.status(200).json(profiles);
+        const profiles = await Profile.find().populate('user', 'profileImage'); // Adjusting to include profile image from user
+        res.status(200).json(profiles.map(profile => ({
+            ...profile.toObject(),
+            profileImage: profile.user.profileImage // Assuming profile.user is populated
+        })));
     } catch (error) {
         console.error("Failed to fetch profiles:", error);
         res.status(500).json({ message: error.message });
