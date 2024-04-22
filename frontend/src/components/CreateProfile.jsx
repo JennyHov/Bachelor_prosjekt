@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useProfiles } from '../contexts/ProfileContext';
-
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function CreateProfile() {
     const { addOrUpdateProfile } = useProfiles();
@@ -11,10 +11,19 @@ export default function CreateProfile() {
         institution: '',
         description: '',
         category: '',
-        role: ''
+        role: '',
+        profileImageUrl: ''
     });
-
     const currentUser = useSelector(state => state.user.currentUser);
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        const storage = getStorage();
+        const storageRef = ref(storage, `profile_images/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        const url = await getDownloadURL(storageRef);
+        setProfileData({ ...profileData, profileImageUrl: url });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +31,6 @@ export default function CreateProfile() {
             console.error("User must be logged in to update profile");
             return;
         }
-        console.log(profileData);  // Check what data is being sent
         try {
             const method = profileData._id ? 'PUT' : 'POST';
             const endpoint = profileData._id ? `/api/profiles/${profileData._id}` : '/api/profiles';
@@ -40,8 +48,6 @@ export default function CreateProfile() {
             console.error('Failed to submit profile:', error);
         }
     };
-    
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setProfileData(prev => ({
@@ -49,7 +55,6 @@ export default function CreateProfile() {
             [name]: value
         }));
     };
-
     if (!currentUser) {
         return (
             <div className="container page-container">
@@ -59,6 +64,7 @@ export default function CreateProfile() {
             </div>
         );
     }
+    
     return (
         <div className="container page-container">
         <div className="row justify-content-center align-items-center gap-3">
@@ -73,6 +79,10 @@ export default function CreateProfile() {
                 </div>
                 <div className="form-container">
                     <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="profileImage">Profile Image</label>
+                            <input type="file" className="form-control" onChange={handleImageUpload} />
+                        </div>
                         <div className="form-group">
                             <label htmlFor="fullName" className="form-label">Full Name</label>
                             <input type="text" className="form-control" name="fullName" value={profileData.fullName} onChange={handleChange} placeholder="Enter your full name" required />

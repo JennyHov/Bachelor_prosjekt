@@ -3,31 +3,28 @@
 import Profile from '../models/profile.model.js';
 
 export const createOrUpdateProfile = async (req, res) => {
-    const { fullName, email, institution, description, category, role } = req.body;
-    const userId = req.user.id;  // Fra verifisert token
+    const { fullName, email, institution, description, category, role, profileImageUrl } = req.body; // include profileImageUrl in the destructuring
+    const userId = req.user.id;
 
     try {
-        const existingProfile = await Profile.findOne({ user: userId });
-        if (!existingProfile) {
-            console.log("No existing profile found. Creating new one.");
-            const profile = new Profile({ fullName, email, institution, description, category, role, user: userId });
+        let profile = await Profile.findOne({ user: userId });
+        if (!profile) {
+            profile = new Profile({ fullName, email, institution, description, category, role, user: userId, profileImageUrl }); // include profileImageUrl here
             await profile.save();
-            return res.status(201).json(profile);
+        } else {
+            if (profile.user.toString() !== userId) {
+                return res.status(403).json({ message: "Not authorized to update this profile" });
+            }
+            profile = await Profile.findByIdAndUpdate(profile._id, { fullName, email, institution, description, category, role, profileImageUrl }, { new: true }); // and here
         }
-
-        if (existingProfile.user.toString() !== userId) {
-            return res.status(403).json({ message: "Not authorized to update this profile" });
-        }
-
-        console.log("Updating existing profile for user ID:", userId);
-        const updatedProfile = await Profile.findByIdAndUpdate(existingProfile._id, { fullName, email, institution, description, category, role }, { new: true });
-        console.log("Profile updated successfully:", updatedProfile);
-        res.status(200).json(updatedProfile);
+        console.log("Profile updated successfully:", profile);
+        res.status(200).json(profile);
     } catch (error) {
         console.error("Error at profile creation/update:", error);
         res.status(500).json({ message: error.message });
     }
 };
+
 
 
 
@@ -66,7 +63,7 @@ export const getProfileByUserId = async (req, res) => {
 
 export const deleteProfile = async (req, res) => {
     const profileId = req.params.id;
-    const userId = req.user.id;  // Assuming req.user is populated from the verifiedToken middleware
+    const userId = req.user.id;  // Brukerens ID fra token etter verifisering
 
     try {
         const profile = await Profile.findById(profileId);
@@ -74,7 +71,7 @@ export const deleteProfile = async (req, res) => {
             return res.status(404).json({ message: "Profile not found" });
         }
 
-        // Check if the current user is the profile owner or an admin
+        // Sjekk om den nåværende brukeren er eieren av profilen eller en admin
         if (profile.user.toString() === userId || req.user.role === 'admin') {
             await Profile.deleteOne({ _id: profileId });
             res.status(200).json({ message: "Profile deleted successfully" });
@@ -85,4 +82,3 @@ export const deleteProfile = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-

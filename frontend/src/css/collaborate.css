@@ -52,6 +52,7 @@
     border-radius: 50%;
     background: #FFF;
     padding: 3px;
+    max-width: 45%;
 }
 
 .coprofile-image .coprofile-img {
