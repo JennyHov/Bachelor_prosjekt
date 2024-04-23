@@ -38,11 +38,16 @@ export const ProfileProvider = ({ children }) => {
             setProfiles(prev => [...prev, profile]);
         }
     };
+    const removeProfile = (profileId) => {
+        setProfiles(prevProfiles => prevProfiles.filter(profile => profile._id !== profileId));
+      };
+      
 
     return (
-        <ProfileContext.Provider value={{ profiles, loading, error, addOrUpdateProfile, fetchProfiles }}>
+        <ProfileContext.Provider value={{ profiles, loading, error, addOrUpdateProfile, fetchProfiles, removeProfile }}>
             {children}
         </ProfileContext.Provider>
+
     );
 };
 

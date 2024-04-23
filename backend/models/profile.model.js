@@ -9,7 +9,8 @@ const profileSchema = mongoose.Schema({
     description: { type: String, required: true },
     category: { type: String, required: true, enum: ['Academic', 'Industry'] },
     role: { type: String, required: true, enum: ['Student', 'Group'] },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    profileImageUrl: { type: String } 
 }, { timestamps: true });
 
 const Profile = mongoose.model('Profile', profileSchema);
