@@ -5,8 +5,46 @@ export const fetchCurrentUser = createAsyncThunk(
   'user/fetchCurrentUser',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/users/${userId}`);
-      if (!response.ok) throw new Error('Network response was not ok');
+      const token = localStorage.getItem('token'); 
+      console.log("Retrieved token:", token);
+      const response = await fetch(`/api/user/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Failed to fetch user:', errorData.message);
+        throw new Error(errorData.message);
+      }
+      const data = await response.json();
+      console.log('Fetched user data:', userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUserProfile = createAsyncThunk(
+  'user/updateUserProfile',
+  async (updatedUserData, { rejectWithValue }) => {
+    try {
+      // Make a PUT request to update the user profile
+      const response = await fetch(`/api/user/${updatedUserData.userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUserData),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+      
       const data = await response.json();
       return data;
     } catch (error) {
@@ -14,6 +52,11 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+
+export const setCurrentUser = (userData) => ({
+  type: 'SET_CURRENT_USER',
+  payload: userData,
+});
 
 const initialState = {
   currentUser: null,
@@ -76,6 +119,7 @@ const userSlice = createSlice({
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.currentUser = action.payload;
         state.loading = false;
+        state.error = false;
       })
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         state.loading = false;
@@ -87,7 +131,7 @@ const userSlice = createSlice({
       })
       .addCase(changePassword.fulfilled, (state) => {
         state.loading = false;
-        // Handle password change success if needed
+        state.error = false;
       })
       .addCase(changePassword.rejected, (state, action) => {
         state.loading = false;
@@ -96,6 +140,6 @@ const userSlice = createSlice({
   },
 });
   
-export const { signOut, initialDeleteUser, endDeleteUser, failDeleteUser, initialSignIn, endSignIn, failSignIn, initialUpdatedUser, endUpdatedUser, failUpdatedUser } = userSlice.actions;
+export const { signOut, initialDeleteUser, endDeleteUser, failDeleteUser, initialSignIn, endSignIn, failSignIn, initialUpdatedUser, endUpdatedUser, failUpdatedUser  } = userSlice.actions;
 
 export default userSlice.reducer;

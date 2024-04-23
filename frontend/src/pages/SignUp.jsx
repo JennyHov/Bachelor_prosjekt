@@ -68,7 +68,7 @@ export default function SignUp() {
           <span>Sign in</span>
         </Link>
       </div>
-      <p>{error && 'Something went wrong!'}</p>
+      {error && 'Something went wrong!'}
     </div>
   )
 }

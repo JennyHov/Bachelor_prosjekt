@@ -13,7 +13,7 @@ export const ProfileProvider = ({ children }) => {
 
     const fetchProfiles = async () => {
         try {
-            const response = await fetch('/api/profiles');
+            const response = await fetch('/api/profiles/profiles');
             const data = await response.json();
             if (response.ok) {
                 setProfiles(data);

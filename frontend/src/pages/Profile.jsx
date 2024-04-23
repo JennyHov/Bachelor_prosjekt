@@ -159,7 +159,7 @@ export default function Profile() {
           <span onClick={handleAccountDeletion}>Delete Account</span>
           <span onClick={handleSigningOut}>Sign out</span>
         </div>
-        <p>{error && "Something went wrong!"}</p>
+        {error && "Something went wrong!"}
           <p>
             {successfulUpdate && "User has been updated!"}
           </p>

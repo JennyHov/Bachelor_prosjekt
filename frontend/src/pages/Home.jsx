@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <p>{greeting()}</p>
+      {greeting()}
       {
         currentUser && currentUser.role === "admin" && (
           <button style={{marginTop: "20px"}}>

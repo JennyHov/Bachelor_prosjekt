@@ -1,4 +1,5 @@
 import { initialSignIn, endSignIn, failSignIn } from '../Redux/userStates/usersSlicer';
+import { login, setToken } from '../Redux/userStates/authSlicer';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -84,6 +85,9 @@ const LoginPopup = ({ isOpen, onClose }) => {
                 dispatching(failSignIn(data));
                 return;
             }
+
+            const token = res.headers.get('Authorization');            
+            dispatching(login(token));
             dispatching(endSignIn(data));
             navigate('/');
             onClose();

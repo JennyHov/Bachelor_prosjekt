@@ -64,7 +64,7 @@ export default function SignIn() {
           <span>Sign up</span>
         </Link>
       </div>
-      <p>{error ? error.message || 'Something went wrong!' : ''}</p>
+      {error ? error.message || 'Something went wrong!' : ''}
     </div>
   )
 }

@@ -8,23 +8,44 @@ export const test = (req, res) => {
     });
 };
 
-export const updateUser = async (req, res, next) => {
-    const { fullName, email, profileImage } = req.body;
-    const userId = req.params.id;
-    
+export const getUserById = async (req, res) => {
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        { fullName, email, profileImage },
-        { new: true }
-      );
-  
-      const { password, ...rest } = updatedUser._doc;
-      res.status(200).json(rest);
+        const user = await User.findById(req.params.userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(user);
     } catch (error) {
-      next(error);
+        res.status(500).json({ message: error.message });
     }
-  };
+};
+
+export const updateUser = async (req, res) => {
+    const { fullName, email, institution, description, category, role } = req.body;
+    const userId = req.user.id;  // Fra verifisert token
+
+    try {
+        const existingUser = await User.findOne({ user: userId });
+        if (!existingUser) {
+            console.log("No existing user found. Creating new one.");
+            const user = new User({ fullName, email, institution, description, category, role, user: userId });
+            await user.save();
+            return res.status(201).json(user);
+        }
+
+        if (existingUser.user.toString() !== userId) {
+            return res.status(403).json({ message: "Not authorized to update this user" });
+        }
+
+        console.log("Updating existing user for user ID:", userId);
+        const updatedUser = await User.findByIdAndUpdate(existingUser._id, { fullName, email, institution, description, category, role }, { new: true });
+        console.log("User updated successfully:", updatedUser);
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error("Error at user creation/update:", error);
+        res.status(500).json({ message: error.message });
+    }
+};
 
 export const deleteUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) {

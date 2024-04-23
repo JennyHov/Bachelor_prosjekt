@@ -16,7 +16,7 @@ export default function CreateProfile() {
         e.preventDefault();
         try {
             const method = profileData._id ? 'PUT' : 'POST';
-            const endpoint = profileData._id ? `/api/profiles/${profileData._id}` : '/api/profiles';
+            const endpoint = profileData._id ? `/api/profiles/profiles/${profileData._id}` : '/api/profiles/profiles';
             const response = await fetch(endpoint, {
                 method,
                 headers: { 'Content-Type': 'application/json' },

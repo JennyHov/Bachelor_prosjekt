@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../../Redux/userStates/usersSlicer.js';
+import { updateUserProfile } from '../../Redux/userStates/usersSlicer.js';
+import { signOut, initialDeleteUser, endDeleteUser, failDeleteUser, initialUpdatedUser, endUpdatedUser, failUpdatedUser } from '../../Redux/userStates/usersSlicer';
 import { fetchCurrentUser } from '../../Redux/userStates/usersSlicer.js';
 import { changePassword } from '../../Redux/userStates/userActions.js';
 
@@ -9,24 +10,28 @@ import '../../css/profile.css';
 import personalprofileImage from '../../../../assets/images/profile/personal_profile.png';
 import rocketImage from '../../../../assets/images/home/rocket.png';
 import collaborationprofileImage from '../../../../assets/images/profile/collaboration_profile.png';
+import { change_password_failure } from '../../Redux/userStates/actionTypes.js';
 
 const ProfileInformation = () => {
-  const { currentUser, loading, error } = useSelector(state => state.user); 
+  const { currentUser, loading, error } = useSelector((state) => state.user); 
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
-  const dispatch = useDispatch();
+  const [customAlertMessage, setCustomAlertMessage] = useState(''); // State for custom alert message
+  const [showCustomAlert, setShowCustomAlert] = useState(false); // State to control visibility of custom alert
+  const [updatedFullName, setUpdatedFullName] = useState(''); // Define updatedFullName state
+  const [updatedEmail, setUpdatedEmail] = useState(''); // Define updatedEmail state
+  const [formData, setFormData] = useState('');
   
-  useEffect(() => {
-    if (!currentUser) {
-      // Assuming you have access to the userId from somewhere (e.g., auth token)
-      dispatch(fetchCurrentUser(userId));
-    }
-  }, [dispatch, currentUser]);
+  const dispatch = useDispatch();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    // Check if currentUser is not null or undefined before dispatching fetchCurrentUser
+    if (currentUser && currentUser._id) {
+      dispatch(fetchCurrentUser(currentUser._id)); // Pass currentUser._id as userId
+    }
+  }, [currentUser, dispatch]);
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -40,20 +45,51 @@ const ProfileInformation = () => {
   
     // Validate if the new passwords match
     if (newPassword !== confirmNewPassword) {
-      alert("New passwords do not match!");
+      setCustomAlertMessage("New passwords do not match!");
+      setCustomAlertMessage(true);
       return;
     }
   
     try {
       // Dispatch the changePassword action with userId
       dispatch(changePassword(currentUser._id, currentPassword, newPassword));
-      alert("Password changed successfully!");
+      setCustomAlertMessage("Password changed successfully!");
+      setCustomAlertMessage(true);
     } catch (error) {
-      // Handle any errors
-      console.error("Error changing password:", error);
-      alert("Failed to change password. Please try again.");
+      setCustomAlertMessage("Failed to change password. Please try again", error);
+      setCustomAlertMessage(true);
+      console.error ("Error chaning password: ", error);
     }
   };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Check if the logged-in user is authorized to update the profile
+      if (currentUser && currentUser._id) {
+        const formData = {
+          fullName: updatedFullName,
+          email: updatedEmail,
+          // Add other fields as needed
+        };
+        const result = updateUserProfile(currentUser._id, formData);
+        if (result.success) {
+          setSuccessfulUpdate(true);
+        } else {
+          // Handle error, show error message, etc.
+          console.error("Error updating profile:", result.message);
+        }
+      } else {
+        // If the logged-in user is not authorized, display an error message or prevent submission
+        console.error("Unauthorized: You can only update your own profile");
+      }
+    } catch (error) {
+      // Handle error, show error message, etc.
+      console.error("Error updating profile:", error);
+    }
+  };
+  
 
     return (
       <div className="container page-container">
@@ -63,19 +99,37 @@ const ProfileInformation = () => {
               <div className='title-container'>
                 <h1 className="profile-title">My Profile</h1>
               </div>
-              <form>
-                <div className="form-container">
-                <div className="form-group form-box">
-                  <label htmlFor="fullName" className="form-label">Full Name</label>
-                  <input type="text" className="form-control form-input" id="fullName" value={currentUser.fullName} readOnly />
-                </div>
-                <div className="form-group form-box">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <input type="email" className="form-control form-input" id="email" value={currentUser.email} readOnly />
-                </div>
-                </div>
+              <form onSubmit={handleSubmit} className='form-container'>
+                {currentUser && (
+                  <>
+                  <div className="form-group form-box">
+                    <label htmlFor="fullName" className="form-label">Full Name</label>
+                    <input 
+                      type="text" 
+                      className="form-control form-input" 
+                      id="fullName" 
+                      value={updatedFullName} 
+                      onChange={(e) => setUpdatedFullName(e.target.value)} 
+                    />                
+                  </div>
+                  <div className="form-group form-box">
+                      <label htmlFor="email" className="form-label">Email</label>
+                      <input 
+                        type="email" 
+                        className="form-control form-input" 
+                        id="email" 
+                        value={updatedEmail} 
+                        onChange={(e) => setUpdatedEmail(e.target.value)}
+                      />                
+                  </div>
+                  <button className='btn secondary-button'>
+                    {loading ? "Loading in progress..." : "Update"}
+                  </button>
+                  </>
+                )}
               </form>
               <form onSubmit={handlePasswordChange} className='form-container'>
+              {showCustomAlert && <CustomAlert message={customAlertMessage} onClose={() => setShowCustomAlert(false)} />}
                   <div className="form-group form-box">
                     <label htmlFor="newPassword" className="form-label">New Password</label>
                     <input 
