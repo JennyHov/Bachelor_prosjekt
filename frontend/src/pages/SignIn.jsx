@@ -38,7 +38,7 @@ export default function SignIn() {
     }
   };
   return (
-    <div>
+    <div className="signup-container">
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit}>
         <input

@@ -1,0 +1,7 @@
+.signup-container {
+    z-index: 1000;
+    margin-top: 120px; /* Justert opp fra 20px til 120px for å kompensere for countdown-banneret */
+    position: relative;
+    display: block;
+    min-height: 400px; /* Minimumshøyde for å sikre synlighet og tilstrekkelig plass */
+}
