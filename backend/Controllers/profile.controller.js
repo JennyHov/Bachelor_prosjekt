@@ -82,3 +82,21 @@ export const deleteProfile = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+// Server-side controller to handle the search
+export const searchProfiles = async (req, res) => {
+    const { search, institution, role, category } = req.query;
+    let query = {};
+
+    if (search) query.fullName = { $regex: search, $options: 'i' };
+    if (institution) query.institution = institution;
+    if (role) query.role = role;
+    if (category) query.category = category;
+
+    try {
+        const profiles = await Profile.find(query).populate('user');
+        res.json(profiles);
+    } catch (error) {
+        console.error("Failed to search profiles:", error);
+        res.status(500).json({ message: "Internal Server Error - Unable to search profiles" });
+    }
+};

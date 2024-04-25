@@ -11,22 +11,39 @@ export const ProfileProvider = ({ children }) => {
         fetchProfiles();
     }, []);
 
-    const fetchProfiles = async () => {
+    const fetchProfiles = async (search = '', institution = '', role = '', category = '') => {
+        const params = new URLSearchParams({
+            ...(search && { search }),
+            ...(institution && { institution }),
+            ...(role && { role }),
+            ...(category && { category })
+        });
+    
         try {
-            const response = await fetch('/api/profiles/profiles');
-            const data = await response.json();
-            if (response.ok) {
-                setProfiles(data);
-            } else {
-                throw new Error('Unable to fetch profiles');
+            const response = await fetch(`/api/profiles/search?${params.toString()}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+    
+            const data = await response.json();
+            setProfiles(data);
         } catch (error) {
-            setError(error.message);
-            console.error("Error fetching profiles:", error.message);
+            setError(`Failed to fetch profiles: ${error.toString()}`);
+            console.error("Error fetching profiles:", error);
         } finally {
             setLoading(false);
         }
     };
+    
+    
+    
+    
 
     const addOrUpdateProfile = (profile) => {
         const index = profiles.findIndex(p => p._id === profile._id);

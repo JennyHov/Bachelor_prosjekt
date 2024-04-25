@@ -53,6 +53,7 @@ app.use('/api/user', userRoutes);
 app.use("/api/auth", authRoutes);
 app.use('/api/profiles', profileRoutes);
 
+
 app.use('/api/application-form', applicationFormRoutes);
 app.use('/api/contact-form', contactFormRoutes);
 app.use('/api/counseling-form', counselingFormRoutes);

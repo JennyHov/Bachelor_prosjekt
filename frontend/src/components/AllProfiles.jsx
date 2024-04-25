@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useProfiles } from '../contexts/ProfileContext';
 import { useSelector } from 'react-redux';
+import '../css/searchBar.css';
 
 
 const AllProfiles = () => {
-    const { profiles, loading, error, removeProfile } = useProfiles();
+    const { profiles, loading, error, removeProfile, fetchProfiles } = useProfiles();
     const currentUser = useSelector((state) => state.user.currentUser);
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [institution, setInstitution] = useState('');
+    const [role, setRole] = useState('');
+    const [category, setCategory] = useState('');
 
-    if (loading) return <div>Loading profiles...</div>;
-    if (error) return <div>Error loading profiles: {error}</div>;
+
 
 
     const deleteProfileHandler = async (profileId) => {
@@ -38,9 +42,60 @@ const AllProfiles = () => {
         }
       };
       
+      const handleSearch = (event) => {
+        if (event.key === 'Enter') {
+            fetchProfiles(searchTerm, institution, role, category);
+        }
+    };
+      
+
+    useEffect(() => {
+      fetchProfiles(searchTerm, institution, role, category);
+  }, [searchTerm, institution, role, category]);
+
+  const handleKeyPress = (e) => {
+  if (e.key === 'Enter') {
+    fetchProfiles(searchTerm, institution, role, category);
+  }
+};
 
     return (
         <div className='container'>
+          <div className="filter-controls">
+                <input
+                    type="text"
+                    placeholder='Search by name'
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyPress={handleSearch} // Lytt til 'Enter'-tasten
+                    className="search-input"
+                />
+                <div className="filter-selectors">
+                    <select value={institution} onChange={(e) => setInstitution(e.target.value)} className="filter-selector">
+                        <option value="">All Institutions</option>
+                        <option value="BI">BI</option>
+                        <option value="Oslomet">Oslomet</option>
+                        <option value="UiO">UiO</option>
+                        <option value="NTNU">NTNU</option>
+                        <option value="Other">Other</option> 
+                    </select>
+                    <select value={role} onChange={(e) => setRole(e.target.value)} className="filter-selector">
+                        <option value="">All Roles</option>
+                        <option value="Student">Student</option>
+                        <option value="Group">Group</option>
+                    </select>
+                    <select value={category} onChange={(e) => setCategory(e.target.value)} className="filter-selector">
+                        <option value="">All Categories</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Industry">Industry</option>
+                    </select>
+                </div>
+            </div>
+
+
+            {loading && <div>Loading profiles...</div>}
+            {error && <div>Error loading profiles: {error}</div>}
+
             <div className="row profile-row">
                 {profiles.map(profile => (
                     <div key={profile._id} className="col-md-3 coprofile">

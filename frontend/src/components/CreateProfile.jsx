@@ -93,7 +93,14 @@ export default function CreateProfile() {
                         </div>
                         <div className="form-group">
                             <label htmlFor="institution" className="form-label">Institution</label>
-                            <input type="text" className="form-control" name="institution" value={profileData.institution} onChange={handleChange} placeholder="Enter your institution" required />
+                            <select className="form-select" name="institution" value={profileData.institution} onChange={handleChange} required>
+                                <option value="">Select an Institution</option>
+                                <option value="BI">BI</option>
+                                <option value="Oslomet">Oslomet</option>
+                                <option value="UiO">UiO</option>
+                                <option value="NTNU">NTNU</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         <div className="form-group">
                             <label htmlFor="description" className="form-label">Description</label>
