@@ -96,6 +96,9 @@ const NavigationBar = () => {
                 <NavLink to="/about-us" className="nav-item nav-link underline" id='aboutLink' activeclassName="active">About Us</NavLink>
                 <NavLink to="/criteria" className="nav-item nav-link underline" id='criteriaLink' activeclassName="active">Process</NavLink>
                 <NavLink to="/contact-us" className="nav-item nav-link underline" id='contactLink' activeclassName="active">Contact Us</NavLink>
+                {currentUser && currentUser.role === 'admin' && (
+                  <NavLink to="/dashboard" className="nav-item nav-link underline" activeclassName="active">Dashboard</NavLink>
+                )}
               </div>
 
               <div className="navbar-nav ms-auto d-flex align-items-center px-5">

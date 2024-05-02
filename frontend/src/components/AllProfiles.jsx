@@ -111,14 +111,6 @@ const AllProfiles = () => {
                             <p className="coprofile-description">{profile.description}</p>
                             <p className="coprofile-email"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
                         </div>
-                        {currentUser && (currentUser._id === profile.user._id || currentUser.role === 'admin') && (
-                        <button
-                            onClick={() => deleteProfileHandler(profile._id)}
-                            className="delete-profile-button"
-                        >
-                            Delete Profile
-                        </button>
-                        )}
                     </div>
                 ))}
             </div>

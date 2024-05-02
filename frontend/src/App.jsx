@@ -6,7 +6,7 @@ import About from './pages/About';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
-import Users from './pages/Users';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 import Footer from './pages/Shared/Footer';
 import Header from './pages/Shared/Header';
@@ -61,7 +61,7 @@ function App() {
         <Route path="/collaborate" element={<PrivateRoute><Collaborate /></PrivateRoute>} />
         <Route path="/userprofile" element={<PrivateRoute><UserProfileInformation /></PrivateRoute>} />
         <Route path="/user-profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-        <Route path="/users" element={<PrivateRoute requireAdmin={true}><Users /></PrivateRoute>} />
+        <Route path="/dashboard" element={<PrivateRoute requireAdmin={true}><Dashboard /></PrivateRoute>} />
         </Routes>
         <Footer />
       </ProfileProvider>

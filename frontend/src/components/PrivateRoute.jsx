@@ -1,20 +1,14 @@
 import { useSelector } from 'react-redux';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import React from 'react';
 
-// Legger til en parameter for å spesifisere om ruten krever admin-rettigheter
-export default function PrivateRoute({ requireAdmin = false }) {
-    const { currentUser } = useSelector((state) => state.user);
-
-    // Sjekker først om brukeren er innlogget
-    if (!currentUser) {
-        return <Navigate to="/sign-in" />;
-    }
-
-    // Så, hvis ruten krever admin og den innloggede brukeren ikke er admin, omdirigerer
-    if (requireAdmin && currentUser.role !== "admin") {
+export default function PrivateRoute({ children, requireAdmin = false }) {
+    const { currentUser } = useSelector(state => state.user);
+    // check to see not-logged in or non-admin try to access
+    if (!currentUser || (requireAdmin && currentUser.role !== "admin")) {
         return <Navigate to="/" />;
     }
 
-    return <Outlet />;
+    // Render children hvis brukeren er gyldig og har tilstrekkelige rettigheter
+    return children;
 }

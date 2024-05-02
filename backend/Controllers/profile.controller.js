@@ -59,29 +59,7 @@ export const getProfileByUserId = async (req, res) => {
     }
 };
 
-// controllers/profile.controller.js
 
-export const deleteProfile = async (req, res) => {
-    const profileId = req.params.id;
-    const userId = req.user.id;  // Brukerens ID fra token etter verifisering
-
-    try {
-        const profile = await Profile.findById(profileId);
-        if (!profile) {
-            return res.status(404).json({ message: "Profile not found" });
-        }
-
-        // Sjekk om den nåværende brukeren er eieren av profilen eller en admin
-        if (profile.user.toString() === userId || req.user.role === 'admin') {
-            await Profile.deleteOne({ _id: profileId });
-            res.status(200).json({ message: "Profile deleted successfully" });
-        } else {
-            res.status(403).json({ message: "Not authorized to delete this profile" });
-        }
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
 // Server-side controller to handle the search
 export const searchProfiles = async (req, res) => {
     const { search, institution, role, category } = req.query;
