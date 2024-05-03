@@ -20,6 +20,7 @@ export const getUserById = async (req, res) => {
     }
 };
 
+
 export const updateUser = async (req, res) => {
     const { fullName, email, institution, description, category, role } = req.body;
     const userId = req.user.id;  // Fra verifisert token
@@ -87,3 +88,55 @@ export const deleteUser = async (req, res, next) => {
         res.status(500).json({ message: 'Failed to change password. Please try again.' });
     }
   };
+
+
+  export const updateUserProfile = async (req, res, next) => {
+    if (req.user.id !== req.params.id) {
+      return next(errorHandler(401, 'You can update only your account!'));
+    }
+    try {
+      if (req.body.password) {
+        req.body.password = bcryptjs.hashSync(req.body.password, 10);
+      }
+  
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: {
+            fullName: req.body.fullName,
+            email: req.body.email,
+            password: req.body.password,
+            profilePicture: req.body.profilePicture,
+          },
+        },
+        { new: true }
+      );
+      const { password, ...rest } = updatedUser._doc;
+      res.status(200).json(rest);
+    } catch (error) {
+      next(error);
+    }
+  };
+  
+  export const updateBasicInfo = async (req, res, next) => {
+    if (req.user.id !== req.params.id) {
+        return next(errorHandler(401, 'You can update only your account!'));
+    }
+    try {
+        const updateFields = {
+            fullName: req.body.fullName,  // Update fullName
+            email: req.body.email         // Update email
+        };
+
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            { $set: updateFields },
+            { new: true }
+        );
+        // Destructuring to omit the password and any other sensitive info from the response
+        const { password, ...rest } = updatedUser._doc;
+        res.status(200).json(rest);
+    } catch (error) {
+        next(error);
+    }
+};

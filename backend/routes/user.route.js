@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserById, test, updateUser, deleteUser, changePassword } from '../Controllers/user.controller.js';
+import { updateBasicInfo, getUserById, test, updateUser, deleteUser, changePassword, updateUserProfile} from '../Controllers/user.controller.js';
 import { verifiedToken } from '../utils/authenticatedUser.js';
 
 const router = express.Router();
@@ -12,5 +12,8 @@ router.post("/:userId", verifiedToken, (req, res) => {
 });
 router.delete("/delete/:id", verifiedToken, deleteUser);
 router.post('/:userId/change-password', verifiedToken, changePassword);
+router.post('/update/:id', verifiedToken, updateUserProfile);
+router.post('/update-basic-info/:id', verifiedToken, updateBasicInfo); 
+
 
 export default router;
