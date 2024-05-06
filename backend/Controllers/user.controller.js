@@ -27,7 +27,6 @@ import { errorHandler } from "../utils/error.js";
     }
 };
 
-
 export const updatePassword = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can only update your own account!'));
@@ -36,6 +35,12 @@ export const updatePassword = async (req, res, next) => {
   const { newPassword } = req.body;
   if (!newPassword) {
     return res.status(400).json({ message: "New password is required." });
+  }
+
+  // Regulært uttrykk for å validere passord
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  if (!passwordRegex.test(newPassword)) {
+    return res.status(400).json({ message: "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number." });
   }
 
   try {

@@ -15,12 +15,13 @@ const ProfileInformation = () => {
     newPassword: '',
     confirmNewPassword: ''
   });
+  const [error, setError] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
   const [loadingBasicInfo, setLoadingBasicInfo] = useState(false);
   const [loadingPassword, setLoadingPassword] = useState(false);
   const dispatch = useDispatch();
-  const { currentUser, loading, error } = useSelector(state => state.user);
+  const { currentUser } = useSelector(state => state.user);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -53,30 +54,33 @@ const ProfileInformation = () => {
   const handlePasswordUpdateSubmit = async (e) => {
     e.preventDefault();
     setLoadingPassword(true);
+  
     if (formData.newPassword !== formData.confirmNewPassword) {
-      alert("Passwords do not match.");
+      setError("Passwords do not match.");
+      setLoadingPassword(false);
       return;
     }
-
-    dispatch(initialUpdatedUser());
+  
     try {
       const response = await fetch(`/api/user/update-password/${currentUser._id}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newPassword: formData.newPassword }),
       });
       const data = await response.json();
+  
       if (!data.success) {
-        dispatch(failUpdatedUser(data.message || "Password update failed"));
-        return;
+        setError(data.message); // Bruk serverens feilmelding
+        dispatch(failUpdatedUser(data.message));
+      } else {
+        dispatch(endUpdatedUser("Password updated successfully"));
+        setError(''); // Nullstill feilmeldingen hvis oppdateringen var vellykket
       }
-      dispatch(endUpdatedUser("Password updated successfully"));
     } catch (error) {
+      setError("Failed to connect to the server.");
       dispatch(failUpdatedUser(error.toString()));
     } finally {
-      setLoadingPassword(false); // Deaktiver lastetilstand
+      setLoadingPassword(false);
     }
   };
   
@@ -118,6 +122,11 @@ const ProfileInformation = () => {
                   </>
                 )}
               </form>
+              {error && (
+                <div className="alert alert-danger" role="alert" aria-live="assertive">
+                  {error}
+                </div>
+              )}
               <form onSubmit={handlePasswordUpdateSubmit} className='form-container'>
                 <div className="form-group form-box">
                   <label htmlFor="newPassword" className="form-label">New Password</label>
