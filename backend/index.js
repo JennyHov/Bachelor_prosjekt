@@ -16,7 +16,6 @@ import counselingEmailRoutes from './routes/counselingEmail.route.js';
 import contactEmailRoutes from './routes/contactEmail.route.js';
 import profileRoutes from './routes/profile.route.js';
 
-import { changePassword } from './Controllers/user.controller.js';
 
 
 dotenv.config();
