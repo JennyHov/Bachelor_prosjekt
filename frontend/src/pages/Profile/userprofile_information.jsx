@@ -8,6 +8,9 @@ import {
   initialUpdatedUser,
   endUpdatedUser,
   failUpdatedUser,
+  initialDeleteUser,
+  failDeleteUser,
+  endDeleteUser,
 } from '../../Redux/userStates/usersSlicer.js';
 
 const ProfileInformation = () => {
@@ -83,7 +86,24 @@ const ProfileInformation = () => {
       setLoadingPassword(false);
     }
   };
-  
+  const handleDeleteAccount = async () => {
+    try {
+      dispatch(initialDeleteUser());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(failDeleteUser(data));
+        return;
+      }
+      dispatch(endDeleteUser(data));
+    } catch (error) {
+      dispatch(failDeleteUser(error));
+    }
+  };
+
+
     return (
       <div className="container page-container">
         <div style={{ height: '70px' }} />
@@ -171,6 +191,9 @@ const ProfileInformation = () => {
               </div>
               <div className="button-container">
                 <Link to="/collaborate" className="btn btn-primary secondary-button">Create a profile</Link>
+              </div>
+              <div className="container">
+                <button onClick={handleDeleteAccount}>Delete Account</button>
               </div>
             </div>
           </div>
