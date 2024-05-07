@@ -51,6 +51,8 @@ app.use(logger("dev"));
 app.use('/api/user', userRoutes);
 app.use("/api/auth", authRoutes);
 app.use('/api/profiles', profileRoutes);
+app.use('/api', profileRoutes);
+
 
 
 app.use('/api/application-form', applicationFormRoutes);

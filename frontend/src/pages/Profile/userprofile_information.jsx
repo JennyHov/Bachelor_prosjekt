@@ -103,7 +103,22 @@ const ProfileInformation = () => {
     }
   };
 
+  // ProfileInformation component
+const handleDeleteProfile = async () => {
+  try {
+      const response = await fetch(`/api/profile/delete/${currentUser._id}`, {
+          method: 'DELETE'
+      });
+      if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.message || 'Failed to delete profile');
+      }
+  } catch (error) {
+      alert(error.message);
+  }
+};
 
+  
     return (
       <div className="container page-container">
         <div style={{ height: '70px' }} />
@@ -194,6 +209,10 @@ const ProfileInformation = () => {
               </div>
               <div className="container">
                 <button onClick={handleDeleteAccount}>Delete Account</button>
+              </div>
+              <div className="container">
+                <h1>My Profile</h1>
+                <button onClick={handleDeleteProfile}>Delete My Profile</button>
               </div>
             </div>
           </div>

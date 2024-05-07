@@ -78,3 +78,17 @@ export const searchProfiles = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error - Unable to search profiles" });
     }
 };
+
+// controllers/profile.controller.js
+export const deleteUserProfile = async (req, res) => {
+    console.log(`Attempting to delete profile for user with ID: ${req.params.userId}`);
+    try {
+        const profile = await Profile.findOneAndDelete({ user: req.params.userId });
+        if (!profile) {
+            return res.status(404).json({ message: 'Profile not found' });
+        }
+        res.status(200).json({ message: 'Profile deleted successfully.' });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error', error: error.message });
+    }
+};
