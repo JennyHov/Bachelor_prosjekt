@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,6 +27,7 @@ const ProfileInformation = () => {
   const [loadingBasicInfo, setLoadingBasicInfo] = useState(false);
   const [loadingPassword, setLoadingPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { currentUser } = useSelector(state => state.user);
 
   const handleChange = (e) => {
@@ -140,7 +141,7 @@ const ProfileInformation = () => {
       setLoadingPassword(false);
     }
   };
-  const handleDeleteAccount = async () => {
+  const handleDeleteProfile = async () => {
     try {
       dispatch(initialDeleteUser());
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
@@ -154,20 +155,23 @@ const ProfileInformation = () => {
       dispatch(endDeleteUser(data));
       toast.success('Profile deleted successfully!', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         theme: "light",
       });
+      setTimeout(() => {
+        navigate('/');
+    }, 1600);
     } catch (error) {
       dispatch(failDeleteUser(error));
     }
   };
 
   // ProfileInformation component
-const handleDeleteProfile = async () => {
+const handleDeleteCollaborateProfile = async () => {
   try {
       const response = await fetch(`/api/profile/delete/${currentUser._id}`, {
           method: 'DELETE'
@@ -178,7 +182,7 @@ const handleDeleteProfile = async () => {
       }
       toast.success('Collaborate profile deleted successfully!', {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -262,7 +266,12 @@ const handleDeleteProfile = async () => {
                   {loadingPassword ? "Changing Password..." : "Change Password"}
                 </button>
               </form>
+              <div className="container">
+                <button onClick={handleDeleteProfile}>Delete Account</button>
+              </div>
             </div>
+
+            
             <div className='divide-profile'>
                 <span className='divide-profile-line'></span>
             </div>
@@ -276,12 +285,9 @@ const handleDeleteProfile = async () => {
               <div className="button-container">
                 <Link to="/collaborate" className="btn btn-primary secondary-button">Create a profile</Link>
               </div>
+
               <div className="container">
-                <button onClick={handleDeleteAccount}>Delete Account</button>
-              </div>
-              <div className="container">
-                <h1>My Profile</h1>
-                <button onClick={handleDeleteProfile}>Delete My Profile</button>
+                <button onClick={handleDeleteCollaborateProfile}>Delete My Profile</button>
               </div>
             </div>
           </div>
