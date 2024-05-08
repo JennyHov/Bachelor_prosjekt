@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import '../../css/profile.css';
 import {
@@ -48,6 +51,15 @@ const ProfileInformation = () => {
         return;
       }
       dispatch(endUpdatedUser(data));
+      toast.success('Profile updated successfully!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
     } catch (error) {
       dispatch(failUpdatedUser(error.toString()));
     }finally {
@@ -61,6 +73,30 @@ const ProfileInformation = () => {
     if (formData.newPassword !== formData.confirmNewPassword) {
       setError("Passwords do not match.");
       setLoadingPassword(false);
+      toast.error("Passwords do not match.", { // Display this error via toast
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+      return;
+    }
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(formData.newPassword)) {
+      setError("Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number.");
+      setLoadingPassword(false);
+      toast.info("Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
       return;
     }
   
@@ -75,6 +111,15 @@ const ProfileInformation = () => {
       if (!data.success) {
         setError(data.message); // Bruk serverens feilmelding
         dispatch(failUpdatedUser(data.message));
+        toast.success(data.message, { // Use server's error message for toast
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
       } else {
         dispatch(endUpdatedUser("Password updated successfully"));
         setError(''); // Nullstill feilmeldingen hvis oppdateringen var vellykket
@@ -82,6 +127,15 @@ const ProfileInformation = () => {
     } catch (error) {
       setError("Failed to connect to the server.");
       dispatch(failUpdatedUser(error.toString()));
+      toast.info("Failed to connect to the server.", { // Use info toast for connection issues
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
     } finally {
       setLoadingPassword(false);
     }
@@ -98,6 +152,15 @@ const ProfileInformation = () => {
         return;
       }
       dispatch(endDeleteUser(data));
+      toast.success('Profile deleted successfully!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
     } catch (error) {
       dispatch(failDeleteUser(error));
     }
@@ -113,6 +176,15 @@ const handleDeleteProfile = async () => {
           const data = await response.json();
           throw new Error(data.message || 'Failed to delete profile');
       }
+      toast.success('Collaborate profile deleted successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
   } catch (error) {
       alert(error.message);
   }
@@ -120,7 +192,9 @@ const handleDeleteProfile = async () => {
 
   
     return (
+      
       <div className="container page-container">
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnHover draggable theme="light" />
         <div style={{ height: '70px' }} />
           <div className="row justify-content-center gap-3">
             <div className='col-lg-4'>
@@ -157,11 +231,6 @@ const handleDeleteProfile = async () => {
                   </>
                 )}
               </form>
-              {error && (
-                <div className="alert alert-danger" role="alert" aria-live="assertive">
-                  {error}
-                </div>
-              )}
               <form onSubmit={handlePasswordUpdateSubmit} className='form-container'>
                 <div className="form-group form-box">
                   <label htmlFor="newPassword" className="form-label">New Password</label>
