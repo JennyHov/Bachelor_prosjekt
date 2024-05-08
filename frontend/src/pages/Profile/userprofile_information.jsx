@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,7 +21,6 @@ const ProfileInformation = () => {
     newPassword: '',
     confirmNewPassword: ''
   });
-  const [error, setError] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
   const [loadingBasicInfo, setLoadingBasicInfo] = useState(false);
@@ -72,7 +71,6 @@ const ProfileInformation = () => {
     setLoadingPassword(true);
   
     if (formData.newPassword !== formData.confirmNewPassword) {
-      setError("Passwords do not match.");
       setLoadingPassword(false);
       toast.error("Passwords do not match.", { // Display this error via toast
         position: "top-right",
@@ -87,7 +85,6 @@ const ProfileInformation = () => {
     }
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(formData.newPassword)) {
-      setError("Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number.");
       setLoadingPassword(false);
       toast.info("Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number.", {
         position: "top-right",
@@ -110,7 +107,6 @@ const ProfileInformation = () => {
       const data = await response.json();
   
       if (!data.success) {
-        setError(data.message); // Bruk serverens feilmelding
         dispatch(failUpdatedUser(data.message));
         toast.success(data.message, { // Use server's error message for toast
           position: "top-right",
@@ -123,10 +119,8 @@ const ProfileInformation = () => {
         });
       } else {
         dispatch(endUpdatedUser("Password updated successfully"));
-        setError(''); // Nullstill feilmeldingen hvis oppdateringen var vellykket
       }
     } catch (error) {
-      setError("Failed to connect to the server.");
       dispatch(failUpdatedUser(error.toString()));
       toast.info("Failed to connect to the server.", { // Use info toast for connection issues
         position: "top-right",
@@ -182,7 +176,7 @@ const handleDeleteCollaborateProfile = async () => {
       }
       toast.success('Collaborate profile deleted successfully!', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
