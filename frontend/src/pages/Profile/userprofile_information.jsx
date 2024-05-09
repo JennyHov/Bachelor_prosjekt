@@ -165,28 +165,47 @@ const ProfileInformation = () => {
   };
 
   // ProfileInformation component
-const handleDeleteCollaborateProfile = async () => {
-  try {
+  const handleDeleteCollaborateProfile = async () => {
+   try {
       const response = await fetch(`/api/profile/delete/${currentUser._id}`, {
           method: 'DELETE'
       });
-      if (!response.ok) {
-          const data = await response.json();
-          throw new Error(data.message || 'Failed to delete profile');
-      }
-      toast.success('Collaborate profile deleted successfully!', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
+      const data = await response.json();
+      if (response.status === 404) {
+        toast.info(data.message || 'No profile to delete.', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+            });
+        } else if (!response.ok) {
+            throw new Error(data.message || 'Failed to delete profile');
+        } else {
+            toast.success('Collaborate profile deleted successfully!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "light",
+            });
+        }
+      } catch (error) {
+        toast.error(`Error: ${error.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
       });
-  } catch (error) {
-      alert(error.message);
-  }
-};
+      }
+    };
 
   
     return (
@@ -261,7 +280,7 @@ const handleDeleteCollaborateProfile = async () => {
                 </button>
               </form>
               <div className="container">
-                <button onClick={handleDeleteProfile}>Delete Account</button>
+                <button onClick={handleDeleteProfile} className='btn btn-danger secondary-button'>Delete my profile</button>
               </div>
             </div>
 
@@ -277,11 +296,8 @@ const handleDeleteCollaborateProfile = async () => {
                 <p className="description">Do you want to create a profile so others can find and connect with you?</p>
               </div>
               <div className="button-container">
-                <Link to="/collaborate" className="btn btn-primary secondary-button">Create a profile</Link>
-              </div>
-
-              <div className="container">
-                <button onClick={handleDeleteCollaborateProfile}>Delete My Profile</button>
+                <Link to="/collaborate" className="btn btn-primary secondary-button">Create a Collaborate profile</Link>
+                <button onClick={handleDeleteCollaborateProfile} className='btn btn-primary secondary-button'>Delete my Collaborate profile</button>
               </div>
             </div>
           </div>
