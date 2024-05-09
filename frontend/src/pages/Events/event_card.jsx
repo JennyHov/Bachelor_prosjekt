@@ -8,8 +8,7 @@ const EventCard = ({ event }) => {
     const eventTime = formatEventTime(event.start.dateTime, event.end.dateTime);
 
     return (
-        <Link to={`/events/${event.id}`}>
-            <div className="home-event-card">
+            <article id={event.id} className="home-event-card">
                 <div className="home-date p-3">
                     <div className="home-event-date">{startDate}</div>
                 </div>
@@ -17,8 +16,7 @@ const EventCard = ({ event }) => {
                     <h2 className="home-event-title">{event.summary}</h2>
                     <p className="home-event-time">{eventTime}</p>
                 </div>
-            </div> 
-        </Link>
+            </article> 
     );
 };
 

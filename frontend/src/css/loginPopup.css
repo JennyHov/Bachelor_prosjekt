@@ -40,7 +40,7 @@
 
 .google-login-btn {
     width: 100%;
-    background-color: #f2f2f0; /* Google's brand blue */
+    background-color: #f2f2f0; 
     color: black;
     border: none;
     padding: 10px 20px;
@@ -51,7 +51,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7%; /* Creates space between the icon and the text */
+    gap: 7%;
     outline: none;
     transition: background-color 0.2s, box-shadow 0.2s;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -59,13 +59,13 @@
   
 .google-login-btn:hover,
 .google-login-btn:focus {
-    background-color: hsl(0, 0%, 96%); /* A slightly darker blue on hover/focus */
+    background-color: hsl(0, 0%, 96%);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .google-logo {
-    width: 27px; /* Adjust based on your preference */
-    height: 27px; /* Maintain aspect ratio */
+    width: 27px; 
+    height: 27px; 
 }
 
 .sign-in-container {
@@ -74,7 +74,7 @@
 
 .sign-in-btn {
     width: 100%;
-    background-color: var(--button-success); /* Google's brand blue */
+    background-color: var(--button-success); 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -91,19 +91,19 @@
 
 .sign-in-btn:hover,
 .sign-in-btn:focus {
-    background-color: var(--button-success-active); /* A slightly darker blue on hover/focus */
+    background-color: var(--button-success-active);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }  
 
-/* Styles for form container */
+
 .login-form-container {
-    max-width: 80%; /* Adjust as needed */
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 7%;
     margin-bottom: 5%;
   }
   
-  /* Styles for form input boxes */
+
 .login-box {
     margin-bottom: 5%;
 }
@@ -125,7 +125,7 @@
 }
   
 .login-input::placeholder {
-    color: #aaa; /* Placeholder color */
+    color: #aaa; 
 }
   
 .no-account-container {
@@ -171,21 +171,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10%; /* Adjust margin as needed */
-    margin-bottom: 10% /* Adjust margin as needed */
+    margin-top: 10%;
+    margin-bottom: 10%;
   }
   
   .divider-line {
     display: flex;
     align-items: center;
     flex: 1;
-    height: 1px; /* Adjust thickness as needed */
-    background-color: #ccc; /* Adjust color as needed */
+    height: 1px;
+    background-color: #ccc;
   }
   
   .divider-text {
-    margin: 0 10px; /* Adjust margin as needed */
-    color: #ccc; /* Adjust color as needed */
+    margin: 0 10px; 
+    color: #ccc; 
     font-family: 'Inter', sans-serif;
     font-weight: 300;
     display: flex;
@@ -212,6 +212,6 @@
 }
 
 .close-icon {
-    width: 27px; /* Adjust based on your preference */
-    height: 27px; /* Maintain aspect ratio */
+    width: 27px;
+    height: 27px;
 }

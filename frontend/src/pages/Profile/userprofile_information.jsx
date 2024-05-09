@@ -29,6 +29,18 @@ const ProfileInformation = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector(state => state.user);
 
+  const PasswordRequirements = () => (
+    <>
+      <div>Password requirements:</div>
+      <ul>
+        <li>8 characters long</li>
+        <li>1 uppercase letter</li>
+        <li>1 lowercase letter</li>
+        <li>1 number</li>
+      </ul>
+    </>
+  );
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -86,7 +98,7 @@ const ProfileInformation = () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(formData.newPassword)) {
       setLoadingPassword(false);
-      toast.info("Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number.", {
+      toast.info(<PasswordRequirements />, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -242,7 +254,7 @@ const ProfileInformation = () => {
                         onChange={handleChange}
                       />                
                   </div>
-                  <button className='btn secondary-button'>
+                  <button className='secondary-button'>
                     {loadingBasicInfo ? "Loading in progress..." : "Update"}
                   </button>
                   </>
@@ -251,37 +263,42 @@ const ProfileInformation = () => {
               <form onSubmit={handlePasswordUpdateSubmit} className='form-container'>
                 <div className="form-group form-box">
                   <label htmlFor="newPassword" className="form-label">New Password</label>
-                  <input 
+                  <div className='password-input-container'>
+                    <input 
                     type={showNewPassword ? "text" : "password"}
                     className="form-control form-input" 
                     id="newPassword"
                     value={formData.newPassword || ''}
                     onChange={handleChange}
-                  />
-                  <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className='btn secondary-button'>
-                    {showNewPassword ? "Hide" : "Show"}
-                  </button>
+                    />
+                    <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className='show-hide-button'>
+                      {showNewPassword ? "Hide" : "Show"}
+                    </button>
+                  </div>
                 </div>
                 <div className="form-group form-box">
                   <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
-                  <input 
+                  <div className='password-input-container'>
+                    <input 
                     type={showConfirmNewPassword ? "text" : "password"}
                     className="form-control form-input" 
                     id="confirmNewPassword"
                     value={formData.confirmNewPassword || ''}
                     onChange={handleChange}
-                  />
-                  <button type="button" onClick={() => setShowConfirmNewPassword(!showConfirmNewPassword)} className='btn secondary-button'>
-                    {showConfirmNewPassword ? "Hide" : "Show"}
-                  </button>
+                    />
+                    <button type="button" onClick={() => setShowConfirmNewPassword(!showConfirmNewPassword)} className='show-hide-button'>
+                      {showConfirmNewPassword ? "Hide" : "Show"}
+                    </button>
+                    </div>
                 </div>
-                <button type="submit" className='btn secondary-button'>
-                  {loadingPassword ? "Changing Password..." : "Change Password"}
-                </button>
+                <div className='profile-button-container d-flex'>
+                  <button type="submit" className='secondary-button'>
+                    {loadingPassword ? "Changing Password..." : "Change Password"}
+                  </button>
+                  <button onClick={handleDeleteProfile} className='delete-button'>Delete my user</button>
+                </div>
               </form>
-              <div className="container">
-                <button onClick={handleDeleteProfile} className='btn btn-danger secondary-button'>Delete my profile</button>
-              </div>
+              
             </div>
 
             
@@ -293,12 +310,11 @@ const ProfileInformation = () => {
                 <h1 className="profile-title">Collaboration Profile</h1>
               </div>
               <div className="description-container">
-                <p className="description">Do you want to create a profile so others can find and connect with you?</p>
+                <p className="description">Do you want to create a profile so others can find and connect with you?
+                  <Link to="/collaborate" className="text-primary"> Create a profile.</Link>
+                </p>
               </div>
-              <div className="button-container">
-                <Link to="/collaborate" className="btn btn-primary secondary-button">Create a Collaborate profile</Link>
-                <button onClick={handleDeleteCollaborateProfile} className='btn btn-primary secondary-button'>Delete my Collaborate profile</button>
-              </div>
+              <button onClick={handleDeleteCollaborateProfile} className='delete-button'>Delete my collaboration profile</button>
             </div>
           </div>
         </div>

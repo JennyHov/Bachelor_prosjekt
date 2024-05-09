@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useProfiles } from '../contexts/ProfileContext';
 import { useSelector } from 'react-redux';
-import '../css/searchBar.css';
+import '../css/filterBar.css';
 
 
 const AllProfiles = () => {
@@ -61,60 +61,61 @@ const AllProfiles = () => {
 
     return (
         <div className='container'>
-          <div className="filter-controls">
+          <div className='row justify-content-center'>
+            <div className="filter-controls col-md-9 justify-content-center">
                 <input
                     type="text"
                     placeholder='Search by name'
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyPress={handleSearch} // Lytt til 'Enter'-tasten
-                    className="search-input"
+                    className="form-select form-input"
                 />
-                <div className="filter-selectors">
-                    <select value={institution} onChange={(e) => setInstitution(e.target.value)} className="filter-selector">
-                        <option value="">All Institutions</option>
-                        <option value="BI">BI</option>
-                        <option value="Oslomet">Oslomet</option>
-                        <option value="UiO">UiO</option>
-                        <option value="NTNU">NTNU</option>
-                        <option value="Other">Other</option> 
-                    </select>
-                    <select value={role} onChange={(e) => setRole(e.target.value)} className="filter-selector">
-                        <option value="">All Roles</option>
-                        <option value="Student">Student</option>
-                        <option value="Group">Group</option>
-                    </select>
-                    <select value={category} onChange={(e) => setCategory(e.target.value)} className="filter-selector">
-                        <option value="">All Categories</option>
-                        <option value="Academic">Academic</option>
-                        <option value="Industry">Industry</option>
-                    </select>
-                </div>
+                <select value={institution} onChange={(e) => setInstitution(e.target.value)} className="form-select form-input">
+                    <option value="">All Institutions</option>
+                    <option value="BI">BI</option>
+                    <option value="Oslomet">Oslomet</option>
+                    <option value="UiO">UiO</option>
+                    <option value="NTNU">NTNU</option>
+                    <option value="Other">Other</option> 
+                </select>
+                <select value={role} onChange={(e) => setRole(e.target.value)} className="form-select form-input">
+                    <option value="">All Roles</option>
+                    <option value="Student">Student</option>
+                    <option value="Group">Group</option>
+                </select>
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="form-select form-input">
+                    <option value="">All Categories</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Industry">Industry</option>
+                </select>
             </div>
+          </div>
+          
 
 
-            {loading && <div>Loading profiles...</div>}
-            {error && <div>Error loading profiles: {error}</div>}
+          {loading && <div>Loading profiles...</div>}
+          {error && <div>Error loading profiles: {error}</div>}
 
-            <div className="row profile-row">
-                {profiles.map(profile => (
-                    <div key={profile._id} className="col-md-3 coprofile">
-                        <div className="coprof-image-content">
-                            <div className="coprofile-image">
-                            <img className="coprofile-img" src={profile.profileImageUrl || 'https://example.com/path/to/default-profile-image.jpg'} alt="Profile" />
-                            </div>
-                        </div>
-                        <div className="coprofile-content">
-                            <p className="coprofile-name">{profile.fullName}</p>
-                            <hr className="name-divider" />
-                            <p className="coprofile-category">{profile.category}</p>
-                            <p className="coprofile-description">{profile.description}</p>
-                            <p className="coprofile-email"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+          <div className="row profile-row">
+              {profiles.map(profile => (
+                  <div key={profile._id} className="col-md-3 coprofile">
+                      <div className="coprof-image-content">
+                          <div className="coprofile-image">
+                          <img className="coprofile-img" src={profile.profileImageUrl || 'https://example.com/path/to/default-profile-image.jpg'} alt="Profile" />
+                          </div>
+                      </div>
+                      <div className="coprofile-content">
+                          <p className="coprofile-name">{profile.fullName}</p>
+                          <hr className="name-divider" />
+                          <p className="coprofile-category">{profile.category}</p>
+                          <p className="coprofile-description">{profile.description}</p>
+                          <p className="coprofile-email"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+                      </div>
+                  </div>
+              ))}
+          </div>
+      </div>
     );
 };
 

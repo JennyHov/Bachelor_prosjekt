@@ -104,7 +104,7 @@ const NavigationBar = () => {
               <div className="navbar-nav ms-auto d-flex align-items-center px-5">
                 {currentUser ? (
                   <>
-                    <Link to="/userprofile" className="nav-item nav-link" id='profileLink'>My Profile</Link>
+                    <Link to="/userprofile" className="nav-item nav-link underline" id='profileLink' activeclassName="active">My Profile</Link>
                     <button className="nav-item btn login-button" onClick={handleSignOut}>Log Out</button>
                   </>
                 ) : (

@@ -53,7 +53,7 @@ export default function Criteria() {
                     <div className='process-container right'>
                         <div className="process-content">
                             <h3>4. Important Deadlines</h3>
-                            <p>If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</p>
+                            <p>If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</p><br></br>
                             <p>Next deadline: 08.03.2024</p>
                             <p>Feedback within: 22.03.3034</p>
                             <p>Finalists announced: 03.04.2024</p>

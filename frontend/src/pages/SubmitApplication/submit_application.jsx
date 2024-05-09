@@ -39,7 +39,7 @@ export default function SubmitApplication() {
           </div>
           <div className="read-more-container">
             <div className="page-message submit-application-message">
-              Read our criteria before applying<span id='moreText'></span>
+              Read about our process before applying<span id='moreText'></span>
               <button onClick={toggleMore} id='myBtn' className='arrow-button'>
                 <img src={isMoreOpen ? UpArrowImage : DownArrowImage} alt={isMoreOpen ? "Read Less" : "Read More"} />
               </button>

@@ -9,6 +9,7 @@ import EventCard from '../Events/event_card.jsx';
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import rocketImage from '../../../../assets/images/home/rocket.png';
 import counselingImage from '../../../../assets/images/home/counselling.png';
@@ -36,6 +37,11 @@ function eventHasPassed(endDate) {
 const home = () => {
 
     const [events, setEvents] = useState([]);
+    const { eventId } = useParams();
+
+    const handleClick = (eventId) => {
+        localStorage.setItem('selectedEvent', eventId); // Save the selected event ID to local storage
+    };
 
     useEffect(() => {
         const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // Replace with your actual API Key
@@ -107,7 +113,9 @@ const home = () => {
                         <div className="home-events-deadlines content-wrapper">
                             <section className='home-events-container'>
                                 {events.map((event, index) => (
-                                    <EventCard key={index} event={event} />
+                                    <Link to={`/events/${event.id}`} key={index} onClick={() => handleClick(event.id)}>
+                                        <EventCard event={event} />
+                                    </Link>
                                 ))}
                             </section>
                         </div>
@@ -131,7 +139,6 @@ const home = () => {
                     </div>
                 </div>
             </div>
-
 
             <div className='stroke'></div>
 

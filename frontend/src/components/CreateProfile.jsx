@@ -67,33 +67,49 @@ export default function CreateProfile() {
     
     return (
         <div className="container page-container">
-        <div className="row justify-content-center align-items-center gap-3">
-            <div className="col-lg-6 collaboration-container">
+        <div className="row justify-content-center align-items-center">
+            <div className="col-lg-6">
                 <div className="title-container">
-                    <h1 className="page-title collaboration-title">Become more visible!</h1>
+                    <h1 className="page-title">Become more visible!</h1>
                 </div>
                 <div className="message-container">
                     <p className="page-message">
                         We at SEFiO want to help students find a team or startups finding new members for their team
                     </p>
                 </div>
-                <div className="form-container">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="profileImage">Profile Image</label>
-                            <input type="file" className="form-control" onChange={handleImageUpload} />
+                <form onSubmit={handleSubmit}>
+                    <div className="form-container"> 
+                        <div className="form-group form-box">
+                            <label htmlFor="profileImage form-label">Profile Image</label>
+                            <input type="file" className="form-control form-input" onChange={handleImageUpload} />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="fullName" className="form-label">Full Name</label>
-                            <input type="text" className="form-control" name="fullName" value={profileData.fullName} onChange={handleChange} placeholder="Enter your full name" required />
+                        <div className="form-group form-box">
+                            <label htmlFor="fullName" className="form-label">Full Name<span className='star'>*</span></label>
+                            <input 
+                                type="text" 
+                                className="form-control form-input" 
+                                name="fullName" 
+                                value={profileData.fullName} 
+                                onChange={handleChange} 
+                                placeholder="Enter your full name" 
+                                required 
+                            />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" name="email" value={profileData.email} onChange={handleChange} placeholder="Enter your email" required />
+                        <div className="form-group form-box">
+                            <label htmlFor="email" className="form-label">Email<span className='star'>*</span></label>
+                            <input 
+                                type="email" 
+                                className="form-control form-input" 
+                                name="email" 
+                                value={profileData.email} 
+                                onChange={handleChange} 
+                                placeholder="Enter your email" 
+                                required 
+                            />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="institution" className="form-label">Institution</label>
-                            <select className="form-select" name="institution" value={profileData.institution} onChange={handleChange} required>
+                        <div className="form-group form-box">
+                            <label htmlFor="institution" className="form-label">Institution<span className='star'>*</span></label>
+                            <select className="form-select form-input" name="institution" value={profileData.institution} onChange={handleChange} required>
                                 <option value="">Select an Institution</option>
                                 <option value="BI">BI</option>
                                 <option value="Oslomet">Oslomet</option>
@@ -102,14 +118,14 @@ export default function CreateProfile() {
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="description" className="form-label">Description</label>
-                            <textarea className="form-control" name="description" value={profileData.description} onChange={handleChange} rows="3" placeholder="Write a description about what you're looking for or tell about yourself and ideas!" required></textarea>                        
+                        <div className="form-group form-box">
+                            <label htmlFor="description" className="form-label">Description<span className='star'>*</span></label>
+                            <textarea className="form-control form-input" name="description" value={profileData.description} onChange={handleChange} rows="3" placeholder="Write a description about what you're looking for, yourself or your ideas!" required></textarea>                        
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="category" className="form-label">Category</label>
+                        <div className="form-group form-box">
+                            <label htmlFor="category" className="form-label">Category<span className='star'>*</span></label>
                             <select 
-                                className="form-select" 
+                                className="form-select form-input" 
                                 name="category" 
                                 value={profileData.category} 
                                 onChange={handleChange} 
@@ -120,10 +136,10 @@ export default function CreateProfile() {
                                 <option value="Industry">Industry</option>
                             </select>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="role" className="form-label">Role</label>
+                        <div className="form-group form-box">
+                            <label htmlFor="role" className="form-label">Role<span className='star'>*</span></label>
                             <select 
-                                className="form-select" 
+                                className="form-select form-input" 
                                 name="role" 
                                 value={profileData.role} 
                                 onChange={handleChange}
@@ -134,11 +150,11 @@ export default function CreateProfile() {
                                 <option value="Group">Group</option>
                             </select>
                         </div>
-                        <div className='button-container'>
-                            <button type="submit" className="btn btn-primary btn-submit-profile mt-3">Submit Profile</button>
+                        <div className='d-flex justify-content-center'>
+                            <button type="submit" className="secondary-button">Submit Profile</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
