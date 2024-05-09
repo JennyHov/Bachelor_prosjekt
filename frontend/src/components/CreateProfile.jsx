@@ -120,7 +120,8 @@ export default function CreateProfile() {
                         </div>
                         <div className="form-group form-box">
                             <label htmlFor="description" className="form-label">Description<span className='star'>*</span></label>
-                            <textarea className="form-control form-input" name="description" value={profileData.description} onChange={handleChange} rows="3" placeholder="Write a description about what you're looking for, yourself or your ideas!" required></textarea>                        
+                            <textarea className="form-control form-input" name="description" value={profileData.description} onChange={handleChange} rows="3" maxLength="500" placeholder="Write a description about what you're looking for, yourself or your ideas!" required></textarea>   
+                            <p>{500 - profileData.description.length} characters remaining</p>                     
                         </div>
                         <div className="form-group form-box">
                             <label htmlFor="category" className="form-label">Category<span className='star'>*</span></label>

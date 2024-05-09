@@ -79,8 +79,8 @@ const Events = () => {
                         </p>
                     </div>
                 </div>
-                <div className='max-w-4xl w-full mx-auto'>
-                    <section className='grid items-start grid-cols-cards'>
+                <div className='max-w-4xl event-row'>
+                    <section className='grid'>
                         {events.map((event, index) => (
                             <EventCard key={index} event={event} highlight={event.id === eventId} />
                         ))}

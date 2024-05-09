@@ -2,18 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.event-row {
+  margin-top: 5%;
+}
+
 .grid {
   display: grid; 
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-  gap: 3rem; 
-  align-items: stretch;
+  gap: 6rem; 
+  align-items: start;
 }
 
 /* Base styles for the event card */
 .event-card {
+  width: 275px;
   display: flex;
   flex-direction: column; /* Stack date and details vertically */
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 15px; /* Rounded corners */
   overflow: hidden; /* Ensures the content does not spill out */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   font-family: 'Inter', sans-serif;
