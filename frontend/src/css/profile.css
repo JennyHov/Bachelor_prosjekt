@@ -78,7 +78,7 @@
 
 .delete-button:hover, 
 .delete-button:focus{
-    background-color: var(--primary-red); 
+    background-color: var(--secondary-red); 
     color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

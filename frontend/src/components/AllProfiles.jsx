@@ -108,7 +108,7 @@ const AllProfiles = () => {
                       <div className="coprofile-content">
                           <p className="coprofile-name">{profile.fullName}</p>
                           <hr className="name-divider" />
-                          <p className="coprofile-category">{profile.category}</p>
+                          <p className="coprofile-category">{profile.category}, {profile.institution}</p>
                           <p className="coprofile-description">
                               {isReadMore[profile._id] ? profile.description : `${profile.description.slice(0, 90)}`}
                               {profile.description.length > 90 && (
