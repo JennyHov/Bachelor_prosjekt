@@ -8,6 +8,8 @@ const ListCollaborateProfiles = () => {
     const [editProfileData, setEditProfileData] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showFullDescription, setShowFullDescription] = useState({});
+    const [searchQuery, setSearchQuery] = useState('');  // State for search query
+
 
     const toggleDescription = (id) => {
         setShowFullDescription(prev => ({
@@ -101,14 +103,29 @@ const ListCollaborateProfiles = () => {
         });
     };
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredProfiles = profiles.filter(profile =>
+        profile.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div>
             <h2>Collaborative Profiles</h2>
             {error && <div className="alert alert-danger">{error}</div>}
+            <input
+                type="text"
+                placeholder="Search by name..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="form-control mb-3"
+            />
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Description</th>
                         <th>Institution</th>
@@ -118,14 +135,14 @@ const ListCollaborateProfiles = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {profiles.map(profile => (
+                {filteredProfiles.map(profile => (
                         <tr key={profile._id}>
                             <td>{profile.fullName}</td>
                             <td>{profile.email}</td>
                             <td>
                                 {showFullDescription[profile._id] ? (
                                     <span>
-                                        {profile.description} 
+                                        {profile.description}
                                         <Button variant="link" size="sm" onClick={() => toggleDescription(profile._id)}>
                                             Read less
                                         </Button>
@@ -143,7 +160,7 @@ const ListCollaborateProfiles = () => {
                             <td>{profile.category}</td>
                             <td>{profile.role}</td>
                             <td>
-                                <ButtonGroup> {/* Use ButtonGroup to align buttons */}
+                                <ButtonGroup>
                                     <Button className="btn btn-primary me-2" onClick={() => openEditModal(profile)}>
                                         Edit
                                     </Button>

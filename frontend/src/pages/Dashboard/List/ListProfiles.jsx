@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 const ListProfiles = ({ fetchUrl }) => {
     const [profiles, setProfiles] = useState([]);
     const [error, setError] = useState('');
+    const [searchQuery, setSearchQuery] = useState(''); 
 
     useEffect(() => {
         fetch('/api/admin/users', {
@@ -69,21 +70,37 @@ const ListProfiles = ({ fetchUrl }) => {
         });
     };
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    // Function to filter profiles based on search query
+    const filteredProfiles = profiles.filter(profile => 
+        profile.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div>
             <h2>Profiles</h2>
             {error && <div className="alert alert-danger">{error}</div>}
+            <input
+                type="text"
+                placeholder="Search by name..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="form-control mb-3"
+            />
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {profiles.map(profile => (
+                    {filteredProfiles.map(profile => (
                         <tr key={profile._id}>
                             <td>{profile.fullName}</td>
                             <td>{profile.email}</td>
