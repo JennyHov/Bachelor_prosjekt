@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CountDownAdmin = () => {
     const [endDate, setEndDate] = useState('');
@@ -11,7 +13,11 @@ const CountDownAdmin = () => {
             body: JSON.stringify({ endTime: endDate })
         });
         const data = await response.json();
-        alert('Countdown set: ' + new Date(data.endTime).toLocaleString());
+        if (response.ok) {
+            toast.success('Countdown updated to ' + new Date(data.endTime).toLocaleString());
+        } else {
+            toast.error('Error updating countdown: ' + data.message);
+        }
     };
 
     return (
@@ -22,8 +28,9 @@ const CountDownAdmin = () => {
                     <Form.Label>Select end date and time:</Form.Label>
                     <Form.Control type="datetime-local" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                 </Form.Group>
-                <Button onClick={handleSubmit}>Set Countdown</Button>
+                <Button onClick={handleSubmit}>Update Countdown</Button>
             </Form>
+            <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         </div>
     );
 };
