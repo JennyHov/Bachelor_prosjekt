@@ -75,3 +75,20 @@ export const deleteCollaborateProfile = async (req, res) => {
     }
 };
 
+// File: controllers/admin.controller.js
+
+export const updateCollaborateProfile = async (req, res) => {
+    const { profileId } = req.params;
+    const profileUpdates = req.body;
+
+    try {
+        const updatedProfile = await Profile.findByIdAndUpdate(profileId, profileUpdates, { new: true });
+        if (!updatedProfile) {
+            return res.status(404).json({ message: "Profile not found" });
+        }
+        res.json(updatedProfile);
+    } catch (error) {
+        console.error("Error updating profile", error);
+        res.status(500).json({ message: "Failed to update profile" });
+    }
+};
