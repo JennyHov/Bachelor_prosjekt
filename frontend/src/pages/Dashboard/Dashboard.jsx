@@ -3,6 +3,7 @@ import '../../css/Dashboard.css';
 import React, { useState, useEffect } from 'react';
 import ListProfiles from './List/ListProfiles';
 import ListCollaborateProfiles from './List/ListCollaborateProfiles';
+import CountDown from './CountDown/CountDown';
 
 
 const Dashboard = () => {
@@ -75,23 +76,12 @@ const Dashboard = () => {
 
                         </div>
                     )}
-                    {activeView === 'Counter' && <div><p>Interactive Counter:</p><Counter /></div>}
+                    {activeView === 'Counter' && <div><CountDown /></div>}
                 </div>
             </div>
         </div>
     );
 };
 
-const Counter = () => {
-    const [count, setCount] = useState(0);
-
-    return (
-        <div>
-            <button onClick={() => setCount(count + 1)}>Increment</button>
-            <button onClick={() => setCount(count - 1)}>Decrement</button>
-            <p>Current Count: {count}</p>
-        </div>
-    );
-};
 
 export default Dashboard;
