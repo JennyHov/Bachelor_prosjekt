@@ -2,9 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import { ProfileProvider } from './contexts/ProfileContext'; 
 
-import About from './pages/About';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard/Dashboard';
 
@@ -49,9 +46,6 @@ function App() {
 
         <Route path="/create-profile" element={<CreateProfile />} />
 
-        <Route path="/about" element={<About />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profiles" element={<AllProfiles />} />
 
         <Route path="/events/:eventId" element={<Events />} />

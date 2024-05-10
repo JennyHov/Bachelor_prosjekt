@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import '../css/card.css';
+import '../../css/card.css';
 
-import stockImage from '../../../assets/images/profilePics/stock_photo.jpg';
+import stockImage from '../../../../assets/images/profilePics/stock_photo.jpg';
 
 function CenterMode() {
     const settings = {

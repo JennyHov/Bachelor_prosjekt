@@ -4,7 +4,7 @@ import '../../css/submit_application.css';
 import '../../css/home.css';
 import '../../css/home_event.css';
 
-import CenterMode from '../Responsive.jsx';
+import CenterMode from './Responsive.jsx';
 import EventCard from '../Events/event_card.jsx';
 
 import React, { useEffect, useState } from 'react';

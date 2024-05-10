@@ -16,6 +16,9 @@
     .login-button {
         margin-right: 1.5rem;
     }
+    .logout-button {
+      margin-right: 1.5rem;
+    }
     .nav-link {
         margin-right: 1.25rem;
     }
@@ -65,6 +68,20 @@
 
 .login-button:hover {
   border: 1px solid var(--primary-color) !important;
+}
+
+.logout-button {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--secondary-red) !important;
+  font-weight: 400;
+  padding: 8px 23px !important;
+  border-radius: 25px !important;
+  border: 1px solid transparent !important;
+}
+
+.logout-button:hover {
+  background-color: var(--secondary-red) !important;
+  color: var(--background-color) !important;
 }
 
 .sefio-logo-navbar {

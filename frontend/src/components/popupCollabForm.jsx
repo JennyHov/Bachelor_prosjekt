@@ -1,19 +1,18 @@
 import { Modal, Button } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useProfiles } from '../contexts/ProfileContext';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import 'react-toastify/dist/ReactToastify.css';
 
-const PopupCollabForm = () => {
+export default function PopupCollabForm() {
     const [showForm, setShowForm] = useState(false);
 
     const handleOpenForm = () => setShowForm(true);
     const handleCloseForm = () => setShowForm(false);
 
     const { addOrUpdateProfile } = useProfiles();
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
     const [profileData, setProfileData] = useState({
         fullName: '',
         email: '',
@@ -24,38 +23,34 @@ const PopupCollabForm = () => {
         profileImageUrl: ''
     });
     const currentUser = useSelector(state => state.user.currentUser);
-    const [hasCollaborationProfile, setHasCollaborationProfile] = useState(false);
     
-    useEffect(() => {
-        const fetchCollaborationProfile = async () => {
-          try {
-            const response = await fetch(`/api/profiles/by-user/${currentUser._id}`);
-            const data = await response.json();
-    
-            // Set hasCollaborationProfile to true if a profile was found
-            if (data && data._id) {
-              setHasCollaborationProfile(true);
-            } else {
-              setHasCollaborationProfile(false);
-            }
-          } catch (error) {
-            // Handle error
-            setHasCollaborationProfile(false);
-          }
-        };
-    
-        if (currentUser) {
-          fetchCollaborationProfile();
-        }
-      }, [currentUser]);
-
     const handleImageUpload = async (event) => {
+        setIsUploadingImage(true);
+        console.log("handleImageUpload called"); // Check if the function is called
+      
         const file = event.target.files[0];
+        console.log(file); // Check the file
+      
         const storage = getStorage();
         const storageRef = ref(storage, `profile_images/${Date.now()}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
+      
+        try {
+          await uploadBytes(storageRef, file); // Check the upload
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+      
+        let url = '';
+        try {
+          url = await getDownloadURL(storageRef);
+          console.log(url); // Check the URL
+        } catch (error) {
+          console.error("Error getting download URL:", error);
+        }
+      
         setProfileData({ ...profileData, profileImageUrl: url });
+        setIsUploadingImage(false);
+        console.log(profileData); // Check the state update
     };
 
     const handleSubmit = async (e) => {
@@ -64,23 +59,6 @@ const PopupCollabForm = () => {
             console.error("User must be logged in to update profile");
             return;
         }
-    
-        // Check if all required fields are filled
-        const { fullName, email, institution, description, category, role } = profileData;
-        if (!fullName || !email || !institution || !description || !category || !role) {
-            // If not, show a toast and stop the form submission
-            toast.error('Please fill out all required fields.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            return;
-        }
-    
         try {
             const method = profileData._id ? 'PUT' : 'POST';
             const endpoint = profileData._id ? `/api/profiles/profiles/${profileData._id}` : '/api/profiles/profiles';
@@ -216,7 +194,11 @@ const PopupCollabForm = () => {
                     </div>
                 </div>
                 <div className='d-flex justify-content-center submit-profile-button'>
-                    <button type="submit" className="secondary-button">Submit Profile</button>
+                    <div className='d-flex justify-content-center submit-profile-button'>
+                        <button type="submit" className="secondary-button">
+                            {isUploadingImage ? 'Uploading image...' : 'Submit Profile'}
+                        </button>
+                    </div>
                 </div>
             </form>
           </Modal.Body>
@@ -224,5 +206,3 @@ const PopupCollabForm = () => {
       </div>
     );
 }
-
-export default PopupCollabForm;

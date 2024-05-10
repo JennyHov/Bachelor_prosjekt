@@ -57,7 +57,7 @@ export default function CreateProfile() {
                         <p className='page-message'>You already have a collaboration profile.</p>
                         <p className="page-message">If you want to update it you can do so in
                             <span className="landing-link">
-                                <Link to="/my-profile" className="text-primary"> my profile.</Link>
+                                <Link to="/userprofile" className="text-primary"> my profile.</Link>
                             </span>
                         </p>
                     </div>
