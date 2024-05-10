@@ -1,53 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import '../../css/countdown.css'; // Import the CSS file
+import '../../css/countdown.css';
 
 const Countdown = () => {
-  const calculateTimeLeft = () => {
-    let year = new Date().getFullYear();
-    const difference = +new Date(`2024-05-23`) - +new Date();
-    let timeLeft = {};
+    const [timeLeft, setTimeLeft] = useState('Loading countdown...');
 
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
+    useEffect(() => {
+        let timer;  // Declare the timer in the outer scope of useEffect
 
-    return timeLeft;
-  };
+        const fetchCountdown = async () => {
+            try {
+                const response = await fetch('/api/countdown/get');
+                const data = await response.json();
+                if (data && data.endTime) {
+                    updateTimeLeft(new Date(data.endTime));
+                } else {
+                    setTimeLeft("No countdown set.");
+                }
+            } catch (error) {
+                console.error('Error fetching countdown:', error);
+                setTimeLeft("Failed to load countdown.");
+            }
+        };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+        const updateTimeLeft = (endTime) => {
+            timer = setInterval(() => {
+                const now = new Date();
+                const distance = endTime.getTime() - now.getTime();
+                if (distance < 0) {
+                    clearInterval(timer);
+                    setTimeLeft("Time's up!");
+                    return;
+                }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                setTimeLeft(`Next deadline in: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`);
+            }, 1000);
+        };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+        fetchCountdown();
 
-    return () => clearTimeout(timer);
-  });
+        return () => clearInterval(timer);  // Cleanup function now has access to the timer
+    }, []);
 
-  const timerComponents = [];
-
-  Object.keys(timeLeft).forEach((interval, i) => {
-    if (!timeLeft[interval]) {
-      return;
-    }
-  
-    timerComponents.push(
-      <span key={i}>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
+    return (
+        <div className="countdown-container d-flex justify-content-center align-items-center">
+            <p className="countdown-content">{timeLeft}</p>
+        </div>
     );
-  });
-
-  return (
-    <div className="countdown-container d-flex justify-content-center align-items-center">
-      <p className="countdown-content">Next deadline in: {timerComponents.length ? timerComponents : <span>Time's up!</span>} </p>
-    </div>
-  );
 };
 
 export default Countdown;

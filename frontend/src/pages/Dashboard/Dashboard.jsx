@@ -1,5 +1,9 @@
+
 import '../../css/Dashboard.css';
 import React, { useState, useEffect } from 'react';
+import ListProfiles from './List/ListProfiles';
+import ListCollaborateProfiles from './List/ListCollaborateProfiles';
+import CountDown from './CountDown/CountDown';
 
 
 const Dashboard = () => {
@@ -8,50 +12,43 @@ const Dashboard = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState('');
 
-
     const handleViewChange = (view) => {
         setActiveView(view);
         setShowSidebar(false);  // Lukk sidebar når et element er valgt
     };
 
-    useEffect(() => {
-      fetch('/api/admin/users', {
-          method: 'GET',
-          credentials: 'include', // Nødvendig for å sende cookies med forespørselen
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Failed to fetch');
-          }
-          return response.json();
-      })
-      .then(data => {
-          setUsers(data);
-      })
-      .catch(error => {
-          setError('Failed to fetch users');
-          console.error('Error fetching users', error);
-      });
-  }, []);
+        // Part of Dashboard.jsx within the Dashboard component
 
-  const changeUserRole = (userId, newRole) => {
-    fetch('/api/admin/users/role', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ userId, role: newRole })
-    })
-    .then(response => response.json())
-    .then(data => {
-        setUsers(users.map(user => user._id === userId ? { ...user, role: data.role } : user));
-    })
-    .catch(error => {
-        console.error('Error updating user role', error);
-    });
-  };
+        const fetchCollaborateProfiles = () => {
+            fetch('/api/admin/collaborate-profiles', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch collaborate profiles');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setUsers(data);  // Assuming 'users' state is used to store profiles here
+            })
+            .catch(error => {
+                console.error('Error fetching collaborate profiles', error);
+                setError('Failed to fetch collaborate profiles');
+            });
+        };
+
+
+    useEffect(() => {
+        if (activeView === 'Collaborate Profiles') {
+            fetchCollaborateProfiles();
+        }
+    }, [activeView]); 
+
 
     return (
         <div className='container page-container'>
@@ -61,60 +58,30 @@ const Dashboard = () => {
                 </button>
                 <div className={`sidebar ${showSidebar ? 'visible' : ''}`}>
                     <button onClick={() => handleViewChange('Home')}>Home</button>
-                    <button onClick={() => handleViewChange('Users')}>Users</button>
+                    <button onClick={() => handleViewChange('Profiles')}>Profiles</button>
+                    <button onClick={() => handleViewChange('Collaborate Profiles')}>Collaborate Profiles</button>
                     <button onClick={() => handleViewChange('Counter')}>Counter</button>
                 </div>
                 <div className="main-content">
                     {activeView === 'Home' && 
-                    <div>
-                      <h1>Admin Dashboard</h1>            
-                    </div>}
-                    {activeView === 'Users' && (
+                    <div><h1>Admin Dashboard</h1></div>}
+                    {activeView === 'Profiles' && (
                         <div>
-                            {error && <div className="alert alert-danger">{error}</div>}
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {users.map(user => (
-                                        <tr key={user._id}>
-                                            <td>{user.fullName}</td>
-                                            <td>{user.email}</td>
-                                            <td>{user.role}</td>
-                                            <td>
-                                                <button className="btn btn-primary" onClick={() => changeUserRole(user._id, user.role === 'admin' ? 'user' : 'admin')}>
-                                                    Change to {user.role === 'admin' ? 'User' : 'Admin'}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                            <ListProfiles />
                         </div>
                     )}
-                    {activeView === 'Counter' && <div><p>Interactive Counter:</p><Counter /></div>}
+                    {activeView === 'Collaborate Profiles' && (
+                        <div>
+                            <ListCollaborateProfiles />
+
+                        </div>
+                    )}
+                    {activeView === 'Counter' && <div><CountDown /></div>}
                 </div>
             </div>
         </div>
     );
 };
 
-const Counter = () => {
-    const [count, setCount] = useState(0);
-
-    return (
-        <div>
-            <button onClick={() => setCount(count + 1)}>Increment</button>
-            <button onClick={() => setCount(count - 1)}>Decrement</button>
-            <p>Current Count: {count}</p>
-        </div>
-    );
-};
 
 export default Dashboard;

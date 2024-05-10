@@ -16,7 +16,7 @@ import counselingEmailRoutes from './routes/counselingEmail.route.js';
 import contactEmailRoutes from './routes/contactEmail.route.js';
 import profileRoutes from './routes/profile.route.js';
 import adminRoutes from './routes/admin.route.js';
-
+import countdownRoutes from './routes/countdown.routes.js'
 
 
 
@@ -55,6 +55,7 @@ app.use("/api/auth", authRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api', profileRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/countdown', countdownRoutes);
 
 
 
