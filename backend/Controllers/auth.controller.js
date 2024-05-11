@@ -5,26 +5,6 @@ import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
     const { fullName, email, password } = req.body;
-    let errors = [];
-
-    if (!fullName) {
-      errors.push('Full name is required.');
-    } else if (fullName.length > 50) {
-        errors.push('Full name must not exceed 50 characters.');
-    }
-
-    if (!email) {
-        errors.push('Email is required.');
-    } else if (email.length > 100) {
-        errors.push('Email must not exceed 100 characters.');
-    }
-    if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
-        errors.push('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one numeral.');
-    }
-
-    if (errors.length > 0) {
-        return res.status(400).json({ message: errors.join(' '), success: false });
-    }
     const hashedPassword = bcryptjs.hashSync(password, 10);
     const newUser = new User({ fullName, email, password: hashedPassword });
     try{
