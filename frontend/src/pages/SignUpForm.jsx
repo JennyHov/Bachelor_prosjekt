@@ -11,7 +11,7 @@ import warningImage from '../../../assets/images/error/warning.png';
 
 const SignUpForm = ({ onClose, toggleForm }) => {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const SignUpForm = ({ onClose, toggleForm }) => {
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
-        setError(true);
+        setError(data.message); // Display the specific error message from the server
         return;
       }
       toggleForm();
@@ -42,13 +42,14 @@ const SignUpForm = ({ onClose, toggleForm }) => {
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
-      setError(true);
+      setError('There was a problem with your signup. Please try again later.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
         <div className='login-form-container'>
+        {error && <div className='error-message'>{error}</div>}
             <div className='form-group login-box'>
                 <input
                     className='form-control signup-input'
