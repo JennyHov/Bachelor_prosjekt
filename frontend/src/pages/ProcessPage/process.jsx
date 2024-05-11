@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/criteria.css';
+import '../../css/process.css';
 
-export default function Criteria() {
+export default function Process() {
 
     const openInNewTab = (url) => {
         window.open(url, "_blank", "noreferrer");
@@ -17,8 +17,8 @@ export default function Criteria() {
                 <div className="title-container">
                     <h1 className="page-title signup-title">Our Process</h1>
                 </div>
-                <div className="read-more-container">
-                    <p className="read-criteria">Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
+                <div className="message-container">
+                    <p className="page-message">Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
                 </div>
             </div> 
         </div>

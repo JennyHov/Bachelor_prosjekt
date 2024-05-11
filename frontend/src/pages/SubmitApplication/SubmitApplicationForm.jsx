@@ -42,12 +42,10 @@ const SubmitApplicationForm = () => {
   };
 
   useEffect(() => {
-    // This function is called when the component unmounts
     return () => {
-      // Dispatch an action to reset the form state
       dispatch(resetForm());
     };
-  }, [dispatch]); // dispatch is a dependency
+  }, [dispatch]); 
 
 
   const validateFullName = () => {
@@ -144,8 +142,6 @@ const SubmitApplicationForm = () => {
       file: null,
     }));
     setFileName('Upload Application Draft');
-  
-    // Clear the file input's value
     document.getElementById('file').value = null;
   };
 
@@ -208,7 +204,6 @@ const SubmitApplicationForm = () => {
         const emailResponse = await fetch('/api/application-email/submit-application-email', {
           method: 'POST',
           headers: {
-            // Add any necessary headers here
           },
           body: formDataToSend2, // Send the same FormData object
         });

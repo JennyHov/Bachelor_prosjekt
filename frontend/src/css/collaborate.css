@@ -154,3 +154,12 @@
     font-family: 'source-sans-pro', sans-serif;
     margin-left: 3px;
 }
+
+.custom-alert {
+    margin-top: 3%;
+    width: fit-content;
+}
+
+.custom-alert-link {
+    cursor: pointer;
+}

@@ -26,16 +26,16 @@ export default function PopupCollabForm() {
     
     const handleImageUpload = async (event) => {
         setIsUploadingImage(true);
-        console.log("handleImageUpload called"); // Check if the function is called
+        console.log("handleImageUpload called");
       
         const file = event.target.files[0];
-        console.log(file); // Check the file
+        console.log(file);
       
         const storage = getStorage();
         const storageRef = ref(storage, `profile_images/${Date.now()}_${file.name}`);
       
         try {
-          await uploadBytes(storageRef, file); // Check the upload
+          await uploadBytes(storageRef, file);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -43,14 +43,14 @@ export default function PopupCollabForm() {
         let url = '';
         try {
           url = await getDownloadURL(storageRef);
-          console.log(url); // Check the URL
+          console.log(url);
         } catch (error) {
           console.error("Error getting download URL:", error);
         }
       
         setProfileData({ ...profileData, profileImageUrl: url });
         setIsUploadingImage(false);
-        console.log(profileData); // Check the state update
+        console.log(profileData);
     };
 
     const handleSubmit = async (e) => {
@@ -168,7 +168,7 @@ export default function PopupCollabForm() {
                                 onChange={handleChange} 
                                 required
                             >
-                                <option value="">Select a Category</option> {/* Ensure the user selects an option */}
+                                <option value="">Select a Category</option>
                                 <option value="Academic">Academic</option>
                                 <option value="Industry">Industry</option>
                             </select>
@@ -182,7 +182,7 @@ export default function PopupCollabForm() {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="">Select a Role</option> {/* Ensure the user selects an option */}
+                                <option value="">Select a Role</option> 
                                 <option value="Student">Student</option>
                                 <option value="Group">Group</option>
                             </select>

@@ -77,7 +77,7 @@ const home = () => {
                             <div className="py-3">
                                 <p className="description">Want to know more?
                                 <span className="landing-link">
-                                    <Link to="/criteria" className="text-primary"> Understand our process</Link>
+                                    <Link to="/process" className="text-primary"> Understand our process</Link>
                                 </span>
                                 </p>
                             </div>
