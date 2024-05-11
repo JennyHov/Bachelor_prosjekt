@@ -8,10 +8,15 @@ export const signup = async (req, res, next) => {
     let errors = [];
 
     if (!fullName) {
-        errors.push('Full name is required.');
+      errors.push('Full name is required.');
+    } else if (fullName.length > 50) {
+        errors.push('Full name must not exceed 50 characters.');
     }
+
     if (!email) {
         errors.push('Email is required.');
+    } else if (email.length > 100) {
+        errors.push('Email must not exceed 100 characters.');
     }
     if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
         errors.push('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one numeral.');
