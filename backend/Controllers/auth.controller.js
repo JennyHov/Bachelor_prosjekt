@@ -23,6 +23,7 @@ export const signin = async (req, res, next) => {
         const validPassword = bcryptjs.compareSync(password, validUser.password);
         if(!validPassword) return next(errorHandler(400, "Wrong email or password!"));
         const token = jwt.sign({ id: validUser._id, role: validUser.role }, process.env.JWT_SECRET);
+        console.log('Generated token:', token);
         const { password: hashedPassword, ...rest } = validUser._doc;
         const expiredDate = new Date(Date.now() + 3600000) // 2 hours = 2*60*60*1000= 7200000
         res
@@ -64,6 +65,7 @@ export const google = async (req, res, next) => {
         });
         await newUser.save();
         const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET);
+        console.log('Generated token:', token);
         const { password: hashedPassword2, ...rest } = newUser._doc;
         const expiryDate = new Date(Date.now() + 3600000); // 2 hours
         res
