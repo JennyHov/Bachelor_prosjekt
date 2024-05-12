@@ -10,17 +10,58 @@ import GoogleImage from '../../../assets/images/login/google.png';
 import warningImage from '../../../assets/images/error/warning.png';
 
 const SignUpForm = ({ onClose, toggleForm }) => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const [error, setError] = useState('');
+  const [errors, setErrors] = useState({});  // Declare the errors state here
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
+
+  const validateInput = () => {
+    let newErrors = {};
+    if (!formData.fullName) {
+      newErrors.fullName = 'Full name is required.';
+    } else if (formData.fullName.length > 50) {
+      newErrors.fullName = 'Full name must not exceed 50 characters.';
+    }
+
+    if (!formData.email) {
+      newErrors.email = 'Email is required.';
+    } else if (formData.email.length > 100) {
+      newErrors.email = 'Email must not exceed 100 characters.';
+    }
+
+    if (formData.password.length < 8 || !/[A-Z]/.test(formData.password) || !/[a-z]/.test(formData.password) || !/[0-9]/.test(formData.password)) {
+      newErrors.password = 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one numeral.';
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match.';
+    }
+
+    return newErrors;
+  }
+
+
+
   const handleChange = (e) => {
+    const { id, value } = e.target;
     setFormData({ ...formData, [e.target.id]: e.target.value });
+    setErrors(prev => ({ ...prev, [id]: '' }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = validateInput();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     try {
       setLoading(true);
       setError(false);
@@ -34,7 +75,8 @@ const SignUpForm = ({ onClose, toggleForm }) => {
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
-        setError(data.message); // Display the specific error message from the server
+        setError(data.message);
+        setErrors({ form: data.message }); // Display the specific error message from the server
         return;
       }
       toggleForm();
@@ -49,37 +91,51 @@ const SignUpForm = ({ onClose, toggleForm }) => {
   return (
     <form onSubmit={handleSubmit}>
         <div className='login-form-container'>
-        {error && <div className='error-message'>{error}</div>}
+        {errors.form && <div className='error-message'>{errors.form}</div>}
             <div className='form-group login-box'>
                 <input
-                    className='form-control signup-input'
+                    className={`form-control signup-input ${errors.fullName ? 'is-invalid' : ''}`}
                     type='text'
                     placeholder='Full Name'
                     id='fullName'
-                    value={formData.fullName || ''}
+                    value={formData.fullName}
                     onChange={handleChange}
                 />
+                {errors.fullName && <div className='error-message'>{errors.fullName}</div>}
             </div>
             <div className="form-group login-box">
                 <input
-                    className='form-control signup-input'
+                    className={`form-control signup-input ${errors.email ? 'is-invalid' : ''}`}
                     type='email'
                     placeholder='Email'
                     id='email'
                     value={formData.email || ''}
                     onChange={handleChange}
                 />
+                {errors.email && <div className='error-message'>{errors.email}</div>}
             </div>
             <div className="form-group login-box">
                 <input
-                    className='form-control signup-input'
+                    className={`form-control signup-input ${errors.password ? 'is-invalid' : ''}`}
                     type='password'
                     placeholder='Password'
                     id='password'
-                    value={formData.password || ''}
+                    value={formData.password}
                     onChange={handleChange}
                 />
+                {errors.password && <div className='error-message'>{errors.password}</div>}
             </div>
+            <div className="form-group login-box">
+            <input
+              className={`form-control signup-input ${errors.confirmPassword ? 'is-invalid' : ''}`}
+              type='password'
+              placeholder='Confirm Password'
+              id='confirmPassword'
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            {errors.confirmPassword && <div className='error-message'>{errors.confirmPassword}</div>}
+          </div>
         </div>
         <div className='button-container'>
             <div type="button" className='sign-in-container'>

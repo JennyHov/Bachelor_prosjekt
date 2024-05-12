@@ -5,21 +5,6 @@ import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
     const { fullName, email, password } = req.body;
-    let errors = [];
-
-    if (!fullName) {
-        errors.push('Full name is required.');
-    }
-    if (!email) {
-        errors.push('Email is required.');
-    }
-    if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
-        errors.push('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one numeral.');
-    }
-
-    if (errors.length > 0) {
-        return res.status(400).json({ message: errors.join(' '), success: false });
-    }
     const hashedPassword = bcryptjs.hashSync(password, 10);
     const newUser = new User({ fullName, email, password: hashedPassword });
     try{
@@ -38,6 +23,7 @@ export const signin = async (req, res, next) => {
         const validPassword = bcryptjs.compareSync(password, validUser.password);
         if(!validPassword) return next(errorHandler(400, "Wrong email or password!"));
         const token = jwt.sign({ id: validUser._id, role: validUser.role }, process.env.JWT_SECRET);
+        console.log('Generated token:', token);
         const { password: hashedPassword, ...rest } = validUser._doc;
         const expiredDate = new Date(Date.now() + 3600000) // 2 hours = 2*60*60*1000= 7200000
         res
@@ -79,6 +65,7 @@ export const google = async (req, res, next) => {
         });
         await newUser.save();
         const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET);
+        console.log('Generated token:', token);
         const { password: hashedPassword2, ...rest } = newUser._doc;
         const expiryDate = new Date(Date.now() + 3600000); // 2 hours
         res
