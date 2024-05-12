@@ -188,12 +188,11 @@ body {
     font-weight: 400;
     color: var(--button-success);
     font-family: 'source-sans-pro', sans-serif;
-    transition: transform 0.2s ease-in-out
 }
 
 .card-email:hover {
-    transform: scale(1.05);
     color: var(--button-success-active);
+    text-decoration: underline;
 }
 
 .contact-image {
@@ -222,7 +221,6 @@ body {
     color: #F48A34 !important;
     text-decoration: none;
     cursor: pointer;
-    transition: font-style 0.1s ease-in-out;
 }
 
 .text-primary:hover {

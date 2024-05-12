@@ -2,18 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.event-row {
+  margin-top: 5%;
+}
+
 .grid {
   display: grid; 
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-  gap: 3rem; 
-  align-items: stretch;
+  gap: 6rem; 
+  align-items: start;
 }
 
 /* Base styles for the event card */
 .event-card {
+  width: 275px;
   display: flex;
   flex-direction: column; /* Stack date and details vertically */
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 15px; /* Rounded corners */
   overflow: hidden; /* Ensures the content does not spill out */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   font-family: 'Inter', sans-serif;
@@ -56,6 +61,10 @@
   font-weight: 400;
 }
 
+.event-location:hover {
+  text-decoration: underline;
+}
+
 .event-details h2 {
   margin-bottom: 1%;
 }
@@ -84,10 +93,13 @@
 
 @keyframes fadeHighlight {
   0% { box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px }
-  50% { box-shadow: rgba(0, 0, 255, 0.5) 0px 13px 27px -5px, rgba(0, 0, 255, 0.6) 0px 8px 16px -8px; }
+  25% { box-shadow: rgba(244, 138, 52, 0.8) 0px 13px 27px -5px, rgba(244, 138, 52, 0.7) 0px 8px 16px -8px }
+  50% { box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px }
+  75% { box-shadow: rgba(244, 138, 52, 0.8) 0px 13px 27px -5px, rgba(244, 138, 52, 0.7) 0px 8px 16px -8px }
   100% { box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px }
 }
 
 .highlight {            
-  animation: fadeHighlight 1s forwards;
+  animation: fadeHighlight 3s forwards;
+  animation-delay: 0.5s;
 }

@@ -11,7 +11,7 @@ export const submitCounselingForm = async (req, res) => {
         if (req.error) {
             // send a response with the error message
             return res.status(400).json({ message: req.error.message });
-          }
+        }
         
         console.log('req.body:', req.body);
         console.log('req.file:', req.file);        
@@ -30,15 +30,12 @@ export const submitCounselingForm = async (req, res) => {
 
         const fileId = new mongoose.Types.ObjectId();
 
-        // Use gfs to create an upload stream
         const uploadStream = gfs.openUploadStreamWithId(fileId, req.file.originalname, {
             contentType: req.file.mimetype,
             metadata: {
-                // Additional metadata if needed
             }
         });
 
-        // Create separate Promises for each stream
         await Promise.all([
             new Promise((resolve, reject) => {
                 const readStream = fs.createReadStream(req.file.path);
@@ -70,7 +67,6 @@ export const submitCounselingForm = async (req, res) => {
             const errors = Object.values(error.errors).map(({ message }) => message);
             return res.status(400).json({ errors });
         }
-
         console.error('Error submitting counseling form:', error);
         res.status(500).json({ message: 'Server error' });
     }

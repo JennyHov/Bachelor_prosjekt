@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/criteria.css';
+import '../../css/process.css';
 
-export default function Criteria() {
+export default function Process() {
 
     const openInNewTab = (url) => {
         window.open(url, "_blank", "noreferrer");
@@ -17,8 +17,8 @@ export default function Criteria() {
                 <div className="title-container">
                     <h1 className="page-title signup-title">Our Process</h1>
                 </div>
-                <div className="read-more-container">
-                    <p className="read-criteria">Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
+                <div className="message-container">
+                    <p className="page-message">Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
                 </div>
             </div> 
         </div>
@@ -53,7 +53,7 @@ export default function Criteria() {
                     <div className='process-container right'>
                         <div className="process-content">
                             <h3>4. Important Deadlines</h3>
-                            <p>If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</p>
+                            <p>If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</p><br></br>
                             <p>Next deadline: 08.03.2024</p>
                             <p>Feedback within: 22.03.3034</p>
                             <p>Finalists announced: 03.04.2024</p>

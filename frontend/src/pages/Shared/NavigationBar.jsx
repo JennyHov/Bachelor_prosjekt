@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 
 import '../../css/navbar.css';
 import '../../css/loginPopup.css';
-import LoginPopup from '../LoginPopup.jsx';
+import AuthPopup from '../AuthPopup.jsx';
 import { signOut } from '../../Redux/userStates/usersSlicer.js';
 import Countdown from './Countdown.jsx';
 
@@ -94,7 +94,7 @@ const NavigationBar = () => {
                 <NavLink to="/events" className="nav-item nav-link underline" id='eventsLink' activeclassName="active">Events</NavLink>
                 <NavLink to="/collaborate" className="nav-item nav-link underline" id='collaborateLink' activeclassName="active">Collaborate</NavLink>
                 <NavLink to="/about-us" className="nav-item nav-link underline" id='aboutLink' activeclassName="active">About Us</NavLink>
-                <NavLink to="/criteria" className="nav-item nav-link underline" id='criteriaLink' activeclassName="active">Process</NavLink>
+                <NavLink to="/process" className="nav-item nav-link underline" id='processLink' activeclassName="active">Process</NavLink>
                 <NavLink to="/contact-us" className="nav-item nav-link underline" id='contactLink' activeclassName="active">Contact Us</NavLink>
                 {currentUser && currentUser.role === 'admin' && (
                   <NavLink to="/dashboard" className="nav-item nav-link underline" activeclassName="active">Dashboard</NavLink>
@@ -104,13 +104,13 @@ const NavigationBar = () => {
               <div className="navbar-nav ms-auto d-flex align-items-center px-5">
                 {currentUser ? (
                   <>
-                    <Link to="/userprofile" className="nav-item nav-link" id='profileLink'>My Profile</Link>
-                    <button className="nav-item btn login-button" onClick={handleSignOut}>Log Out</button>
+                    <NavLink to="/userprofile" className="nav-item nav-link underline" id='profileLink' activeclassName="active">My Profile</NavLink>
+                    <button className="nav-item btn logout-button" onClick={handleSignOut}>Log Out</button>
                   </>
                 ) : (
                   <>
                     <button className="nav-item btn login-button" onClick={togglePopup}>Log In</button>
-                    <LoginPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
+                    <AuthPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
                   </>
                 )}
                 <Link to="/submit-application" className="btn btn-primary secondary-button">Apply for Funding</Link>

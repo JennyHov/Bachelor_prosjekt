@@ -28,8 +28,25 @@ function eventHasPassed(endDate) {
 }
 
 const Events = () => {
+    useEffect(() => {
+        // Retrieve the selected event ID from local storage
+        const selectedEventId = localStorage.getItem('selectedEvent');
+    
+        if (selectedEventId) {
+            setTimeout(() => {
+                // Scroll to the selected event card
+                const selectedEventElement = document.getElementById(selectedEventId);
+                console.log(selectedEventElement); // Check if the element is found
+                if (selectedEventElement) {
+                    selectedEventElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 500); // delay of 500 milliseconds
+        }
+    }, []);
+
     const [events, setEvents] = useState([]);
     const { eventId } = useParams();
+    console.log(eventId);
 
     useEffect(() => {
         const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // Replace with your actual API Key
@@ -62,8 +79,8 @@ const Events = () => {
                         </p>
                     </div>
                 </div>
-                <div className='max-w-4xl w-full mx-auto'>
-                    <section className='grid items-start grid-cols-cards'>
+                <div className='max-w-4xl event-row'>
+                    <section className='grid'>
                         {events.map((event, index) => (
                             <EventCard key={index} event={event} highlight={event.id === eventId} />
                         ))}
@@ -92,7 +109,7 @@ const EventCard = ({ event, highlight }) => {
     };
 
     return (
-        <article className={`event-card ${highlight ? 'highlight' : ''}`}>
+        <article id={event.id} className={`event-card ${highlight ? 'highlight' : ''}`}>
             <div className='event-date-container p-3'>
                 <div className='event-date'>{startDate}</div>
             </div>

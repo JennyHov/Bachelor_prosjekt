@@ -42,12 +42,10 @@ const SubmitApplicationForm = () => {
   };
 
   useEffect(() => {
-    // This function is called when the component unmounts
     return () => {
-      // Dispatch an action to reset the form state
       dispatch(resetForm());
     };
-  }, [dispatch]); // dispatch is a dependency
+  }, [dispatch]); 
 
 
   const validateFullName = () => {
@@ -144,8 +142,6 @@ const SubmitApplicationForm = () => {
       file: null,
     }));
     setFileName('Upload Application Draft');
-  
-    // Clear the file input's value
     document.getElementById('file').value = null;
   };
 
@@ -167,14 +163,12 @@ const SubmitApplicationForm = () => {
         
         const formDataToSend1 = new FormData();
         
-        // Append form data fields
         Object.entries(formData).forEach(([key, value]) => {
           if (key !== 'file') {
             formDataToSend1.append(key, value);
           }
         });
         
-        // Append file data if it exists
         if (formData.file) {
           console.log('Appending file to formDataToSend1:', formData.file);
           formDataToSend1.append('file', formData.file);
@@ -183,13 +177,11 @@ const SubmitApplicationForm = () => {
           }
         }
       
-        // Send form data to your backend endpoint
         let formResponse = await fetch('/api/application-form/submit-application', {
           method: 'POST',
-          body: formDataToSend1, // Send the FormData object directly
+          body: formDataToSend1, 
         });
         
-        // Check if form submission was successful
         if (!formResponse.ok) {
           throw new Error('Failed to submit application');
         }
@@ -204,16 +196,13 @@ const SubmitApplicationForm = () => {
           formDataToSend2.append('file', formData.file);
         }
         
-        // If form submission was successful, send the email
         const emailResponse = await fetch('/api/application-email/submit-application-email', {
           method: 'POST',
           headers: {
-            // Add any necessary headers here
           },
-          body: formDataToSend2, // Send the same FormData object
+          body: formDataToSend2,
         });
       
-        // Check if email sending was successful
         if (!emailResponse.ok) {
           throw new Error('Failed to send email');
         }

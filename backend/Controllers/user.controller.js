@@ -40,7 +40,7 @@ export const updatePassword = async (req, res, next) => {
   // Regulært uttrykk for å validere passord
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   if (!passwordRegex.test(newPassword)) {
-    return res.status(400).json({ message: "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number." });
+    return res.status(400).json({ message: "Password must be at least 8 characters long, include at least:" <br> "- 1 uppercase letter" <br> "- 1 lowercase letter" <br> "- 1 number." });
   }
 
   try {

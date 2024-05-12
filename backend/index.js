@@ -15,6 +15,8 @@ import applicationEmailRoutes from './routes/applicationEmail.route.js';
 import counselingEmailRoutes from './routes/counselingEmail.route.js';
 import contactEmailRoutes from './routes/contactEmail.route.js';
 import profileRoutes from './routes/profile.route.js';
+import adminRoutes from './routes/admin.route.js';
+import countdownRoutes from './routes/countdown.routes.js'
 
 
 
@@ -52,8 +54,8 @@ app.use('/api/user', userRoutes);
 app.use("/api/auth", authRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api', profileRoutes);
-
-
+app.use('/api/admin', adminRoutes);
+app.use('/api/countdown', countdownRoutes);
 
 app.use('/api/application-form', applicationFormRoutes);
 app.use('/api/contact-form', contactFormRoutes);
@@ -73,6 +75,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(3000, () => {
+      console.log('Server is running on port 3000');
+  });
+}
+export default app;

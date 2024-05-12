@@ -7,9 +7,7 @@ dotenv.config();
 
 export const submitApplication = async (req, res) => {
     try {
-
         if (req.error) {
-            // send a response with the error message
             return res.status(400).json({ message: req.error.message });
           }
 
@@ -31,15 +29,12 @@ export const submitApplication = async (req, res) => {
 
         const fileId = new mongoose.Types.ObjectId();
 
-        // Use gfs to create an upload stream
         const uploadStream = gfs.openUploadStreamWithId(fileId, req.file.originalname, {
             contentType: req.file.mimetype,
             metadata: {
-                // Additional metadata if needed
             }
         });
 
-        // Create separate Promises for each stream
         await Promise.all([
             new Promise((resolve, reject) => {
                 const readStream = fs.createReadStream(req.file.path);
@@ -68,14 +63,10 @@ export const submitApplication = async (req, res) => {
 
         res.status(201).json({ message: 'Application submitted successfully' });
     } catch (error) {
-        // Check if the error is a validation error
         if (error.name === 'ValidationError') {
-            // Extract error messages from the validation error
             const errors = Object.values(error.errors).map(({ message }) => message);
-            // Return the validation error messages
             return res.status(400).json({ errors });
         }
-        // Handle other types of errors
         console.error('Error submitting application:', error);
         res.status(500).json({ message: 'Server error' });
     }

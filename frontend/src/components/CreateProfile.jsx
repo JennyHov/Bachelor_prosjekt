@@ -1,144 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useProfiles } from '../contexts/ProfileContext';
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import PopupCollabForm from './popupCollabForm';
+import { Link } from 'react-router-dom';
 
-export default function CreateProfile() {
-    const { addOrUpdateProfile } = useProfiles();
-    const [profileData, setProfileData] = useState({
-        fullName: '',
-        email: '',
-        institution: '',
-        description: '',
-        category: '',
-        role: '',
-        profileImageUrl: ''
-    });
+export default function CreateProfile({ togglePopup }) {
     const currentUser = useSelector(state => state.user.currentUser);
-
-    const handleImageUpload = async (event) => {
-        const file = event.target.files[0];
-        const storage = getStorage();
-        const storageRef = ref(storage, `profile_images/${Date.now()}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
-        setProfileData({ ...profileData, profileImageUrl: url });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!currentUser) {
-            console.error("User must be logged in to update profile");
-            return;
-        }
-        try {
-            const method = profileData._id ? 'PUT' : 'POST';
-            const endpoint = profileData._id ? `/api/profiles/profiles/${profileData._id}` : '/api/profiles/profiles';
-            const response = await fetch(endpoint, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(profileData)
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+    const [hasCollaborationProfile, setHasCollaborationProfile] = useState(false);
+    
+    useEffect(() => {
+        const fetchCollaborationProfile = async () => {
+          try {
+            const response = await fetch(`/api/profiles/by-user/${currentUser._id}`);
+            const data = await response.json();
+    
+            if (data && data._id) {
+              setHasCollaborationProfile(true);
+            } else {
+              setHasCollaborationProfile(false);
             }
-            const updatedProfile = await response.json();
-            addOrUpdateProfile(updatedProfile);
-        } catch (error) {
-            console.error('Failed to submit profile:', error);
+          } catch (error) {
+            setHasCollaborationProfile(false);
+          }
+        };
+    
+        if (currentUser) {
+          fetchCollaborationProfile();
         }
-    };
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setProfileData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-    if (!currentUser) {
-        return (
-            <div className="container page-container">
-                <div className="alert alert-warning" role="alert">
-                    You must be logged in to create or update your profile.
-                </div>
-            </div>
-        );
-    }
+    }, [currentUser]);
     
     return (
         <div className="container page-container">
-        <div className="row justify-content-center align-items-center gap-3">
-            <div className="col-lg-6 collaboration-container">
+        <div className="row justify-content-center align-items-center">
+            <div className="col-lg-6 justify-content-center">
                 <div className="title-container">
-                    <h1 className="page-title collaboration-title">Become more visible!</h1>
+                    <h1 className="page-title">Become more visible!</h1>
                 </div>
-                <div className="message-container">
-                    <p className="page-message">
-                        We at SEFiO want to help students find a team or startups finding new members for their team
-                    </p>
-                </div>
-                <div className="form-container">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="profileImage">Profile Image</label>
-                            <input type="file" className="form-control" onChange={handleImageUpload} />
+                {currentUser ? (
+                    <>
+                        <div className="message-container">
+                            <p className="page-message">
+                                We at SEFiO want to help students find a team, startups, or new members for their team.
+                            </p>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="fullName" className="form-label">Full Name</label>
-                            <input type="text" className="form-control" name="fullName" value={profileData.fullName} onChange={handleChange} placeholder="Enter your full name" required />
+                        {hasCollaborationProfile ? (
+                            <div className='message-container'>
+                                <p className='page-message'>You already have a collaboration profile.</p>
+                                <p className="page-message">If you want to update it you can do so in
+                                    <span className="landing-link">
+                                        <Link to="/userprofile" className="text-primary"> my profile.</Link>
+                                    </span>
+                                </p>
+                            </div>
+                        ) : (
+                        <PopupCollabForm/>
+                        )}
+                    </>
+                ) : (
+                    <>
+                    <div className="message-container">
+                        <p className="page-message">
+                            We at SEFiO want to help students find a team, startups, or new members for their team.
+                        </p>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <div className="alert alert-warning custom-alert" role="alert">
+                            You must be <span onClick={togglePopup} className='alert-link custom-alert-link'>logged in</span> to create or update your profile.
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" name="email" value={profileData.email} onChange={handleChange} placeholder="Enter your email" required />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="institution" className="form-label">Institution</label>
-                            <select className="form-select" name="institution" value={profileData.institution} onChange={handleChange} required>
-                                <option value="">Select an Institution</option>
-                                <option value="BI">BI</option>
-                                <option value="Oslomet">Oslomet</option>
-                                <option value="UiO">UiO</option>
-                                <option value="NTNU">NTNU</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description" className="form-label">Description</label>
-                            <textarea className="form-control" name="description" value={profileData.description} onChange={handleChange} rows="3" placeholder="Write a description about what you're looking for or tell about yourself and ideas!" required></textarea>                        
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="category" className="form-label">Category</label>
-                            <select 
-                                className="form-select" 
-                                name="category" 
-                                value={profileData.category} 
-                                onChange={handleChange} 
-                                required
-                            >
-                                <option value="">Select a Category</option> {/* Ensure the user selects an option */}
-                                <option value="Academic">Academic</option>
-                                <option value="Industry">Industry</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="role" className="form-label">Role</label>
-                            <select 
-                                className="form-select" 
-                                name="role" 
-                                value={profileData.role} 
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Select a Role</option> {/* Ensure the user selects an option */}
-                                <option value="Student">Student</option>
-                                <option value="Group">Group</option>
-                            </select>
-                        </div>
-                        <div className='button-container'>
-                            <button type="submit" className="btn btn-primary btn-submit-profile mt-3">Submit Profile</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    </>
+                )}
             </div>
         </div>
     </div>

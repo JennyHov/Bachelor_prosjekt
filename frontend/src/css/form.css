@@ -113,3 +113,25 @@
     width: 18px;
     height: 18px;
 }
+
+.modal-dialog {
+    max-width: 65%; /* Set this to your desired width */
+    margin: 1.75rem auto; /* This will center the modal vertically */
+    display: flex;
+    justify-content: center;
+  }
+
+.modal {
+    z-index: 9990;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body {
+    margin-top: -2%;
+}
+
+.submit-profile-button {
+    margin-top: -5%;
+}
