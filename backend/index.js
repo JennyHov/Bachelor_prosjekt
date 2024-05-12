@@ -57,9 +57,6 @@ app.use('/api', profileRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/countdown', countdownRoutes);
 
-
-
-
 app.use('/api/application-form', applicationFormRoutes);
 app.use('/api/contact-form', contactFormRoutes);
 app.use('/api/counseling-form', counselingFormRoutes);

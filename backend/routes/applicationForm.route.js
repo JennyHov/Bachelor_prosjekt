@@ -34,13 +34,10 @@ const storage = multer.diskStorage({
 
   router.post('/submit-application', upload.single('file'), (err, req, res, next) => {
     if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
-      // File too large
       return res.status(413).json({ message: 'File too large. Maximum size is 5000KB.' });
     } else if (err) {
-      // Other Multer error
       return res.status(400).json({ message: err.message });
     }
-    // No error, continue to the next middleware function
     next();
   }, submitApplication);
 
