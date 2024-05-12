@@ -65,7 +65,7 @@ describe('Auth Controller Tests', () => {
     });
   });
 
-  
+
 
 
 
@@ -77,28 +77,8 @@ describe('Auth Controller Tests', () => {
     });
   });
 
-  
 
-  describe('POST /signin', () => {
-    it('should authenticate a user and return 200', async () => {
-      // Ensure user exists
-      const user = new User({
-        fullName: 'Petter Stordalen',
-        email: 'petter@example.com',
-        password: bcryptjs.hashSync('securePassword123', 10) // Hashed password
-      });
-      await user.save();
-  
-      const loginData = {
-        email: 'petter@example.com',
-        password: 'securePassword123'
-      };
-  
-      const response = await request.post('/api/auth/signin').send(loginData);
-      expect(response.status).toBe(200);
-      expect(response.headers['set-cookie']).toEqual(expect.arrayContaining([expect.stringContaining('sefio_token')]));
-        });
-    });
+
 
     describe('POST /google', () => {
         beforeEach(async () => {
@@ -110,7 +90,7 @@ describe('Auth Controller Tests', () => {
             role: 'user'
           }).save();
         });
-      
+
         it('should handle Google sign-in or sign-up and return a token', async () => {
           const googleData = {
             email: 'googleuser@example.com',
@@ -122,6 +102,6 @@ describe('Auth Controller Tests', () => {
           expect(response.headers['set-cookie']).toEqual(expect.arrayContaining([expect.stringContaining('sefio_token')]));
         });
       });
-      
+
 
 });

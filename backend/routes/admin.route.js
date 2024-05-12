@@ -9,7 +9,7 @@ router.patch('/users/role', verifiedToken, isAdmin, updateUserRole);
 router.delete('/users/:userId', verifiedToken, isAdmin, deleteUser);
 router.get('/collaborate-profiles', verifiedToken, isAdmin, getAllCollaborateProfiles);
 router.delete('/collaborate-profiles/:profileId', verifiedToken, isAdmin, deleteCollaborateProfile);
-router.put('/collaborate-profiles/:profileId', verifiedToken, isAdmin, updateCollaborateProfile);  // Added PUT route
+router.put('/collaborate-profiles/:profileId', verifiedToken, isAdmin, updateCollaborateProfile); 
 
 
 
