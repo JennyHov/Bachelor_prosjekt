@@ -1,9 +1,8 @@
 import { submitApplicationEmail } from '../Controllers/applicationEmail.controller';
-// nodemailer go applicationemailmodel er mocket.
 import nodemailer from 'nodemailer';
 import applicationEmailModel from '../models/applicationEmail.model';
 
-// Mocking nodemailer and applicationEmailModel
+// mocking nodemailer and applicationEmailModel
 jest.mock('nodemailer');
 jest.mock('../models/applicationEmail.model');
 

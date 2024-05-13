@@ -15,7 +15,7 @@ describe('Countdown Controller', () => {
 
   describe('setCountdown', () => {
     it('should update an existing countdown', async () => {
-      const req = { body: { endTime: new Date('2024-12-31T23:59:59.000Z') } };
+      const req = { body: { endTime: new Date('2024-07-31T23:59:59.000Z') } };
       const res = mockResponse();
       const mockCountdown = { endTime: req.body.endTime, save: jest.fn() };
       
@@ -28,7 +28,7 @@ describe('Countdown Controller', () => {
     });
 
     it('should create a new countdown when none exists', async () => {
-      const req = { body: { endTime: new Date('2024-12-31T23:59:59.000Z') } };
+      const req = { body: { endTime: new Date('2024-06-31T23:59:59.000Z') } };
       const res = mockResponse();
 
       Countdown.findOne.mockResolvedValue(null);
@@ -41,7 +41,7 @@ describe('Countdown Controller', () => {
     });
 
     it('should handle errors', async () => {
-      const req = { body: { endTime: new Date('2024-12-31T23:59:59.000Z') } };
+      const req = { body: { endTime: new Date('2024-01-31T23:59:59.000Z') } };
       const res = mockResponse();
       const error = new Error("Database error");
 

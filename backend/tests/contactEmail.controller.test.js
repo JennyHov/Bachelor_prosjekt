@@ -2,7 +2,7 @@ import { submitContactEmail } from '../Controllers/contactEmail.controller';
 import contactEmailModel from '../models/contactEmail.model';
 import nodemailer from 'nodemailer';
 
-// Mock nodemailer and contactEmailModel
+// mocking nodemailer and contactEmailModel
 jest.mock('nodemailer');
 jest.mock('../models/contactEmail.model');
 

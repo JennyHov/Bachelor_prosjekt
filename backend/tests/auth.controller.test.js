@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import app from '../index.js';
 import User from '../models/user.model.js';
-import bcryptjs from 'bcryptjs'; // Import bcryptjs here
+import bcryptjs from 'bcryptjs'; 
 
 
 describe('Auth Controller Tests', () => {
@@ -11,7 +11,7 @@ describe('Auth Controller Tests', () => {
   let request;
 
   beforeAll(async () => {
-    // Setup a new memory server for MongoDB if not connected
+    // setting up new memory server for MongoDB 
     if (mongoose.connection.readyState === 0) {
       mongod = await MongoMemoryServer.create();
       const uri = mongod.getUri();
@@ -23,13 +23,12 @@ describe('Auth Controller Tests', () => {
   });
 
   afterAll(async () => {
-    // Avoid using dropDatabase in environments where permissions are restricted
     await mongoose.connection.close();
     if (mongod) await mongod.stop();
   });
 
   afterEach(async () => {
-    // Clear all collections instead of dropping the database
+    // clearing collections instead of dropping the database
     const collections = mongoose.connection.collections;
     for (const key in collections) {
       const collection = collections[key];
@@ -43,6 +42,19 @@ describe('Auth Controller Tests', () => {
         fullName: 'Ola Hansen',
         email: 'OlaHansen@oslomet.no',
         password: 'Abcd1234'
+      };
+
+      const response = await request.post('/api/auth/signup').send(userData);
+      expect(response.status).toBe(201);
+      expect(response.body.message).toBe('User created successfully');
+    });
+  });
+  describe('POST /signup', () => {
+    it('should create a new user for Karine Ottestad and return 201', async () => {
+      const userData = {
+        fullName: 'Karine Ottestad',
+        email: 'karine.ottestad@oslomet.no',
+        password: 'StrongPass123'
       };
 
       const response = await request.post('/api/auth/signup').send(userData);
@@ -67,7 +79,19 @@ describe('Auth Controller Tests', () => {
 
 
 
+  describe('POST /signup', () => {
+    it('should create a new user for Ella Solberg and return 201', async () => {
+      const userData = {
+        fullName: 'Ella Ottervik',
+        email: 'ella.Ottervik@online.no',
+        password: 'sikkerhetErViktig123'
+      };
 
+      const response = await request.post('/api/auth/signup').send(userData);
+      expect(response.status).toBe(201);
+      expect(response.body.message).toBe('User created successfully');
+    });
+  });
 
   describe('GET /signOut', () => {
     it('should sign out a user', async () => {
