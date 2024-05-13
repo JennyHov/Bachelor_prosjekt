@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SubmitApplication from '../../../../pages/ContactUs/contact_us';
-import ContactForm from '../../../../pages/ContactUs/contact_us';
+import SubmitApplication from '../../../pages/ContactUs/contact_us';  // Corrected path to the component
 
 // Mock the ContactForm since we only need to ensure it is rendered in SubmitApplication
-jest.mock('../../../../pages/ContactUs/ContactForm', () => () => <div>ContactFormComponent</div>);
+// Import path is corrected as well, assuming the ContactForm is a separate component file
+jest.mock('../../../pages/ContactUs/ContactForm', () => () => <div>ContactFormComponent</div>);
 
 describe('SubmitApplication', () => {
-  it('renders the component with title, message and includes the ContactForm', () => {
+  it('renders the component with title, message, and includes the ContactForm', () => {
     render(<SubmitApplication />);
 
     // Check for the page title

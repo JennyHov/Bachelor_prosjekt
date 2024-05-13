@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';  // Remove act if not used directly
 import '@testing-library/jest-dom';
-import CountDownAdmin from '../../../pages/Dashboard/CountDown/CountDown';
+import CountDownAdmin from '../../../../pages/Dashboard/CountDown/CountDown';
 
 import { act } from 'react-dom/test-utils'; // Import act
 
