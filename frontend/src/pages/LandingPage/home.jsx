@@ -69,7 +69,7 @@ const home = () => {
                     </div>
                     <div className="col-md-6 landing-content d-flex justify-content-center">
                         <div className="content">
-                            <h1 className="title">25.000NOK for your idea?</h1>
+                            <h1 className="title">25.000 NOK for your idea?</h1>
                             <p className="description">SEFiO supports your student startup with funding up to 25,000NOK!</p>
                             <div className="mt-2">
                                 <Link to="/submit-application" className="btn btn-primary secondary-button">Apply for Funding</Link>
