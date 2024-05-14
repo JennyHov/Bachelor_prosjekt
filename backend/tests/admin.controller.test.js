@@ -1,4 +1,3 @@
-// Assume User and Profile are correctly mocked at the top of your file
 import { getAllUsers, updateUserRole, deleteUser, getAllCollaborateProfiles, deleteCollaborateProfile, updateCollaborateProfile } from '../Controllers/admin.controller';
 import User from '../models/user.model';
 import Profile from '../models/profile.model';
@@ -19,9 +18,9 @@ describe('AdminController Tests', () => {
     mockNext = jest.fn();
     const findByIdAndUpdateMock = {
         select: jest.fn().mockResolvedValue({
-          _id: 'someId',
-          fullName: 'User Three',
-          email: 'user3@example.com',
+          _id: 'jakobId',
+          fullName: 'Jakob Ingebrigtsen',
+          email: 'JakobIngebrigtsen@online.no',
           role: 'admin'
         })
       };
@@ -60,22 +59,22 @@ describe('AdminController Tests', () => {
   describe('updateUserRole', () => {
     it('should update the role of a user and exclude the password from the result', async () => {
       // Prepare request data
-      mockReq.body = { userId: 'someId', role: 'admin' };
+      mockReq.body = { userId: 'jakobId', role: 'admin' };
 
       // Call the function under test
       await updateUserRole(mockReq, mockRes, mockNext);
 
       // Verify that findByIdAndUpdate was called correctly
-      expect(User.findByIdAndUpdate).toHaveBeenCalledWith('someId', { role: 'admin' }, { new: true });
+      expect(User.findByIdAndUpdate).toHaveBeenCalledWith('jakobId', { role: 'admin' }, { new: true });
 
       // Check that .select() was called with '-password'
       expect(User.findByIdAndUpdate().select).toHaveBeenCalledWith('-password');
 
       // Ensure the response contains the expected data
       expect(mockRes.json).toHaveBeenCalledWith({
-        _id: 'someId',
-        fullName: 'User Three',
-        email: 'user3@example.com',
+        _id: 'jakobId',
+        fullName: 'Jakob Ingebrigtsen',
+        email: 'JakobIngebrigtsen@online.no',
         role: 'admin'
       });
     });
@@ -98,7 +97,7 @@ describe('AdminController Tests', () => {
     it('should return all profiles', async () => {
       const mockProfiles = [
         { fullName: 'Profile One', description: 'Profile Description One' },
-        { fullName: 'Profile Two', description: 'Profile Description Two' }
+        { fullName: 'JakobIngebrigtsen@online.no', description: 'Middle- and long-distance runner' }
       ];
       Profile.find.mockResolvedValue(mockProfiles);
 

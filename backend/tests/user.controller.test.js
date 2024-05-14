@@ -31,12 +31,12 @@ describe('User Controller Tests', () => {
 
   describe('updateBasicInfo', () => {
     it('should allow a user to update their profile', async () => {
-      mockReq.body = { fullName: 'Updated Name', email: 'updated@example.com' };
+      mockReq.body = { fullName: 'Alan Walker', email: 'AlanWalker@online.com' };
       User.findByIdAndUpdate.mockResolvedValue({
         _doc: {
-          fullName: 'Updated Name',
-          email: 'updated@example.com',
-          password: 'existingPassword'
+          fullName: 'Alan Walker',
+          email: 'AlanWalker@online.com',
+          password: 'music2024'
         }
       });
 
@@ -44,13 +44,13 @@ describe('User Controller Tests', () => {
 
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith({
-        fullName: 'Updated Name',
-        email: 'updated@example.com'
+        fullName: 'Alan Walker',
+        email: 'AlanWalker@online.com'
       });
     });
 
     it('should return an error if user tries to update another user\'s profile', async () => {
-      mockReq.params.id = 'wrong_id';
+      mockReq.params.id = 'incorrect_id';
 
       await updateBasicInfo(mockReq, mockRes, mockNext);
 
@@ -61,7 +61,7 @@ describe('User Controller Tests', () => {
 
   describe('updatePassword', () => {
     it('should update the user password when valid', async () => {
-      mockReq.body = { newPassword: 'NewPass123!' };
+      mockReq.body = { newPassword: 'Abcd1234!' };
       bcryptjs.genSaltSync.mockReturnValue('salt');
       bcryptjs.hashSync.mockReturnValue('hashedNewPassword');
 
