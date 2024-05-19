@@ -1,35 +1,36 @@
 import dotenv from 'dotenv';
-dotenv.config(); // Sørger for at dette er det første som kjøres for å laste miljøvariabler
+dotenv.config(); 
 
 import mongoose from 'mongoose';
-import User from '../models/user.model.js';  // Juster banen etter din struktur
+import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 
 const seedUsers = async () => {
-    console.log('URI:', process.env.MONGO_URI);  // Debugging: Skriv ut URI for å sjekke at den er lastet
+    console.log('URI:', process.env.MONGO_URI);  //mongodb atlas sin url
     try {
         await mongoose.connect(process.env.MONGO_URI);
 
-        // Slette eksisterende brukere (valgfritt, bruk med forsiktighet!)
+        // denne sletter databasen, og legger inn to brukerne, en admin og en vanlig bruker.
         await User.deleteMany({});
 
-        // Passord hashing
-        const samePassword = "Abcd1234"; // Felles passord for begge brukerne
-        const hashedPassword = await bcrypt.hash(samePassword, 10);  // Hashing av det felles passordet
+        // lager samme passord for begge brukere
+        const samePassword = "Abcd1234"; 
+        // hashing av det felles passordet
+        const hashedPassword = await bcrypt.hash(samePassword, 10);  
 
-        // Opprett admin og vanlig bruker
+        // lager admin bruker
         const admin = new User({
             fullName: 'Admin bruker',
             email: 'admin@online.no',
-            password: hashedPassword,  // Bruk det hashede passordet
+            password: hashedPassword,  
             profileImage: 'https://lh3.googleusercontent.com/a/ACg8ocKJ23INLoShdoukmRXkwDT7tqChL2DihzqYvTgx7Emi=s96-c',
             role: 'admin'
         });
-
+        // lager vanlig bruker
         const user = new User({
             fullName: 'Vanlig bruker',
             email: 'bruker@online.no',
-            password: hashedPassword,  // Bruk det hashede passordet
+            password: hashedPassword,  
             profileImage: 'https://lh3.googleusercontent.com/a/ACg8ocKJ23INLoShdoukmRXkwDT7tqChL2DihzqYvTgx7Emi=s96-c',
             role: 'user'
         });
