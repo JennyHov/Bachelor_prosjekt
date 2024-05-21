@@ -25,8 +25,8 @@ describe('ApplicationEmail Controller', () => {
   it('should send an email with the correct data', async () => {
     const req = {
       body: {
-        fullName: 'John Doe',
-        email: 'john@example.com',
+        fullName: 'Thomas Gjertsen',
+        email: 'thomas.gjertsen@example.no',
         institution: 'University X',
         projectName: 'Project Y',
         comments: 'Some comments here',
@@ -57,7 +57,7 @@ describe('ApplicationEmail Controller', () => {
       attachments: [
         { filename: 'resume.pdf', content: Buffer.from('This is a test file') }
       ],
-      html: expect.stringContaining('John Doe')
+      html: expect.stringContaining('Thomas Gjertsen')
     }));
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ message: 'Application submitted successfully' });
@@ -66,8 +66,8 @@ describe('ApplicationEmail Controller', () => {
   it('should handle errors during email sending', async () => {
     const req = {
       body: {
-        fullName: 'John Doe',
-        email: 'john@example.com',
+        fullName: 'Liv Ullmann',
+        email: 'LivUllmann@online.no',
         institution: 'University X',
         projectName: 'Project Y',
         comments: 'Some comments here',

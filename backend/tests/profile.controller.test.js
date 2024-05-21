@@ -1,4 +1,4 @@
-import { getProfileByUserId, deleteUserProfile } from '../controllers/profile.controller';
+import { getProfileByUserId, deleteUserProfile } from '../Controllers/profile.controller';
 import Profile from '../models/profile.model';
 
 jest.mock('../models/profile.model', () => {
@@ -37,7 +37,7 @@ jest.mock('../models/profile.model', () => {
   
   describe('getProfileByUserId', () => {
     it('try to fetch and return a profile by user ID', async () => {
-      const profile = { fullName: 'John Doe' };
+      const profile = { fullName: 'Ola Hansen' };
       Profile.findOne.mockResolvedValue(profile);
 
       mockReq.params.userId = 'abcd1234';

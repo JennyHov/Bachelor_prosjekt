@@ -24,8 +24,8 @@ describe('ContactEmail Controller', () => {
   it('should send a contact email with the correct data', async () => {
     const req = {
       body: {
-        fullName: 'John Doe',
-        email: 'john.doe@example.com',
+        fullName: 'Erling Braut Haaland',
+        email: 'ErlingBrautHaaland@online.no',
         subject: 'Test Subject',
         inquiry: 'Test Inquiry'
       }
@@ -41,7 +41,7 @@ describe('ContactEmail Controller', () => {
       to: 'jenny.hovland@live.no',
       subject: 'New Contact Form Submission',
       text: 'Constructed email message',
-      html: expect.stringContaining('John Doe')
+      html: expect.stringContaining('Erling Braut Haaland')
     }));
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ message: 'Contact form submitted successfully' });
@@ -50,8 +50,8 @@ describe('ContactEmail Controller', () => {
   it('should handle errors during email sending', async () => {
     const req = {
       body: {
-        fullName: 'John Doe',
-        email: 'john.doe@example.com',
+        fullName: 'Jo Nesbo',
+        email: 'JoNesbo@online.no',
         subject: 'Test Subject',
         inquiry: 'Test Inquiry'
       }
