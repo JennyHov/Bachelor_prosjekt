@@ -39,8 +39,8 @@ describe('Auth Controller Tests', () => {
   describe('POST /signup', () => {
     it('should create a new user and return 201', async () => {
       const userData = {
-        fullName: 'Ola Hansen',
-        email: 'OlaHansen@oslomet.no',
+        fullName: 'Ola Hansen2',
+        email: 'OlaHansen2@oslomet.no',
         password: 'Abcd1234'
       };
 

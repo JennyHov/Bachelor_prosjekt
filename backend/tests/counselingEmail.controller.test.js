@@ -58,7 +58,7 @@ describe('CounselingEmail Controller', () => {
             subject: 'New Counseling Submission',
             text: 'Constructed email message',
             attachments: [{ filename: 'resume.pdf', content: Buffer.from('Dette er en test fil') }],
-            html: expect.stringContaining('John Doe')
+            html: expect.stringContaining('Jonas Gahr Store')
         }));
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.json).toHaveBeenCalledWith({ message: 'Counseling form submitted successfully' });
