@@ -1,12 +1,11 @@
-/* Styles for form container */
+
 .form-container {
-    max-width: 100%; /* Adjust as needed */
+    max-width: 100%; 
     margin: 0 auto;
     margin-top: 7%;
     margin-bottom: 5%;
   }
   
-  /* Styles for form input boxes */
 .form-box {
     margin-bottom: 5%;
 }
@@ -28,7 +27,7 @@
 }
   
 .form-input::placeholder {
-    color: #aaa; /* Placeholder color */
+    color: #aaa; 
 }
 
 .form-label {
@@ -54,7 +53,7 @@
 
 .teritary-button {
     width: 100%;
-    background-color: var(--button-success); /* Google's brand blue */
+    background-color: var(--button-success); 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -72,7 +71,7 @@
 
 .teritary-button:hover,
 .teritary-button:focus {
-    background-color: var(--button-success-active); /* A slightly darker blue on hover/focus */
+    background-color: var(--button-success-active); 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     color: white;
 }
@@ -105,7 +104,7 @@
 
 .file-upload-button:hover,
 .file-upload-button:focus {
-    background-color: hsl(0, 0%, 96%); /* A slightly darker blue on hover/focus */
+    background-color: hsl(0, 0%, 96%); 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -116,8 +115,8 @@
 
 .modal-dialog {
     z-index: 9998;
-    max-width: 65%; /* Set this to your desired width */
-    margin: 1.75rem auto; /* This will center the modal vertically */
+    max-width: 65%;
+    margin: 1.75rem auto; 
     display: flex;
     justify-content: center;
   }
