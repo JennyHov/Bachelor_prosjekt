@@ -45,10 +45,10 @@ const Countdown = () => {
     }, []);
 
     return (
-        <div className="countdown-container d-flex justify-content-center align-items-center">
+        <div className="countdown-container d-flex justify-content-center align-items-center" role="timer" aria-live="polite">
             <p className="countdown-content">{timeLeft}</p>
         </div>
-    );
+    );    
 };
 
 export default Countdown;

@@ -80,45 +80,53 @@ const ListProfiles = ({ fetchUrl }) => {
     );
 
     return (
-        <div>
+        <section>
+          <header>
             <h2>Profiles</h2>
-            {error && <div className="alert alert-danger">{error}</div>}
+          </header>
+          {error && <div className="alert alert-danger" role="alert">{error}</div>}
+          <form>
+            <label htmlFor="searchQuery" className="visually-hidden">Search by name</label>
             <input
-                type="text"
-                placeholder="Search by name..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="form-control mb-3"
+              id="searchQuery"
+              type="text"
+              placeholder="Search by name..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="form-control mb-3"
             />
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredProfiles.map(profile => (
-                        <tr key={profile._id}>
-                            <td>{profile.fullName}</td>
-                            <td>{profile.email}</td>
-                            <td>{profile.role}</td>
-                            <td>
-                                <button className="btn btn-primary" onClick={() => changeUserRole(profile._id, profile.role)}>
-                                    Change to {profile.role === 'admin' ? 'User' : 'Admin'}
-                                </button>
-                                <button className="btn btn-danger" onClick={() => deleteUser(profile._id)}>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+          </form>
+          <table className="table table-striped" role="grid">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProfiles.map(profile => (
+                <tr key={profile._id}>
+                  <td>{profile.fullName}</td>
+                  <td>{profile.email}</td>
+                  <td>{profile.role}</td>
+                  <td>
+                    <div role="group" aria-label={`Actions for ${profile.fullName}`}>
+                      <button type="button" className="btn btn-primary me-2" onClick={() => changeUserRole(profile._id, profile.role)}>
+                        Change to {profile.role === 'admin' ? 'User' : 'Admin'}
+                      </button>
+                      <button type="button" className="btn btn-danger" onClick={() => deleteUser(profile._id)}>
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      );      
 };
 
 export default ListProfiles;

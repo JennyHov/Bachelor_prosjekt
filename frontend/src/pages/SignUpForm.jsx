@@ -90,78 +90,88 @@ const SignUpForm = ({ onClose, toggleForm }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <div className='login-form-container'>
-        {errors.form && <div className='error-message'>{errors.form}</div>}
-            <div className='form-group login-box'>
-                <input
-                    className={`form-control signup-input ${errors.fullName ? 'is-invalid' : ''}`}
-                    type='text'
-                    placeholder='Full Name'
-                    id='fullName'
-                    value={formData.fullName}
-                    onChange={handleChange}
-                />
-                {errors.fullName && <div className='error-message'>{errors.fullName}</div>}
-            </div>
-            <div className="form-group login-box">
-                <input
-                    className={`form-control signup-input ${errors.email ? 'is-invalid' : ''}`}
-                    type='email'
-                    placeholder='Email'
-                    id='email'
-                    value={formData.email || ''}
-                    onChange={handleChange}
-                />
-                {errors.email && <div className='error-message'>{errors.email}</div>}
-            </div>
-            <div className="form-group login-box">
-                <input
-                    className={`form-control signup-input ${errors.password ? 'is-invalid' : ''}`}
-                    type='password'
-                    placeholder='Password'
-                    id='password'
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                {errors.password && <div className='error-message'>{errors.password}</div>}
-            </div>
-            <div className="form-group login-box">
-              <input
-                className={`form-control signup-input ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                type='password'
-                placeholder='Confirm Password'
-                id='confirmPassword'
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
-            {errors.confirmPassword && <div className='error-message'>{errors.confirmPassword}</div>}
-          </div>
+      <fieldset className='login-form-container'>
+        {errors.form && <div className='error-message' role="alert">{errors.form}</div>}
+        <div className='form-group login-box'>
+          <label htmlFor='fullName' className='visually-hidden'>Full Name</label>
+          <input
+            className={`form-control signup-input ${errors.fullName ? 'is-invalid' : ''}`}
+            type='text'
+            placeholder='Full Name'
+            id='fullName'
+            value={formData.fullName}
+            onChange={handleChange}
+            aria-invalid={errors.fullName ? "true" : "false"}
+          />
+          {errors.fullName && <div className='error-message' role="alert">{errors.fullName}</div>}
         </div>
-        <div className='button-container'>
-            <div type="button" className='sign-in-container'>
-              <button disabled={loading} className='sign-in-btn'>
-                {loading ? 'Loading...' : 'Sign up'}
-              </button>
-            </div>
-            <div className='no-account-container'>
-                <p className='no-account'>Already have an account?&nbsp;
-                    <button onClick={toggleForm} className='text-primary'>
-                        Login here
-                    </button>
-                </p>
-            </div>
-            <div className='divider'>
-              <span className='divider-line'></span>
-              <span className='divider-text'>Or</span>
-              <span className='divider-line'></span>
-            </div>
-            <div className='google-login-btn' type='button'>
-              <img src={GoogleImage} alt="Google logo" className='google-logo'/>
-              <Oauth />
-            </div>
+        <div className="form-group login-box">
+          <label htmlFor='email' className='visually-hidden'>Email</label>
+          <input
+            className={`form-control signup-input ${errors.email ? 'is-invalid' : ''}`}
+            type='email'
+            placeholder='Email'
+            id='email'
+            value={formData.email || ''}
+            onChange={handleChange}
+            aria-invalid={errors.email ? "true" : "false"}
+          />
+          {errors.email && <div className='error-message' role="alert">{errors.email}</div>}
         </div>
+        <div className="form-group login-box">
+          <label htmlFor='password' className='visually-hidden'>Password</label>
+          <input
+            className={`form-control signup-input ${errors.password ? 'is-invalid' : ''}`}
+            type='password'
+            placeholder='Password'
+            id='password'
+            value={formData.password}
+            onChange={handleChange}
+            aria-invalid={errors.password ? "true" : "false"}
+          />
+          {errors.password && <div className='error-message' role="alert">{errors.password}</div>}
+        </div>
+        <div className="form-group login-box">
+          <label htmlFor='confirmPassword' className='visually-hidden'>Confirm Password</label>
+          <input
+            className={`form-control signup-input ${errors.confirmPassword ? 'is-invalid' : ''}`}
+            type='password'
+            placeholder='Confirm Password'
+            id='confirmPassword'
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            aria-invalid={errors.confirmPassword ? "true" : "false"}
+          />
+          {errors.confirmPassword && <div className='error-message' role="alert">{errors.confirmPassword}</div>}
+        </div>
+      </fieldset>
+      <div className='button-container'>
+        <div className='sign-in-container'>
+          <button type="submit" disabled={loading} className='sign-in-btn'>
+            {loading ? 'Loading...' : 'Sign up'}
+          </button>
+        </div>
+        <div className='no-account-container'>
+          <p className='no-account'>Already have an account?&nbsp;
+            <button type="button" onClick={toggleForm} className='text-primary'>
+              Login here
+            </button>
+          </p>
+        </div>
+        <div className='divider'>
+          <span className='divider-line'></span>
+          <span className='divider-text'>Or</span>
+          <span className='divider-line'></span>
+        </div>
+        <div className='google-login-btn'>
+          <button type='button' className='google-login-btn-inner'>
+            <img src={GoogleImage} alt="Google logo" className='google-logo'/>
+            <Oauth />
+          </button>
+        </div>
+      </div>
     </form>
-  );
+  );  
 };
 
 export default SignUpForm;

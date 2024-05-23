@@ -22,17 +22,39 @@ const CountDownAdmin = () => {
 
     return (
         <div>
-            <h2>Set Countdown End Date and Time</h2>
-            <Form>
-                <Form.Group>
-                    <Form.Label>Select end date and time:</Form.Label>
-                    <Form.Control type="datetime-local" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-                </Form.Group>
-                <Button onClick={handleSubmit}>Update Countdown</Button>
-            </Form>
-            <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+          <h2>Set Countdown End Date and Time</h2>
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>Select End Date and Time</legend>
+              <div className="form-group">
+                <label htmlFor="endDate" className="form-label">Select end date and time:</label>
+                <input 
+                  id="endDate"
+                  className="form-control"
+                  type="datetime-local"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  aria-required="true"
+                />
+              </div>
+              <button type="submit" className="btn">Update Countdown</button>
+            </fieldset>
+          </form>
+          <div className="toast-container">
+            <ToastContainer 
+              position="top-right" 
+              autoClose={5000} 
+              hideProgressBar={false} 
+              newestOnTop={false} 
+              closeOnClick 
+              rtl={false} 
+              pauseOnFocusLoss 
+              draggable 
+              pauseOnHover 
+            />
+          </div>
         </div>
-    );
+      );
 };
 
 export default CountDownAdmin;

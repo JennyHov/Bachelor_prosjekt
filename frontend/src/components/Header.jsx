@@ -4,34 +4,36 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (
-    <div>
+    <header>
+      <nav>
         <div>
-            <Link to='/'>
-            <h1>Sefio kule navigasjonsbar</h1>            
-            </Link>
-            <ul>
-                <Link to='/'>
-                <li>Home</li>
-                </Link>
-                <Link to='/about'>
-                <li>About</li>
-                </Link>
-                
-                {currentUser && currentUser.role === 'admin' && (
-                  <Link to='/users'>
-                    <li>Users</li>
-                  </Link>
+          <Link to='/'>
+            <h1>Sefio kule navigasjonsbar</h1>
+          </Link>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/about'>About</Link>
+            </li>
+            {currentUser && currentUser.role === 'admin' && (
+              <li>
+                <Link to='/users'>Users</Link>
+              </li>
+            )}
+            <li>
+              <Link to='/user-profile'>
+                {currentUser ? (
+                  <img src={currentUser.profileImage} alt='profile' className='h-7 w-7 rounded-full object-cover' />
+                ) : (
+                  'Sign In'
                 )}
-
-                <Link to='/user-profile'>
-                  {currentUser ? (
-                <img src={currentUser.profileImage} alt='profile' className='h-7 w-7 rounded-full object-cover' />
-              ) : (
-                <li>Sign In</li>
-              )}
-                </Link>
-            </ul>
+              </Link>
+            </li>
+          </ul>
         </div>
-    </div>
-  )
+      </nav>
+    </header>
+  );  
 }

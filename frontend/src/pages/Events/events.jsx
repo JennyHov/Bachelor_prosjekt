@@ -65,30 +65,32 @@ const Events = () => {
 
     return (
         <div className='container page-container'>
-            <div style={{ height: '70px' }} />
-            <div className='row justify-content-center align-items-center gap-3'>
-                <div className='col-lg-6 events-container'>
-                    <div className='title-container'>
-                        <h1 className='page-title'>Join our events</h1>
-                    </div>
-                    <div className='message-container'>
-                        <p className='page-message events-message'>
-                            Events related to entrepreneurship and finance. Would you like to <Link to="/contact-us" className="text-primary">
-                                    suggest
-                                </Link>{' '} any events?
-                        </p>
-                    </div>
-                </div>
-                <div className='max-w-4xl event-row'>
-                    <section className='grid'>
-                        {events.map((event, index) => (
-                            <EventCard key={index} event={event} highlight={event.id === eventId} />
-                        ))}
-                    </section>
-                </div>
+          <div style={{ height: '70px' }} />
+      
+          <main className='row justify-content-center align-items-center gap-3'>
+            <div className='col-lg-6 events-container'>
+              <header className='title-container'>
+                <h1 className='page-title'>Join our events</h1>
+              </header>
+              <section className='message-container'>
+                <p className='page-message events-message'>
+                  Events related to entrepreneurship and finance. Would you like to{' '}
+                  <Link to="/contact-us" className="text-primary">suggest</Link> any events?
+                </p>
+              </section>
             </div>
+      
+            <div className='max-w-4xl event-row'>
+              <section className='grid'>
+                {events.map((event, index) => (
+                  <EventCard key={index} event={event} highlight={event.id === eventId} />
+                ))}
+              </section>
+            </div>
+          </main>
         </div>
-    );
+      );
+      
 }
 
 const EventCard = ({ event, highlight }) => {
@@ -110,24 +112,24 @@ const EventCard = ({ event, highlight }) => {
 
     return (
         <article id={event.id} className={`event-card ${highlight ? 'highlight' : ''}`}>
-            <div className='event-date-container p-3'>
-                <div className='event-date'>{startDate}</div>
+          <div className='event-date-container p-3'>
+            <time dateTime={event.startDateTime} className='event-date'>{startDate}</time>
+          </div>
+          <div className='event-details p-4'>
+            <h2 className='event-title'>{event.summary}</h2>
+            <p className='event-time'>{eventTime}</p>
+            <p className='event-location'>{locationHTML}</p>
+            <div className={`event-description ${showDetails ? '' : 'event-hidden'}`} aria-hidden={!showDetails}>
+              {event.description || ''}
             </div>
-            <div className='event-details p-4'>
-                <h2 className='event-title'>{event.summary}</h2>
-                <p className='event-time'>{eventTime}</p>
-                <p className='event-location'>{locationHTML}</p>
-                <div className={`event-description ${showDetails ? '' : 'event-hidden'}`}>
-                    {event.description || ''}
-                </div>
-                {hasDescription && (
-                    <button className='toggle-details' aria-expanded={showDetails} onClick={toggleDetails}>
-                        {showDetails ? 'Hide details' : 'See details'}
-                    </button>
-                )}
-            </div>
+            {hasDescription && (
+              <button className='toggle-details' aria-expanded={showDetails} onClick={toggleDetails}>
+                {showDetails ? 'Hide details' : 'See details'}
+              </button>
+            )}
+          </div>
         </article>
-    );
+    );      
 }
 
 export default Events;

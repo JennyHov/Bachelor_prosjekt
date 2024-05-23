@@ -72,56 +72,55 @@ const NavigationBar = () => {
   };
 
   return (
-    <div className='d-flex justify-content-center'>
-        <nav className="navbar navbar-expand-lg navbar-styling" style={navStyle}>
+    <header className='d-flex justify-content-center'>
+      <nav className="navbar navbar-expand-lg navbar-styling" style={navStyle}>
         <div className="container-fluid">
-            <Link to="/" className="navbar-brand ps-5 pe-2">
-              <img src={logoImage} alt="Svart logo for SEFiO, Studentenes Entreprenørskapsfond i Oslo" className='sefio-logo-navbar'/>
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              aria-controls="navbarNavAltMarkup"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onClick={toggleCollapse}
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarNavAltMarkup">
-              <div className="navbar-nav align-items-center">
-                <NavLink to="/counseling" className="nav-item nav-link underline" id='counselingLink' activeclassName="active">Counseling</NavLink>
-                <NavLink to="/events" className="nav-item nav-link underline" id='eventsLink' activeclassName="active">Events</NavLink>
-                <NavLink to="/collaborate" className="nav-item nav-link underline" id='collaborateLink' activeclassName="active">Collaborate</NavLink>
-                <NavLink to="/about-us" className="nav-item nav-link underline" id='aboutLink' activeclassName="active">About Us</NavLink>
-                <NavLink to="/process" className="nav-item nav-link underline" id='processLink' activeclassName="active">Process</NavLink>
-                <NavLink to="/contact-us" className="nav-item nav-link underline" id='contactLink' activeclassName="active">Contact Us</NavLink>
-                {currentUser && currentUser.role === 'admin' && (
-                  <NavLink to="/dashboard" className="nav-item nav-link underline" activeclassName="active">Dashboard</NavLink>
-                )}
-              </div>
-
-              <div className="navbar-nav ms-auto d-flex align-items-center px-5">
-                {currentUser ? (
-                  <>
-                    <NavLink to="/userprofile" className="nav-item nav-link underline" id='profileLink' activeclassName="active">My Profile</NavLink>
-                    <button className="nav-item btn logout-button" onClick={handleSignOut}>Log Out</button>
-                  </>
-                ) : (
-                  <>
-                    <button className="nav-item btn login-button" onClick={togglePopup}>Log In</button>
-                    <AuthPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
-                  </>
-                )}
-                <Link to="/submit-application" className="btn btn-primary secondary-button">Apply for Funding</Link>
-              </div>
+          <Link to="/" className="navbar-brand ps-5 pe-2">
+            <img src={logoImage} alt="Svart logo for SEFiO, Studentenes Entreprenørskapsfond i Oslo" className='sefio-logo-navbar'/>
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded={isCollapsed ? 'true' : 'false'}
+            aria-label="Toggle navigation"
+            onClick={toggleCollapse}
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className={`collapse navbar-collapse ${isCollapsed ? 'show' : ''}`} id="navbarNavAltMarkup">
+            <div className="navbar-nav align-items-center">
+              <NavLink to="/counseling" className="nav-item nav-link underline" id='counselingLink' activeclassName="active">Counseling</NavLink>
+              <NavLink to="/events" className="nav-item nav-link underline" id='eventsLink' activeclassName="active">Events</NavLink>
+              <NavLink to="/collaborate" className="nav-item nav-link underline" id='collaborateLink' activeclassName="active">Collaborate</NavLink>
+              <NavLink to="/about-us" className="nav-item nav-link underline" id='aboutLink' activeclassName="active">About Us</NavLink>
+              <NavLink to="/process" className="nav-item nav-link underline" id='processLink' activeclassName="active">Process</NavLink>
+              <NavLink to="/contact-us" className="nav-item nav-link underline" id='contactLink' activeclassName="active">Contact Us</NavLink>
+              {currentUser && currentUser.role === 'admin' && (
+                <NavLink to="/dashboard" className="nav-item nav-link underline" activeclassName="active">Dashboard</NavLink>
+              )}
             </div>
+  
+            <div className="navbar-nav ms-auto d-flex align-items-center px-5">
+              {currentUser ? (
+                <>
+                  <NavLink to="/userprofile" className="nav-item nav-link underline" id='profileLink' activeclassName="active">My Profile</NavLink>
+                  <button className="nav-item btn logout-button" onClick={handleSignOut}>Log Out</button>
+                </>
+              ) : (
+                <>
+                  <button className="nav-item btn login-button" onClick={togglePopup}>Log In</button>
+                  <AuthPopup isOpen={isPopupOpen} onClose={togglePopup} /> {isPopupOpen && <div className='overlay'></div>}
+                </>
+              )}
+              <Link to="/submit-application" className="btn btn-primary secondary-button">Apply for Funding</Link>
+            </div>
+          </div>
         </div>
       </nav>
       <Countdown />
-    </div>
-    
-  );
+    </header>
+  );  
 };
 
 export default NavigationBar;

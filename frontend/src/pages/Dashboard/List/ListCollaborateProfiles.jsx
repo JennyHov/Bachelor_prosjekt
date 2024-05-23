@@ -113,66 +113,74 @@ const ListCollaborateProfiles = () => {
 
     return (
         <div>
-            <h2>Collaborative Profiles</h2>
-            {error && <div className="alert alert-danger">{error}</div>}
-            <input
-                type="text"
-                placeholder="Search by name..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="form-control mb-3"
-            />
-            <table className="table">
-                <thead>
+            <section>
+                <header>
+                    <h2>Collaborative Profiles</h2>
+                </header>
+                {error && <div className="alert alert-danger" role="alert">{error}</div>}
+                <form>
+                    <label htmlFor="searchQuery" className="visually-hidden">Search by name</label>
+                    <input
+                    id="searchQuery"
+                    type="text"
+                    placeholder="Search by name..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="form-control mb-3"
+                    />
+                </form>
+                <table className="table" role="grid">
+                    <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Description</th>
-                        <th>Institution</th>
-                        <th>Category</th>
-                        <th>Role</th>
-                        <th>Actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Institution</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                </thead>
-                <tbody>
-                {filteredProfiles.map(profile => (
+                    </thead>
+                    <tbody>
+                    {filteredProfiles.map(profile => (
                         <tr key={profile._id}>
-                            <td>{profile.fullName}</td>
-                            <td>{profile.email}</td>
-                            <td>
-                                {showFullDescription[profile._id] ? (
-                                    <span>
-                                        {profile.description}
-                                        <Button variant="link" size="sm" onClick={() => toggleDescription(profile._id)}>
-                                            Read less
-                                        </Button>
-                                    </span>
-                                ) : (
-                                    <span>
-                                        {profile.description.substring(0, 15)}...
-                                        <Button variant="link" size="sm" onClick={() => toggleDescription(profile._id)}>
-                                            Read more
-                                        </Button>
-                                    </span>
-                                )}
-                            </td>
-                            <td>{profile.institution}</td>
-                            <td>{profile.category}</td>
-                            <td>{profile.role}</td>
-                            <td>
-                                <ButtonGroup>
-                                    <Button className="btn btn-primary me-2" onClick={() => openEditModal(profile)}>
-                                        Edit
-                                    </Button>
-                                    <Button className="btn btn-danger" onClick={() => deleteProfile(profile._id)}>
-                                        Delete
-                                    </Button>
-                                </ButtonGroup>
-                            </td>
+                        <td>{profile.fullName}</td>
+                        <td>{profile.email}</td>
+                        <td>
+                            {showFullDescription[profile._id] ? (
+                            <span>
+                                {profile.description}
+                                <button type="button" className="btn btn-link btn-sm" onClick={() => toggleDescription(profile._id)}>
+                                Read less
+                                </button>
+                            </span>
+                            ) : (
+                            <span>
+                                {profile.description.substring(0, 15)}...
+                                <button type="button" className="btn btn-link btn-sm" onClick={() => toggleDescription(profile._id)}>
+                                Read more
+                                </button>
+                            </span>
+                            )}
+                        </td>
+                        <td>{profile.institution}</td>
+                        <td>{profile.category}</td>
+                        <td>{profile.role}</td>
+                        <td>
+                            <div role="group" aria-label={`Actions for ${profile.fullName}`}>
+                            <button type="button" className="btn btn-primary me-2" onClick={() => openEditModal(profile)}>
+                                Edit
+                            </button>
+                            <button type="button" className="btn btn-danger" onClick={() => deleteProfile(profile._id)}>
+                                Delete
+                            </button>
+                            </div>
+                        </td>
                         </tr>
                     ))}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </section>
 
             <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
                 <Modal.Header closeButton>

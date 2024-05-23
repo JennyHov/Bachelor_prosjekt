@@ -18,24 +18,28 @@ export default function Process() {
                 <h1 className="page-title signup-title">Our Process</h1>
               </header>
               <div className="message-container">
-                <p className="page-message">Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!</p>
+                <p className="page-message">
+                  Before you apply for funding, it's important to understand our process and the support we offer. By understanding and following these steps, you'll be well-prepared for our application process. Good luck!
+                </p>
               </div>
             </div>
           </section>
           <section className="row justify-content-center">
             <div className="col">
-              <nav className="timeline">
-                <article className='process-container left'>
+              <nav className="timeline" aria-label="Process Timeline">
+                <article className='process-container left' aria-labelledby="counseling-criteria">
                   <div className="process-content">
-                    <h3>1. Counseling Criteria</h3>
+                    <h3 id="counseling-criteria">1. Counseling Criteria</h3>
                     <p>SEFiO offers free counseling to all applicants, at any stage in the process. We recommend requesting this as soon as possible.</p>
                     <Link to="/counseling" className="text-primary">Apply for counseling</Link>
                   </div>
                 </article>
-                <article className='process-container right'>
+                <article className='process-container right' aria-labelledby="application-template">
                   <div className="process-content">
-                    <h3>2. Application Template</h3>
-                    <p>Below you will find our application forms used to evaluate your project/business. Feel free to download and start your application. Remember that our great advisory team is ready to help elevate your application. Projects utilizing counseling before submitting usually reach higher in the evaluation.</p>
+                    <h3 id="application-template">2. Application Template</h3>
+                    <p>
+                      Below you will find our application forms used to evaluate your project/business. Feel free to download and start your application. Remember that our great advisory team is ready to help elevate your application. Projects utilizing counseling before submitting usually reach higher in the evaluation.
+                    </p>
                     <div className="d-flex justify-content-start align-items-center gap-3">
                       <div className="d-flex gap-3">
                         <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1bwx2Jk3mT1_1m4EuPOQZmkWAVHkqoI0cw3u2iY9IWo4/edit")} className='text-primary'>English</a>
@@ -44,16 +48,18 @@ export default function Process() {
                     </div>
                   </div>
                 </article>
-                <article className='process-container left'>
+                <article className='process-container left' aria-labelledby="after-submission">
                   <div className="process-content">
-                    <h3>3. After Submission</h3>
-                    <p>After each deadline, all applications are processed within two (2) weeks. During those two weeks, the counseling team will contact you. One (1) week later the projects/businesses that are to present before the jury are chosen and invited to the final. You will then have one (1) week to prepare for the jury.</p>
+                    <h3 id="after-submission">3. After Submission</h3>
+                    <p>
+                      After each deadline, all applications are processed within two (2) weeks. During those two weeks, the counseling team will contact you. One (1) week later the projects/businesses that are to present before the jury are chosen and invited to the final. You will then have one (1) week to prepare for the jury.
+                    </p>
                   </div>
                 </article>
-                <article className='process-container right'>
+                <article className='process-container right' aria-labelledby="important-deadlines">
                   <div className="process-content">
-                    <h3>4. Important Deadlines</h3>
-                    <p>If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</p><br></br>
+                    <h3 id="important-deadlines">4. Important Deadlines</h3>
+                    <p>If you did not make it this round, you will be offered counseling and the chance to apply in the next round.</p><br />
                     <p>Next deadline: 08.03.2024</p>
                     <p>Feedback within: 22.03.2024</p>
                     <p>Finalists announced: 03.04.2024</p>
@@ -67,5 +73,5 @@ export default function Process() {
             <Link to="/submit-application" className="btn btn-primary secondary-button">Apply For Funding</Link>
           </div>
         </div>
-      );
+      );      
 }

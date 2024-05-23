@@ -338,208 +338,211 @@ const ProfileInformation = () => {
   };
 
   
-    return (
-      
-      <div className="container page-container">
-        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnHover draggable theme="light" />
-        <div style={{ height: '70px' }} />
-          <div className="row justify-content-center gap-3">
-            <div className='col-lg-4'>
-              <div className='title-container'>
-                <h1 className="profile-title">My Profile</h1>
+  return (
+    <div className="container page-container">
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnHover draggable theme="light" />
+      <div style={{ height: '70px' }} />
+      <section className="row justify-content-center gap-3">
+        <div className='col-lg-4'>
+          <header className='title-container'>
+            <h1 className="profile-title">My Profile</h1>
+          </header>
+          <form onSubmit={handleSubmit} className='form-container' aria-labelledby="profile-form">
+            {currentUser && (
+              <>
+              <div className="form-group form-box">
+                <label htmlFor="fullName" className="form-label">Full Name</label>
+                <input 
+                  type="text" 
+                  className="form-control form-input" 
+                  id="fullName" 
+                  onChange={handleChange}
+                  defaultValue={currentUser.fullName}
+                />                
               </div>
-              <form onSubmit={handleSubmit} className='form-container'>
-                {currentUser && (
-                  <>
-                  <div className="form-group form-box">
-                    <label htmlFor="fullName" className="form-label">Full Name</label>
-                    <input 
-                      type="text" 
-                      className="form-control form-input" 
-                      id="fullName" 
-                      onChange={handleChange}
-                      defaultValue={currentUser.fullName}
-                    />                
-                  </div>
-                  <div className="form-group form-box">
-                      <label htmlFor="email" className="form-label">Email</label>
-                      <input 
-                        type="email" 
-                        className="form-control form-input" 
-                        id="email" 
-                        defaultValue={currentUser.email}
-                        placeholder="Email"
-                        onChange={handleChange}
-                      />                
-                  </div>
-                  <button className='secondary-button'>
-                    {loadingBasicInfo ? "Loading in progress..." : "Update"}
-                  </button>
-                  </>
-                )}
-              </form>
-              <form onSubmit={handlePasswordUpdateSubmit} className='form-container'>
-                <div className="form-group form-box">
-                  <label htmlFor="newPassword" className="form-label">New Password</label>
-                  <div className='password-input-container'>
-                    <input 
-                    type={showNewPassword ? "text" : "password"}
-                    className="form-control form-input" 
-                    id="newPassword"
-                    value={formData.newPassword || ''}
-                    onChange={handleChange}
-                    />
-                    <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className='show-hide-button'>
-                      {showNewPassword ? "Hide" : "Show"}
-                    </button>
-                  </div>
-                </div>
-                <div className="form-group form-box">
-                  <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
-                  <div className='password-input-container'>
-                    <input 
-                    type={showConfirmNewPassword ? "text" : "password"}
-                    className="form-control form-input" 
-                    id="confirmNewPassword"
-                    value={formData.confirmNewPassword || ''}
-                    onChange={handleChange}
-                    />
-                    <button type="button" onClick={() => setShowConfirmNewPassword(!showConfirmNewPassword)} className='show-hide-button'>
-                      {showConfirmNewPassword ? "Hide" : "Show"}
-                    </button>
-                    </div>
-                </div>
-                <div className='profile-button-container d-flex'>
-                  <button type="submit" className='secondary-button'>
-                    {loadingPassword ? "Changing Password..." : "Change Password"}
-                  </button>
-                </div>
-              </form>
-              <button onClick={handleDeleteProfile} className='delete-button'>Delete my user</button>
-            </div>
-
-            
-            <div className='divide-profile'>
-                <span className='divide-profile-line'></span>
-            </div>
-            <div className="col-lg-4">
-              <div className="title-container">
-                <h1 className="profile-title">Collaboration Profile</h1>
+              <div className="form-group form-box">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input 
+                  type="email" 
+                  className="form-control form-input" 
+                  id="email" 
+                  defaultValue={currentUser.email}
+                  placeholder="Email"
+                  onChange={handleChange}
+                />                
               </div>
-              <form onSubmit={handleProfileSubmit} className="form-container">
-                {collaborationProfile ? (
-                  <>
-                  <div className="form-group form-box">
-                      <label htmlFor="profileImage" className="form-label">Profile Image</label>
-                      <img 
-                        src={collaborationProfile.profileImageUrl} 
-                        alt="Current profile"
-                      />
-                      <input 
-                        type="file" 
-                        className="form-control form-input" 
-                        name="profileImage" 
-                        placeholder="Profile Image"
-                        onChange={handleImageUpload}
-                      />                
-                  </div>
-                  <div className="form-group form-box">
-                    <label htmlFor="fullName" className="form-label">Full Name</label>
-                    <input 
-                      type="text" 
-                      className="form-control form-input" 
-                      name="fullName" 
-                      onChange={handleProfileChange}
-                      defaultValue={collaborationProfile.fullName}
-                      required
-                    />                
-                  </div>
-                  <div className="form-group form-box">
-                      <label htmlFor="email" className="form-label">Email</label>
-                      <input 
-                        type="email" 
-                        className="form-control form-input" 
-                        name="email" 
-                        defaultValue={collaborationProfile.email}
-                        placeholder="Email"
-                        onChange={handleProfileChange}
-                        required
-                      />                
-                  </div>
-                  <div className="form-group form-box">
-                      <label htmlFor="institution" className="form-label">Institution</label>
-                      <select 
-                        className="form-select form-input" 
-                        name="institution" 
-                        onChange={handleProfileChange}
-                        value={collaborationProfile.institution}
-                        required
-                      >
-                        <option value="BI">BI</option>
-                        <option value="Oslomet">Oslomet</option>
-                        <option value="UiO">UiO</option>
-                        <option value="NTNU">NTNU</option>
-                        <option value="Other">Other</option>
-                      </select>                
-                  </div>
-                  <div className="form-group form-box">
-                      <label htmlFor="description" className="form-label">Description</label>
-                      <input 
-                        type="text" 
-                        className="form-control form-input" 
-                        name="description" 
-                        defaultValue={collaborationProfile.description}
-                        placeholder="Description"
-                        onChange={handleProfileChange}
-                        required
-                      />                
-                  </div>
-                  <div className="form-group form-box">
-                      <label htmlFor="category" className="form-label">Category</label>
-                      <select 
-                        className="form-select form-input" 
-                        name="category" 
-                        value={collaborationProfile.category}
-                        onChange={handleProfileChange}
-                        required
-                      >
-                        <option value="Academic">Academic</option>
-                        <option value="Industry">Industry</option>
-                      </select>                
-                  </div>
-                  <div className="form-group form-box">
-                      <label htmlFor="role" className="form-label">Role</label>
-                      <select  
-                        className="form-select form-input" 
-                        name="role" 
-                        value={collaborationProfile.role}
-                        placeholder="Role"
-                        onChange={handleProfileChange}
-                        required
-                      >
-                        <option value="Student">Student</option>
-                        <option value="Group">Group</option>
-                      </select>                
-                  </div>
-                  <div className='profile-button-container d-flex'>
-                    <button className='secondary-button'>
-                      {loadingCollabInfo ? "Loading in progress..." : "Update"}
-                    </button>
-                  </div>
-                  </>
-                ) : (
-                  <p className="description">Do you want to create a profile so others can find and connect with you?
-                    <Link to="/collaborate" className="text-primary"> Create a profile.</Link>
-                  </p>
-                )}
-              </form>
-              {hasCollaborationProfile && (
-                <button onClick={handleDeleteCollaborateProfile} className='delete-button'>Delete my collaboration profile</button>
-              )}
+              <button className='secondary-button'>
+                {loadingBasicInfo ? "Loading in progress..." : "Update"}
+              </button>
+              </>
+            )}
+          </form>
+          <form onSubmit={handlePasswordUpdateSubmit} className='form-container' aria-labelledby="password-form">
+            <div className="form-group form-box">
+              <label htmlFor="newPassword" className="form-label">New Password</label>
+              <div className='password-input-container'>
+                <input 
+                  type={showNewPassword ? "text" : "password"}
+                  className="form-control form-input" 
+                  id="newPassword"
+                  value={formData.newPassword || ''}
+                  onChange={handleChange}
+                />
+                <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className='show-hide-button'>
+                  {showNewPassword ? "Hide" : "Show"}
+                </button>
+              </div>
             </div>
-          </div>
+            <div className="form-group form-box">
+              <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
+              <div className='password-input-container'>
+                <input 
+                  type={showConfirmNewPassword ? "text" : "password"}
+                  className="form-control form-input" 
+                  id="confirmNewPassword"
+                  value={formData.confirmNewPassword || ''}
+                  onChange={handleChange}
+                />
+                <button type="button" onClick={() => setShowConfirmNewPassword(!showConfirmNewPassword)} className='show-hide-button'>
+                  {showConfirmNewPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+            </div>
+            <div className='profile-button-container d-flex'>
+              <button type="submit" className='secondary-button'>
+                {loadingPassword ? "Changing Password..." : "Change Password"}
+              </button>
+            </div>
+          </form>
+          <button onClick={handleDeleteProfile} className='delete-button'>Delete my user</button>
         </div>
-      );
-    }
+        <div className='divide-profile' role="separator" aria-orientation="vertical">
+          <span className='divide-profile-line'></span>
+        </div>
+        <div className="col-lg-4">
+          <header className="title-container">
+            <h1 className="profile-title">Collaboration Profile</h1>
+          </header>
+          <form onSubmit={handleProfileSubmit} className="form-container" aria-labelledby="collaboration-form">
+            {collaborationProfile ? (
+              <>
+              <div className="form-group form-box">
+                <label htmlFor="profileImage" className="form-label">Profile Image</label>
+                <img 
+                  src={collaborationProfile.profileImageUrl} 
+                  alt="Current profile"
+                />
+                <input 
+                  type="file" 
+                  className="form-control form-input" 
+                  name="profileImage" 
+                  placeholder="Profile Image"
+                  onChange={handleImageUpload}
+                />                
+              </div>
+              <div className="form-group form-box">
+                <label htmlFor="collabFullName" className="form-label">Full Name</label>
+                <input 
+                  type="text" 
+                  className="form-control form-input" 
+                  id="collabFullName" 
+                  name="fullName" 
+                  onChange={handleProfileChange}
+                  defaultValue={collaborationProfile.fullName}
+                  required
+                />                
+              </div>
+              <div className="form-group form-box">
+                <label htmlFor="collabEmail" className="form-label">Email</label>
+                <input 
+                  type="email" 
+                  className="form-control form-input" 
+                  id="collabEmail" 
+                  name="email" 
+                  defaultValue={collaborationProfile.email}
+                  placeholder="Email"
+                  onChange={handleProfileChange}
+                  required
+                />                
+              </div>
+              <div className="form-group form-box">
+                <label htmlFor="institution" className="form-label">Institution</label>
+                <select 
+                  className="form-select form-input" 
+                  id="institution" 
+                  name="institution" 
+                  onChange={handleProfileChange}
+                  value={collaborationProfile.institution}
+                  required
+                >
+                  <option value="BI">BI</option>
+                  <option value="Oslomet">Oslomet</option>
+                  <option value="UiO">UiO</option>
+                  <option value="NTNU">NTNU</option>
+                  <option value="Other">Other</option>
+                </select>                
+              </div>
+              <div className="form-group form-box">
+                <label htmlFor="description" className="form-label">Description</label>
+                <input 
+                  type="text" 
+                  className="form-control form-input" 
+                  id="description" 
+                  name="description" 
+                  defaultValue={collaborationProfile.description}
+                  placeholder="Description"
+                  onChange={handleProfileChange}
+                  required
+                />                
+              </div>
+              <div className="form-group form-box">
+                <label htmlFor="category" className="form-label">Category</label>
+                <select 
+                  className="form-select form-input" 
+                  id="category" 
+                  name="category" 
+                  value={collaborationProfile.category}
+                  onChange={handleProfileChange}
+                  required
+                >
+                  <option value="Academic">Academic</option>
+                  <option value="Industry">Industry</option>
+                </select>                
+              </div>
+              <div className="form-group form-box">
+                <label htmlFor="role" className="form-label">Role</label>
+                <select  
+                  className="form-select form-input" 
+                  id="role" 
+                  name="role" 
+                  value={collaborationProfile.role}
+                  placeholder="Role"
+                  onChange={handleProfileChange}
+                  required
+                >
+                  <option value="Student">Student</option>
+                  <option value="Group">Group</option>
+                </select>                
+              </div>
+              <div className='profile-button-container d-flex'>
+                <button className='secondary-button'>
+                  {loadingCollabInfo ? "Loading in progress..." : "Update"}
+                </button>
+              </div>
+              </>
+            ) : (
+              <p className="description">Do you want to create a profile so others can find and connect with you?
+                <Link to="/collaborate" className="text-primary"> Create a profile.</Link>
+              </p>
+            )}
+          </form>
+          {hasCollaborationProfile && (
+            <button onClick={handleDeleteCollaborateProfile} className='delete-button'>Delete my collaboration profile</button>
+          )}
+        </div>
+      </section>
+    </div>
+  );  
+}
 
 export default ProfileInformation;

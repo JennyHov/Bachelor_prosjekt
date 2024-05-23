@@ -16,43 +16,43 @@ const Footer = () => {
   return (
     <footer className="footer footer-expand-lg">
       <div className="container-fluid row d-flex justify-content-center align-items-center">
-        <div className="row d-flex justify-content-center align-items-center sponsors-representatives">
+        <section className="row d-flex justify-content-center align-items-center sponsors-representatives">
           <div className="row d-flex justify-content-center align-items-center sponsors mb-4">
-              <div className="col-sm-4 d-flex justify-content-end align-items-center">
-                <img src={aneoImage} alt="aneo" className="sponsor-logo"/>
-              </div>
-              <div className="col-sm-4 d-flex justify-content-center align-items-center">
-                <img src={sefiogulImage} alt="sefioGul" className="sefio-yellow-logo"/>
-              </div>
-              <div className="col-sm-4 d-flex justify-content-start align-items-center">
-                <img src={osloImage} alt="oslo" className="sponsor-logo"/>
-              </div>
+            <div className="col-sm-4 d-flex justify-content-end align-items-center">
+              <img src={aneoImage} alt="Aneo logo" className="sponsor-logo" />
+            </div>
+            <div className="col-sm-4 d-flex justify-content-center align-items-center">
+              <img src={sefiogulImage} alt="SEFiO Yellow logo" className="sefio-yellow-logo" />
+            </div>
+            <div className="col-sm-4 d-flex justify-content-start align-items-center">
+              <img src={osloImage} alt="Oslo logo" className="sponsor-logo" />
+            </div>
           </div>
           <div className="row justify-content-center align-items-center representatives">
             <div className="col-sm-2 d-flex justify-content-center align-items-center">
-              <img src={hkImage} alt="hk" className="representative-logo"/>
+              <img src={hkImage} alt="Høyskolen Kristiania logo" className="representative-logo" />
             </div>
             <div className="col-sm-2 d-flex justify-content-center align-items-center">
-              <img src={biImage} alt="bi" className="representative-logo"/>
+              <img src={biImage} alt="BI logo" className="representative-logo" />
             </div>
             <div className="col-sm-2 d-flex justify-content-center align-items-center">
-              <img src={oslometImage} alt="oslomet" className="representative-logo"/>
+              <img src={oslometImage} alt="OsloMet logo" className="representative-logo" />
             </div>
             <div className="col-sm-2 d-flex justify-content-center align-items-center">
-              <img src={uioImage} alt="uio" className="representative-logo"/>
+              <img src={uioImage} alt="UiO logo" className="representative-logo" />
             </div>
             <div className="col-sm-2 d-flex justify-content-center align-items-center">
-              <img src={nmbuImage} alt="nmbu" className="representative-logo"/>
+              <img src={nmbuImage} alt="NMBU logo" className="representative-logo" />
             </div>
           </div>
-        </div>
+        </section>
         <div className="row d-flex justify-content-center align-items-center footer-bar">
           <div className="row justify-content-center align-items-center footer-info mb-1">
-            <div className='col-sm-4 d-flex justify-content-end align-items-center'>
-              <p>kontakt@sefio.no</p>
-            </div>
+            <address className='col-sm-4 d-flex justify-content-end align-items-center'>
+              <p>Email: <a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
+            </address>
             <div className='col-sm-4 d-flex justify-content-center align-items-center'>
-              <p>+4799363714</p>
+              <p>Phone: <a href="tel:+4799363714">+47 993 63 714</a></p>
             </div>
             <div className='col-sm-4 d-flex justify-content-start align-items-center'>
               <p>Orgnr: 930 908 177</p>
@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
+  );  
 };
 
 export default Footer;

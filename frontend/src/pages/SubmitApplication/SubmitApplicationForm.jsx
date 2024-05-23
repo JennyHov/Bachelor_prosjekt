@@ -226,137 +226,150 @@ const SubmitApplicationForm = () => {
 
 
   return (
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-container">
-            <div className="form-group form-box">
-              <label htmlFor="fullName" className="form-label">Full Name<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                placeholder="Full Name"
-              />
-              {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="email" className="form-label">Email<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-              />
-              {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="institution" className="form-label">Institution<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="text"
-                name="institution"
-                value={formData.institution}
-                onChange={handleChange}
-                placeholder="Institution"
-              />
-              {institutionError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{institutionError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="projectName" className="form-label">Project Name<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="text"
-                name="projectName"
-                value={formData.projectName}
-                onChange={handleChange}
-                placeholder="Project Name"
-              />
-              {projectNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{projectNameError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="comments" className="form-label">Any comments?</label>
-              <textarea 
-                className="form-control form-input"
-                name="comments"
-                value={formData.comments}
-                onChange={handleChange}
-                placeholder="Comments"
-              ></textarea>
-            </div>
-            <div className="form-check">
-              <input 
-                className="form-check-input"
-                type="checkbox"
-                name="criteriaCheck1"
-                checked={formData.criteriaCheck1}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="criteriaCheck1">I have read the criteria for application through SEFiO</label>
-            </div>
-            <div className="form-check">
-              <input 
-                className="form-check-input"
-                type="checkbox"
-                name="criteriaCheck2"
-                checked={formData.criteriaCheck2}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="criteriaCheck2">I have answered questions about sustainability, innovation and previous funding</label>
-            </div>
-            <div className="form-check">
-              <input 
-                className="form-check-input"
-                type="checkbox"
-                name="criteriaCheck3"
-                checked={formData.criteriaCheck3}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="criteriaCheck3">I have received counseling from SEFiO or an institution</label>
-              {checkboxError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{checkboxError}</p>}
-            </div>
-            <div>
-              <input 
-                className='file-upload'
-                id='file'
-                type='file'
-                name='file' 
-                onChange={handleFileChange}
-              />
-                <button className="btn file-upload-button" onClick={() => document.getElementById('file').click()}><img src={uploadImage} alt="Upload icon" className='input-upload-image' />
-                  {fileName}
-                </button>
-                {formData.file && <button className="btn" onClick={handleRemoveFile}>Remove</button>}
-              {fileError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fileError}</p>}
-            </div>
-            <div className='description'>
-              <p className="description">You can find our application forms here:</p>
-              <div className="d-flex justify-content-start align-items-center gap-3">
-                  <div className="d-flex gap-3">
-                      <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1bwx2Jk3mT1_1m4EuPOQZmkWAVHkqoI0cw3u2iY9IWo4/edit")} className='text-primary'>English</a>                            
-                      <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1XH7RPoE6wd3AJ8ydJxMuYLVUPb9uIGNuAizkaYoSAJ0/edit")} className='text-primary'>Norwegian</a> 
-                  </div>
-              </div>
-            </div>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <fieldset className="form-container">
+        <div className="form-group form-box">
+          <label htmlFor="fullName" className="form-label">Full Name<span className='star'>*</span></label>
+          <input 
+            className="form-control form-input"
+            type="text"
+            id="fullName"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder="Full Name"
+            required
+          />
+          {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
+        </div>
+        <div className="form-group form-box">
+          <label htmlFor="email" className="form-label">Email<span className='star'>*</span></label>
+          <input 
+            className="form-control form-input"
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+          />
+          {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
+        </div>
+        <div className="form-group form-box">
+          <label htmlFor="institution" className="form-label">Institution<span className='star'>*</span></label>
+          <input 
+            className="form-control form-input"
+            type="text"
+            id="institution"
+            name="institution"
+            value={formData.institution}
+            onChange={handleChange}
+            placeholder="Institution"
+            required
+          />
+          {institutionError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{institutionError}</p>}
+        </div>
+        <div className="form-group form-box">
+          <label htmlFor="projectName" className="form-label">Project Name<span className='star'>*</span></label>
+          <input 
+            className="form-control form-input"
+            type="text"
+            id="projectName"
+            name="projectName"
+            value={formData.projectName}
+            onChange={handleChange}
+            placeholder="Project Name"
+            required
+          />
+          {projectNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{projectNameError}</p>}
+        </div>
+        <div className="form-group form-box">
+          <label htmlFor="comments" className="form-label">Any comments?</label>
+          <textarea 
+            className="form-control form-input"
+            id="comments"
+            name="comments"
+            value={formData.comments}
+            onChange={handleChange}
+            placeholder="Comments"
+          ></textarea>
+        </div>
+        <div className="form-check">
+          <input 
+            className="form-check-input"
+            type="checkbox"
+            id="criteriaCheck1"
+            name="criteriaCheck1"
+            checked={formData.criteriaCheck1}
+            onChange={handleChange}
+          />
+          <label className="form-check-label" htmlFor="criteriaCheck1">I have read the criteria for application through SEFiO</label>
+        </div>
+        <div className="form-check">
+          <input 
+            className="form-check-input"
+            type="checkbox"
+            id="criteriaCheck2"
+            name="criteriaCheck2"
+            checked={formData.criteriaCheck2}
+            onChange={handleChange}
+          />
+          <label className="form-check-label" htmlFor="criteriaCheck2">I have answered questions about sustainability, innovation and previous funding</label>
+        </div>
+        <div className="form-check">
+          <input 
+            className="form-check-input"
+            type="checkbox"
+            id="criteriaCheck3"
+            name="criteriaCheck3"
+            checked={formData.criteriaCheck3}
+            onChange={handleChange}
+          />
+          <label className="form-check-label" htmlFor="criteriaCheck3">I have received counseling from SEFiO or an institution</label>
+          {checkboxError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{checkboxError}</p>}
         </div>
         <div>
-          {errorMessage && 
-            <div className="form-error-message"><img src={warningImage} alt="Warning icon" className='warning-image' />
-              {errorMessage}
-            </div>
-          }
+          <label htmlFor="file" className="form-label">Upload file</label>
+          <input 
+            className='file-upload'
+            id='file'
+            type='file'
+            name='file' 
+            onChange={handleFileChange}
+          />
+          <button className="btn file-upload-button" type="button" onClick={() => document.getElementById('file').click()}><img src={uploadImage} alt="Upload icon" className='input-upload-image' />
+            {fileName}
+          </button>
+          {formData.file && <button className="btn" type="button" onClick={handleRemoveFile}>Remove</button>}
+          {fileError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fileError}</p>}
         </div>
-        <div className="d-flex justify-content-center">
-          <div className="form-button">
-              <button className="btn teritary-button" disabled={loading}>
-                {loading ? 'Loading...' : 'Submit Application'}
-              </button>
+        <div className='description'>
+          <p className="description">You can find our application forms here:</p>
+          <div className="d-flex justify-content-start align-items-center gap-3">
+              <div className="d-flex gap-3">
+                  <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1bwx2Jk3mT1_1m4EuPOQZmkWAVHkqoI0cw3u2iY9IWo4/edit")} className='text-primary'>English</a>                            
+                  <a role='link' onClick={() => openInNewTab("https://docs.google.com/document/d/1XH7RPoE6wd3AJ8ydJxMuYLVUPb9uIGNuAizkaYoSAJ0/edit")} className='text-primary'>Norwegian</a> 
+              </div>
           </div>
         </div>
-      </form>
-  );
+      </fieldset>
+      <div>
+        {errorMessage && 
+          <div className="form-error-message"><img src={warningImage} alt="Warning icon" className='warning-image' />
+            {errorMessage}
+          </div>
+        }
+      </div>
+      <div className="d-flex justify-content-center">
+        <div className="form-button">
+            <button className="btn teritary-button" disabled={loading}>
+              {loading ? 'Loading...' : 'Submit Application'}
+            </button>
+        </div>
+      </div>
+    </form>
+  );  
 }
 
 export default SubmitApplicationForm;

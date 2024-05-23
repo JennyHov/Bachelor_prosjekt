@@ -8,16 +8,16 @@ const EventCard = ({ event }) => {
     const eventTime = formatEventTime(event.start.dateTime, event.end.dateTime);
 
     return (
-            <article id={event.id} className="home-event-card">
-                <div className="home-date p-3">
-                    <div className="home-event-date">{startDate}</div>
-                </div>
-                <div className="home-details p-4">
-                    <h2 className="home-event-title">{event.summary}</h2>
-                    <p className="home-event-time">{eventTime}</p>
-                </div>
-            </article> 
-    );
+        <article id={event.id} className="home-event-card">
+          <div className="home-date p-3">
+            <time dateTime={event.startDateTime} className="home-event-date">{startDate}</time>
+          </div>
+          <div className="home-details p-4">
+            <h2 className="home-event-title">{event.summary}</h2>
+            <p className="home-event-time">{eventTime}</p>
+          </div>
+        </article>
+    );      
 };
 
 function formatDate(dateString) {

@@ -62,6 +62,8 @@ const home = () => {
     return (
         <div className="content-fluid p-5">
             <div style={{ height: '70px' }} />
+
+            <main>
             <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 justify-content-center d-flex align-items-center">
@@ -340,7 +342,7 @@ const home = () => {
                     </div>
                 </div>
             </section>
-    
+            </main>
         </div>
     );
 }

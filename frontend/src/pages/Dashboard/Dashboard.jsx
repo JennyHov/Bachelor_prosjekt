@@ -52,35 +52,46 @@ const Dashboard = () => {
 
     return (
         <div className='container page-container'>
-            <div className="dashboard-container">
-                <button className="sidebar-toggle" onClick={() => setShowSidebar(!showSidebar)}>
-                    Menu
-                </button>
-                <div className={`sidebar ${showSidebar ? 'visible' : ''}`}>
-                    <button onClick={() => handleViewChange('Home')}>Home</button>
-                    <button onClick={() => handleViewChange('Profiles')}>Profiles</button>
-                    <button onClick={() => handleViewChange('Collaborate Profiles')}>Collaborate Profiles</button>
-                    <button onClick={() => handleViewChange('Counter')}>Counter</button>
-                </div>
-                <div className="main-content">
-                    {activeView === 'Home' && 
-                    <div><h1>Admin Dashboard</h1></div>}
-                    {activeView === 'Profiles' && (
-                        <div>
-                            <ListProfiles />
-                        </div>
-                    )}
-                    {activeView === 'Collaborate Profiles' && (
-                        <div>
-                            <ListCollaborateProfiles />
-
-                        </div>
-                    )}
-                    {activeView === 'Counter' && <div><CountDown /></div>}
-                </div>
-            </div>
+          <div className="dashboard-container">
+            <button className="sidebar-toggle" aria-controls="sidebar" aria-expanded={showSidebar} onClick={() => setShowSidebar(!showSidebar)}>
+              Menu
+            </button>
+            <nav id="sidebar" className={`sidebar ${showSidebar ? 'visible' : ''}`} aria-label="Main navigation">
+              <ul>
+                <li><button onClick={() => handleViewChange('Home')}>Home</button></li>
+                <li><button onClick={() => handleViewChange('Profiles')}>Profiles</button></li>
+                <li><button onClick={() => handleViewChange('Collaborate Profiles')}>Collaborate Profiles</button></li>
+                <li><button onClick={() => handleViewChange('Counter')}>Counter</button></li>
+              </ul>
+            </nav>
+            <main className="main-content">
+              {activeView === 'Home' && (
+                <section>
+                  <header>
+                    <h1>Admin Dashboard</h1>
+                  </header>
+                </section>
+              )}
+              {activeView === 'Profiles' && (
+                <section>
+                  <ListProfiles />
+                </section>
+              )}
+              {activeView === 'Collaborate Profiles' && (
+                <section>
+                  <ListCollaborateProfiles />
+                </section>
+              )}
+              {activeView === 'Counter' && (
+                <section>
+                  <CountDown />
+                </section>
+              )}
+            </main>
+          </div>
         </div>
-    );
+      );
+      
 };
 
 

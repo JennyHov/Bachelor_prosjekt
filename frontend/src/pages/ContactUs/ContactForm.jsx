@@ -141,57 +141,73 @@ const ContactForm = () => {
 
       return (
         <form onSubmit={handleSubmit} action="https://api.web3forms.com/submit" method="POST">
-            <div className='form-container'>
+            <fieldset className='form-container'>
+                
                 <div className='form-group form-box'>
                     <label htmlFor="fullName" className="form-label">Name<span className='star'>*</span></label>
                     <input 
+                        id="fullName"
                         className="form-control form-input" 
                         type='text'
                         name="fullName" 
                         placeholder="First and last name" 
                         value={formData.fullName}
                         onChange={handleChange}
+                        aria-required="true"
+                        aria-invalid={!!fullNameError}
                     />
                     {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
                 </div>
+
                 <div className='form-group form-box'>
                     <label htmlFor="email" className="form-label">Your Email<span className='star'>*</span></label>
                     <input 
+                        id="email"
                         type="email" 
                         className="form-control form-input" 
                         name="email" 
                         placeholder="Type in your email" 
                         value={formData.email}
                         onChange={handleChange}
+                        aria-required="true"
+                        aria-invalid={!!emailError}
                     />
                     {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}                   
                 </div>
+
                 <div className='form-group form-box'>
                     <label htmlFor="subject" className="form-label">Subject<span className='star'>*</span></label>
                     <input 
+                        id="subject"
                         type="text" 
                         className="form-control form-input" 
                         name="subject" 
                         placeholder="Subject for your inquiry" 
                         value={formData.subject}
                         onChange={handleChange}
+                        aria-required="true"
+                        aria-invalid={!!subjectError}
                     />
                     {subjectError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{subjectError}</p>}
                 </div>
+
                 <div className='form-group form-box'>
                     <label htmlFor="inquiry" className="form-label">Inquiry<span className='star'>*</span></label>
                     <textarea 
+                        id="inquiry"
                         className="form-control form-input" 
-                        type='text'
                         name="inquiry" 
                         rows="3" 
                         placeholder="Tell us something"
                         value={formData.inquiry}
                         onChange={handleChange}
+                        aria-required="true"
+                        aria-invalid={!!inquiryError}
                     ></textarea>
                     {inquiryError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{inquiryError}</p>}
                 </div>
-            </div>
+            </fieldset>
+
             <div>
                 {errorMessage && 
                     <div className="form-error-message"><img src={warningImage} alt="Warning icon" className='warning-image' />
@@ -199,15 +215,16 @@ const ContactForm = () => {
                     </div>
                 }
             </div>
+
             <div className="d-flex justify-content-center">
                 <div className="form-button">
-                    <button className="btn teritary-button" disabled={loading}>
-                    {loading ? 'Loading...' : 'Submit Contact Form'}
+                    <button className="btn teritary-button" type="submit" disabled={loading} aria-busy={loading}>
+                        {loading ? 'Loading...' : 'Submit Contact Form'}
                     </button>
                 </div>
             </div>
         </form>
-    );
+      );
 }
 
 export default ContactForm;

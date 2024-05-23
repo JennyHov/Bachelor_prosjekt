@@ -40,21 +40,21 @@ const AuthPopup = ({ isOpen, onClose }) => {
     }, [isOpen, onClose]);
 
     return (
-        <div className={`login-popup ${isOpen ? 'open' : ''}`} ref={popupRef}>
-            <div className='login-content'>
-                <button onClick={onClose}><img src={CloseImage} alt="Close icon" className='close-icon'/></button>
-                    <div className='login-container'>
-                        <h1 className='sign-in-title'>Welcome back!</h1>
-                        {isSignUpOpen ? (
-                            <SignUpForm toggleForm={toggleSignUp} onSubmit={onClose} />
-                        ) : (
-                            <LoginForm toggleForm={toggleSignUp} onSubmit={onClose} />
-                        )}
-                    </div>
-                </div>
-            <div className='overlay'></div>
+        <div className={`login-popup ${isOpen ? 'open' : ''}`} ref={popupRef} role="dialog" aria-modal="true" aria-labelledby="login-dialog-title">
+          <div className='login-content'>
+            <button onClick={onClose} aria-label="Close login form"><img src={CloseImage} alt="Close icon" className='close-icon'/></button>
+            <div className='login-container'>
+              <h1 id="login-dialog-title" className='sign-in-title'>Welcome back!</h1>
+              {isSignUpOpen ? (
+                <SignUpForm toggleForm={toggleSignUp} onSubmit={onClose} />
+              ) : (
+                <LoginForm toggleForm={toggleSignUp} onSubmit={onClose} />
+              )}
+            </div>
+          </div>
+          <div className='overlay'></div>
         </div>
-    );
+      );      
 };
     
 export default AuthPopup;

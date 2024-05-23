@@ -230,117 +230,145 @@ const SubmitCounselingForm = () => {
   }, [loading]);
       
   return (
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-container">
-            <div className="form-group form-box">
-              <label htmlFor="fullName" className="form-label">Full Name<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                placeholder="What is your name?"
-              />
-              {fullNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fullNameError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="email" className="form-label">Email<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="What is your email?"
-              />
-              {emailError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="institution" className="form-label">Institution<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="text"
-                name="institution"
-                value={formData.institution}
-                onChange={handleChange}
-                placeholder="What institution do you attend?"
-              />
-              {institutionError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{institutionError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="projectName" className="form-label">Project Name<span className='star'>*</span></label>
-              <input 
-                className="form-control form-input"
-                type="text"
-                name="projectName"
-                value={formData.projectName}
-                onChange={handleChange}
-                placeholder="Name of the project?"
-              />
-              {projectNameError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{projectNameError}</p>}
-            </div>
-            <div className="form-group form-box">
-              <label htmlFor="comments" className="form-label">Any comments?</label>
-              <textarea 
-                className="form-control form-input"
-                name="comments"
-                value={formData.comments}
-                onChange={handleChange}
-                placeholder="Comments"
-              ></textarea>
-            </div>
-            <div className="form-check">
-              <input 
-                className="form-check-input"
-                type="checkbox"
-                name="criteriaCheck1"
-                checked={formData.criteriaCheck1}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="criteriaCheck1">I want guidance for submitting an application</label>
-            </div>
-            <div className="form-check">
-              <input 
-                className="form-check-input"
-                type="checkbox"
-                name="criteriaCheck2"
-                checked={formData.criteriaCheck2}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="criteriaCheck2">I want guidance regarding my project</label>
-              {checkboxError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{checkboxError}</p>}
-            </div>
-            <div>
-              <input 
-                className='file-upload'
-                id='file'
-                type='file'
-                name='file' 
-                onChange={handleFileChange}
-              />
-                <button className="btn file-upload-button" onClick={() => document.getElementById('file').click()}><img src={uploadImage} alt="Upload icon" className='input-upload-image' />
-                  {fileName}
-                </button>
-                {formData.file && <button className="btn" onClick={handleRemoveFile}>Remove</button>}
-              {fileError && <p className='form-input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{fileError}</p>}
-            </div>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <fieldset className="form-container">
+        
+        <div className="form-group form-box">
+          <label htmlFor="fullName" className="form-label">Full Name<span className="star">*</span></label>
+          <input 
+            id="fullName"
+            className="form-control form-input"
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder="What is your name?"
+            aria-required="true"
+            aria-invalid={!!fullNameError}
+          />
+          {fullNameError && <p className="form-input-error-message"><img src={warningImage} alt="Warning icon" className="input-warning-image" />{fullNameError}</p>}
         </div>
+  
+        <div className="form-group form-box">
+          <label htmlFor="email" className="form-label">Email<span className="star">*</span></label>
+          <input 
+            id="email"
+            className="form-control form-input"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="What is your email?"
+            aria-required="true"
+            aria-invalid={!!emailError}
+          />
+          {emailError && <p className="form-input-error-message"><img src={warningImage} alt="Warning icon" className="input-warning-image" />{emailError}</p>}
+        </div>
+  
+        <div className="form-group form-box">
+          <label htmlFor="institution" className="form-label">Institution<span className="star">*</span></label>
+          <input 
+            id="institution"
+            className="form-control form-input"
+            type="text"
+            name="institution"
+            value={formData.institution}
+            onChange={handleChange}
+            placeholder="What institution do you attend?"
+            aria-required="true"
+            aria-invalid={!!institutionError}
+          />
+          {institutionError && <p className="form-input-error-message"><img src={warningImage} alt="Warning icon" className="input-warning-image" />{institutionError}</p>}
+        </div>
+  
+        <div className="form-group form-box">
+          <label htmlFor="projectName" className="form-label">Project Name<span className="star">*</span></label>
+          <input 
+            id="projectName"
+            className="form-control form-input"
+            type="text"
+            name="projectName"
+            value={formData.projectName}
+            onChange={handleChange}
+            placeholder="Name of the project?"
+            aria-required="true"
+            aria-invalid={!!projectNameError}
+          />
+          {projectNameError && <p className="form-input-error-message"><img src={warningImage} alt="Warning icon" className="input-warning-image" />{projectNameError}</p>}
+        </div>
+  
+        <div className="form-group form-box">
+          <label htmlFor="comments" className="form-label">Any comments?</label>
+          <textarea 
+            id="comments"
+            className="form-control form-input"
+            name="comments"
+            value={formData.comments}
+            onChange={handleChange}
+            placeholder="Comments"
+          ></textarea>
+        </div>
+  
+        <div className="form-check">
+          <input 
+            id="criteriaCheck1"
+            className="form-check-input"
+            type="checkbox"
+            name="criteriaCheck1"
+            checked={formData.criteriaCheck1}
+            onChange={handleChange}
+          />
+          <label className="form-check-label" htmlFor="criteriaCheck1">I want guidance for submitting an application</label>
+        </div>
+  
+        <div className="form-check">
+          <input 
+            id="criteriaCheck2"
+            className="form-check-input"
+            type="checkbox"
+            name="criteriaCheck2"
+            checked={formData.criteriaCheck2}
+            onChange={handleChange}
+          />
+          <label className="form-check-label" htmlFor="criteriaCheck2">I want guidance regarding my project</label>
+          {checkboxError && <p className="form-input-error-message"><img src={warningImage} alt="Warning icon" className="input-warning-image" />{checkboxError}</p>}
+        </div>
+  
         <div>
-          {errorMessage && 
-            <div className="form-error-message"><img src={warningImage} alt="Warning icon" className='warning-image' />
-              {errorMessage}
-            </div>
-          }
+          <label htmlFor="file" className="form-label">Upload File</label>
+          <input 
+            id="file"
+            className="file-upload"
+            type="file"
+            name="file"
+            onChange={handleFileChange}
+            aria-describedby="fileDescription"
+          />
+          <button className="btn file-upload-button" type="button" onClick={() => document.getElementById('file').click()}><img src={uploadImage} alt="Upload icon" className="input-upload-image" />
+            {fileName}
+          </button>
+          {formData.file && <button className="btn" type="button" onClick={handleRemoveFile}>Remove</button>}
+          {fileError && <p className="form-input-error-message"><img src={warningImage} alt="Warning icon" className="input-warning-image" />{fileError}</p>}
+          <p id="fileDescription" className="visually-hidden">Upload your file here</p>
         </div>
-        <div className="d-flex justify-content-center">
-          <div className="form-button">
-            <button className="btn teritary-button" disabled={loading}>
-              {loading ? 'Loading...' : 'Submit Counseling Form'}
-            </button>
+      </fieldset>
+  
+      <div>
+        {errorMessage && 
+          <div className="form-error-message"><img src={warningImage} alt="Warning icon" className="warning-image" />
+            {errorMessage}
           </div>
+        }
+      </div>
+  
+      <div className="d-flex justify-content-center">
+        <div className="form-button">
+          <button className="btn teritary-button" type="submit" disabled={loading}>
+            {loading ? 'Loading...' : 'Submit Counseling Form'}
+          </button>
         </div>
-      </form>
+      </div>
+    </form>
   );
 }
 

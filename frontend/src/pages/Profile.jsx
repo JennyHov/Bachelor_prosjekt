@@ -99,72 +99,90 @@ export default function Profile() {
       }
     };
 
-  return (
-    <div className="container">
-      <div className="row justify-content-center align-items-center profile-information-container">
-        <div className="col-lg-8 profile-information-container">
-          <h1 className="profile-information-title">Profile</h1>
-          <form onSubmit={handleSubmit}>
-          <input type="file" ref={referanceFile} hidden accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
-          <img
-            src={formData.profileImage || currentUser.profileImage}
-            alt="profile"
-            className="img-fluid"
-            onClick={() => referanceFile.current.click()}
-          />
-          <p>
-            {pictureError ? (<span>Error when uploading picture (file size must be less than 3 MB)</span>
-            ) : picturePercentage > 0 && picturePercentage < 100 ? ( <span>{`Uploading in progress: ${picturePercentage}%`}</span>
-            ) : picturePercentage === 100 ? (<span>Picture uploaded successfully!</span>
-            ) : ( 
-              "" 
-            )}
-          </p>
-          <div className='form-group'>
-          <input
-            defaultValue={currentUser.fullName}
-            type="text"
-            id="fullName"
-            placeholder="fullName"
-            className=""
-            onChange={handleUserProfileUpdated}
-          />
+    return (
+      <div className="container">
+        <div className="row justify-content-center align-items-center profile-information-container">
+          <div className="col-lg-8 profile-information-container">
+            <h1 className="profile-information-title">Profile</h1>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="file"
+                ref={referanceFile}
+                hidden
+                accept="image/*"
+                onChange={(e) => setPicture(e.target.files[0])}
+                aria-label="Upload profile picture"
+              />
+              <img
+                src={formData.profileImage || currentUser.profileImage}
+                alt="profile"
+                className="img-fluid"
+                onClick={() => referanceFile.current.click()}
+                role="button"
+                aria-describedby="profile-image-instructions"
+              />
+              <p id="profile-image-instructions" className="visually-hidden">
+                Click to upload a new profile picture.
+              </p>
+              <p>
+                {pictureError ? (
+                  <span>Error when uploading picture (file size must be less than 3 MB)</span>
+                ) : picturePercentage > 0 && picturePercentage < 100 ? (
+                  <span>{`Uploading in progress: ${picturePercentage}%`}</span>
+                ) : picturePercentage === 100 ? (
+                  <span>Picture uploaded successfully!</span>
+                ) : (
+                  ""
+                )}
+              </p>
+              <div className='form-group'>
+                <label htmlFor="fullName" className="visually-hidden">Full Name</label>
+                <input
+                  defaultValue={currentUser.fullName}
+                  type="text"
+                  id="fullName"
+                  placeholder="Full Name"
+                  className="form-control"
+                  onChange={handleUserProfileUpdated}
+                  aria-required="true"
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor="email" className="visually-hidden">Email</label>
+                <input
+                  defaultValue={currentUser.email}
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  className="form-control"
+                  onChange={handleUserProfileUpdated}
+                  aria-required="true"
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor="password" className="visually-hidden">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  className="form-control"
+                  onChange={handleUserProfileUpdated}
+                />
+              </div>
+              <button type="submit" className="btn btn-primary">
+                {loading ? "Loading in progress..." : "Update"}
+              </button>
+            </form>
+            <div>
+              <button type="button" onClick={handleAccountDeletion} className="btn btn-danger">Delete Account</button>
+              <button type="button" onClick={handleSigningOut} className="btn btn-secondary">Sign out</button>
+            </div>
+            {error && <div role="alert">Something went wrong!</div>}
+            <p>
+              {successfulUpdate && "User has been updated!"}
+            </p>
           </div>
-          <div className='form-group'>
-          <input
-            defaultValue={currentUser.email}
-            type="email"
-            id="email"
-            placeholder="Email"
-            className=""
-            onChange={handleUserProfileUpdated}
-          />
-          </div>
-
-          <div className='form-group'>
-          <input
-            type="password"
-            id="password"
-            placeholder="password"
-            className=""
-            onChange={handleUserProfileUpdated}
-          />
-          </div>
-
-          <button>
-          {loading ? "Loading in progress..." : "Update"}
-          </button>
-        </form>
-        <div>
-          <span onClick={handleAccountDeletion}>Delete Account</span>
-          <span onClick={handleSigningOut}>Sign out</span>
         </div>
-        {error && "Something went wrong!"}
-          <p>
-            {successfulUpdate && "User has been updated!"}
-          </p>
-        </div>
-    </div>
-  </div>
-);
+      </div>
+  );    
 }

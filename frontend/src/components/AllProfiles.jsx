@@ -59,76 +59,76 @@ const AllProfiles = () => {
   }
 };
 
-    return (
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className="filter-controls col-md-9 justify-content-center">
-                <input
-                    type="text"
-                    placeholder='Search by name'
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyPress={handleSearch} // Lytt til 'Enter'-tasten
-                    className="form-select form-input"
-                />
-                <select value={institution} onChange={(e) => setInstitution(e.target.value)} className="form-select form-input">
-                    <option value="">All Institutions</option>
-                    <option value="BI">BI</option>
-                    <option value="Oslomet">Oslomet</option>
-                    <option value="UiO">UiO</option>
-                    <option value="NTNU">NTNU</option>
-                    <option value="Other">Other</option> 
-                </select>
-                <select value={role} onChange={(e) => setRole(e.target.value)} className="form-select form-input">
-                    <option value="">All Roles</option>
-                    <option value="Student">Student</option>
-                    <option value="Group">Group</option>
-                </select>
-                <select value={category} onChange={(e) => setCategory(e.target.value)} className="form-select form-input">
-                    <option value="">All Categories</option>
-                    <option value="Academic">Academic</option>
-                    <option value="Industry">Industry</option>
-                </select>
-            </div>
+return (
+  <main className='container'>
+      <section className='row justify-content-center'>
+          <div className="filter-controls col-md-9 justify-content-center">
+              <input
+                  type="text"
+                  id="search"
+                  placeholder='Search by name'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyPress={handleSearch} // Lytt til 'Enter'-tasten
+                  className="form-control form-input"
+              />
+              <select value={institution} onChange={(e) => setInstitution(e.target.value)} className="form-select form-input" id="institution">
+                  <option value="">All Institutions</option>
+                  <option value="BI">BI</option>
+                  <option value="Oslomet">Oslomet</option>
+                  <option value="UiO">UiO</option>
+                  <option value="NTNU">NTNU</option>
+                  <option value="Other">Other</option> 
+              </select>
+              <select value={role} onChange={(e) => setRole(e.target.value)} className="form-select form-input" id="role">
+                  <option value="">All Roles</option>
+                  <option value="Student">Student</option>
+                  <option value="Group">Group</option>
+              </select>
+              <select value={category} onChange={(e) => setCategory(e.target.value)} className="form-select form-input" id="category">
+                  <option value="">All Categories</option>
+                  <option value="Academic">Academic</option>
+                  <option value="Industry">Industry</option>
+              </select>
           </div>
-          
+      </section>
+      
+      {loading && <div>Loading profiles...</div>}
+      {error && <div>Error loading profiles: {error}</div>}
 
-
-          {loading && <div>Loading profiles...</div>}
-          {error && <div>Error loading profiles: {error}</div>}
-
-          <div className="row profile-row">
-              {profiles.map(profile => (
-                  <div key={profile._id} className="col-md-4 coprofile ">
-                      <div className="coprof-image-content">
-                          <div className="coprofile-image">
-                            <img className="coprofile-img" src={profile.profileImageUrl || 'https://example.com/path/to/default-profile-image.jpg'} alt="Profile" />
-                          </div>
-                      </div>
-                      <div className="coprofile-content">
-                          <p className="coprofile-name">{profile.fullName}</p>
-                          <hr className="name-divider" />
-                          <p className="coprofile-category">{profile.category}, {profile.institution}</p>
-                          <p className="coprofile-description">
-                              {isReadMore[profile._id] ? profile.description : `${profile.description.slice(0, 90)}`}
-                              {profile.description.length > 90 && (
-                                  <button 
-                                      className="description-read-more" 
-                                      onClick={() => 
-                                          setIsReadMore({ ...isReadMore, [profile._id]: !isReadMore[profile._id] })
-                                      }
-                                  >
-                                      {isReadMore[profile._id] ? "...Read Less" : "...Read More"}
-                                  </button>
-                              )}
-                          </p>
-                          <p className="coprofile-email"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+      <section className="row profile-row">
+          {profiles.map(profile => (
+              <article key={profile._id} className="col-md-4 coprofile">
+                  <div className="coprof-image-content">
+                      <div className="coprofile-image">
+                          <img className="coprofile-img" src={profile.profileImageUrl || 'https://example.com/path/to/default-profile-image.jpg'} alt={`${profile.fullName} Profile`} />
                       </div>
                   </div>
-              ))}
-          </div>
-      </div>
-    );
+                  <div className="coprofile-content">
+                      <h2 className="coprofile-name">{profile.fullName}</h2>
+                      <hr className="name-divider" />
+                      <p className="coprofile-category">{profile.category}, {profile.institution}</p>
+                      <p className="coprofile-description">
+                          {isReadMore[profile._id] ? profile.description : `${profile.description.slice(0, 90)}`}
+                          {profile.description.length > 90 && (
+                              <button 
+                                  className="description-read-more" 
+                                  onClick={() => 
+                                      setIsReadMore({ ...isReadMore, [profile._id]: !isReadMore[profile._id] })
+                                  }
+                                  aria-expanded={isReadMore[profile._id]}
+                              >
+                                  {isReadMore[profile._id] ? "...Read Less" : "...Read More"}
+                              </button>
+                          )}
+                      </p>
+                      <p className="coprofile-email"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+                  </div>
+              </article>
+          ))}
+      </section>
+  </main>
+);
 };
 
 export default AllProfiles;

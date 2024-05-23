@@ -29,48 +29,48 @@ export default function CreateProfile({ togglePopup }) {
     }, [currentUser]);
     
     return (
-        <div className="container page-container">
-        <div className="row justify-content-center align-items-center">
-            <div className="col-lg-6 justify-content-center">
-                <div className="title-container">
-                    <h1 className="page-title">Become more visible!</h1>
-                </div>
-                {currentUser ? (
-                    <>
-                        <div className="message-container">
-                            <p className="page-message">
-                                We at SEFiO want to help students find a team, startups, or new members for their team.
-                            </p>
-                        </div>
-                        {hasCollaborationProfile ? (
-                            <div className='message-container'>
-                                <p className='page-message'>You already have a collaboration profile.</p>
-                                <p className="page-message">If you want to update it you can do so in
-                                    <span className="landing-link">
-                                        <Link to="/userprofile" className="text-primary"> my profile.</Link>
-                                    </span>
+        <main className="container page-container">
+            <section className="row justify-content-center align-items-center">
+                <div className="col-lg-6 justify-content-center">
+                    <header className="title-container">
+                        <h1 className="page-title">Become more visible!</h1>
+                    </header>
+                    {currentUser ? (
+                        <>
+                            <div className="message-container">
+                                <p className="page-message">
+                                    We at SEFiO want to help students find a team, startups, or new members for their team.
                                 </p>
                             </div>
-                        ) : (
-                        <PopupCollabForm/>
-                        )}
-                    </>
-                ) : (
-                    <>
-                    <div className="message-container">
-                        <p className="page-message">
-                            We at SEFiO want to help students find a team, startups, or new members for their team.
-                        </p>
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <div className="alert alert-warning custom-alert" role="alert">
-                            You must be <span onClick={togglePopup} className='alert-link custom-alert-link'>logged in</span> to create or update your profile.
-                        </div>
-                    </div>
-                    </>
-                )}
-            </div>
-        </div>
-    </div>
-    );
+                            {hasCollaborationProfile ? (
+                                <div className='message-container'>
+                                    <p className='page-message'>You already have a collaboration profile.</p>
+                                    <p className="page-message">If you want to update it you can do so in
+                                        <span className="landing-link">
+                                            <Link to="/userprofile" className="text-primary"> my profile.</Link>
+                                        </span>
+                                    </p>
+                                </div>
+                            ) : (
+                                <PopupCollabForm />
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <div className="message-container">
+                                <p className="page-message">
+                                    We at SEFiO want to help students find a team, startups, or new members for their team.
+                                </p>
+                            </div>
+                            <div className="d-flex justify-content-center">
+                                <div className="alert alert-warning custom-alert" role="alert">
+                                    You must be <button onClick={togglePopup} className='alert-link custom-alert-link btn-link'>logged in</button> to create or update your profile.
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </div>
+            </section>
+        </main>
+    );    
 }
