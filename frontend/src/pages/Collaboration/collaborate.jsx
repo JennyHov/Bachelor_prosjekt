@@ -6,10 +6,14 @@ import AllProfiles from '../../components/AllProfiles';
 
 export default function Collaborate() {
   return (
-    <div>
-      <div style={{ height: '70px' }} />
-      <TogglePopup />
-      <AllProfiles />
-    </div>
-  );
+    <main>
+      <div style={{ height: '70px' }}></div>
+      <section>
+        <TogglePopup />
+      </section>
+      <section>
+        <AllProfiles />
+      </section>
+    </main>
+  );  
 }

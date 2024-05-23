@@ -93,9 +93,9 @@
 
 @keyframes fadeHighlight {
   0% { box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px }
-  25% { box-shadow: rgba(244, 138, 52, 0.8) 0px 13px 27px -5px, rgba(244, 138, 52, 0.7) 0px 8px 16px -8px }
+  25% { box-shadow: rgba(244, 138, 52, 1.0) 0px 13px 27px -5px, rgba(244, 138, 52, 1.0) 0px 8px 16px -8px }
   50% { box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px }
-  75% { box-shadow: rgba(244, 138, 52, 0.8) 0px 13px 27px -5px, rgba(244, 138, 52, 0.7) 0px 8px 16px -8px }
+  75% { box-shadow: rgba(244, 138, 52, 1.0) 0px 13px 27px -5px, rgba(244, 138, 52, 1.0) 0px 8px 16px -8px }
   100% { box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px }
 }
 

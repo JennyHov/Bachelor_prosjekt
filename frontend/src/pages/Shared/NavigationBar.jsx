@@ -76,7 +76,7 @@ const NavigationBar = () => {
         <nav className="navbar navbar-expand-lg navbar-styling" style={navStyle}>
         <div className="container-fluid">
             <Link to="/" className="navbar-brand ps-5 pe-2">
-              <img src={logoImage} alt="SEFiO" className='sefio-logo-navbar'/>
+              <img src={logoImage} alt="Svart logo for SEFiO, Studentenes Entreprenørskapsfond i Oslo" className='sefio-logo-navbar'/>
             </Link>
             <button
               className="navbar-toggler"

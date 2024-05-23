@@ -126,14 +126,14 @@ const SignUpForm = ({ onClose, toggleForm }) => {
                 {errors.password && <div className='error-message'>{errors.password}</div>}
             </div>
             <div className="form-group login-box">
-            <input
-              className={`form-control signup-input ${errors.confirmPassword ? 'is-invalid' : ''}`}
-              type='password'
-              placeholder='Confirm Password'
-              id='confirmPassword'
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
+              <input
+                className={`form-control signup-input ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                type='password'
+                placeholder='Confirm Password'
+                id='confirmPassword'
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
             {errors.confirmPassword && <div className='error-message'>{errors.confirmPassword}</div>}
           </div>
         </div>

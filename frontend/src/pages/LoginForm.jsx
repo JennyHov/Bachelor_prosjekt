@@ -78,39 +78,39 @@ const LoginForm = ({ toggleForm, onClose }) => {
         
     };
 
-  return (
-    <form onSubmit={handleSubmit}>
-        <div className='error-container'>
-            {formError && <p className='error-message'><img src={warningImage} alt="Warning icon" className='warning-image' />{formError}</p>}
-        </div>
-        <div className='login-form-container'>
-            <div className='form-group login-box'>
-                <input 
-                    className='form-control login-input'
-                    type='email'
-                    placeholder='Email'
-                    id='email'
-                    value={formData.email}
-                    onChange={handleChange}
-                /> 
-                {emailError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
-            </div>
-            <div className='form-group login-box'>
-                <input 
-                    className='form-control login-input'
-                    type='password'
-                    placeholder='Password'
-                    id='password'
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                {passwordError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{passwordError}</p>}
-            </div>
-        </div>
-            
-            <div className='button-container'>
-                <div type='button' className='sign-in-container'>
-                    <button disabled={loading} className='sign-in-btn'>
+    return (
+        <form onSubmit={handleSubmit}>
+            <section className='error-container'>
+                {formError && <p className='error-message'><img src={warningImage} alt="Warning icon" className='warning-image' />{formError}</p>}
+            </section>
+            <fieldset className='login-form-container'>
+                <div className='form-group login-box'>
+                    <input 
+                        className='form-control login-input'
+                        type='email'
+                        placeholder='Email'
+                        id='email'
+                        value={formData.email}
+                        onChange={handleChange}
+                    /> 
+                    {emailError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{emailError}</p>}
+                </div>
+                <div className='form-group login-box'>
+                    <input 
+                        className='form-control login-input'
+                        type='password'
+                        placeholder='Password'
+                        id='password'
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                    {passwordError && <p className='input-error-message'><img src={warningImage} alt="Warning icon" className='input-warning-image' />{passwordError}</p>}
+                </div>
+            </fieldset>
+                
+            <section className='button-container'>
+                <div className='sign-in-container'>
+                    <button type='submit' disabled={loading} className='sign-in-btn'>
                         {loading ? 'Loading...' : 'Login'}
                     </button>  
                 </div>
@@ -126,13 +126,13 @@ const LoginForm = ({ toggleForm, onClose }) => {
                     <span className='divider-text'>Or</span>
                     <span className='divider-line'></span>
                 </div>
-                <div className='google-login-btn' type='button'>
+                <div className='google-login-btn'>
                     <img src={GoogleImage} alt="Google logo" className='google-logo'/>
                     <Oauth />
                 </div>
-            </div>
-    </form>
-  );
+            </section>
+        </form>
+    );
 };
 
 export default LoginForm;

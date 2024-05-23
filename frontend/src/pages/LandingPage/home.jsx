@@ -62,10 +62,10 @@ const home = () => {
     return (
         <div className="content-fluid p-5">
             <div style={{ height: '70px' }} />
-            <div className="container-fluid section">
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 justify-content-center d-flex align-items-center">
-                        <img src={rocketImage} alt="Rocket Image" className="section-image"/>
+                        <img src={rocketImage} alt="Rocket Image for Landing Page" className="section-image"/>
                     </div>
                     <div className="col-md-6 landing-content d-flex justify-content-center">
                         <div className="content">
@@ -84,11 +84,9 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
-            <div className="container-fluid section">
+            </section>
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 counseling-content d-flex justify-content-center">
                         <div className="content">
@@ -100,24 +98,22 @@ const home = () => {
                         </div>
                     </div>
                     <div className="col-md-6 justify-content-center align-items-center d-flex">
-                        <img src={counselingImage} alt="Counseling Image" className="section-image"/>
+                        <img src={counselingImage} alt="Counseling" className="section-image"/>
                     </div>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
-            <div className="container-fluid section">
+            </section>
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center align-items-center">
                         <div className="home-events-deadlines content-wrapper">
-                            <section className='home-events-container'>
+                            <nav className='home-events-container'>
                                 {events.map((event, index) => (
                                     <Link to={`/events/${event.id}`} key={index} onClick={() => handleClick(event.id)}>
                                         <EventCard event={event} />
                                     </Link>
                                 ))}
-                            </section>
+                            </nav>
                         </div>
                     </div>
                     <div className="col-md-6 home-events-info d-flex justify-content-center">
@@ -138,11 +134,9 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
-            <div className="container-fluid section">
+            </section>
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center">
                         <div className="content">
@@ -156,17 +150,15 @@ const home = () => {
                         </div>
                     </div>
                     <div className="col-md-6 justify-content-center align-items-center d-flex">
-                        <img src={collaboratingImage} alt="Collaborating Image" className="section-image"/>
+                        <img src={collaboratingImage} alt="Collaborating" className="section-image"/>
                     </div>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
-            <div className="container-fluid section">
+            </section>
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 justify-content-center align-items-center d-flex">
-                        <img src={whoAreWeImage} alt="Placeholder Image" className="section-image"/>
+                        <img src={whoAreWeImage} alt="Who are we?" className="section-image"/>
                     </div>
                     <div className="col-md-6 d-flex justify-content-center">
                         <div className="content">
@@ -177,28 +169,28 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="container-fluid content-item-section">
+            </section>
+    
+            <section className="container-fluid content-item-section">
                 <div className='row justify-content-start contact-profile media-scroller snaps-inline my-5'>
-                    <div className="contact-item media-element">
+                    <article className="contact-item media-element">
                         <div className="image-content">
                             <div className="card-image">
-                                <img className="card-img" src={magnusImage} alt="Card Image" />
+                                <img className="card-img" src={magnusImage} alt="Magnus Svendsen" />
                             </div>
                         </div>
                         <div className="card-content">
-                        <p className="card-name">Magnus Svendsen</p>
-                        <p className="card-role">CEO</p>
-                        <hr className="representative-divider" />
-                        <p className="card-institution">Handles all requests</p>
-                        <p className="card-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
-                    </div>
-                    </div>
-                    <div className="contact-item media-element">
+                            <p className="card-name">Magnus Svendsen</p>
+                            <p className="card-role">CEO</p>
+                            <hr className="representative-divider" />
+                            <p className="card-institution">Handles all requests</p>
+                            <p className="card-email"><a href="mailto:kontakt@sefio.no">kontakt@sefio.no</a></p>
+                        </div>
+                    </article>
+                    <article className="contact-item media-element">
                         <div className="image-content">
                             <div className="card-image">
-                                <img className="card-img" src={hannaImage} alt="Card Image" />
+                                <img className="card-img" src={hannaImage} alt="Hanna Worum" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -207,12 +199,12 @@ const home = () => {
                             <hr className="representative-divider" />
                             <p className="card-institution">Oslomet</p>
                             <p className="card-email"><a href="mailto:hanna.worum@sefio.no">hanna.worum@sefio.no</a></p>
-                    </div>
-                    </div>
-                    <div className="contact-item media-element">
+                        </div>
+                    </article>
+                    <article className="contact-item media-element">
                         <div className="image-content">
                             <div className="card-image">
-                                <img className="card-img" src={henrikImage} alt="Card Image" />
+                                <img className="card-img" src={henrikImage} alt="Henrik Mørk" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -221,12 +213,12 @@ const home = () => {
                             <hr className="representative-divider" />
                             <p className="card-institution">BI</p>
                             <p className="card-email"><a href="mailto:henrik.mork@sefio.no">henrik.mork@sefio.no</a></p>
-                    </div>
-                    </div>
-                    <div className="contact-item media-element">
+                        </div>
+                    </article>
+                    <article className="contact-item media-element">
                         <div className="image-content">
                             <div className="card-image">
-                                <img className="card-img" src={johanImage} alt="Card Image" />
+                                <img className="card-img" src={johanImage} alt="Johan Sandbu" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -236,11 +228,11 @@ const home = () => {
                             <p className='card-institution'>Høyskolen Kristiania</p>
                             <p className="card-email"><a href="mailto:johan.sandbu@sefio.no">johan.sandbu@sefio.no</a></p>
                         </div>
-                    </div>
-                    <div className="contact-item media-element">
+                    </article>
+                    <article className="contact-item media-element">
                         <div className="image-content">
                             <div className="card-image">
-                                <img className="card-img" src={elisabethImage} alt="Card Image" />
+                                <img className="card-img" src={elisabethImage} alt="Elisabeth Alvern" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -250,11 +242,11 @@ const home = () => {
                             <p className="card-institution">NMBU</p>
                             <p className="card-email"><a href="mailto:elisabeth.alvern@sefio.no">elisabeth.alvern@sefio.no</a></p>
                         </div>
-                    </div>
-                    <div className="contact-item media-element">
+                    </article>
+                    <article className="contact-item media-element">
                         <div className="image-content">
                             <div className="card-image">
-                                <img className="card-img" src={arnarImage} alt="Card Image" />
+                                <img className="card-img" src={arnarImage} alt="Arnar Reiten" />
                             </div>
                         </div>
                         <div className="card-content">
@@ -264,13 +256,11 @@ const home = () => {
                             <p className="card-institution">UiO</p>
                             <p className="card-email"><a href="mailto:arnar.reiten@sefio.no">arnar.reiten@sefio.no</a></p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
-            <div className="container-fluid section">
+            </section>
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center sponsor-content">
                         <div className="content">
@@ -280,40 +270,36 @@ const home = () => {
                                 </p>
                         </div>
                     </div>
-                    <div className="col-md-6 d-flex justify-content-center align-items-centerx">
-                        <img src={sponsorImage} alt="Counseling Image" className="section-image"/>
+                    <div className="col-md-6 d-flex justify-content-center align-items-center">
+                        <img src={sponsorImage} alt="Sponsor" className="section-image"/>
                     </div>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
+            </section>
+    
             <CenterMode />
-
-            <div className='stroke'></div>
-
-            <div className="container-fluid section">
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center align-items-center">
                         <div className="row social-icons">
                             <div className="col col-lg-2 social-icon">
                                 <a href='https://www.linkedin.com/company/studentenes-entrepren%C3%B8rskapsfond-i-oslo/' target='_blank' rel='noopener noreferrer'>
-                                    <img src={linkedinImage} alt="Social Media Icon" className="social-icon"/>
+                                    <img src={linkedinImage} alt="LinkedIn" className="social-icon"/>
                                 </a>
                             </div>
                             <div className="col col-lg-2 social-icon">
                                 <a href='https://www.instagram.com/sefio.no/' target='_blank' rel='noopener noreferrer'>
-                                    <img src={instagramImage} alt="Social Media Icon" className="social-icon"/>
+                                    <img src={instagramImage} alt="Instagram" className="social-icon"/>
                                 </a>
                             </div>
                             <div className="col col-lg-2 social-icon">
                                 <a href='https://www.facebook.com/profile.php?id=100095361750473' target='_blank' rel='noopener noreferrer'>
-                                    <img src={facebookImage} alt="Social Media Icon" className="social-icon"/>
+                                    <img src={facebookImage} alt="Facebook" className="social-icon"/>
                                 </a>
                             </div>
                             <div className="col col-lg-2 social-icon">
                                 <a href='https://www.youtube.com/channel/UCydcGoyzNwbNudj9lQjK4vQ/about' target='_blank' rel='noopener noreferrer'>
-                                    <img src={youtubeImage} alt="Social Media Icon" className="social-icon"/>
+                                    <img src={youtubeImage} alt="YouTube" className="social-icon"/>
                                 </a>
                             </div>
                         </div>
@@ -326,11 +312,9 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-            </div>  
-
-            <div className='stroke'></div>  
-
-            <div className="container-fluid section">
+            </section>
+    
+            <section className="container-fluid section">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6 d-flex justify-content-center align-items-center">
                         <iframe 
@@ -338,9 +322,9 @@ const home = () => {
                             height="283" 
                             src="https://www.youtube.com/embed/13w77dTMCds" 
                             title="YouTube video player" 
-                            frameborder="0" 
+                            frameBorder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
+                            allowFullScreen>
                         </iframe>
                     </div>
                     <div className="col-md-6">
@@ -349,16 +333,14 @@ const home = () => {
                             height="283" 
                             src="https://www.youtube.com/embed/73vhFLlUSVU" 
                             title="YouTube video player" 
-                            frameborder="0" 
+                            frameBorder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
+                            allowFullScreen>
                         </iframe>
                     </div>
                 </div>
-            </div>
-
-            <div className='stroke'></div>
-
+            </section>
+    
         </div>
     );
 }

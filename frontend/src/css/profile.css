@@ -52,10 +52,7 @@
     align-items: center;
 }
 
-.secondary-button,
-.delete-button {
-    margin-right: 30px; /* Adjust the spacing between buttons */
-}
+
 
 .delete-button {
     width: fit-content;
