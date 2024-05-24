@@ -1,6 +1,6 @@
 import Countdown from '../models/countdown.model.js';
 
-// Set countdown
+// lage en nedtelling
 export const setCountdown = async (req, res) => {
     try {
         const { endTime } = req.body;
@@ -17,7 +17,7 @@ export const setCountdown = async (req, res) => {
     }
 };
 
-// Get countdown
+// hente nedtellingen
 export const getCountdown = async (req, res) => {
     try {
         const countdown = await Countdown.findOne({});

@@ -40,12 +40,12 @@ const home = () => {
     const { eventId } = useParams();
 
     const handleClick = (eventId) => {
-        localStorage.setItem('selectedEvent', eventId); // Save the selected event ID to local storage
+        localStorage.setItem('selectedEvent', eventId); // lagrer event id i local storage
     };
 
     useEffect(() => {
-        const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // Replace with your actual API Key
-        const CALENDAR_ID = 'f390ea5d2b14d4be9eb4dd744e6a1b5e84ca241a7238be3d9b910023b940d70e@group.calendar.google.com'; // Replace with your actual Calendar ID
+        const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // api key
+        const CALENDAR_ID = 'f390ea5d2b14d4be9eb4dd744e6a1b5e84ca241a7238be3d9b910023b940d70e@group.calendar.google.com'; // calendar iden
         const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`;
 
         fetch(calendarUrl)
@@ -53,7 +53,7 @@ const home = () => {
             .then(data => {
                 const filteredEvents = data.items.filter(event => !eventHasPassed(event.end.dateTime || event.end.date))
                     .sort((a, b) => new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date))
-                    .slice(0, 5); // Limiting the array to the first 5 events
+                    .slice(0, 5); // kun 5 fra kalender
                 setEvents(filteredEvents);
             })
             .catch(error => console.error('Error fetching events:', error));

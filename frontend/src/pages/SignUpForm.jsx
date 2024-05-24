@@ -17,7 +17,7 @@ const SignUpForm = ({ onClose, toggleForm }) => {
     confirmPassword: ''
   });
   const [error, setError] = useState('');
-  const [errors, setErrors] = useState({});  // Declare the errors state here
+  const [errors, setErrors] = useState({});  
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
@@ -76,11 +76,11 @@ const SignUpForm = ({ onClose, toggleForm }) => {
       setLoading(false);
       if (data.success === false) {
         setError(data.message);
-        setErrors({ form: data.message }); // Display the specific error message from the server
+        setErrors({ form: data.message }); // viser error melding  fra server
         return;
       }
       toggleForm();
-      onClose(); // Close the sign-up popup
+      onClose(); // stenger sign up popup
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);

@@ -3,6 +3,8 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
+
+// logge inn med bruker
 export const signup = async (req, res, next) => {
     const { fullName, email, password } = req.body;
     const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -15,6 +17,7 @@ export const signup = async (req, res, next) => {
     }
 };
 
+// registrere seg selv inn
 export const signin = async (req, res, next) => {
     const { email, password } = req.body;
     try{
@@ -35,6 +38,7 @@ export const signin = async (req, res, next) => {
     }
 };
 
+// registrere/logge inn med bruker via google oauth
 export const google = async (req, res, next) => {
     try {
       const user = await User.findOne({ email: req.body.email });
@@ -81,6 +85,7 @@ export const google = async (req, res, next) => {
     }
   };
 
+  // logg ut av bruker, og fjern sefio_token
 export const signout = (req, res) => {
   res.clearCookie('sefio_token').status(200).json('Signout success!');
 };

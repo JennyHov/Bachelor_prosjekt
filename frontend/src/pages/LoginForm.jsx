@@ -45,7 +45,7 @@ const LoginForm = ({ toggleForm, onClose }) => {
             passwordIsValid = false;
         }
     
-        // If either email or password is not valid, stop here and do not submit form
+        //  hvis epost eller passord ikke er rett
         if (!emailIsValid || !passwordIsValid) {
             return;
         }

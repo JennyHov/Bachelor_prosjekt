@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/footer.css';
 
-import logoImage from '../../../../assets/images/footer/sefio.png'; // Oppdater stien til din faktiske logo
+import logoImage from '../../../../assets/images/footer/sefio.png'; // blir den brukt eller ikke?
 import sefiogulImage from '../../../../assets/images/footer/sefio_gul.png';
 import aneoImage from '../../../../assets/images/footer/aneo.png';
 import osloImage from '../../../../assets/images/footer/oslo.png';

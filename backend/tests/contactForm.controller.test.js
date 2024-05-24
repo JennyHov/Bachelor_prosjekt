@@ -2,7 +2,7 @@
 import { submitContactForm } from '../Controllers/contactForm.controller';
 import Contact from '../models/contactForm.model';
 
-// Mock the Contact model
+// mocking av kontakt formen
 jest.mock('../models/contactForm.model');
 
 describe('ContactForm Controller', () => {
@@ -14,7 +14,8 @@ describe('ContactForm Controller', () => {
     };
 
     beforeEach(() => {
-        jest.clearAllMocks(); // Sørger for at mocks er rene for hver test
+        // rengjører hver mock test
+        jest.clearAllMocks(); 
     });
 
     it('should handle server errors for Erna Solberg', async () => {
@@ -33,8 +34,8 @@ describe('ContactForm Controller', () => {
                 save: jest.fn().mockRejectedValue(error)
             };
         });
-
-        jest.spyOn(console, 'error').mockImplementation(() => {}); // To keep test output clean
+        // fjernet error meldinger  her
+        jest.spyOn(console, 'error').mockImplementation(() => {}); 
 
         await submitContactForm(req, res);
 
@@ -85,8 +86,8 @@ describe('ContactForm Controller', () => {
                 save: jest.fn().mockRejectedValue(error)
             };
         });
-
-        jest.spyOn(console, 'error').mockImplementation(() => {}); // To keep test output clean
+        // fjerna error melding her
+        jest.spyOn(console, 'error').mockImplementation(() => {}); 
 
         await submitContactForm(req, res);
 

@@ -27,7 +27,6 @@ const ListProfiles = ({ fetchUrl }) => {
         });
     }, []); 
 
-    // Change user role
     const changeUserRole = (userId, newRole) => {
         const updatedRole = newRole === 'admin' ? 'user' : 'admin';
         fetch(`/api/admin/users/role`, {
@@ -48,7 +47,6 @@ const ListProfiles = ({ fetchUrl }) => {
         });
     };
 
-    // Delete user
     const deleteUser = (userId) => {
         fetch(`/api/admin/users/${userId}`, {
             method: 'DELETE',
@@ -74,7 +72,7 @@ const ListProfiles = ({ fetchUrl }) => {
         setSearchQuery(event.target.value);
     };
 
-    // Function to filter profiles based on search query
+    // funksjon for å filtreere profilene med search query
     const filteredProfiles = profiles.filter(profile => 
         profile.fullName.toLowerCase().includes(searchQuery.toLowerCase())
     );

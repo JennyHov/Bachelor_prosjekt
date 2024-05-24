@@ -1,5 +1,5 @@
 import express from 'express';
-import multer from 'multer'; // Import multer
+import multer from 'multer'; 
 import { submitApplication } from '../Controllers/applicationForm.controller.js';
 
 const router = express.Router();

@@ -48,14 +48,14 @@ const NavigationBar = () => {
 
   const handleSignOut = async () => {
     try {
-        // Making a GET request to the logout endpoint
+        //logger ut endepunkt med get
         const response = await fetch('/api/auth/signOut', {
-            method: 'GET', // this is a get method according to backend
-            credentials: 'include' // taking with us the cookie, so it is gone
+            method: 'GET', // for backend responsen
+            credentials: 'include' // sefio_cookie
         });
         if (response.ok) {
             dispatch(signOut());
-            navigate('/'); // redirect to homepage
+            navigate('/'); // sendt tilbake til hjemmesiden
         } else {
             throw new Error('Logout failed');
         }
@@ -66,9 +66,8 @@ const NavigationBar = () => {
 
   const navStyle = {
     position: 'fixed',
-    top: shouldShow ? '0' : '-70px',  // Replace 80 with your navbar's height
+    top: shouldShow ? '0' : '-70px',  
     transition: 'top 0.3s',
-    // other styles...
   };
 
   return (

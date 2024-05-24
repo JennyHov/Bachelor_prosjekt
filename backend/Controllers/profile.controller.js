@@ -2,20 +2,22 @@
 
 import Profile from '../models/profile.model.js';
 
+
+// både en update og create metode for å lage sin egen collaborate profile/samarbeidsprofil
 export const createOrUpdateProfile = async (req, res) => {
-    const { fullName, email, institution, description, category, role, profileImageUrl } = req.body; // include profileImageUrl in the destructuring
+    const { fullName, email, institution, description, category, role, profileImageUrl } = req.body; // har et profileimageurl, men ikke nødvendigvis brukt
     const userId = req.user.id;
 
     try {
         let profile = await Profile.findOne({ user: userId });
         if (!profile) {
-            profile = new Profile({ fullName, email, institution, description, category, role, user: userId, profileImageUrl }); // include profileImageUrl here
+            profile = new Profile({ fullName, email, institution, description, category, role, user: userId, profileImageUrl }); 
             await profile.save();
         } else {
             if (profile.user.toString() !== userId) {
                 return res.status(403).json({ message: "Not authorized to update this profile" });
             }
-            profile = await Profile.findByIdAndUpdate(profile._id, { fullName, email, institution, description, category, role, profileImageUrl }, { new: true }); // and here
+            profile = await Profile.findByIdAndUpdate(profile._id, { fullName, email, institution, description, category, role, profileImageUrl }, { new: true }); 
         }
         console.log("Profile updated successfully:", profile);
         res.status(200).json(profile);
@@ -28,14 +30,14 @@ export const createOrUpdateProfile = async (req, res) => {
 
 
 
-// controllers/profile.controller.js
+// hent alle collaborateprofiler for matchingtjenesten
 
 export const getProfiles = async (req, res) => {
     try {
-        const profiles = await Profile.find().populate('user', 'profileImage'); // Adjusting to include profile image from user
+        const profiles = await Profile.find().populate('user', 'profileImage'); 
         res.status(200).json(profiles.map(profile => ({
             ...profile.toObject(),
-            profileImage: profile.user.profileImage // Assuming profile.user is populated
+            profileImage: profile.user.profileImage 
         })));
     } catch (error) {
         console.error("Failed to fetch profiles:", error);
@@ -44,11 +46,11 @@ export const getProfiles = async (req, res) => {
 };
 
 
-// controllers/profile.controller.js
+// hente en collaborateprofil basert på user iden deres fra database
 
 export const getProfileByUserId = async (req, res) => {
     try {
-        const userId = req.params.userId; // Or req.user.id if you want to fetch the profile of the logged-in user directly
+        const userId = req.params.userId; 
         const profile = await Profile.findOne({ user: userId });
         if (!profile) {
             return res.status(404).json({ message: "Profile not found" });
@@ -60,7 +62,7 @@ export const getProfileByUserId = async (req, res) => {
 };
 
 
-// Server-side controller to handle the search
+// søkebaren for matchingtjenesten med enkelt filtrering for feltene instituition,role og category. 
 export const searchProfiles = async (req, res) => {
     const { search, institution, role, category } = req.query;
     let query = {};
@@ -79,7 +81,7 @@ export const searchProfiles = async (req, res) => {
     }
 };
 
-// controllers/profile.controller.js
+// slette sin egen collaborate profile
 export const deleteUserProfile = async (req, res) => {
     console.log(`Attempting to delete profile for user with ID: ${req.params.userId}`);
     try {

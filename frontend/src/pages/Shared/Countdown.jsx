@@ -5,7 +5,7 @@ const Countdown = () => {
     const [timeLeft, setTimeLeft] = useState('Loading countdown...');
 
     useEffect(() => {
-        let timer;  // Declare the timer in the outer scope of useEffect
+        let timer;  // deklarere en tid
 
         const fetchCountdown = async () => {
             try {
@@ -41,7 +41,7 @@ const Countdown = () => {
 
         fetchCountdown();
 
-        return () => clearInterval(timer);  // Cleanup function now has access to the timer
+        return () => clearInterval(timer);  // renser funksjonen
     }, []);
 
     return (

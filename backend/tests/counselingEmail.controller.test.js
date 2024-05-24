@@ -2,7 +2,7 @@ import { submitCounselingEmail } from '../Controllers/counselingEmail.controller
 import counselingEmailModel from '../models/counselingEmail.model';
 import nodemailer from 'nodemailer';
 
-// Mocking external dependencies
+// mocking av nodemailer og counseilingemail modellen
 jest.mock('../models/counselingEmail.model');
 jest.mock('nodemailer');
 

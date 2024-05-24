@@ -8,17 +8,14 @@ import CountDown from './CountDown/CountDown';
 
 const Dashboard = () => {
     const [activeView, setActiveView] = useState('Home');
-    const [showSidebar, setShowSidebar] = useState(false);  // Tilstand for å vise/skjule sidebar
+    const [showSidebar, setShowSidebar] = useState(false);  
     const [users, setUsers] = useState([]);
     const [error, setError] = useState('');
 
     const handleViewChange = (view) => {
         setActiveView(view);
-        setShowSidebar(false);  // Lukk sidebar når et element er valgt
+        setShowSidebar(false); 
     };
-
-        // Part of Dashboard.jsx within the Dashboard component
-
         const fetchCollaborateProfiles = () => {
             fetch('/api/admin/collaborate-profiles', {
                 method: 'GET',
@@ -34,7 +31,7 @@ const Dashboard = () => {
                 return response.json();
             })
             .then(data => {
-                setUsers(data);  // Assuming 'users' state is used to store profiles here
+                setUsers(data);  
             })
             .catch(error => {
                 console.error('Error fetching collaborate profiles', error);

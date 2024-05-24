@@ -13,8 +13,7 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 
-// File: controllers/admin.controller.js
-
+// oppdater brukeren rolle med et trykk
 export const updateUserRole = async (req, res, next) => {
     const { userId, role } = req.body;
 
@@ -33,6 +32,7 @@ export const updateUserRole = async (req, res, next) => {
     }
 };
 
+// slette en bruker kun admin som rolle
 export const deleteUser = async (req, res, next) => {
     const { userId } = req.params;
 
@@ -47,9 +47,8 @@ export const deleteUser = async (req, res, next) => {
     }
 };
 
-// File: controllers/admin.controller.js
 
-
+// henter alle collaborateprofiels/samarbeidsprofiler
 export const getAllCollaborateProfiles = async (req, res) => {
     try {
         const profiles = await Profile.find({});
@@ -60,6 +59,7 @@ export const getAllCollaborateProfiles = async (req, res) => {
     }
 };
 
+// slette en samarbeidsprofil, kun gjort av admin som rolle
 export const deleteCollaborateProfile = async (req, res) => {
     const { profileId } = req.params;
 

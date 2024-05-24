@@ -2,7 +2,7 @@ import { submitApplicationEmail } from '../Controllers/applicationEmail.controll
 import nodemailer from 'nodemailer';
 import applicationEmailModel from '../models/applicationEmail.model';
 
-// mocking nodemailer and applicationEmailModel
+// en mocking etter nodemailer og applicationEmailModel
 jest.mock('nodemailer');
 jest.mock('../models/applicationEmail.model');
 
@@ -16,7 +16,8 @@ describe('ApplicationEmail Controller', () => {
   };
 
   beforeEach(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {}); // Suppress console.error output
+    // får error? jeg har lagt til en stopp for det med dette
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     mockSendMail = jest.fn();
     nodemailer.createTransport.mockReturnValue({ sendMail: mockSendMail });
 });

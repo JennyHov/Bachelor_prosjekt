@@ -1,8 +1,7 @@
-// countdown.controller.test.js
 import { setCountdown, getCountdown } from '../Controllers/countdown.controller';
 import Countdown from '../models/countdown.model';
 
-// Mock the Countdown model
+// mocking av Countdown model schemaen
 jest.mock('../models/countdown.model');
 
 describe('Countdown Controller', () => {

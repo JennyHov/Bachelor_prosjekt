@@ -35,12 +35,10 @@ const SubmitCounselingForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      // This function is called when the component unmounts
       return () => {
-        // Dispatch an action to reset the form state
         dispatch(resetForm());
       };
-    }, [dispatch]); // dispatch is a dependency
+    }, [dispatch]); 
   
     const validateFullName = () => {
       if (!formData.fullName.trim()) {
@@ -139,7 +137,7 @@ const SubmitCounselingForm = () => {
       }));
       setFileName('Upload Application Draft');
     
-      // Clear the file input's value
+      // renser input verdien for fila 
       document.getElementById('file').value = null;
     };
 
@@ -161,14 +159,14 @@ const SubmitCounselingForm = () => {
         
         const formDataToSend1 = new FormData();
         
-        // Append form data fields
+        // legger til formdataene i fieldsa
         Object.entries(formData).forEach(([key, value]) => {
           if (key !== 'file') {
             formDataToSend1.append(key, value);
           }
         });
         
-        // Append file data if it exists
+        // legger til data fra filen hvis det eksister 
         if (formData.file) {
           console.log('Appending file to formDataToSend1:', formData.file);
           formDataToSend1.append('file', formData.file);
@@ -177,13 +175,13 @@ const SubmitCounselingForm = () => {
           }
         }
       
-        // Send form data to your backend endpoint
+        // sender form data med rett backend endepunktet
         let formResponse = await fetch('/api/counseling-form/submit-counseling-form', {
           method: 'POST',
-          body: formDataToSend1, // Send the FormData object directly
+          body: formDataToSend1, // sender en form data objekt
         });
         
-        // Check if form submission was successful
+        // tester fgor om form sendingen endte som en suksess 
         if (!formResponse.ok) {
           throw new Error('Failed to submit counseling form');
         }
@@ -198,16 +196,16 @@ const SubmitCounselingForm = () => {
           formDataToSend2.append('file', formData.file);
         }
         
-        // If form submission was successful, send the email
+        // hvis formen var sukessfullt, kjør gjennom en e-post
         const emailResponse = await fetch('/api/counseling-form-email/submit-counseling-email', {
           method: 'POST',
           headers: {
-            // Add any necessary headers here
           },
-          body: formDataToSend2, // Send the same FormData object
+          // formdata object skal sendes
+          body: formDataToSend2,
         });
       
-        // Check if email sending was successful
+        // tester om epost sendingen endte i sukess
         if (!emailResponse.ok) {
           throw new Error('Failed to send email');
         }

@@ -8,13 +8,13 @@ const ListCollaborateProfiles = () => {
     const [editProfileData, setEditProfileData] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showFullDescription, setShowFullDescription] = useState({});
-    const [searchQuery, setSearchQuery] = useState('');  // State for search query
+    const [searchQuery, setSearchQuery] = useState(''); 
 
 
     const toggleDescription = (id) => {
         setShowFullDescription(prev => ({
             ...prev,
-            [id]: !prev[id]  // Toggle the state for specific profile
+            [id]: !prev[id]  // for togglingen 
         }));
     };
         

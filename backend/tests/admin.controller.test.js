@@ -33,7 +33,7 @@ describe('AdminController Tests', () => {
     Profile.mockClear();
   });
 
-  // Test cases
+  // testingtilfeller
   describe('getAllUsers', () => {
     it('should return all users without passwords', async () => {
       // Prepare data as it should appear after `.select('-password')`
@@ -42,35 +42,38 @@ describe('AdminController Tests', () => {
         { _id: '2', fullName: 'User Two', email: 'user2@example.com', role: 'admin' }
       ];
 
-      // Mock the find method to simulate mongoose find
+      // mocking for find metoden og for å simulere mongoose find
       User.find = jest.fn().mockReturnValue({
-        select: jest.fn().mockResolvedValue(mockUsers) // simulate the .select() chain
+        // ment for å simulere .select() 
+        select: jest.fn().mockResolvedValue(mockUsers) 
       });
 
-      // Call the actual function under test
+      // kall på funksjonen 
       await getAllUsers(mockReq, mockRes, mockNext);
 
-      // Check that the response was as expected
+      // sjekke at responsen er som ventet
       expect(mockRes.json).toHaveBeenCalledWith(mockUsers);
-      expect(User.find).toHaveBeenCalled(); // Ensures find was called
+      // forventer en find metode som er kalt
+      expect(User.find).toHaveBeenCalled(); 
+      // husk at det ikke skal være med passord, den unnlates
       expect(User.find().select).toHaveBeenCalledWith('-password'); // Ensures .select was called with '-password'
     });
   });
   describe('updateUserRole', () => {
     it('should update the role of a user and exclude the password from the result', async () => {
-      // Prepare request data
+      // forespørselsdata er sendt
       mockReq.body = { userId: 'jakobId', role: 'admin' };
 
-      // Call the function under test
+      // kall for updatere rollen til bruker
       await updateUserRole(mockReq, mockRes, mockNext);
 
-      // Verify that findByIdAndUpdate was called correctly
+      // sjekke at findByIdAndUpdate er som ventet
       expect(User.findByIdAndUpdate).toHaveBeenCalledWith('jakobId', { role: 'admin' }, { new: true });
 
-      // Check that .select() was called with '-password'
+      // finner ut om .select(  er kalt uten passord
       expect(User.findByIdAndUpdate().select).toHaveBeenCalledWith('-password');
 
-      // Ensure the response contains the expected data
+      // sikre at responsen inneholder forventet data
       expect(mockRes.json).toHaveBeenCalledWith({
         _id: 'jakobId',
         fullName: 'Jakob Ingebrigtsen',
@@ -110,21 +113,21 @@ describe('AdminController Tests', () => {
 
   describe('deleteCollaborateProfile', () => {
     it('should delete a profile', async () => {
-      // Assuming Profile is correctly mocked above, we mock the findByIdAndDelete method here
+      // antagelse at profile er korrekt mocket? så det gjelder å kun mocke findByIdAndDelete  metoden for naa
       Profile.findByIdAndDelete.mockResolvedValue({ _id: 'someProfileId' });
   
-      // Setting up request parameters to match the controller logic
+      //setter opp en forespørsel med paramter tilpasset med forventet logikk fra server
       mockReq.params.profileId = 'someProfileId';
   
-      // Call the function under test
+      // kaller på funksjonen
       await deleteCollaborateProfile(mockReq, mockRes, mockNext);
   
-      // Expect the status method to be called with 200 indicating successful deletion
+      // forventer en status metode som er en sukess/200
       expect(mockRes.status).toHaveBeenCalledWith(200);
-      // Verify that the correct success message is returned
+      // går utifra at den rette sukess meldingen returnerer
       expect(mockRes.json).toHaveBeenCalledWith({ message: 'Profile deleted successfully' });
   
-      // Check if findByIdAndDelete was called with the correct profile ID
+      // sjekker at findByIdAndDelete var kalt på med rett id
       expect(Profile.findByIdAndDelete).toHaveBeenCalledWith('someProfileId');
     });
   });

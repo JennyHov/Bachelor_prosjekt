@@ -28,12 +28,10 @@ const ContactForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // This function is called when the component unmounts
         return () => {
-          // Dispatch an action to reset the form state
           dispatch(resetForm());
         };
-      }, [dispatch]); // dispatch is a dependency    
+      }, [dispatch]);  
 
     const validateFullName = () => {
         if (!formData.fullName.trim()) {
@@ -71,7 +69,7 @@ const ContactForm = () => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value // Update the specific field based on its name
+            [name]: value // oppdatering basert på navnet
         });
 
         setErrorMessage('');

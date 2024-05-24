@@ -140,7 +140,7 @@ const ProfileInformation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoadingBasicInfo(true); // Aktiver lastetilstand for grunnleggende info
+    setLoadingBasicInfo(true); // husker å aktivere tilstand for basic info
     dispatch(initialUpdatedUser());
     try {
       const response = await fetch(`/api/user/update-basic-info/${currentUser._id}`, {
@@ -168,7 +168,7 @@ const ProfileInformation = () => {
     } catch (error) {
       dispatch(failUpdatedUser(error.toString()));
     }finally {
-      setLoadingBasicInfo(false); // Deaktiver lastetilstand
+      setLoadingBasicInfo(false); // setter til false her
     }
   };
 
@@ -178,7 +178,7 @@ const ProfileInformation = () => {
   
     if (formData.newPassword !== formData.confirmNewPassword) {
       setLoadingPassword(false);
-      toast.error("Passwords do not match.", { // Display this error via toast
+      toast.error("Passwords do not match.", { // error melding med toast
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -214,7 +214,7 @@ const ProfileInformation = () => {
   
       if (!data.success) {
         dispatch(failUpdatedUser(data.message));
-        toast.success(data.message, { // Use server's error message for toast
+        toast.success(data.message, { 
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -228,7 +228,7 @@ const ProfileInformation = () => {
       }
     } catch (error) {
       dispatch(failUpdatedUser(error.toString()));
-      toast.info("Failed to connect to the server.", { // Use info toast for connection issues
+      toast.info("Failed to connect to the server.", { //nettverksproblem feilmelding vises i toast
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -289,7 +289,6 @@ const ProfileInformation = () => {
     )
   };
 
-  // ProfileInformation component
   const handleDeleteCollaborateProfile = async () => {
     confirmDelete (
       'Are you sure you want to delete your collaboration profile? This action is irreversible and all your information will be lost.',

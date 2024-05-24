@@ -3,7 +3,7 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 
 
-  
+  // oppdatere fullname og e-posten sin
   export const updateBasicInfo = async (req, res, next) => {
     if (req.user.id !== req.params.id) {
         return next(errorHandler(401, 'You can update only your account!'));
@@ -19,7 +19,7 @@ import { errorHandler } from "../utils/error.js";
             { $set: updateFields },
             { new: true }
         );
-        // Destructuring to omit the password and any other sensitive info from the response
+        // husk å fjern passord
         const { password, ...rest } = updatedUser._doc;
         res.status(200).json(rest);
     } catch (error) {
@@ -37,7 +37,7 @@ export const updatePassword = async (req, res, next) => {
     return res.status(400).json({ message: "New password is required." });
   }
 
-  // Regulært uttrykk for å validere passord
+  // en sjekk med regex for å fikse at passordet er korrekt
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   if (!passwordRegex.test(newPassword)) {
     return res.status(400).json({ message: "Password must be at least 8 characters long, include at least:" <br> "- 1 uppercase letter" <br> "- 1 lowercase letter" <br> "- 1 number." });
@@ -59,6 +59,7 @@ export const updatePassword = async (req, res, next) => {
   }
 };
 
+// slette sin egen bruker
 export const deleteUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can delete only your account!'));

@@ -9,7 +9,6 @@ import './index.css'
 
 const Main = () => {
   useEffect(() => {
-    // Event listener-skriptet kjøres automatisk når det importeres
   }, []);
 
   return (

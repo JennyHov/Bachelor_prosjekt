@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';  // Remove act if not used directly
+import { render, screen, fireEvent } from '@testing-library/react';  
 import '@testing-library/jest-dom';
 import CountDownAdmin from '../../../../pages/Dashboard/CountDown/CountDown';
 
-import { act } from 'react-dom/test-utils'; // Import act
+import { act } from 'react-dom/test-utils'; 
 
 
-// Simulates successful fetch always
+//  fetch metode, men den er global
 global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve({ endTime: '2024-05-12T12:00:00' }),
@@ -26,9 +26,11 @@ describe('CountDownAdmin', () => {
 
   it('allows input of end date and time', () => {
     render(<CountDownAdmin />);
-    const input = screen.getByDisplayValue(""); // Directly get the input
-    fireEvent.change(input, { target: { value: '2024-05-12T12:00' } });  // Simplified to the essential action
-    expect(input.value).toBe('2024-05-12T12:00');  // Directly check the result
+    const input = screen.getByDisplayValue(""); 
+    // får direkte ut input
+    fireEvent.change(input, { target: { value: '2024-05-12T12:00' } });  
+    
+    expect(input.value).toBe('2024-05-12T12:00');  // sjekker input
   });
 
   it('this will submit the form and calls the API with correct data', async () => {
@@ -37,7 +39,8 @@ describe('CountDownAdmin', () => {
     fireEvent.change(input, { target: { value: '2024-05-12T12:00' } });
     const button = screen.getByRole('button', { name: /update countdown/i });
   
-    await act(async () => {  // Wrap in act to ensure all promises are resolved
+    // wrapper for å sikre alle promise er løst
+    await act(async () => {  
       fireEvent.click(button);
     });
   

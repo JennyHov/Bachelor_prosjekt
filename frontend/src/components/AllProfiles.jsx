@@ -23,9 +23,8 @@ const AllProfiles = () => {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
-                // Legg til token i Authorization-header om nødvendig
               },
-              credentials: 'include', // eller 'same-origin' hvis API-et ditt bruker cookies
+              credentials: 'include',
             });
       
             if (!response.ok) {
@@ -33,8 +32,8 @@ const AllProfiles = () => {
             }
       
             const data = await response.json();
-            alert(data.message); // Viser meldingen fra backend
-            removeProfile(profileId); // Oppdaterer tilstanden etter sletting
+            alert(data.message); // viser melding fra backend
+            removeProfile(profileId); // ppdaterering av tilstanden etter sletting
           } catch (error) {
             console.error('Failed to delete the profile:', error);
             alert('Failed to delete the profile');
@@ -69,7 +68,7 @@ return (
                   placeholder='Search by name'
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={handleSearch} // Lytt til 'Enter'-tasten
+                  onKeyPress={handleSearch} 
                   className="form-control form-input"
               />
               <select value={institution} onChange={(e) => setInstitution(e.target.value)} className="form-select form-input" id="institution">

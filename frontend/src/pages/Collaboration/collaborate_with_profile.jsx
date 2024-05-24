@@ -22,11 +22,9 @@ export default function collaborate_with_profile() {
                         <div className="info-row self-stretch h-76 flex flex-col justify-start items-start">
                             <span className="info-label text-black text-sm font-normal font-inter leading-7">Full Name</span>
                             <div className="info-value self-stretch h-12 px-3 py-2.5 bg-stone-50 rounded-10 border border-zinc-200 flex flex-col justify-center items-start">Jenny Hovland</div>
-                        </div>
-                        {/* Other profile info rows */}
+                        </div>                        
                     </div>
-                    <div className="profile-info-column self-stretch p-2.5 flex flex-col justify-start items-center gap-2.5">
-                        {/* Other profile info columns */}
+                    <div className="profile-info-column self-stretch p-2.5 flex flex-col justify-start items-center gap-2.5">                        
                     </div>
                 </div>
                 <div className="edit-profile-btn self-stretch px-2.5 justify-start items-center">
@@ -44,7 +42,6 @@ export default function collaborate_with_profile() {
                         <span className="filter-label text-black text-lg font-normal font-inter leading-35">Role</span>
                         <div className="role-options px-9 py-3 flex flex-col justify-center items-center"></div>
                     </div>
-                    {/* Other search filters */}
                 </div>
             </section>
         </div>

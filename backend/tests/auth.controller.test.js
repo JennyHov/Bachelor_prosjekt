@@ -11,7 +11,7 @@ describe('Auth Controller Tests', () => {
   let request;
 
   beforeAll(async () => {
-    // setting up new memory server for MongoDB 
+    // setter opp en in memory server med mongodb 
     if (mongoose.connection.readyState === 0) {
       mongod = await MongoMemoryServer.create();
       const uri = mongod.getUri();
@@ -28,7 +28,7 @@ describe('Auth Controller Tests', () => {
   });
 
   afterEach(async () => {
-    // clearing collections instead of dropping the database
+    // fjerner kolleksjonene i datbasen 
     const collections = mongoose.connection.collections;
     for (const key in collections) {
       const collection = collections[key];

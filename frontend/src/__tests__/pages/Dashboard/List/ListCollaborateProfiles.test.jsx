@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ListCollaborateProfiles from '../../../../pages/Dashboard/List/ListCollaborateProfiles';
-import { act } from 'react-dom/test-utils'; // Import act
+import { act } from 'react-dom/test-utils'; 
 
 describe('ListCollaborateProfiles', () => {
   beforeEach(() => {
@@ -70,7 +70,7 @@ describe('ListCollaborateProfiles', () => {
 
     const editButtons = screen.getAllByText('Edit');
     await act(async () => {
-      fireEvent.click(editButtons[2]); // Clicks the Edit button for Jo Nesbø
+      fireEvent.click(editButtons[2]); 
     });
 
     const saveButton = screen.getByText('Save Changes');
@@ -100,9 +100,8 @@ describe('ListCollaborateProfiles', () => {
     await act(async () => {
         render(<ListCollaborateProfiles />);
     });
-    const deleteButtons = screen.getAllByText('Delete'); // Assuming the buttons follow the same order as the profiles
+    const deleteButtons = screen.getAllByText('Delete'); 
 
-    // Click the delete button for Jo Nesbø
     await act(async () => {
         fireEvent.click(deleteButtons[2]);
     });
@@ -114,7 +113,6 @@ describe('ListCollaborateProfiles', () => {
     });
 
     await waitFor(() => {
-        // Check that Jo Nesbø is no longer in the document
         expect(screen.queryByText('Jo Nesbø')).not.toBeInTheDocument();
     });
 });

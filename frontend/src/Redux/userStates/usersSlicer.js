@@ -32,7 +32,6 @@ export const updateUserProfile = createAsyncThunk(
   'user/updateUserProfile',
   async (updatedUserData, { rejectWithValue }) => {
     try {
-      // Make a PUT request to update the user profile
       const response = await fetch(`/api/user/${updatedUserData.userId}`, {
         method: 'PUT',
         headers: {

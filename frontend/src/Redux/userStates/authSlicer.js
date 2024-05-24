@@ -15,8 +15,7 @@ const authSlice = createSlice({
 export const { setToken } = authSlice.actions;
 
 export const login = () => async (dispatch) => {
-  // Perform login API request and receive token
-  const tokenFromApi = 'example-token'; // Replace with actual token
+  const tokenFromApi = 'example-token'; 
   dispatch(setToken(tokenFromApi));
 };
 

@@ -40,7 +40,7 @@ const Events = () => {
                 if (selectedEventElement) {
                     selectedEventElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-            }, 500); // delay of 500 milliseconds
+            }, 500); // lag 0,5 sekunder delay 
         }
     }, []);
 
@@ -49,8 +49,8 @@ const Events = () => {
     console.log(eventId);
 
     useEffect(() => {
-        const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // Replace with your actual API Key
-        const CALENDAR_ID = 'f390ea5d2b14d4be9eb4dd744e6a1b5e84ca241a7238be3d9b910023b940d70e@group.calendar.google.com'; // Replace with your actual Calendar ID
+        const API_KEY = 'AIzaSyAqv9tE4iDZgjmP8WH8dRTl6ayF5uc-sKo'; // API Key
+        const CALENDAR_ID = 'f390ea5d2b14d4be9eb4dd744e6a1b5e84ca241a7238be3d9b910023b940d70e@group.calendar.google.com'; // Calendar ID
         const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`;
 
         fetch(calendarUrl)

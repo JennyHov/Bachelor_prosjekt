@@ -10,7 +10,7 @@ jest.mock('../models/profile.model', () => {
         find: jest.fn(),
         findOne: jest.fn(),
         findOneAndDelete: jest.fn(),
-        // populating
+        // fyller opp
         populate: jest.fn().mockImplementation(() => ({
           exec: jest.fn().mockResolvedValue([
             { fullName: 'Trine Skei Grande', profileImage: 'CoolTrineSkeiGrande', user: { profileImage: 'LeserMyePaaFjellet' } },

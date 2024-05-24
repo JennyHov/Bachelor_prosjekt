@@ -21,8 +21,8 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        default: "user", // Standardverdi er "user"
-        enum: ["user", "admin"] // Tillatte verdier
+        default: "user", // alle er registrert som "user"
+        enum: ["user", "admin"] // det eksisterer to roller som bruker og admin
     },
 }, {timestamps: true}
 );
