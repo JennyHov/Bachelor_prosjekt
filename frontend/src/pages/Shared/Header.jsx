@@ -2,10 +2,10 @@ import NavigationBar from "../Shared/NavigationBar"
 
 const Header = () => {
   return (
-    <div id="header">
+    <header>
       <NavigationBar />
-    </div>
-  )
+    </header>
+  );  
 }
 
 export default Header

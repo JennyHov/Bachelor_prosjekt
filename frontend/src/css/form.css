@@ -1,0 +1,141 @@
+
+.form-container {
+    max-width: 100%; 
+    margin: 0 auto;
+    margin-top: 7%;
+    margin-bottom: 5%;
+  }
+  
+.form-box {
+    margin-bottom: 5%;
+}
+  
+.form-input {
+    width: 100%;
+    max-height: 56px;
+    padding: 15px;
+    border:none;
+    border-radius: 5px;
+    color: #383838;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    word-wrap: break-word;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+  
+.form-input::placeholder {
+    color: #aaa; 
+}
+
+.form-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    word-wrap: break-word;
+    font-size: 15px;
+}
+
+.form-check-label {
+    color: black;
+    font-size: 15px;
+    font-family: Inter;
+    font-weight: 400;
+    letter-spacing: 0.32px;
+}
+
+.form-check {
+    margin-bottom: 2.5%;
+}
+
+.teritary-button {
+    width: 100%;
+    background-color: var(--button-success); 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.teritary-button:hover,
+.teritary-button:focus {
+    background-color: var(--button-success-active); 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+}
+
+.star {
+    color: #E03757;
+}
+
+.file-upload {
+    display: none;
+}
+
+.file-upload-button {
+    background-color: #f2f2f0;
+    color: var(--font-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2% 4%;
+    gap: 7%;
+    width: fit-content;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.file-upload-button:hover,
+.file-upload-button:focus {
+    background-color: hsl(0, 0%, 96%); 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.input-upload-image {
+    width: 18px;
+    height: 18px;
+}
+
+.modal-dialog {
+    z-index: 9998;
+    max-width: 65%;
+    margin: 1.75rem auto; 
+    display: flex;
+    justify-content: center;
+  }
+
+.modal {
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body {
+    margin-top: -2%;
+}
+
+.modal-backdrop {
+    z-index: 9990;
+}
+
+.submit-profile-button {
+    margin-top: -3%;
+}

@@ -1,11 +1,46 @@
-#more {
-    display: none;
-}
 
 .col-sm-4 {
     max-width: 264px;
 }
 
-.contact-item {
-    word-wrap: break-word;
+.read-criteria {
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 19px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0.38px;
+    word-wrap: break-word
+}
+
+.read-more-message {
+    width: 100%;
+    text-align: start;
+    color: black;
+    font-size: 19px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0.38px;
+    word-wrap: break-word
+}
+
+.read-more-message .row {
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+
+.message {
+    margin-top: 7%;
+    margin-bottom: 5%;
+}
+
+.arrow-button {
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 2%;
+    width: 20px;
+    height: 20px;
 }

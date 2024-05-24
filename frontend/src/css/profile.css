@@ -1,0 +1,81 @@
+.profile-title {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 70px;
+    letter-spacing: 0.8px;
+    word-wrap: break-word;
+}
+
+.divide-profile {
+    width: auto;
+    min-height: 100%; 
+    margin: 0 5% 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.divide-profile-line {
+    display: block;
+    width: 1px; 
+    height: 100%; 
+    background-color: #ccc; 
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.form-control {
+    max-width: calc(100% - 0px); 
+    padding-right: 36px;
+}
+
+.show-hide-button {
+    position: absolute;
+    top: 50%;
+    right: 20px; 
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    color: var(--font-dim);
+    font-size: 13px;
+}
+
+.profile-button-container {
+    width: 100%;
+    align-items: center;
+}
+
+
+
+.delete-button {
+    width: fit-content;
+    background-color: #f2f2f0;
+    color: var(--font-light);
+    border: none;
+    padding: 8px 23px;
+    border-radius: 25px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.delete-button:hover, 
+.delete-button:focus{
+    background-color: var(--secondary-red); 
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

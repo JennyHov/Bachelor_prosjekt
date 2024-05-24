@@ -1,0 +1,42 @@
+.footer {
+    border-top: 1px solid #EEEEEE;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+.footer-logo {
+    height: 60px;
+}
+
+.sponsors-representatives {
+    min-width: 100vw;
+    border-bottom: 1px var(--primary-color) solid;
+    padding-bottom: 3%;
+    padding-top: 2%;
+}
+
+.sponsor-logo {
+    height: 4rem;
+}
+
+.sefio-yellow-logo {
+    height: 10rem;
+}
+
+.representative-logo {
+    height: 3rem;
+}
+
+.footer-bar{
+    padding: 4% 5% 3% 5%;
+}
+
+.footer-info {
+    font-weight: 400;
+    color: var(--font-light);
+}
+
+.footer-links {
+    font-weight: 400;
+    color: var(--font-light);
+}
