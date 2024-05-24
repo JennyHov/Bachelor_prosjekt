@@ -23,22 +23,19 @@ body {
 }
 
 .media-scroller:hover {
-    scrollbar-color: auto; /* For Firefox */
+    scrollbar-color: auto; 
 }
 
 .media-scroller::-webkit-scrollbar {
-    /* For Chrome, Safari, and Opera */
-    width: 0.5em; /* Adjust as needed */
+    width: 0.5em; 
 }
 
 .media-scroller::-webkit-scrollbar-thumb {
-    /* For Chrome, Safari, and Opera */
     background-color: transparent;
 }
 
 .media-scroller:hover::-webkit-scrollbar-thumb {
-    /* For Chrome, Safari, and Opera */
-    background-color: var(--font-dim); /* Adjust color as needed */
+    background-color: var(--font-dim); 
 }
 
 .media-element {
@@ -76,9 +73,7 @@ body {
     padding-bottom: 5%;
 }
 
-/*.stroke {
-    border-bottom: 2px solid #EEEEEE;
-}*/
+
 
 .content {
     max-width: 70%;
@@ -224,7 +219,7 @@ body {
 }
 
 .text-primary:hover {
-    font-style: italic; /* Replace 'Courier New' with the actual cursive font you want to use */
+    font-style: italic; 
 }
 
 .service-button {
@@ -246,7 +241,7 @@ body {
 }
 
 .service-button:hover {
-    background-color: hsl(209, 90%, 61%); /* A slightly darker blue on hover/focus */
+    background-color: hsl(209, 90%, 61%); 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }  
 

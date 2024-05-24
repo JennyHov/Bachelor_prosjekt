@@ -62,7 +62,7 @@
     }
 
     .sidebar-toggle {
-        display: none; /* Skjul toggle-knappen på større skjermer */
+        display: none; 
     }
 }
 

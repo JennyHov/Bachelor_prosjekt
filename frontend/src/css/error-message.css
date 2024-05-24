@@ -1,5 +1,5 @@
 .error-container {
-    max-width: 80%; /* Adjust as needed */
+    max-width: 80%; 
     margin: 0 auto;
     margin-top: 5%;
     margin-bottom: 5%;
@@ -23,8 +23,8 @@
 }
 
 .warning-image {
-    width: 27px; /* Adjust based on your preference */
-    height: 27px; /* Maintain aspect ratio */
+    width: 27px; 
+    height: 27px; 
 }
 
 .input-error-message {
@@ -110,7 +110,7 @@
 }
 
 .ok-button:hover {
-    background-position: right center; /* change the direction of the change here */
+    background-position: right center; 
     color: #fff;
     text-decoration: none;
 }
@@ -136,7 +136,7 @@
 }
 
 .cancel-button:hover {
-    background-position: right center; /* change the direction of the change here */
+    background-position: right center; 
     color: #fff;
     text-decoration: none;
 }
@@ -157,7 +157,7 @@
   }
 
   .btn-grad:hover {
-    background-position: right center; /* change the direction of the change here */
+    background-position: right center; 
     color: #fff;
     text-decoration: none;
   }

@@ -13,33 +13,30 @@
   align-items: start;
 }
 
-/* Base styles for the event card */
 .event-card {
   width: 275px;
   display: flex;
-  flex-direction: column; /* Stack date and details vertically */
-  border-radius: 15px; /* Rounded corners */
-  overflow: hidden; /* Ensures the content does not spill out */
+  flex-direction: column; 
+  border-radius: 15px;
+  overflow: hidden; 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   font-family: 'Inter', sans-serif;
 }
 
-/* Style for the date section */
 .event-date-container {
-  background-color: #F48A34; /* Orange background */
-  color: #FFFFFF; /* White text */
-  text-align: center; /* Center the text */
-  padding: 1rem; /* Padding inside the date box */
-  flex-shrink: 0; /* Prevent shrinking */
-  font-size: 1.25rem; /* Larger font size */
-  font-weight: 700; /* Bold font */
+  background-color: #F48A34; 
+  color: #FFFFFF; 
+  text-align: center; 
+  padding: 1rem; 
+  flex-shrink: 0; 
+  font-size: 1.25rem; 
+  font-weight: 700; 
 }
 
-/* Style for the details section */
 .event-details {
-  background-color: #FFFFFF; /* White background */
-  padding: 1rem; /* Padding inside the details box */
-  flex-grow: 1; /* Take up the remaining space */
+  background-color: #FFFFFF; 
+  padding: 1rem; 
+  flex-grow: 1; 
 }
 
 .event-title {
@@ -73,22 +70,20 @@
   margin-bottom: 4%;
 }
 
-/* Style for the "See details" button */
 .toggle-details {
-  cursor: pointer; /* Pointer cursor on hover */
-  text-decoration: underline; /* Underline text */
-  margin-top: 0.5rem; /* Space above the button */
-  align-self: flex-start; /* Align button to the start of the flex container */
+  cursor: pointer; 
+  text-decoration: underline; 
+  margin-top: 0.5rem; 
+  align-self: flex-start; 
 }
 .event-list .event-card {
-    flex-direction: row; /* Keep the row direction even in list view */
-    width: 100%; /* Full width for list view */
-    margin-bottom: 2rem; /* Maintain spacing between cards */
+    flex-direction: row; 
+    width: 100%; 
+    margin-bottom: 2rem; 
   }
 
-/* Hidden content style */
 .event-hidden {
-  display: none; /* Hide content */
+  display: none; 
 }
 
 @keyframes fadeHighlight {

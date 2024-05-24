@@ -1,13 +1,13 @@
 .signup-container {
     z-index: 1000;
-    margin-top: 120px; /* Justert opp fra 20px til 120px for å kompensere for countdown-banneret */
+    margin-top: 120px; 
     position: relative;
     display: block;
-    min-height: 400px; /* Minimumshøyde for å sikre synlighet og tilstrekkelig plass */
+    min-height: 400px; 
 }
 
 .signup-form-container {
-    max-width: 80%; /* Adjust as needed */
+    max-width: 80%; 
     margin: 0 auto;
     margin-top: 7%;
     margin-bottom: 5%;
@@ -50,5 +50,5 @@
 }
   
 .signup-input::placeholder {
-    color: #aaa; /* Placeholder color */
+    color: #aaa;
 }
